@@ -25,7 +25,7 @@ public class Candidate {
     @Enumerated(EnumType.ORDINAL)
     private Estado estado;
 
-    @Column(name = "status", nullable = false, columnDefinition = "tinyint default 1")
+    @Column(nullable = false, columnDefinition = "TINYINT DEFAULT 1")
     private Boolean status;
 
     //Relaciones
@@ -45,5 +45,16 @@ public class Candidate {
     @ManyToOne
     @JoinColumn(name = "academy_id")
     private Academy academy;
+
+    public Candidate(Long id, String date, Estado estado, Boolean status, Certification certification, Person person, Academy academy) {
+        this.id = id;
+        this.date = date;
+        this.estado = estado;
+        this.status = status;
+        this.certification = certification;
+        this.person = person;
+        this.academy = academy;
+    }
+
 
 }

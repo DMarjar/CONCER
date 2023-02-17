@@ -19,7 +19,7 @@ public class Academy {
     @Column(name = "academyName", nullable = false, length = 50)
     private String name;
 
-    @Column(name = "status", nullable = false, columnDefinition = "tinyint default 1")
+    @Column(nullable = false, columnDefinition = "TINYINT DEFAULT 1")
     private Boolean status;
 
     //Relaciones

@@ -33,7 +33,7 @@ public class Person {
     @Enumerated(EnumType.ORDINAL)
     private Gender gender;
 
-    @Column(name = "status", nullable = false, columnDefinition = "tinyint default 1")
+    @Column( nullable = false, columnDefinition = "TINYINT DEFAULT 1")
     private Boolean status;
 
     @Enumerated(EnumType.ORDINAL)
@@ -53,5 +53,19 @@ public class Person {
     /*candidato*/
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<Candidate> candidates;
+
+    public Person(Long id, String firstName, String lastName, String phoneNumber, String email, Gender gender, Boolean status, TypePerson typePerson, User user, List<Certification> certifications, List<Candidate> candidates) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.gender = gender;
+        this.status = status;
+        this.typePerson = typePerson;
+        this.user = user;
+        this.certifications = certifications;
+        this.candidates = candidates;
+    }
 
 }
