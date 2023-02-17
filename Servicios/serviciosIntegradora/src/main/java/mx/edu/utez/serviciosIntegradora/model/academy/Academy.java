@@ -25,4 +25,12 @@ public class Academy {
     //Relaciones
     @OneToMany(mappedBy = "academy", cascade = CascadeType.ALL)
     private List<Candidate> candidates;
+
+    public Academy(Long id, String name, Boolean status, List<Candidate> candidates) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
+        this.candidates = candidates;
+    }
+
 }
