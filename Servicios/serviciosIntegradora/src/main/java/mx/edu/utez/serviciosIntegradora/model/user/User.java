@@ -24,7 +24,7 @@ public class User {
     @Enumerated(EnumType.ORDINAL)
     private Role role;
 
-    @Column(name = "status", nullable = false, columnDefinition = "tinyint default 1")
+    @Column( nullable = false, columnDefinition = "TINYINT DEFAULT 1")
     private Boolean status;
 
 
@@ -32,5 +32,15 @@ public class User {
     @OneToOne(mappedBy = "user")
     @JsonIgnore
     private Person person;
+
+    public User(Long id, String username, String password, Role role, Boolean status, Person person) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.status = status;
+        this.person = person;
+    }
+
 }
 

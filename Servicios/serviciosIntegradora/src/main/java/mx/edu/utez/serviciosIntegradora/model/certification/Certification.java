@@ -25,7 +25,7 @@ public class Certification {
     @Column(name = "version", nullable = false, length = 90)
     private String version;
 
-    @Column(name = "status", nullable = false, columnDefinition = "tinyint default 1")
+    @Column(nullable = false, columnDefinition = "TINYINT DEFAULT 1")
     private Boolean status;
 
     //Relaciones
@@ -45,4 +45,16 @@ public class Certification {
     /*candidato*/
     @OneToMany(mappedBy = "certification", cascade = CascadeType.ALL)
     private List<Candidate> candidate;
+
+    public Certification(Long id, String name, String version, Boolean status, Person person, CertifyingCompany company, List<Candidate> candidate) {
+        this.id = id;
+        this.name = name;
+        this.version = version;
+        this.status = status;
+        this.person = person;
+        this.company = company;
+        this.candidate = candidate;
+    }
+
+
 }
