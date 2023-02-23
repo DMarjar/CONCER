@@ -41,28 +41,19 @@ public class AcademyController {
     // Insert
     @PostMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/academy/
-    public ResponseEntity<CustomResponse<Academy>> insert(@RequestBody AcademyDtos academy, @Valid BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(
-                    new CustomResponse<>(null, true, 400, "The academy already exists"),
-                    HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(
-                this.service.insert(academy.castToAcademy()), HttpStatus.CREATED
+    public ResponseEntity<CustomResponse<Academy>> insert(@Valid @RequestBody AcademyDtos academy) {
+        return new ResponseEntity<> (
+                this.service.insert(academy.castToAcademy()),
+                HttpStatus.CREATED
         );
     }
 
     // Update
-    @PutMapping("/{id}")
+    @PutMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/academy/{id}
-    public ResponseEntity<CustomResponse<Academy>> update(@PathVariable("id") Long id, @RequestBody AcademyDtos academy, @Valid BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(
-                    new CustomResponse<>(null, true, 400, "There was an error updating the academy"),
-                    HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<CustomResponse<Academy>> update(@Valid @RequestBody AcademyDtos academy) {
         return new ResponseEntity<>(
-                this.service.update(id, academy.castToAcademy()), HttpStatus.OK
+                this.service.update( academy.castToAcademy()), HttpStatus.OK
         );
     }
 

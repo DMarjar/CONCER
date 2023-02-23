@@ -46,8 +46,8 @@ public class AcademyService {
 
     //update
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Academy> update(Long id,Academy academy){
-        if((!this.Repository.existsById(id))){
+    public CustomResponse<Academy> update(Academy academy){
+        if((!this.Repository.existsById(academy.getId()))){
             return new CustomResponse<>(null,true,400,"no existe");
         }
         return new CustomResponse<>(

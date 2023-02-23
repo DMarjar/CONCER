@@ -20,7 +20,7 @@ public class Academy {
     private String name;
 
     @Column(nullable = false, columnDefinition = "TINYINT DEFAULT 1")
-    private Boolean status;
+    private Boolean status = true;
 
     //Relaciones
     @OneToMany(mappedBy = "academy", cascade = CascadeType.ALL)
