@@ -15,7 +15,7 @@ public class AcademyDtos {
     @NotBlank
     @Length(min = 1, max = 150)
     private String name;
-    private Boolean status;
+    private Boolean status = true;
 
     public Academy castToAcademy() {
         return new Academy(
