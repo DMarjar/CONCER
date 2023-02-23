@@ -26,7 +26,7 @@ public class UserDtos {
     @Length(min = 1, max = 150)
     private String password;
     private Role role;
-    private Boolean status;
+    private Boolean status = true;
     private Person person;
 
     public User castToUser() {

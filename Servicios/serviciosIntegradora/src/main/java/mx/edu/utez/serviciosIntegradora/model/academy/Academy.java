@@ -1,16 +1,17 @@
 package mx.edu.utez.serviciosIntegradora.model.academy;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import mx.edu.utez.serviciosIntegradora.model.candidate.Candidate;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
-@NoArgsConstructor
 @Table(name = "Academy")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Academy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,12 +26,5 @@ public class Academy {
     //Relaciones
     @OneToMany(mappedBy = "academy", cascade = CascadeType.ALL)
     private List<Candidate> candidates;
-
-    public Academy(Long id, String name, Boolean status, List<Candidate> candidates) {
-        this.id = id;
-        this.name = name;
-        this.status = status;
-        this.candidates = candidates;
-    }
 
 }

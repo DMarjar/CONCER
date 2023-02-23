@@ -39,7 +39,7 @@ public class PersonDtos {
     @NotNull
     @NotBlank
     private Gender gender;
-    private Boolean status;
+    private Boolean status = true;
     private TypePerson typePerson;
     private User user;
 

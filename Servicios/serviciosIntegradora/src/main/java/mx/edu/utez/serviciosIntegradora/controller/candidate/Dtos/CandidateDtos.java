@@ -20,7 +20,7 @@ public class CandidateDtos {
     @NotNull
     @NotBlank
     private Estado estado;
-    private Boolean status;
+    private Boolean status=true;
     @NotNull
     @NotBlank
     private Certification certification;

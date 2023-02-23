@@ -1,16 +1,17 @@
 package mx.edu.utez.serviciosIntegradora.model.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import mx.edu.utez.serviciosIntegradora.model.person.Person;
 
 import javax.persistence.*;
 
 @Entity
-@Data
-@NoArgsConstructor
 @Table(name = "users")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,15 +33,6 @@ public class User {
     @OneToOne(mappedBy = "user")
     @JsonIgnore
     private Person person;
-
-    public User(Long id, String username, String password, Role role, Boolean status, Person person) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.role = role;
-        this.status = status;
-        this.person = person;
-    }
 
 }
 

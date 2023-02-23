@@ -42,52 +42,37 @@ public class CertifyingCompanyController {
     // Insert
     @PostMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/cerifyingCompany/
-    public ResponseEntity<CustomResponse<CertifyingCompany>> insert(@RequestBody CertifyingCompanyDtos certifyingCompany, @Valid BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(
-                    new CustomResponse<>(null, true, 400, "The certifyingCompany already exists"),
-                    HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<CustomResponse<CertifyingCompany>> insert(@Valid @RequestBody CertifyingCompanyDtos certifyingCompany) {
         return new ResponseEntity<>(
                 this.service.insert(certifyingCompany.castToCertifyingCompany()), HttpStatus.CREATED
         );
     }
 
     // Update
-    @PutMapping("/{id}")
+    @PutMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/cerifyingCompany/{id}
-    public ResponseEntity<CustomResponse<CertifyingCompany>> update(@PathVariable("id") Long id, @RequestBody CertifyingCompanyDtos certifyingCompany, @Valid BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(
-                    new CustomResponse<>(null, true, 400, "There was an error updating the certifyingCompany"),
-                    HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<CustomResponse<CertifyingCompany>> update(@Valid @RequestBody CertifyingCompanyDtos certifyingCompany) {
         return new ResponseEntity<>(
-                this.service.update(id, certifyingCompany.castToCertifyingCompany()), HttpStatus.OK
+                this.service.update(certifyingCompany.castToCertifyingCompany()), HttpStatus.OK
         );
     }
 
 
     // Update status
-    @PatchMapping("/{id}")
+    @PatchMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/cerifyingCompany/{id}
-    public ResponseEntity<CustomResponse<Boolean>> patch(@PathVariable("id") Long id, @RequestBody CertifyingCompanyDtos certifyingCompany, @Valid BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(
-                    new CustomResponse<>(null, true, 400, "There was an error updating the status of the certifyingCompany"),
-                    HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<CustomResponse<Boolean>> patch(@Valid @RequestBody CertifyingCompanyDtos certifyingCompany) {
         return new ResponseEntity<>(
-                this.service.changeStatus(id, certifyingCompany.castToCertifyingCompany()), HttpStatus.OK
+                this.service.changeStatus(certifyingCompany.castToCertifyingCompany()), HttpStatus.OK
         );
     }
 
     //Delete
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/certifyingCompany/{id}
-    public ResponseEntity<CustomResponse<CertifyingCompany>> delete(@PathVariable Long id){
+    public ResponseEntity<CustomResponse<CertifyingCompany>> delete(@Valid @RequestBody CertifyingCompanyDtos certifyingCompany){
         return new ResponseEntity<>(
-                this.service.delete(id),
+                this.service.delete(certifyingCompany.castToCertifyingCompany()),
                 HttpStatus.OK
         );
     }

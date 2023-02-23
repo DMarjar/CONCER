@@ -48,8 +48,8 @@ public class UserService {
 
     //update
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<User> update(Long id,User user){
-        if((!this.Repository.existsById(id))){
+    public CustomResponse<User> update(User user){
+        if((!this.Repository.existsById(user.getId()))){
             return new CustomResponse<>(null,true,400,"no existe");
         }
         return new CustomResponse<>(
@@ -59,12 +59,12 @@ public class UserService {
 
     //delate
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<User> delete(Long id){
-        Optional<User> exists = this.Repository.findById(id);
+    public CustomResponse<User> delete(User user){
+        Optional<User> exists = this.Repository.findById(user.getId());
         if((!exists.isPresent())){
             return new CustomResponse<>(null,true,400,"no existe");
         }
-        this.Repository.deleteById(id);
+        this.Repository.deleteById(user.getId());
         return new CustomResponse<>(
                 null,false,200,"ok"
         );
@@ -72,8 +72,8 @@ public class UserService {
 
     // update status
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Boolean> changeStatus(Long id, User user) {
-        if (!this.Repository.updateStatusById(id, user.getStatus())) {
+    public CustomResponse<Boolean> changeStatus(User user) {
+        if (!this.Repository.updateStatusById(user.getId(), user.getStatus())) {
             return new CustomResponse<>(null, true, 400, "Error update status");
         }
         return new CustomResponse<>(

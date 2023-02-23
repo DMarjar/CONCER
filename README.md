@@ -1,5 +1,8 @@
-# CONCER v0.2
+# CONCER v0.2.1
  Proyecto Integrador II "Control de Certificaciones"
+  ## v0.2.1 - 2023-02-22
+ - Se encontro la causa del bug de status. Se debe a que los Dtos no asignan "true"
+ - *Gracias a Miguel Ángel Moreno Velásquez*
  
  ## v0.2 - 2023-02-18
 - Se crearon los repository de las entidades

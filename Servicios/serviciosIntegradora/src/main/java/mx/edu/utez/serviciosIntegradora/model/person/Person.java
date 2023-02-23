@@ -1,7 +1,6 @@
 package mx.edu.utez.serviciosIntegradora.model.person;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import mx.edu.utez.serviciosIntegradora.model.candidate.Candidate;
 import mx.edu.utez.serviciosIntegradora.model.certification.Certification;
 import mx.edu.utez.serviciosIntegradora.model.user.User;
@@ -10,9 +9,11 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
-@NoArgsConstructor
 @Table(name = "people")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,19 +54,5 @@ public class Person {
     /*candidato*/
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<Candidate> candidates;
-
-    public Person(Long id, String firstName, String lastName, String phoneNumber, String email, Gender gender, Boolean status, TypePerson typePerson, User user, List<Certification> certifications, List<Candidate> candidates) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.gender = gender;
-        this.status = status;
-        this.typePerson = typePerson;
-        this.user = user;
-        this.certifications = certifications;
-        this.candidates = candidates;
-    }
 
 }

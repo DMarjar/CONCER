@@ -1,8 +1,7 @@
 package mx.edu.utez.serviciosIntegradora.model.certification;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import mx.edu.utez.serviciosIntegradora.model.candidate.Candidate;
 import mx.edu.utez.serviciosIntegradora.model.certifyingCompany.CertifyingCompany;
 import mx.edu.utez.serviciosIntegradora.model.person.Person;
@@ -11,9 +10,11 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
-@NoArgsConstructor
 @Table(name = "certifications")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Certification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,16 +46,6 @@ public class Certification {
     /*candidato*/
     @OneToMany(mappedBy = "certification", cascade = CascadeType.ALL)
     private List<Candidate> candidate;
-
-    public Certification(Long id, String name, String version, Boolean status, Person person, CertifyingCompany company, List<Candidate> candidate) {
-        this.id = id;
-        this.name = name;
-        this.version = version;
-        this.status = status;
-        this.person = person;
-        this.company = company;
-        this.candidate = candidate;
-    }
 
 
 }
