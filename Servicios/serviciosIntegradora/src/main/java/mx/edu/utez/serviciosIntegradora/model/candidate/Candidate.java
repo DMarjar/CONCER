@@ -40,11 +40,13 @@ public class Candidate {
     /*persona*/
     @ManyToOne
     @JoinColumn(name = "person_id")
+    @JsonIgnore
     private Person person;
 
     /*Academy*/
     @ManyToOne
     @JoinColumn(name = "academy_id")
+    @JsonIgnore
     private Academy academy;
 
 

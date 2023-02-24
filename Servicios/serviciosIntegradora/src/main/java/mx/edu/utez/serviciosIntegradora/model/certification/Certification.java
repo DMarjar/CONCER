@@ -45,6 +45,7 @@ public class Certification {
 
     /*candidato*/
     @OneToMany(mappedBy = "certification", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Candidate> candidate;
 
 

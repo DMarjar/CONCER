@@ -1,5 +1,6 @@
 package mx.edu.utez.serviciosIntegradora.model.person;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import mx.edu.utez.serviciosIntegradora.model.candidate.Candidate;
 import mx.edu.utez.serviciosIntegradora.model.certification.Certification;
@@ -45,14 +46,17 @@ public class Person {
     /*persona*/
     @OneToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     /*certificacion*/
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Certification> certifications;
 
     /*candidato*/
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Candidate> candidates;
 
 }

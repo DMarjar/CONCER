@@ -1,5 +1,6 @@
 package mx.edu.utez.serviciosIntegradora.model.certifyingCompany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import mx.edu.utez.serviciosIntegradora.model.certification.Certification;
@@ -25,6 +26,7 @@ public class CertifyingCompany {
     //Relaciones
     /*compañia - certificacion*/
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Certification> certification;
 
     public CertifyingCompany(Long id, String name, Boolean status, List<Certification> certification) {

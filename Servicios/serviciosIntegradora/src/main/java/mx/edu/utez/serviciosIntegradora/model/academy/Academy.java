@@ -1,5 +1,6 @@
 package mx.edu.utez.serviciosIntegradora.model.academy;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import mx.edu.utez.serviciosIntegradora.model.candidate.Candidate;
 
@@ -25,6 +26,7 @@ public class Academy {
 
     //Relaciones
     @OneToMany(mappedBy = "academy", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Candidate> candidates;
 
 }
