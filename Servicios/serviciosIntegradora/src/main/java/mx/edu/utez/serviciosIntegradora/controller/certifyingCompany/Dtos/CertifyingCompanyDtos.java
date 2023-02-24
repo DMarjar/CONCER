@@ -16,7 +16,7 @@ public class CertifyingCompanyDtos {
     @NotBlank
     @Length(min = 1, max = 150)
     private String name;
-    private Boolean status;
+    private Boolean status=true;
 
     public CertifyingCompany castToCertifyingCompany() {
         return new CertifyingCompany(

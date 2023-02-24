@@ -24,6 +24,7 @@ public class AcademyController {
     @GetMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/academy/
     public ResponseEntity<CustomResponse<List<Academy>>> getAll() {
+
         return new ResponseEntity<>(
                 this.service.getAll(),
                 HttpStatus.OK);
@@ -31,11 +32,12 @@ public class AcademyController {
 
     // Get one
     @GetMapping("/{id}")
-    // URL: http://localhost:8080/controlCertificaciones/academy/{id}
-    public ResponseEntity<CustomResponse<Academy>> getOne(@PathVariable Long id){
+    // URL: http://localhost:8080/controlCertificaciones/academy/
+    public ResponseEntity<CustomResponse<Academy>> getOne(@PathVariable Long id) {
         return new ResponseEntity<>(
                 this.service.getOne(id),
-                HttpStatus.OK);
+                HttpStatus.OK
+        );
     }
 
     // Insert
@@ -50,7 +52,7 @@ public class AcademyController {
 
     // Update
     @PutMapping("/")
-    // URL: http://localhost:8080/controlCertificaciones/academy/{id}
+    // URL: http://localhost:8080/controlCertificaciones/academy/
     public ResponseEntity<CustomResponse<Academy>> update(@Valid @RequestBody AcademyDtos academy) {
         return new ResponseEntity<>(
                 this.service.update( academy.castToAcademy()), HttpStatus.OK
@@ -59,25 +61,20 @@ public class AcademyController {
 
    
     // Update status
-    @PatchMapping("/{id}")
-    // URL: http://localhost:8080/controlCertificaciones/academy/{id}
-    public ResponseEntity<CustomResponse<Boolean>> patch(@PathVariable("id") Long id, @RequestBody AcademyDtos academy, @Valid BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(
-                    new CustomResponse<>(null, true, 400, "There was an error updating the status of the academy"),
-                    HttpStatus.BAD_REQUEST);
-        }
+    @PatchMapping("/")
+    // URL: http://localhost:8080/controlCertificaciones/academy/
+    public ResponseEntity<CustomResponse<Boolean>> patch(@Valid @RequestBody AcademyDtos academy) {
         return new ResponseEntity<>(
-                this.service.changeStatus(id, academy.castToAcademy()), HttpStatus.OK
+                this.service.changeStatus(academy.castToAcademy()), HttpStatus.OK
         );
     }
 
     //Delete
-    @DeleteMapping("/{id}")
-    // URL: http://localhost:8080/controlCertificaciones/academy/{id}
-    public ResponseEntity<CustomResponse<Academy>> delete(@PathVariable Long id){
+    @DeleteMapping("/")
+    // URL: http://localhost:8080/controlCertificaciones/academy/
+    public ResponseEntity<CustomResponse<Academy>> delete(@Valid @RequestBody AcademyDtos academy){
         return new ResponseEntity<>(
-                this.service.delete(id),
+                this.service.delete(academy.castToAcademy()),
                 HttpStatus.OK
         );
     }

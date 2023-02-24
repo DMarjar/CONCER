@@ -47,8 +47,8 @@ public class CandidateService {
 
     //update
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Candidate> update(Long id,Candidate candidate){
-        if((!this.Repository.existsById(id))){
+    public CustomResponse<Candidate> update(Candidate candidate){
+        if((!this.Repository.existsById(candidate.getId()))){
             return new CustomResponse<>(null,true,400,"no existe");
         }
         return new CustomResponse<>(
@@ -58,12 +58,12 @@ public class CandidateService {
 
     //delate
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Candidate> delete(Long id){
-        Optional<Candidate> exists = this.Repository.findById(id);
+    public CustomResponse<Candidate> delete(Candidate candidate){
+        Optional<Candidate> exists = this.Repository.findById(candidate.getId());
         if((!exists.isPresent())){
             return new CustomResponse<>(null,true,400,"no existe");
         }
-        this.Repository.deleteById(id);
+        this.Repository.deleteById(candidate.getId());
         return new CustomResponse<>(
                 null,false,200,"ok"
         );
@@ -71,8 +71,8 @@ public class CandidateService {
 
     // update status
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Boolean> changeStatus(Long id, Candidate candidate) {
-        if (!this.Repository.updateStatusById(id, candidate.getStatus())) {
+    public CustomResponse<Boolean> changeStatus(Candidate candidate) {
+        if (!this.Repository.updateStatusById(candidate.getId(), candidate.getStatus())) {
             return new CustomResponse<>(null, true, 400, "Error update status");
         }
         return new CustomResponse<>(

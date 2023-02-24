@@ -54,40 +54,31 @@ public class CertificationController {
     }
 
     // Update
-    @PutMapping("/{id}")
+    @PutMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/certification/{id}
-    public ResponseEntity<CustomResponse<Certification>> update(@PathVariable("id") Long id, @RequestBody CertificationDtos certification, @Valid BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(
-                    new CustomResponse<>(null, true, 400, "There was an error updating the certification"),
-                    HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<CustomResponse<Certification>> update(@Valid @RequestBody CertificationDtos certification) {
         return new ResponseEntity<>(
-                this.service.update(id, certification.castToCertification()), HttpStatus.OK
+                this.service.update(certification.castToCertification()), HttpStatus.OK
         );
     }
 
 
     // Update status
-    @PatchMapping("/{id}")
+    @PatchMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/certification/{id}
-    public ResponseEntity<CustomResponse<Boolean>> patch(@PathVariable("id") Long id, @RequestBody CertificationDtos certification, @Valid BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(
-                    new CustomResponse<>(null, true, 400, "There was an error updating the status of the certification"),
-                    HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<CustomResponse<Boolean>> patch(@Valid @RequestBody CertificationDtos certification) {
+
         return new ResponseEntity<>(
-                this.service.changeStatus(id, certification.castToCertification()), HttpStatus.OK
+                this.service.changeStatus(certification.castToCertification()), HttpStatus.OK
         );
     }
 
     //Delete
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/certification/{id}
-    public ResponseEntity<CustomResponse<Certification>> delete(@PathVariable Long id){
+    public ResponseEntity<CustomResponse<Certification>> delete(@Valid @RequestBody CertificationDtos certification){
         return new ResponseEntity<>(
-                this.service.delete(id),
+                this.service.delete(certification.castToCertification()),
                 HttpStatus.OK
         );
     }

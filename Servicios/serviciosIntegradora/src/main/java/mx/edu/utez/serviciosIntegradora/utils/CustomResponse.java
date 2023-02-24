@@ -15,6 +15,4 @@ public class CustomResponse<T>{
     int statusCode;
     String message;
 
-
-
 }

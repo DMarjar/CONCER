@@ -41,52 +41,37 @@ public class UserController {
     // Insert
     @PostMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/user/
-    public ResponseEntity<CustomResponse<User>> insert(@RequestBody UserDtos user, @Valid BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(
-                    new CustomResponse<>(null, true, 400, "The user already exists"),
-                    HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<CustomResponse<User>> insert(@Valid @RequestBody UserDtos user) {
         return new ResponseEntity<>(
                 this.service.insert(user.castToUser()), HttpStatus.CREATED
         );
     }
 
     // Update
-    @PutMapping("/{id}")
+    @PutMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/user/{id}
-    public ResponseEntity<CustomResponse<User>> update(@PathVariable("id") Long id, @RequestBody UserDtos user, @Valid BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(
-                    new CustomResponse<>(null, true, 400, "There was an error updating the user"),
-                    HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<CustomResponse<User>> update(@Valid @RequestBody UserDtos user) {
         return new ResponseEntity<>(
-                this.service.update(id, user.castToUser()), HttpStatus.OK
+                this.service.update(user.castToUser()), HttpStatus.OK
         );
     }
 
 
     // Update status
-    @PatchMapping("/{id}")
+    @PatchMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/user/{id}
-    public ResponseEntity<CustomResponse<Boolean>> patch(@PathVariable("id") Long id, @RequestBody UserDtos academy, @Valid BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(
-                    new CustomResponse<>(null, true, 400, "There was an error updating the status of the academy"),
-                    HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<CustomResponse<Boolean>> patch(@Valid @RequestBody UserDtos academy) {
         return new ResponseEntity<>(
-                this.service.changeStatus(id, academy.castToUser()), HttpStatus.OK
+                this.service.changeStatus(academy.castToUser()), HttpStatus.OK
         );
     }
 
     //Delete
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/user/{id}
-    public ResponseEntity<CustomResponse<User>> delete(@PathVariable Long id){
+    public ResponseEntity<CustomResponse<User>> delete(@Valid @RequestBody UserDtos academy){
         return new ResponseEntity<>(
-                this.service.delete(id),
+                this.service.delete(academy.castToUser()),
                 HttpStatus.OK
         );
     }

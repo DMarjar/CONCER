@@ -21,7 +21,7 @@ public class CertificationDtos {
     @NotNull
     @NotBlank
     private String version;
-    private Boolean status;
+    private Boolean status=true;
     private Person person;
     private CertifyingCompany certifyingCompany;
 

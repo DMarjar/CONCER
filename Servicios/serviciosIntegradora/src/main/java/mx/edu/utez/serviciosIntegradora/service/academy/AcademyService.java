@@ -57,8 +57,8 @@ public class AcademyService {
 
     // update status
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Boolean> changeStatus(Long id, Academy category) {
-        if (!this.Repository.updateStatusById(id, category.getStatus())) {
+    public CustomResponse<Boolean> changeStatus(Academy category) {
+        if (!this.Repository.updateStatusById(category.getId(), category.getStatus())) {
             return new CustomResponse<>(null, true, 400, "Error update status");
         }
         return new CustomResponse<>(
@@ -68,12 +68,12 @@ public class AcademyService {
 
     //delete
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Academy> delete(Long id){
-        Optional<Academy> exists = this.Repository.findById(id);
+    public CustomResponse<Academy> delete(Academy academy){
+        Optional<Academy> exists = this.Repository.findById(academy.getId());
         if((!exists.isPresent())){
             return new CustomResponse<>(null,true,400,"no existe");
         }
-        this.Repository.deleteById(id);
+        this.Repository.deleteById(academy.getId());
         return new CustomResponse<>(
                 null,false,200,"ok"
         );

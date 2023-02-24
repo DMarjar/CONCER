@@ -30,20 +30,6 @@ public class CandidateController {
                 HttpStatus.OK);
     }
 
-    // Insert
-    @PostMapping("/")
-    // URL: http://localhost:8080/controlCertificaciones/candidate/
-    public ResponseEntity<CustomResponse<Candidate>> insert(@RequestBody CandidateDtos candidate, @Valid BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(
-                    new CustomResponse<>(null, true, 400, "The candidate already exists"),
-                    HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(
-                this.service.insert(candidate.castToCandidate()), HttpStatus.CREATED
-        );
-    }
-
     // Get one
     @GetMapping("/{id}")
     // URL: http://localhost:8080/controlCertificaciones/candidate/{id}
@@ -53,41 +39,41 @@ public class CandidateController {
                 HttpStatus.OK);
     }
 
-    // Update
-    @PutMapping("/{id}")
-    // URL: http://localhost:8080/controlCertificaciones/candidate/{id}
-    public ResponseEntity<CustomResponse<Candidate>> update(@PathVariable("id") Long id, @RequestBody CandidateDtos candidate, @Valid BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(
-                    new CustomResponse<>(null, true, 400, "There was an error updating the candidate"),
-                    HttpStatus.BAD_REQUEST);
-        }
+    // Insert
+    @PostMapping("/")
+    // URL: http://localhost:8080/controlCertificaciones/candidate/
+    public ResponseEntity<CustomResponse<Candidate>> insert(@Valid @RequestBody CandidateDtos candidate) {
         return new ResponseEntity<>(
-                this.service.update(id, candidate.castToCandidate()), HttpStatus.OK
+                this.service.insert(candidate.castToCandidate()), HttpStatus.CREATED
+        );
+    }
+
+
+    // Update
+    @PutMapping("/")
+    // URL: http://localhost:8080/controlCertificaciones/candidate/{id}
+    public ResponseEntity<CustomResponse<Candidate>> update(@Valid  @RequestBody CandidateDtos candidate) {
+        return new ResponseEntity<>(
+                this.service.update(candidate.castToCandidate()), HttpStatus.OK
         );
     }
 
 
     // Update status
-    @PatchMapping("/{id}")
+    @PatchMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/candidate/{id}
-    public ResponseEntity<CustomResponse<Boolean>> patch(@PathVariable("id") Long id, @RequestBody CandidateDtos candidate, @Valid BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(
-                    new CustomResponse<>(null, true, 400, "There was an error updating the status of the candidate"),
-                    HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<CustomResponse<Boolean>> patch(@Valid @RequestBody CandidateDtos candidate) {
         return new ResponseEntity<>(
-                this.service.changeStatus(id, candidate.castToCandidate()), HttpStatus.OK
+                this.service.changeStatus(candidate.castToCandidate()), HttpStatus.OK
         );
     }
 
     //Delete
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/candidate/{id}
-    public ResponseEntity<CustomResponse<Candidate>> delete(@PathVariable Long id){
+    public ResponseEntity<CustomResponse<Candidate>> delete(@Valid @RequestBody CandidateDtos candidate){
         return new ResponseEntity<>(
-                this.service.delete(id),
+                this.service.delete(candidate.castToCandidate()),
                 HttpStatus.OK
         );
     }

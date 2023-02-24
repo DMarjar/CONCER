@@ -46,8 +46,8 @@ public class CertifyingCompanyService {
 
     //update
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<CertifyingCompany> update(Long id,CertifyingCompany company){
-        if((!this.Repository.existsById(id))){
+    public CustomResponse<CertifyingCompany> update(CertifyingCompany company){
+        if((!this.Repository.existsById(company.getId()))){
             return new CustomResponse<>(null,true,400,"no existe");
         }
         return new CustomResponse<>(
@@ -57,12 +57,12 @@ public class CertifyingCompanyService {
 
     //delate
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<CertifyingCompany> delete(Long id){
-        Optional<CertifyingCompany> exists = this.Repository.findById(id);
+    public CustomResponse<CertifyingCompany> delete(CertifyingCompany company){
+        Optional<CertifyingCompany> exists = this.Repository.findById(company.getId());
         if((!exists.isPresent())){
             return new CustomResponse<>(null,true,400,"no existe");
         }
-        this.Repository.deleteById(id);
+        this.Repository.deleteById(company.getId());
         return new CustomResponse<>(
                 null,false,200,"ok"
         );
@@ -70,8 +70,8 @@ public class CertifyingCompanyService {
 
     // update status
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Boolean> changeStatus(Long id, CertifyingCompany company) {
-        if (!this.Repository.updateStatusById(id, company.getStatus())) {
+    public CustomResponse<Boolean> changeStatus(CertifyingCompany company) {
+        if (!this.Repository.updateStatusById(company.getId(), company.getStatus())) {
             return new CustomResponse<>(null, true, 400, "Error update status");
         }
         return new CustomResponse<>(
