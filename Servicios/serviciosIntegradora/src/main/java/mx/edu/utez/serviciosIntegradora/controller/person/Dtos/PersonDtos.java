@@ -37,11 +37,12 @@ public class PersonDtos {
     @Length(min = 1, max = 150)
     private String email;
     @NotNull
-    @NotBlank
     private Gender gender;
     private Boolean status = true;
     private TypePerson typePerson;
     private User user;
+
+
 
     public Person castToPerson() {
         return new Person(

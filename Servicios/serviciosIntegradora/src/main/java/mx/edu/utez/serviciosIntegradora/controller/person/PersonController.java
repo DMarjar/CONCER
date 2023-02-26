@@ -38,14 +38,14 @@ public class PersonController {
     }
 
     // Insert
-    @PostMapping("/")
+   /* @PostMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/person/
     public ResponseEntity<CustomResponse<Person>> insert(@Valid @RequestBody PersonDtos person) {
         return new ResponseEntity<>(
                 this.service.insert(person.castToPerson()), HttpStatus.CREATED
         );
     }
-
+*/
     // Update
     @PutMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/person/{id}
@@ -70,6 +70,21 @@ public class PersonController {
         return new ResponseEntity<>(
                 this.service.delete(person.castToPerson()),
                 HttpStatus.OK
+        );
+    }
+
+    //create User and Person@PostMapping("/")
+    // URL: http://localhost:8080/controlCertificaciones/person/
+
+    @PostMapping("/")
+    public ResponseEntity<CustomResponse<Person>> insert(@Valid @RequestBody PersonDtos person) {
+        if(person.getUser().getStatus() == null){
+            person.getUser().setStatus(true);
+        }
+
+
+        return new ResponseEntity<>(
+                this.service.createUserPerson(person.castToPerson()), HttpStatus.CREATED
         );
     }
 
