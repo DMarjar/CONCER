@@ -1,5 +1,11 @@
-# CONCER v0.2.2
+# CONCER v0.2.3
  Proyecto Integrador II "Control de Certificaciones"
+  ## v0.2.3 - 2023-03-01
+  - Se implementó el método POST para registrar usuario y persona a la vez
+  - Se corrigio un bug de los ENUM
+  - Se creó la estructura del proyecto móvil
+  - Se añadieron las clases Navigation.js, Loading.js y Login.js al proyecto móvil
+ 
  ## v0.2.2 - 2023-02-23
  - Se arreglo el bug de status
  - Se arreglo el bug de POST / PUT
