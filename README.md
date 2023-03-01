@@ -1,5 +1,10 @@
-# CONCER v0.2.1
+# CONCER v0.2.2
  Proyecto Integrador II "Control de Certificaciones"
+ ## v0.2.2 - 2023-02-23
+ - Se arreglo el bug de status
+ - Se arreglo el bug de POST / PUT
+ - Se arreglo el bug de JSON infinito
+ 
   ## v0.2.1 - 2023-02-22
  - Se encontro la causa del bug de status. Se debe a que los Dtos no asignan "true"
  - *Gracias a Miguel Ángel Moreno Velásquez*
