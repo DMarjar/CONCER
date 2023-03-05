@@ -23,7 +23,7 @@ public class UserDtos {
     private String username;
     @NotNull
     @NotBlank
-    @Length(min = 1, max = 150)
+    @Length(min = 1)
     private String password;
     private Role role;
     private Boolean status = true;
