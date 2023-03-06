@@ -15,4 +15,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     boolean updateStatusById(@Param("id") Long id, @Param("status") boolean status);
 
     boolean existsByUsername(String name);
+
+    User findByUsername(String username);
 }
