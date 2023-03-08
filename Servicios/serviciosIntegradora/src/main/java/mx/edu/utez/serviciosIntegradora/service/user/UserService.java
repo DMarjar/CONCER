@@ -86,4 +86,9 @@ public class UserService {
     public User getUserByUsername(String username){
         return Repository.findByUsername(username);
     }
+
+    @Transactional(readOnly = true)
+    public CustomResponse<User> getUserByUsername2(String username){
+        return new CustomResponse<>(this.Repository.findByUsername(username), false , 200, "todo bien") ;
+    }
 }

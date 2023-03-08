@@ -60,19 +60,28 @@ public class UserController {
     // Update status
     @PatchMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/user/{id}
-    public ResponseEntity<CustomResponse<Boolean>> patch(@Valid @RequestBody UserDtos academy) {
+    public ResponseEntity<CustomResponse<Boolean>> patch(@Valid @RequestBody UserDtos user) {
         return new ResponseEntity<>(
-                this.service.changeStatus(academy.castToUser()), HttpStatus.OK
+                this.service.changeStatus(user.castToUser()), HttpStatus.OK
         );
     }
 
     //Delete
     @DeleteMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/user/{id}
-    public ResponseEntity<CustomResponse<User>> delete(@Valid @RequestBody UserDtos academy){
+    public ResponseEntity<CustomResponse<User>> delete(@Valid @RequestBody UserDtos user){
         return new ResponseEntity<>(
-                this.service.delete(academy.castToUser()),
+                this.service.delete(user.castToUser()),
                 HttpStatus.OK
+        );
+    }
+
+    @PostMapping("/one")
+    // URL: http://localhost:8080/controlCertificaciones/user/{id}
+    public ResponseEntity<CustomResponse<User>> getByUsername(@Valid @RequestBody UserDtos user){
+        System.out.println(user.getUsername());
+        return new ResponseEntity<>(
+                this.service.getUserByUsername2(user.castToUser().getUsername()),HttpStatus.OK
         );
     }
 

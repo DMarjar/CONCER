@@ -8,11 +8,11 @@ import { NavigationContainer } from "@react-navigation/native";
 const Stack = createNativeStackNavigator();
 
 export default function MainStack(){
-
+ 
     return (
         <NavigationContainer >
             <Stack.Navigator 
-                screenOptions={({ route }) => ({
+                screenOptions={() => ({
                     headerShown:false
                 })}           
             >

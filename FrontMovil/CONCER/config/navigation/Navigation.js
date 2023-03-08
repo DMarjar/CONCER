@@ -8,7 +8,8 @@ import HomeStack from "../stack/HomeStack";
 
 const Tab = createBottomTabNavigator();
 
-export default function Navigation(){
+export default function Navigation({route}){
+	const {account} = route.params;
     return(
             <Tab.Navigator
 

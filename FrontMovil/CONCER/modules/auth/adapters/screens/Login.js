@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, TextInput, View } from "react-native";
+import { ScrollView, StyleSheet, TextInput, View} from "react-native";
 import { Input, Image,Icon } from "@rneui/base";
 import { Button } from "react-native-elements";
 import { useNavigation } from '@react-navigation/native';
 import { isEmpty } from "lodash";
 import Loading from "../../../../kernel/components/Loading";
+import { Alert } from 'react-native';
+
 
 
 import axios from "../../../../kernel/gateway/auth/http-auth.gateway";
@@ -27,38 +29,55 @@ export default function Login(){
         if (!(isEmpty(data.user) || isEmpty(data.password))){
 
             setShow(true);
-
+            
             (async () =>{
                 try{
                     
-                    const response = await axios.doPost(
+                    const account = await axios.doPost(
                         "/auth/inicioSesion",
                         {
                             username: data.user,
                             password: data.password
                         }
                     );
-                    console.log("servidor", response);
-					setShow(false);
+                    
+                    (async()=>{
+                        try {
+                            const response2 = await axios.doGetUser(
+                                "/user/one",
+                                {
+                                    username: data.user,
+                                    password: data.password
+                                }
+                            );
+                            
+                            if(response2.data.data.role === "GESTOR"){
+                                setShow(false);
+                                navigation.navigate('Home')
+                            }else{
+                                setShow(false);
+                                Alert.alert(
+                                    'ACCESO DENEGADO',
+                                    'Lo sentimos, no se pudo iniciar sesión. Parece que su usuario no tiene los permisos necesarios para utilizar esta aplicación. Por favor, póngase en contacto con el administrador para obtener más información.',
+                                    [
+                                        {
+                                            text: 'Ok',
+                                            style:'cancel'
+                                        }  
+                                    ],
+                                    { cancelable: true, onDismis:() => console.log() }
+                                );
+                            }
+                        } catch (error) {
+                            setShow(false);
+                        }
+                    })();
+
+
                 }catch(e){
                     setShow(false);
-                    console.log("no pude carnalito", e)
                 }
             })();
-
-            /*async function log() {
-                try {
-                    const response = await axios.post('http://localhost:8080/controlCertificaciones/auth/inicioSesion', {
-                        username: "LOGIN",
-                        password: "123456"
-                    });
-                    console.log(response.data);
-                } catch (error) {
-                    console.error(error);
-                }
-            }
-
-            log();*/
 
 
         }else{
@@ -120,7 +139,7 @@ export default function Login(){
                     onPress={login}
                 />
 
-
+                <Loading setShow={show} text="Iniciando sesion" />
             </ScrollView>
         </View>
     );
@@ -134,7 +153,7 @@ const styles = StyleSheet.create({
     logo:{
         width:"100%",
         height: 210,
-        marginHorizontal: 20,
+        marginHorizontal: 15,
         marginVertical:'25%'
     },
     input:{
