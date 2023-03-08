@@ -1,5 +1,13 @@
-# CONCER v0.3.0
+# CONCER v0.3.2
  Proyecto Integrador II "Control de Certificaciones"
+ ## v0.3.2 - 2023-03-05
+  - Se crearon las estructuras base del Navbar y Sidebar (Admin)
+  - Se agregaron las dependencias de los íconos de FontAwesome
+ 
+ ## v0.3.1 - 2023-03-05
+  - Se implementó la generación de tokens
+  - Se implementó la encriptación de contraseñas
+ 
  ## v0.3.0 - 2023-03-01
   - Se creó la estructura del proyecto Front-Web
  
