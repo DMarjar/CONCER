@@ -1,7 +1,7 @@
 import AxiosInstance from "../../../config/axios";
 
 export default {
-	doPostAuth(endPoint, payLoad) {
+	doPost(endPoint, payLoad) {
 		return AxiosInstance.post(endPoint, payLoad);
 	}
 };

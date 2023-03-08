@@ -7,7 +7,7 @@ import { isEmpty } from "lodash";
 import Loading from "../../../../kernel/components/Loading";
 
 
-import axios from "axios";
+import axios from "../../../../kernel/gateway/auth/http-auth.gateway";
 
 export default function Login(){
 
@@ -25,42 +25,26 @@ export default function Login(){
 
     const login = () => {
         if (!(isEmpty(data.user) || isEmpty(data.password))){
+
             setShow(true);
 
-            axios.post('http://localhost:8080/controlCertificaciones/auth/inicioSesion', {
-                object: {
-                    username: data.user,
-                    password: data.password
-                }
-            })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-            console.log(error);
-            });
-
-            /*(async () =>{
+            (async () =>{
                 try{
-
-                    const object ={
-                        username: data.user,
-                        password: data.password
-                    }
-
-                    const response = await axios.post(
-                        "http://localhost:8080/controlCertificaciones/auth/inicioSesion",
-                        object
+                    
+                    const response = await axios.doPost(
+                        "/auth/inicioSesion",
+                        {
+                            username: data.user,
+                            password: data.password
+                        }
                     );
-
                     console.log("servidor", response);
 					setShow(false);
-
                 }catch(e){
                     setShow(false);
                     console.log("no pude carnalito", e)
                 }
-            })();*/
+            })();
 
             /*async function log() {
                 try {

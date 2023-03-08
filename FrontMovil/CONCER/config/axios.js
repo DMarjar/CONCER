@@ -1,7 +1,7 @@
 import axios from "axios";
 
 //generar url base
-const SERVER_URL = "http://localhost:8080/controlCertificaciones";
+const SERVER_URL = "http://192.168.100.129:8080/controlCertificaciones";
 
 //crear instancia de axios
 const AxiosInstance = axios.create({
