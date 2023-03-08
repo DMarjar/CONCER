@@ -5,6 +5,9 @@ import lombok.*;
 import mx.edu.utez.serviciosIntegradora.model.person.Person;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -19,7 +22,7 @@ public class User {
 
     @Column(name = "username", nullable = false, length = 50)
     private String username;
-    @Column(name = "password", nullable = false, length = 50)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Enumerated(EnumType.ORDINAL)
@@ -33,6 +36,12 @@ public class User {
     @OneToOne(mappedBy = "user")
     @JsonIgnore
     private Person person;
+
+
+    public Collection<Role> getRoles() {
+        List<Role> roles = new ArrayList<>();
+        return roles;
+    }
 
 }
 

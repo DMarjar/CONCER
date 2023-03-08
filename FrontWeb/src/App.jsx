@@ -1,7 +1,7 @@
 import {AppRouter} from './shared/components/AppRouter'
 import React, {useEffect, useReducer} from 'react'
-import {authReducer} from './modules/auth/authReducer'
 import { AuthContext } from './modules/auth/authContext';
+import { authReducer } from './modules/auth/authReducer';
 
 const init = () => {
   return JSON.parse(localStorage.getItem('user')) || {isLogged: false};

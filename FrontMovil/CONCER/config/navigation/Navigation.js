@@ -3,28 +3,36 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Loading from "../../kernel/components/Loading";
 import { Icon } from "@rneui/base";
-import Login from "../../modules/auth/adapters/screens/Login";
+import ProfileStack from "../stack/ProfileStack";
+import HomeStack from "../stack/HomeStack";
 
 const Tab = createBottomTabNavigator();
 
-export default function Navigation(){
+export default function Navigation({route}){
+	const {account} = route.params;
     return(
-        <NavigationContainer>
             <Tab.Navigator
-                initialRouteName="login"
+
 				screenOptions={({ route }) => ({
 					tabBarIcon: ({ color }) => screenOptions(route, color),
-					tabBarActiveTintColor: "#228B22",
+					tabBarActiveTintColor: "#009574",
 					tabBarInactiveTintColor: "gray",
+					headerShown:false
 				})}
             >
-                <Tab.Screen
-					name="login"
-					component={Login}
-					options={{ title: "Login" }}
+
+				<Tab.Screen
+					name="candidates"
+					component={HomeStack}
+					options={{ title: "Candidates" }}
 				/>
+                <Tab.Screen
+					name="profile"
+					component={ProfileStack}
+					options={{ title: "Profile" }}
+				/>
+				
             </Tab.Navigator>
-        </NavigationContainer>
     );
 }
 
@@ -32,8 +40,11 @@ export default function Navigation(){
 const screenOptions = (route, color) => {
 	let iconName;
 	switch (route.name) {
-		case "login":
-			iconName = "login";
+		case "profile":
+			iconName = "account";
+			break;
+		case "candidates":
+			iconName = "animation";
 			break;
 	}
 	return (

@@ -9,6 +9,7 @@ import mx.edu.utez.serviciosIntegradora.model.user.UserRepository;
 import mx.edu.utez.serviciosIntegradora.utils.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,8 @@ public class PersonService {
     private PersonRepository personRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder encoder;
 
 
     //METODOS---------------------------------------------------------------------------------------------------
@@ -100,6 +103,10 @@ public class PersonService {
         if(this.personRepository.existsByEmail(person.getEmail())){
             return new CustomResponse<>(null,true,400,"el correo electronico ya fue registrado");
         }
+
+        person.getUser().setPassword(
+                encoder.encode(person.getUser().getPassword())
+        );
 
         User newUser =  userRepository.saveAndFlush(person.getUser());
 

@@ -80,4 +80,15 @@ public class UserService {
                 this.Repository.updateStatusById(user.getId(), user.getStatus()), false, 200, "user updated correctly!"
         );
     }
+
+    //getByUsername
+    @Transactional(readOnly = true)
+    public User getUserByUsername(String username){
+        return Repository.findByUsername(username);
+    }
+
+    @Transactional(readOnly = true)
+    public CustomResponse<User> getUserByUsername2(String username){
+        return new CustomResponse<>(this.Repository.findByUsername(username), false , 200, "todo bien") ;
+    }
 }
