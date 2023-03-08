@@ -1,6 +1,9 @@
 import React from "react";
-import Navigation from "./config/navigation/Navigation";
+import MainStack from "./config/stack/MainStack";
+
 
 export default function App(){
-  return <Navigation/>;
+  return (
+    <MainStack/>
+  );
 }
