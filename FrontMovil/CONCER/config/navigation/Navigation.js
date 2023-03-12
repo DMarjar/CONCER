@@ -1,5 +1,4 @@
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Loading from "../../kernel/components/Loading";
 import { Icon } from "@rneui/base";
@@ -8,16 +7,16 @@ import HomeStack from "../stack/HomeStack";
 
 const Tab = createBottomTabNavigator();
 
-export default function Navigation({route}){
-	const {account} = route.params;
+export default function Navigation(){
+
     return(
             <Tab.Navigator
-
 				screenOptions={({ route }) => ({
 					tabBarIcon: ({ color }) => screenOptions(route, color),
 					tabBarActiveTintColor: "#009574",
 					tabBarInactiveTintColor: "gray",
-					headerShown:false
+					headerShown:false,
+					
 				})}
             >
 
