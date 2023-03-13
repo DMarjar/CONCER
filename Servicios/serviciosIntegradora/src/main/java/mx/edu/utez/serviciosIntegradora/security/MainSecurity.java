@@ -63,12 +63,16 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
         "/controlCertificaciones/user/**"
      */
 
+    /*NO ES LA SEGURIDAD OFICIAL, SOLO ES PARA IR RESTRINGIENDO EN PRUEBA DE TOKENS*/
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/controlCertificaciones/**")
-                .permitAll()
+                .antMatchers("/controlCertificaciones/auth/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/controlCertificaciones/**").permitAll() // Permitir todos los endpoints con el método GET
+                .antMatchers(HttpMethod.POST, "/controlCertificaciones/**").hasAnyAuthority("GESTOR", "ADMIN") // Permitir los endpoints POST solo para GESTOR y ADMIN
+                .antMatchers(HttpMethod.PUT, "/controlCertificaciones/**").hasAnyAuthority("GESTOR", "ADMIN") // Permitir los endpoints PUT solo para GESTOR y ADMIN
+                .antMatchers(HttpMethod.DELETE, "/controlCertificaciones/**").hasAuthority("ADMIN") // Permitir los endpoints DELETE solo para ADMIN
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint)
@@ -79,5 +83,22 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                 UsernamePasswordAuthenticationFilter.class);
 
     }
+    /*
+    EN CASO DE NECESITAR QUITAR LA SEGURIDAD PRO PRUEBAS
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception{
+        http.cors().and().csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/controlCertificaciones/**").permitAll()
+                .and()
+                .exceptionHandling().authenticationEntryPoint(entryPoint)
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                http.addFilterBefore(jwtTokenFilter(),
+                UsernamePasswordAuthenticationFilter.class);
+
+    }
+    * */
 }

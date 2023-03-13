@@ -4,7 +4,7 @@ import Candidates from "../../modules/candidates/adapters/screens/Candidates";
 
 const Stack = createNativeStackNavigator();
 
-export default function HomeStack(){
+export default function HomeStack({route}){
     return(
         <Stack.Navigator
             screenOptions={{

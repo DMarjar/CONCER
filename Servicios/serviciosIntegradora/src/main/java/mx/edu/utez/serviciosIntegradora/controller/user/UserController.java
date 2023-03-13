@@ -1,6 +1,7 @@
 package mx.edu.utez.serviciosIntegradora.controller.user;
 
 import mx.edu.utez.serviciosIntegradora.controller.user.Dtos.UserDtos;
+import mx.edu.utez.serviciosIntegradora.model.person.Person;
 import mx.edu.utez.serviciosIntegradora.model.user.User;
 import mx.edu.utez.serviciosIntegradora.service.user.UserService;
 import mx.edu.utez.serviciosIntegradora.utils.CustomResponse;
@@ -76,9 +77,9 @@ public class UserController {
         );
     }
 
-    @PostMapping("/one")
+    @PostMapping("/person")
     // URL: http://localhost:8080/controlCertificaciones/user/{id}
-    public ResponseEntity<CustomResponse<User>> getByUsername(@Valid @RequestBody UserDtos user){
+    public ResponseEntity<CustomResponse<Person>> getByUsername(@Valid @RequestBody UserDtos user){
         System.out.println(user.getUsername());
         return new ResponseEntity<>(
                 this.service.getUserByUsername2(user.castToUser().getUsername()),HttpStatus.OK

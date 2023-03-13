@@ -1,5 +1,4 @@
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Loading from "../../kernel/components/Loading";
 import { Icon } from "@rneui/base";
@@ -8,28 +7,29 @@ import HomeStack from "../stack/HomeStack";
 
 const Tab = createBottomTabNavigator();
 
-export default function Navigation({route}){
-	const {account} = route.params;
+export default function Navigation(){
+
     return(
             <Tab.Navigator
-
 				screenOptions={({ route }) => ({
 					tabBarIcon: ({ color }) => screenOptions(route, color),
 					tabBarActiveTintColor: "#009574",
 					tabBarInactiveTintColor: "gray",
-					headerShown:false
+					headerShown:false,
+					title:""
+					
 				})}
             >
 
 				<Tab.Screen
-					name="candidates"
+					name="Candidatos"
 					component={HomeStack}
-					options={{ title: "Candidates" }}
+					options={{ title: "Candidatos" }}
 				/>
                 <Tab.Screen
-					name="profile"
+					name="Perfil"
 					component={ProfileStack}
-					options={{ title: "Profile" }}
+					options={{ title: "Perfil" }}
 				/>
 				
             </Tab.Navigator>
@@ -40,10 +40,10 @@ export default function Navigation({route}){
 const screenOptions = (route, color) => {
 	let iconName;
 	switch (route.name) {
-		case "profile":
+		case "Perfil":
 			iconName = "account";
 			break;
-		case "candidates":
+		case "Candidatos":
 			iconName = "animation";
 			break;
 	}

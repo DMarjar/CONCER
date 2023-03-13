@@ -18,53 +18,55 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    private UserRepository Repository;
+    private UserRepository userRepository;
+    @Autowired
+    private  PersonRepository personRepository;
 
     //getAll
     @Transactional(readOnly = true)
     public CustomResponse<List<User>> getAll(){
         return new CustomResponse<>(
-                this.Repository.findAll(),false,200,"ok"
+                this.userRepository.findAll(),false,200,"ok"
         );
     }
     //getOne
     @Transactional(readOnly = true)
     public CustomResponse<User> getOne(Long id){
         return new CustomResponse<>(
-                this.Repository.findById(id).get(),false,200,"ok"
+                this.userRepository.findById(id).get(),false,200,"ok"
         );
     }
 
     //insert
     @Transactional(rollbackFor = {SQLException.class})
     public CustomResponse<User> insert(User user){
-        if(this.Repository.existsByUsername(user.getUsername())){
+        if(this.userRepository.existsByUsername(user.getUsername())){
             return new CustomResponse<>(null,true,400,"ya existe");
         }
         return new CustomResponse<>(
-                this.Repository.saveAndFlush(user),false,200,"ok"
+                this.userRepository.saveAndFlush(user),false,200,"ok"
         );
     }
 
     //update
     @Transactional(rollbackFor = {SQLException.class})
     public CustomResponse<User> update(User user){
-        if((!this.Repository.existsById(user.getId()))){
+        if((!this.userRepository.existsById(user.getId()))){
             return new CustomResponse<>(null,true,400,"no existe");
         }
         return new CustomResponse<>(
-                this.Repository.saveAndFlush(user),false,200,"ok"
+                this.userRepository.saveAndFlush(user),false,200,"ok"
         );
     }
 
     //delate
     @Transactional(rollbackFor = {SQLException.class})
     public CustomResponse<User> delete(User user){
-        Optional<User> exists = this.Repository.findById(user.getId());
+        Optional<User> exists = this.userRepository.findById(user.getId());
         if((!exists.isPresent())){
             return new CustomResponse<>(null,true,400,"no existe");
         }
-        this.Repository.deleteById(user.getId());
+        this.userRepository.deleteById(user.getId());
         return new CustomResponse<>(
                 null,false,200,"ok"
         );
@@ -73,22 +75,23 @@ public class UserService {
     // update status
     @Transactional(rollbackFor = {SQLException.class})
     public CustomResponse<Boolean> changeStatus(User user) {
-        if (!this.Repository.updateStatusById(user.getId(), user.getStatus())) {
+        if (!this.userRepository.updateStatusById(user.getId(), user.getStatus())) {
             return new CustomResponse<>(null, true, 400, "Error update status");
         }
         return new CustomResponse<>(
-                this.Repository.updateStatusById(user.getId(), user.getStatus()), false, 200, "user updated correctly!"
+                this.userRepository.updateStatusById(user.getId(), user.getStatus()), false, 200, "user updated correctly!"
         );
     }
 
     //getByUsername
     @Transactional(readOnly = true)
     public User getUserByUsername(String username){
-        return Repository.findByUsername(username);
+        return userRepository.findByUsername(username);
     }
 
     @Transactional(readOnly = true)
-    public CustomResponse<User> getUserByUsername2(String username){
-        return new CustomResponse<>(this.Repository.findByUsername(username), false , 200, "todo bien") ;
+    public CustomResponse<Person> getUserByUsername2(String username){
+        User user = this.userRepository.findByUsername(username);
+        return new CustomResponse<>(this.personRepository.findByUser(user),false,200,"ahh prro");
     }
 }

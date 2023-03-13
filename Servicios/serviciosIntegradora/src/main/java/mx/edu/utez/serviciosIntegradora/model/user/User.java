@@ -40,8 +40,10 @@ public class User {
 
     public Collection<Role> getRoles() {
         List<Role> roles = new ArrayList<>();
+        roles.add(role);
         return roles;
     }
+
 
 }
 
