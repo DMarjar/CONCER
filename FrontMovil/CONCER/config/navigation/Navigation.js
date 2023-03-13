@@ -16,19 +16,20 @@ export default function Navigation(){
 					tabBarActiveTintColor: "#009574",
 					tabBarInactiveTintColor: "gray",
 					headerShown:false,
+					title:""
 					
 				})}
             >
 
 				<Tab.Screen
-					name="candidates"
+					name="Candidatos"
 					component={HomeStack}
-					options={{ title: "Candidates" }}
+					options={{ title: "Candidatos" }}
 				/>
                 <Tab.Screen
-					name="profile"
+					name="Perfil"
 					component={ProfileStack}
-					options={{ title: "Profile" }}
+					options={{ title: "Perfil" }}
 				/>
 				
             </Tab.Navigator>
@@ -39,10 +40,10 @@ export default function Navigation(){
 const screenOptions = (route, color) => {
 	let iconName;
 	switch (route.name) {
-		case "profile":
+		case "Perfil":
 			iconName = "account";
 			break;
-		case "candidates":
+		case "Candidatos":
 			iconName = "animation";
 			break;
 	}

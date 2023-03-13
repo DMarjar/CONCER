@@ -30,8 +30,18 @@ export default function Login(){
                         username: data.user,
                         password: data.password,
                     });
+
                     AxiosInstance.defaults.headers.common["Authorization"] = `Bearer ${account.data.data.token}`;
+
+                    const user = await axios.doPost("/user/person", {
+                        username: data.user,
+                        password: data.password,
+                    });
+                    
                     if (account.data.data.user.authorities[0].authority === "GESTOR") {
+
+                        await AsyncStorage.setItem('account', JSON.stringify(user.data.data));
+
                         setShow(false);
                         setAuth(true);
                     } else {
@@ -46,15 +56,18 @@ export default function Login(){
                     }
                 } catch (error) {
                     setShow(false);
+                    Alert.alert(
+                        "Usuario o Contraseña incorrectos",
+                        "",
+                        [{ text: "Ok", style: "cancel" }],
+                        { cancelable: true, onDismis: () => console.log() }
+                    );
                 }
 
         }else{
             setError({ user: 'Campo obligatorio', password: 'Campo obligatorio'})
         }
     }
-
-
-    
 
     return(
         <View style={styles.container}>
@@ -64,7 +77,6 @@ export default function Login(){
                     resizeMode="contain"
                     style={styles.logo}
                 />
-
                 
                 <Input
                     placeholder="Usuario"

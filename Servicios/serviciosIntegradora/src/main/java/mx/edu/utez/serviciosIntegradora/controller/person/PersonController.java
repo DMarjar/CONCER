@@ -29,23 +29,7 @@ public class PersonController {
                 HttpStatus.OK);
     }
 
-    // Get one
-    @GetMapping("/{id}")
-    public ResponseEntity<CustomResponse<Person>> getOne(@PathVariable Long id) {
-        return new ResponseEntity<>(
-                this.service.getOne(id),
-                HttpStatus.OK);
-    }
 
-    // Insert
-   /* @PostMapping("/")
-    // URL: http://localhost:8080/controlCertificaciones/person/
-    public ResponseEntity<CustomResponse<Person>> insert(@Valid @RequestBody PersonDtos person) {
-        return new ResponseEntity<>(
-                this.service.insert(person.castToPerson()), HttpStatus.CREATED
-        );
-    }
-*/
     // Update
     @PutMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/person/{id}

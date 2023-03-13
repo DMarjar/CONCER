@@ -3,6 +3,7 @@ package mx.edu.utez.serviciosIntegradora.controller.certification;
 import mx.edu.utez.serviciosIntegradora.controller.certification.Dtos.CertificationDtos;
 import mx.edu.utez.serviciosIntegradora.model.academy.Academy;
 import mx.edu.utez.serviciosIntegradora.model.certification.Certification;
+import mx.edu.utez.serviciosIntegradora.model.person.Person;
 import mx.edu.utez.serviciosIntegradora.service.certification.CertificationService;
 import mx.edu.utez.serviciosIntegradora.utils.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,14 @@ public class CertificationController {
         return new ResponseEntity<>(
                 this.service.getAll(),
                 HttpStatus.OK);
+    }
+
+    //get Information
+    @PostMapping("/information")
+    public  ResponseEntity<CustomResponse<List<Object[]>>> getInformation(@RequestBody Person person){
+        return new ResponseEntity<>(
+                this.service.getInformation(person), HttpStatus.OK
+        );
     }
 
     // Get one
