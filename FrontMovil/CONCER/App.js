@@ -1,9 +1,15 @@
-import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import React, { useState } from "react";
 import MainStack from "./config/stack/MainStack";
-
+import { AuthProvider } from "./kernel/context/AuthContext";
 
 export default function App(){
   return (
-    <MainStack/>
+    <AuthProvider>
+      <NavigationContainer>
+        <MainStack/>
+      </NavigationContainer>
+    </AuthProvider>
+    
   );
 }

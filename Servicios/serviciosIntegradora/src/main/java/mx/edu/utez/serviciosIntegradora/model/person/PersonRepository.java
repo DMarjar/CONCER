@@ -1,5 +1,6 @@
 package mx.edu.utez.serviciosIntegradora.model.person;
 
+import mx.edu.utez.serviciosIntegradora.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,4 +17,5 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     // Verificar si la persona ya existe por su email
     boolean existsByEmail(String email);
+    Person findByUser(User user);
 }
