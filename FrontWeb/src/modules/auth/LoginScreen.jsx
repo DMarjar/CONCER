@@ -6,8 +6,8 @@ import { Card, Container, Figure, Form, Row, Col, Button } from 'react-bootstrap
 import FeatherIcon from 'feather-icons-react';
 import { AuthContext } from './authContext';
 import AxiosClient from '../../shared/plugins/axios';
-import Alert from '../../shared/plugins/alerts';
-import '../../shared/custom-styles.css';
+import Alert from '../../shared/plugins/alert';
+
 
 export const LoginScreen = () => {
   const navigation = useNavigate();
@@ -169,3 +169,5 @@ export const LoginScreen = () => {
     </>
   );
 };
+
+export default LoginScreen;
