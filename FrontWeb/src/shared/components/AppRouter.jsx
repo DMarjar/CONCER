@@ -6,9 +6,9 @@ import { AllNavbar } from "./navbar/AllNavbar";
 import SidebarCandidate from "./sidebar/admin/candidate/SidebarCandidate";
 import MainCandidate from "./sidebar/admin/MainCandidate";
 import LoginSreen from "../../modules/auth/LoginScreen";
-export const AppRouter = () => {
-  const { user } = useContext(AuthContext);
 
+export const AppRouter = () => {
+    const { user } = useContext(AuthContext);
   return (
     <Router>
       <Routes>
