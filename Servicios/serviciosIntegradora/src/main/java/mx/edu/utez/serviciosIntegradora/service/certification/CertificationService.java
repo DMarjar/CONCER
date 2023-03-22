@@ -21,51 +21,63 @@ public class CertificationService {
 
     //getAll
     @Transactional(readOnly = true)
-    public CustomResponse<List<Certification>> getAll(){
+    public CustomResponse<List<Certification>> getAll() {
         return new CustomResponse<>(
-                this.Repository.findAll(),false,200,"ok"
+                this.Repository.findAll(), false, 200, "ok"
         );
     }
+<<<<<<< Updated upstream
+=======
+
+    //Certifications
+    @Transactional(readOnly = true)
+    public CustomResponse<List<Object[]>> getInformation(Person person) {
+        return new CustomResponse<>(
+                this.Repository.findCertificationsByPersonId(person.getId()), false, 200, "ok"
+        );
+    }
+
+>>>>>>> Stashed changes
     //getOne
     @Transactional(readOnly = true)
-    public CustomResponse<Certification> getOne(Long id){
+    public CustomResponse<Certification> getOne(Long id) {
         return new CustomResponse<>(
-                this.Repository.findById(id).get(),false,200,"ok"
+                this.Repository.findById(id).get(), false, 200, "ok"
         );
     }
 
     //insert
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Certification> insert(Certification certification){
-        if(this.Repository.existsByNameAndVersion(certification.getName(),certification.getVersion())){
-            return new CustomResponse<>(null,true,400,"ya existe");
+    public CustomResponse<Certification> insert(Certification certification) {
+        if (this.Repository.existsByNameAndVersion(certification.getName(), certification.getVersion())) {
+            return new CustomResponse<>(null, true, 400, "ya existe");
         }
         return new CustomResponse<>(
-                this.Repository.saveAndFlush(certification),false,200,"ok"
+                this.Repository.saveAndFlush(certification), false, 200, "ok"
         );
     }
 
     //update
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Certification> update(Certification certification){
-        if((!this.Repository.existsById(certification.getId()))){
-            return new CustomResponse<>(null,true,400,"no existe");
+    public CustomResponse<Certification> update(Certification certification) {
+        if ((!this.Repository.existsById(certification.getId()))) {
+            return new CustomResponse<>(null, true, 400, "no existe");
         }
         return new CustomResponse<>(
-                this.Repository.saveAndFlush(certification),false,200,"ok"
+                this.Repository.saveAndFlush(certification), false, 200, "ok"
         );
     }
 
     //delate
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Certification> delete(Certification certification){
+    public CustomResponse<Certification> delete(Certification certification) {
         Optional<Certification> exists = this.Repository.findById(certification.getId());
-        if((!exists.isPresent())){
-            return new CustomResponse<>(null,true,400,"no existe");
+        if ((!exists.isPresent())) {
+            return new CustomResponse<>(null, true, 400, "no existe");
         }
         this.Repository.deleteById(certification.getId());
         return new CustomResponse<>(
-                null,false,200,"ok"
+                null, false, 200, "ok"
         );
     }
 
@@ -77,6 +89,14 @@ public class CertificationService {
         }
         return new CustomResponse<>(
                 this.Repository.updateStatusById(certification.getId(), certification.getStatus()), false, 200, "certification updated correctly!"
+        );
+    }
+
+    // Get all certifications by candidate
+    @Transactional(readOnly = true)
+    public CustomResponse<Object[]> getCandidatura(Long id) {
+        return new CustomResponse<>(
+                this.Repository.findInfoCandidate(id), false, 200, "OK"
         );
     }
 }

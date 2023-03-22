@@ -1,7 +1,14 @@
 import axios from "axios";
 
 //generar url base
+<<<<<<< Updated upstream
 const SERVER_URL = "http://192.168.100.129:8080/controlCertificaciones";
+=======
+const SERVER_URL = "http://192.168.61.117:8080/controlCertificaciones";
+const headers = {
+
+}
+>>>>>>> Stashed changes
 
 //crear instancia de axios
 const AxiosInstance = axios.create({

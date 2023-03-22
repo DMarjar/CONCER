@@ -63,6 +63,11 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
         "/controlCertificaciones/user/**"
      */
 
+<<<<<<< Updated upstream
+=======
+    /*NO ES LA SEGURIDAD OFICIAL, SOLO ES PARA IR RESTRINGIENDO EN PRUEBA DE TOKENS*/
+    /*
+>>>>>>> Stashed changes
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.cors().and().csrf().disable()
@@ -79,5 +84,26 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                 UsernamePasswordAuthenticationFilter.class);
 
     }
+<<<<<<< Updated upstream
 
+=======
+    */
+    /*
+    EN CASO DE NECESITAR QUITAR LA SEGURIDAD PRO PRUEBAS
+    */
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.cors().and().csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/controlCertificaciones/**").permitAll()
+                .and()
+                .exceptionHandling().authenticationEntryPoint(entryPoint)
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.addFilterBefore(jwtTokenFilter(),
+                UsernamePasswordAuthenticationFilter.class);
+
+    }
+>>>>>>> Stashed changes
 }

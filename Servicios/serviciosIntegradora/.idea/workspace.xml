@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1930e54-76c7-426d-8e53-5aac1b4e70af" name="Changes" comment="">
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
@@ -46,6 +47,20 @@
       <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/utils/CustomResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/utils/CustomResponse.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/utils/CustomRestExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/utils/CustomRestExceptionHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/mx/edu/utez/serviciosIntegradora/ServiciosIntegradoraApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/mx/edu/utez/serviciosIntegradora/ServiciosIntegradoraApplicationTests.class" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/config/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/config/axios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/config/stack/HomeStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/config/stack/HomeStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/auth/adapters/screens/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/auth/adapters/screens/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/Candidates.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/Candidates.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/certification/CertificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/certification/CertificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/candidate/CandidateRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/candidate/CandidateRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/certification/CertificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/certification/CertificationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/security/MainSecurity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/security/MainSecurity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/certification/CertificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/certification/CertificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/security/MainSecurity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/security/MainSecurity.class" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +69,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -72,10 +90,15 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;8af82d19155ad4c1d13938b61eff58f9&quot;
+    &quot;spring.configuration.checksum&quot;: &quot;8af82d19155ad4c1d13938b61eff58f9&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RunManager">
@@ -110,6 +133,9 @@
       <workItem from="1677130031153" duration="87000" />
       <workItem from="1677130141765" duration="302000" />
       <workItem from="1677130509988" duration="596000" />
+      <workItem from="1679494685264" duration="1674000" />
+      <workItem from="1679499743724" duration="936000" />
+      <workItem from="1679506771971" duration="1064000" />
     </task>
     <servers />
   </component>

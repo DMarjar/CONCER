@@ -2,6 +2,7 @@ package mx.edu.utez.serviciosIntegradora.controller.certification;
 
 import mx.edu.utez.serviciosIntegradora.controller.certification.Dtos.CertificationDtos;
 import mx.edu.utez.serviciosIntegradora.model.academy.Academy;
+import mx.edu.utez.serviciosIntegradora.model.candidate.Candidate;
 import mx.edu.utez.serviciosIntegradora.model.certification.Certification;
 import mx.edu.utez.serviciosIntegradora.service.certification.CertificationService;
 import mx.edu.utez.serviciosIntegradora.utils.CustomResponse;
@@ -30,10 +31,29 @@ public class CertificationController {
                 HttpStatus.OK);
     }
 
+<<<<<<< Updated upstream
+=======
+    //get Information
+    @PostMapping("/information")
+    public ResponseEntity<CustomResponse<List<Object[]>>> getInformation(@RequestBody Person person) {
+        return new ResponseEntity<>(
+                this.service.getInformation(person), HttpStatus.OK
+        );
+    }
+
+    // get Candidate info
+    @PostMapping("/candidate")
+    public ResponseEntity<CustomResponse<Object[]>> getCandidateInfo(@RequestBody Candidate candidate) {
+        return new ResponseEntity<>(
+                this.service.getCandidatura(candidate.getId()), HttpStatus.OK
+        );
+    }
+
+>>>>>>> Stashed changes
     // Get one
     @GetMapping("/{id}")
     // URL: http://localhost:8080/controlCertificaciones/certification/{id}
-    public ResponseEntity<CustomResponse<Certification>> getOne(@PathVariable Long id){
+    public ResponseEntity<CustomResponse<Certification>> getOne(@PathVariable Long id) {
         return new ResponseEntity<>(
                 this.service.getOne(id),
                 HttpStatus.OK);
@@ -76,7 +96,7 @@ public class CertificationController {
     //Delete
     @DeleteMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/certification/{id}
-    public ResponseEntity<CustomResponse<Certification>> delete(@Valid @RequestBody CertificationDtos certification){
+    public ResponseEntity<CustomResponse<Certification>> delete(@Valid @RequestBody CertificationDtos certification) {
         return new ResponseEntity<>(
                 this.service.delete(certification.castToCertification()),
                 HttpStatus.OK

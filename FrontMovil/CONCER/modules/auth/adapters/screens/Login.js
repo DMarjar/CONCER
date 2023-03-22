@@ -133,7 +133,7 @@ export default function Login(){
 							type="material-community"
 							name="Login"
 							size={22}
-							color="#007bff"
+							color="#002e60"
 						/>
 					}
                     onPress={login}
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
 		marginVertical: 5,
     },
     btn:{
-        backgroundColor: '#019979ff',
+        backgroundColor: '#002e60',
         borderRadius: 10,
         marginTop:30,
     }

@@ -1,6 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Candidates from "../../modules/candidates/adapters/screens/Candidates";
+import Candidate from './../../modules/candidates/adapters/screens/Candidate';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,8 +15,12 @@ export default function HomeStack(){
             }}
         >
             <Stack.Screen
-                name="Candidates"
+                name="Candidatos"
                 component={Candidates}
+            />
+            <Stack.Screen
+                name="Candidato"
+                component={Candidate}
             />
         </Stack.Navigator>
     );
