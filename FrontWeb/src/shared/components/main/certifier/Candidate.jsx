@@ -1,67 +1,45 @@
-import { useContext, useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
+import React, {useState} from 'react'
 import { Card, Col, Container, Figure, Row, Form, Button } from 'react-bootstrap';
-import { AuthContext } from './authContext';
-import AxiosClient from '../../shared/plugins/axios'
-import Alert from '../../shared/plugins/alerts'
-import React from 'react';
 import FeatherIcon from 'feather-icons-react/build/FeatherIcon';
 
-export const LoginScreen = () => {
-    const navigation = useNavigate();
-    const { user, dispatch } = useContext(AuthContext);
-    const formik = useFormik({
-        initialValues: useFormik({
-            username: '',
-            password: '',
-        }),
-        validationSchema: yup.object().shape({
-            username: yup.string().required('Campo requerido'),
-            password: yup.string().required('Campo requerido'),
-        }),
-        // investigamos bien el redirecionamiento
-        onSubmit: async (values) => {
-            try {
-                const response = await AxiosClient({
-                    url: '/',
-                    method: 'POST',
-                    data: JSON.stringify(values),
-                });
-                if (!response.error) {
-                    const action = {
-                        type: 'LOGIN',
-                        payload: response.data,
-                    };
-                    dispatch(action);
-                    navigation('/products', { replace: true });
-                }
-                throw Error();
-            } catch (err) {
-                Alert.fire({
-                    title: 'Verificar los datos',
-                    text: 'Usuario o contraseña incorrecta',
-                    icon: 'error',
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'Aceptar',
-                });
-            }
-        },
-    });
+const Candidate = () => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [telephone, setTelephone] = useState('')
+  const [status, setStatus] = useState('')
+  const [certificationName, setCertificationName] = useState('')
+  const [certificationKey, setCertificationKey] = useState('')
+  const [candidateType, setCandidateType] = useState('')
+  const [date, setDate] = useState('')
+  const [group, setGroup] = useState('')
+  const [career, setCareer] = useState('')
+  const [division, setDivision] = useState('')
+  const [certificationPhoto, setCertificationPhoto] = useState('')
 
-    useEffect(() => {
-        document.title = 'CONCER | Login';
-    }, []);
-
-    if (user.isLogged) {
-        return <Navigate to={'/'} />;
+  const handleSubmit = (event) => {
+    event.preventDefault() //evita que se recargue la pagina
+    const data = {
+      name,
+      email,
+      telephone,
+      status,
+      certificationName,
+      certificationKey,
+      candidateType,
+      date,
+      group,
+      career,
+      division,
+      certificationPhoto
     }
+    console.log(data)
+  }
 
-    return (
-        <>
-            <section className='h-100 gradient-form'>
-                <Container className="py-5 h-100">
+
+  return (
+    <>
+    <h2 className="d-flex justify-content-center pt-3" style={{ color: "#2375d7" }}>Nombre del candidato</h2>
+    {/* <Container className="py-5 h-100">
                     <Row className='d-flex py-3 justify-content-center align-items-center h-100 bg-ligh'>
                     <Figure  className='d-flex justify-content-center align-items-center h-100 bg-ligh'>
                           <Figure.Image
@@ -152,7 +130,9 @@ export const LoginScreen = () => {
                         </Col>
                     </Row>
                 </Container>
-            </section>
-        </>
-    );
-  }
+ */}
+    </>
+  )
+}
+
+export default Candidate

@@ -39,11 +39,18 @@ public class PersonService {
                 this.personRepository.findAll(),false,200,"ok"
         );
     }
-    //getOne
-    @Transactional(readOnly = true)
-    public CustomResponse<Person> getOne(Long id){
+
+    //getOneByUsername
+    @Transactional(rollbackFor = {SQLException.class})
+    public CustomResponse<Person> getOneByUsername(Person person){
+        if(!this.userRepository.existsByUsername(person.getUser().getUsername())){
+            return new CustomResponse<>(null,true,400,"no existe");
+        }
+        User user = this.userRepository.findByUsername(person.getUser().getUsername());
+
+
         return new CustomResponse<>(
-                this.personRepository.findById(id).get(),false,200,"ok"
+                this.personRepository.findByUser(user),false,200,"ok"
         );
     }
 
@@ -115,6 +122,7 @@ public class PersonService {
         return new CustomResponse<>(this.personRepository.saveAndFlush(person), false, 200, "persona guardada esplendidamente");
 
     }
+
 
 
 }

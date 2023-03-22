@@ -26,6 +26,7 @@ public class JwtProvider {
         UserAuth userAuth = (UserAuth) authentication.getPrincipal();
         return Jwts.builder()
                 .setSubject(userAuth.getUsername()) //nombre de usuario
+
                 .setIssuedAt(new Date()) //fecha de creación del token
                 .setExpiration(new Date(new Date().getTime() + expiration * 1000L)) //fecha de expiración del token
                 .signWith(SignatureAlgorithm.HS512, secret).compact(); //firmado del token con el algoritmo HS512 y la clave secreta

@@ -1,24 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import Login from "../../modules/auth/adapters/screens/Login";
 import Navigation from "../navigation/Navigation";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
+import { AuthContext } from "../../kernel/context/AuthContext";
 
 
 const Stack = createNativeStackNavigator();
 
 export default function MainStack(){
- 
+
+    
+    const {isAuth} = useContext(AuthContext)
+
     return (
-        <NavigationContainer >
             <Stack.Navigator 
                 screenOptions={() => ({
-                    headerShown:false
+                    headerShown:false,
+                    title:""
                 })}           
-            >
-                <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="Home" component={Navigation} />
+            >   
+            {
+                isAuth ? (
+                    <Stack.Group>
+                        <Stack.Screen name="Home" component={Navigation} />
+                    </Stack.Group>            
+                ) : (
+                    <Stack.Group>
+                        <Stack.Screen name="Login" component={Login} />
+                    </Stack.Group>
+                )
+            }
             </Stack.Navigator>
-        </NavigationContainer>
     );
 }
