@@ -3,10 +3,17 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react'
 import { AuthContext } from '../../modules/auth/authContext';
 import { LoginScreen } from '../../modules/auth/LoginScreen';
-import { AllNavbar } from './AllNavbar';
-import { Container, Row, Col } from 'react-bootstrap';
-import { CandidateSide } from './CandidateSide';
-import { Main } from './Main';
+import { AllNavbar } from '../components/navbar/AllNavbar';
+import { Col, Row } from 'react-bootstrap';
+import SidebarCandidate from '../components/sidebar/SidebarCandidate';
+import MainCandidate from '../components/main/MainCandidate';
+import SidebarCertifier from './sidebar/SidebarCertifier';
+import MainCertifier from './main/MainCertifier';
+import SidebarAdministrator from './sidebar/SidebarAdministrator';
+import MainAdministrator from './main/MainAdministrator';
+import AllCandidates from './main/certifier/AllCandidates';
+import Candidate from './main/certifier/Candidate';
+
 
 export const AppRouter = () => {
     const { user } = useContext(AuthContext);
@@ -16,26 +23,51 @@ export const AppRouter = () => {
                 <Route path="/auth" element={
                     user.isLogged ? (
                         <>
-                            <AllNavbar />
-                            <Container style={{ marginTop: '20px', backgroundColor: "#00a780" }}>
-
-                            </Container>
+                            esta logeado
                         </>
                     ) : (
                         <>
                             <AllNavbar />
+                            {/* LOGEADO COMO CANDIDATO */}
+                            {/*  <Row style={{height: "630px"}} className="h-300 m-0">
+                                <Col className='col-lg-2 col-md-3 col-sm-3 square border border-2 h-100 m-0' style={{height: "300px", position: "relative"}}>
+                                    <SidebarCandidate />
+                                </Col>
+                                <Col className='col-lg-10 col-md-9 col-sm-9 square border border-2 m-0'>
+                                    <MainCandidate />
+                                 </Col>
+                            </Row>  */}
 
-                            <Container style={{ marginTop: '20px', color: "red", border: "#595959" }}>
-                                <Row className=' h-100'>
-                                    <Col className='col-lg-3 d-flex justify-content-center align-items-center' style={{ backgroundColor: "#eeeeee", heigh: "100%s" }}>
-                                        <CandidateSide />
-                                    </Col>
-                                    <Col className='col-lg-9 justify-content-center'>
-                                        <Main />
-                                    </Col>
-                                </Row>
-                            </Container>
+                            {/* LOGEADO COMO CERTIFICADOR */}
+                           {/* <Row style={{height: "630px"}} className="h-300 m-0">
+                                <Col className='col-lg-2 col-md-3 col-sm-3 square border border-2 h-100 m-0' style={{height: "300px", position: "relative"}}>
+                                    <SidebarCertifier />
+                                </Col>
+                                <Col className='col-lg-10 col-md-9 col-sm-9 square border border-2 m-0'>
+                                    <MainCertifier/>
+                                 </Col>
+                            </Row> */}
 
+                            {/* LOGEADO COMO ADMINISTRADOR */}
+                            {/* <Row style={{height: "630px"}} className="h-300 m-0">
+                                <Col className='col-lg-2 col-md-3 col-sm-3 square border border-2 h-100 m-0' style={{height: "300px", position: "relative"}}>
+                                    <SidebarAdministrator />
+                                </Col>
+                                <Col className='col-lg-10 col-md-9 col-sm-9 square border border-2 m-0'>
+                                    <MainAdministrator />
+                                 </Col>
+                            </Row> */}
+
+                            <Row style={{height: "630px"}} className="h-300 m-0">
+                                <Col className='col-lg-2 col-md-3 col-sm-3 square border border-2 h-100 m-0' style={{height: "300px", position: "relative"}}>
+                                    <SidebarCertifier />
+                                </Col>
+                                <Col className='col-lg-10 col-md-9 col-sm-9 square border border-2 m-0'>
+                                    <Candidate />
+                                 </Col>
+                            </Row>
+
+                            
                         </>
                     )
                 } />
@@ -44,32 +76,6 @@ export const AppRouter = () => {
                     element={
                         <LoginScreen />
                     }
-                /* element={
-                    user.isLogged ? (
-                        <>
-                            <AllNavbar />
-                            <Container style={{ marginTop: '20px', backgroundColor: "#00a780" }}>
-
-                            </Container>
-                        </>
-                    ) : (
-                        <>
-                            <AllNavbar />
-                            {// className='mx-0 my-0 px-0 w-100' }
-                            <Container style={{ marginTop: '20px', backgroundColor: "#00a780", color: "red" }}>
-                                <Row className=' h-100'>
-                                    <Col className='col-lg-3 d-flex justify-content-center align-items-center' style={{ backgroundColor: "#eeeeee", heigh: "100%s" }}>
-                                        <CandidateSide/>
-                                    </Col>
-                                    <Col className='col-lg-9 bg-secondary justify-content-center'>
-                                        <Main/>
-                                    </Col>
-                                </Row>
-                            </Container>
-
-                        </>
-                    )
-                } */
                 />
                 <Route path='*' element={<>404</>} />
             </Routes>
