@@ -28,16 +28,18 @@ export const AppRouter = () => {
                     ) : (
                         <>
                             <AllNavbar />
+                            <AllCandidates />
                             {/* LOGEADO COMO CANDIDATO */}
-                            {/*  <Row style={{height: "630px"}} className="h-300 m-0">
+                            {/*}
+                            <Row style={{height: "630px"}} className="h-300 m-0">
                                 <Col className='col-lg-2 col-md-3 col-sm-3 square border border-2 h-100 m-0' style={{height: "300px", position: "relative"}}>
                                     <SidebarCandidate />
                                 </Col>
                                 <Col className='col-lg-10 col-md-9 col-sm-9 square border border-2 m-0'>
                                     <MainCandidate />
                                  </Col>
-                            </Row>  */}
-
+                            </Row> 
+                            */}
                             {/* LOGEADO COMO CERTIFICADOR */}
                            {/* <Row style={{height: "630px"}} className="h-300 m-0">
                                 <Col className='col-lg-2 col-md-3 col-sm-3 square border border-2 h-100 m-0' style={{height: "300px", position: "relative"}}>
@@ -56,7 +58,8 @@ export const AppRouter = () => {
                                 <Col className='col-lg-10 col-md-9 col-sm-9 square border border-2 m-0'>
                                     <MainAdministrator />
                                  </Col>
-                            </Row> */}
+                            </Row> 
+                            {/*
 
                             <Row style={{height: "630px"}} className="h-300 m-0">
                                 <Col className='col-lg-2 col-md-3 col-sm-3 square border border-2 h-100 m-0' style={{height: "300px", position: "relative"}}>
@@ -66,7 +69,7 @@ export const AppRouter = () => {
                                     <Candidate />
                                  </Col>
                             </Row>
-
+                          */}
                             
                         </>
                     )

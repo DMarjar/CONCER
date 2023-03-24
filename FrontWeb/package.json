@@ -15,6 +15,8 @@
     "bootstrap": "^5.2.3",
     "feather-icons-react": "^0.6.2",
     "formik": "^2.2.9",
+    "primeicons": "^6.0.1",
+    "primereact": "^9.2.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-data-table-component": "^7.5.3",
