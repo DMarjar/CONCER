@@ -5,29 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1930e54-76c7-426d-8e53-5aac1b4e70af" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/config/navigation/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/config/navigation/Navigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/config/stack/MainStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/config/stack/MainStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/config/stack/HomeStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/config/stack/HomeStack.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/auth/adapters/screens/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/auth/adapters/screens/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/Candidates.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/Candidates.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/profile/adapters/screens/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/profile/adapters/screens/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/candidate/CandidateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/candidate/CandidateController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/certification/CertificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/certification/CertificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/person/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/person/PersonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/user/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/candidate/Estado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/candidate/Estado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/candidate/Candidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/candidate/Candidate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/candidate/CandidateRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/candidate/CandidateRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/certification/CertificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/certification/CertificationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/person/PersonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/person/PersonRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/person/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/person/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/person/TypePerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/person/TypePerson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/security/MainSecurity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/security/MainSecurity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/candidate/CandidateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/candidate/CandidateService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/certification/CertificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/certification/CertificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/person/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/person/PersonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/candidate/CandidateController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/candidate/CandidateController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/certification/CertificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/certification/CertificationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/person/PersonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/person/PersonController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/user/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/candidate/Estado.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/candidate/Estado.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/candidate/Candidate.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/candidate/Candidate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/candidate/CandidateRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/candidate/CandidateRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/certification/CertificationRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/certification/CertificationRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/person/PersonRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/person/PersonRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/person/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/person/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/person/TypePerson.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/person/TypePerson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/user/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/security/MainSecurity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/security/MainSecurity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/candidate/CandidateService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/candidate/CandidateService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/certification/CertificationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/certification/CertificationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/person/PersonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/person/PersonService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/user/UserService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,9 +62,11 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Osito Luminoso/Documents/5.UTEZ Cuatrimestre 5/Apps web/esta prrra mamada/firstapp&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;8af82d19155ad4c1d13938b61eff58f9&quot;
   }
 }</component>
@@ -92,6 +102,14 @@
       <workItem from="1677130031153" duration="87000" />
       <workItem from="1677130141765" duration="302000" />
       <workItem from="1677130509988" duration="596000" />
+      <workItem from="1678762924682" duration="6740000" />
+      <workItem from="1678800645433" duration="728000" />
+      <workItem from="1679128246398" duration="2348000" />
+      <workItem from="1679562828039" duration="1148000" />
+      <workItem from="1679819991241" duration="8589000" />
+      <workItem from="1679887093102" duration="54000" />
+      <workItem from="1679887169223" duration="77000" />
+      <workItem from="1679887274511" duration="1751000" />
     </task>
     <servers />
   </component>

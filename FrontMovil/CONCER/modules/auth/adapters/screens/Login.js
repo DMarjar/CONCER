@@ -12,8 +12,9 @@ import { AuthContext } from "../../../../kernel/context/AuthContext";
 
 export default function Login(){
     const {isAuth,setAuth} = useContext(AuthContext)
-    const[showPassword,setShowPassword] = useState(true);
     const [show, setShow] = useState(false)
+
+    const[showPassword,setShowPassword] = useState(true);
     const payload = { user: '', password: ''}
     const [error, setError] = useState(payload)
     const [data, setData] = useState(payload)
@@ -26,11 +27,13 @@ export default function Login(){
             setShow(true);      
             
                 try {
+                    console.log(data.user, data.password)
                     const account = await axios.doPost("/auth/inicioSesion", {
                         username: data.user,
                         password: data.password,
                     });
 
+                    console.log(account.data.data)
                     AxiosInstance.defaults.headers.common["Authorization"] = `Bearer ${account.data.data.token}`;
 
                     const user = await axios.doPost("/user/person", {

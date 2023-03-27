@@ -23,7 +23,7 @@ public class Candidate {
     @Column(name = "date", nullable = false)
     private String date;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Estado estado;
 
     @Column(nullable = false, columnDefinition = "TINYINT DEFAULT 1")

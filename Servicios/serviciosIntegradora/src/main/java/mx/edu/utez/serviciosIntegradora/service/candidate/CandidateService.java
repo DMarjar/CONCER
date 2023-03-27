@@ -4,6 +4,7 @@ import mx.edu.utez.serviciosIntegradora.model.academy.Academy;
 import mx.edu.utez.serviciosIntegradora.model.academy.AcademyRepository;
 import mx.edu.utez.serviciosIntegradora.model.candidate.Candidate;
 import mx.edu.utez.serviciosIntegradora.model.candidate.CandidateRepository;
+import mx.edu.utez.serviciosIntegradora.model.person.Person;
 import mx.edu.utez.serviciosIntegradora.utils.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,22 @@ public class CandidateService {
     public CustomResponse<Candidate> getOne(Long id){
         return new CustomResponse<>(
                 this.Repository.findById(id).get(),false,200,"ok"
+        );
+    }
+
+    //Certifications
+    @Transactional(readOnly = true)
+    public CustomResponse<List<Object[]>> getInformation(Person person){
+        return new CustomResponse<>(
+                this.Repository.findCertificationsByPersonId(person.getId()),false,200,"ok"
+        );
+    }
+
+    //Informacion Candidato
+    @Transactional(readOnly = true)
+    public CustomResponse<List<Object[]>> getCandidatureInformation(Person person){
+        return new CustomResponse<>(
+                this.Repository.candidateInformation(person.getId()), false, 200, "ok"
         );
     }
 

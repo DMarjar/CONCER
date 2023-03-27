@@ -39,6 +39,24 @@ public class CandidateController {
                 HttpStatus.OK);
     }
 
+    //get Information candidaturas
+    @PostMapping("/information")
+    public  ResponseEntity<CustomResponse<List<Object[]>>> getInformation(@RequestBody Person person){
+        return new ResponseEntity<>(
+                this.service.getInformation(person), HttpStatus.OK
+        );
+    }
+
+    //get information Candidato
+    @PostMapping("/candidature")
+    public ResponseEntity<CustomResponse<List<Object[]>>> getInformationCandidature(@RequestBody Person person){
+
+        return new ResponseEntity<>(
+
+                this.service.getCandidatureInformation(person), HttpStatus.OK
+        );
+    }
+
     // Insert
     @PostMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/candidate/

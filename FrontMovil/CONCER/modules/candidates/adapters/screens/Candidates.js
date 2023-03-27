@@ -24,10 +24,11 @@ export default function Candidates() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.doPost('/certification/information',{
+                const response = await axios.doPost('/candidate/information',{
                 id: account.id
             });
             setData(response.data.data);
+
             } catch (error) {
                 console.log(error);
             }
@@ -40,7 +41,7 @@ export default function Candidates() {
     const navigation = useNavigation();
 
     const handleCandidatePress = (candidateId) => {
-        navigation.navigate("CandidateInfo", { candidateId });
+        navigation.navigate("Candidatura", { candidateId });
     };
 
     return (
@@ -50,7 +51,7 @@ export default function Candidates() {
                     <TouchableOpacity
                         key={index}
                         style={styles.item}
-                        onPress={() => handleCandidatePress(item[0])}
+                        onPress={() => handleCandidatePress(item[2])}
                     >
 
 

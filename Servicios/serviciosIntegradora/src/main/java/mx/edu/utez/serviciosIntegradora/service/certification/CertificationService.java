@@ -27,13 +27,7 @@ public class CertificationService {
                 this.Repository.findAll(),false,200,"ok"
         );
     }
-    //Certifications
-    @Transactional(readOnly = true)
-    public CustomResponse<List<Object[]>> getInformation(Person person){
-        return new CustomResponse<>(
-                this.Repository.findCertificationsByPersonId(person.getId()),false,200,"ok"
-        );
-    }
+
 
     //getOne
     @Transactional(readOnly = true)
