@@ -5,6 +5,9 @@ import { AuthContext } from '../../modules/auth/authContext';
 import { LoginScreen } from '../../modules/auth/LoginScreen';
 import { AllNavbar } from '../components/navbar/AllNavbar';
 import { Col, Row } from 'react-bootstrap';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Paginator } from 'primereact/paginator';
 import SidebarCandidate from '../components/sidebar/SidebarCandidate';
 import MainCandidate from '../components/main/MainCandidate';
 import SidebarCertifier from './sidebar/SidebarCertifier';
@@ -28,7 +31,15 @@ export const AppRouter = () => {
                     ) : (
                         <>
                             <AllNavbar />
-                            <AllCandidates />
+                            
+                            <Row style={{height: "630px"}} className="h-300 m-0">
+                                <Col className='col-lg-2 col-md-3 col-sm-3 square border border-2 h-100 m-0' style={{height: "300px", position: "relative"}}>
+                                    <SidebarCandidate />
+                                </Col>
+                                <Col className='col-lg-10 col-md-9 col-sm-9 square border border-2 m-0'>
+                                    <AllCandidates />
+                                 </Col>
+                            </Row> 
                             {/* LOGEADO COMO CANDIDATO */}
                             {/*}
                             <Row style={{height: "630px"}} className="h-300 m-0">
