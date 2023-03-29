@@ -1,6 +1,7 @@
 package mx.edu.utez.serviciosIntegradora.controller.person;
 
 import mx.edu.utez.serviciosIntegradora.controller.person.Dtos.PersonDtos;
+import mx.edu.utez.serviciosIntegradora.controller.person.Dtos.PersonRequest;
 import mx.edu.utez.serviciosIntegradora.model.person.Person;
 import mx.edu.utez.serviciosIntegradora.service.person.PersonService;
 import mx.edu.utez.serviciosIntegradora.utils.CustomResponse;
@@ -29,13 +30,23 @@ public class PersonController {
                 HttpStatus.OK);
     }
 
+    // Get one by Email
+    @PostMapping("/one")
+    // URL: http://localhost:8080/controlCertificaciones/person/one
+    public ResponseEntity<CustomResponse<Person>> getOneByEmail(@RequestBody PersonRequest personRequest) {
+        return new ResponseEntity<>(
+                this.service.getOneByEmail(personRequest.getEmail()),
+                HttpStatus.OK
+        );
+    }
+
 
     // Update
-    @PutMapping("/")
+    @PutMapping("/update")
     // URL: http://localhost:8080/controlCertificaciones/person/{id}
-    public ResponseEntity<CustomResponse<Person>> update(@Valid @RequestBody PersonDtos person) {
+    public ResponseEntity<CustomResponse<Person>> update(@RequestBody Person person) {
         return new ResponseEntity<>(
-                this.service.update(person.castToPerson()), HttpStatus.OK
+                this.service.update(person), HttpStatus.OK
         );
     }
 
@@ -65,7 +76,6 @@ public class PersonController {
         if(person.getUser().getStatus() == null){
             person.getUser().setStatus(true);
         }
-
 
         return new ResponseEntity<>(
                 this.service.createUserPerson(person.castToPerson()), HttpStatus.CREATED

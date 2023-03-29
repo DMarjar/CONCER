@@ -31,13 +31,7 @@ public class CertificationController {
                 HttpStatus.OK);
     }
 
-    //get Information
-    @PostMapping("/information")
-    public  ResponseEntity<CustomResponse<List<Object[]>>> getInformation(@RequestBody Person person){
-        return new ResponseEntity<>(
-                this.service.getInformation(person), HttpStatus.OK
-        );
-    }
+
 
     // Get one
     @GetMapping("/{id}")

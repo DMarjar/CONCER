@@ -1,8 +1,8 @@
 package mx.edu.utez.serviciosIntegradora.model.person;
 
 public enum TypePerson {
-    STUDENT,
+    ESTUDIANTE,
     PROFESOR,
-    ADMINISTRATIVE,
-    EXTERNAL
+    ADMINISTRATIVO,
+    EXTERNO
 }

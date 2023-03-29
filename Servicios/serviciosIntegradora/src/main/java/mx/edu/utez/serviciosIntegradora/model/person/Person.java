@@ -33,13 +33,13 @@ public class Person {
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @Column( nullable = false, columnDefinition = "TINYINT DEFAULT 1")
     private Boolean status;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private TypePerson typePerson;
 
     //Relaciones
@@ -47,7 +47,6 @@ public class Person {
     /*persona*/
     @OneToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnore
     private User user;
 
     /*certificacion*/

@@ -24,6 +24,7 @@ export default function Profile() {
     const cerrarSesion = async () => {
         try {
             AsyncStorage.removeItem("token");
+            AsyncStorage.removeItem("account")
             setAuth(false);
         } catch (error) {
             console.log("Error al cerrar sesión: ", error);
