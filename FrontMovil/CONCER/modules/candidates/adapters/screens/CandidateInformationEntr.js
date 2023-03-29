@@ -9,11 +9,10 @@ import { useNavigation } from "@react-navigation/native";
 
 const placeholderImage = require("../../../../assets/icon.png");
 
-
 export default function Candidato() {
-  const [showModal, setShowModal]= useState(false);
+  const [showModal, setShowModal] = useState(false);
   const Navigator = useNavigation();
-  const temporal =false;
+  const temporal = false;
   const [data, setdata] = useState([]);
   const route = useRoute();
   const { candidateId } = route.params;
@@ -25,7 +24,7 @@ export default function Candidato() {
           id: candidateId,
         });
         setdata(response.data.data[0]);
-        console.log(response.data.data[0])
+        console.log(response.data.data[0]);
       } catch (error) {
         console.log("Error al obtener los datos de la cuenta: ", error);
       }
@@ -94,7 +93,9 @@ export default function Candidato() {
         </View>
 
         <View style={styles.infoSection}>
-          <Text style={styles.sectionTitle}>Información de la certificación</Text>
+          <Text style={styles.sectionTitle}>
+            Información de la certificación
+          </Text>
 
           <View style={styles.infoRow}>
             <Icon
@@ -126,7 +127,7 @@ export default function Candidato() {
             <Text style={styles.infoText}>{data[13]}</Text>
           </View>
         </View>
-        
+
         <View style={styles.imageContainer}>
           {temporal ? (
             <Image source={{ uri: data[14] }} style={styles.image} />
@@ -134,125 +135,117 @@ export default function Candidato() {
             <Text style={styles.noImageText}>Sin imagen</Text>
           )}
         </View>
-        </ScrollView>
+      </ScrollView>
 
-        
-        <MyModal show={showModal} setShow={setShowModal}>
-          <ChangeStateCandidate/>
-        </MyModal>
-        
+      <MyModal show={showModal} setShow={setShowModal}>
+        <ChangeStateCandidate />
+      </MyModal>
 
-        <View style={styles.actionSection}>
-          <Button
-            icon={
-              <Icon
-                type="material-community"
-                name="arrow-up-bold"
-                color="#ffffff"
-                />
-              }
-              title=" Actualizar Estado"
-              containerStyle={styles.editButtonContainer}
-              buttonStyle={styles.editButton}
-              onPress={()=>setShowModal(!showModal)}
+      <View style={styles.actionSection}>
+        <Button
+          icon={
+            <Icon
+              type="material-community"
+              name="arrow-up-bold"
+              color="#ffffff"
             />
-          
-          <Button
-            icon={
-              <Icon
-                type="material-community"
-                name="pencil"
-                color="#ffffff"
-                />
-              }
-              title=" Editar informacion"
-              containerStyle={styles.editButtonContainer}
-              buttonStyle={styles.editButton}
-              onPress={()=>Navigator.navigate("Editar Informacion", {data})}
-            />
-          </View>
+          }
+          title=" Actualizar Estado"
+          containerStyle={styles.editButtonContainer}
+          buttonStyle={styles.editButton}
+          onPress={() => setShowModal(!showModal)}
+        />
+
+        <Button
+          icon={
+            <Icon type="material-community" name="pencil" color="#ffffff" />
+          }
+          title=" Editar informacion"
+          containerStyle={styles.editButtonContainer}
+          buttonStyle={styles.editButton}
+          onPress={() => Navigator.navigate("Editar Informacion", { data })}
+        />
       </View>
-      );
-      }
-      
-      const styles = StyleSheet.create({
-      container: {
-      flex: 1,
-      backgroundColor: "#ffffff",
-      paddingHorizontal: 20,
-      paddingTop: 20,
-      },
-      header: {
-      flexDirection: "row",
-      alignItems: "center",
-      marginBottom: 20,
-      },
-      profileImageContainer: {
-      width: 80,
-      height: 80,
-      borderRadius: 40,
-      overflow: "hidden",
-      },
-      profileImage: {
-      width: "100%",
-      height: "100%",
-      },
-      profileName: {
-      fontSize: 24,
-      fontWeight: "bold",
-      marginLeft: 20,
-      },
-      infoSection: {
-      marginBottom: 10,
-      },
-      sectionTitle: {
-      fontSize: 18,
-      fontWeight: "bold",
-      marginBottom: 10,
-      },
-      infoRow: {
-      flexDirection: "row",
-      alignItems: "center",
-      marginBottom: 10,
-      },
-      infoText: {
-      fontSize: 16,
-      marginLeft: 10,
-      },
-      actionSection: {
-      flexDirection: "row",
-      justifyContent: "center",
-      marginBottom: 50,
+    </View>
+  );
+}
 
-      },
-      editButtonContainer: {
-      flex: 1,
-      marginRight: 10,
-      },
-      editButton: {
-        backgroundColor: "#0e639c",
-        borderRadius: 8,
-        padding: 9,
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        
-      },
-      imageContainer: {
-        height: 150,
-        marginBottom: 20,
-      },
-      image: {
-        width: "100%",
-        height: "100%",
-        resizeMode: "cover",
-      },
-      noImageText: {
-        fontSize: 24,
-        fontWeight: "bold",
-        textAlign: "center",
-        paddingTop: 80,
-      }
-      });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#ffffff",
+    paddingHorizontal: 20,
+    paddingTop: 20,
+  },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  profileImageContainer: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    overflow: "hidden",
+  },
+  profileImage: {
+    width: "100%",
+    height: "100%",
+  },
+  profileName: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginLeft: 20,
+  },
+  infoSection: {
+    marginBottom: 10,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  infoRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  infoText: {
+    fontSize: 16,
+    marginLeft: 10,
+  },
+  actionSection: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginBottom: 50,
+  },
+  editButtonContainer: {
+    flex: 1,
+    marginRight: 10,
+  },
+  editButton: {
+    backgroundColor: "#0e639c",
+    borderRadius: 8,
+    padding: 9,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+  },
+  imageContainer: {
+    height: 150,
+    marginBottom: 20,
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+  },
+  noImageText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+    paddingTop: 80,
+  },
+});

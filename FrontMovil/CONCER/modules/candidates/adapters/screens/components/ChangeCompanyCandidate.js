@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-export default function ChangeTypeCandidate() {
+export default function ChangeCompanyCandidate() {
   return (
     <View>
-      <Text>ChangeTypeCandidate</Text>
+      <Text>ChangeCompanyCandidate</Text>
     </View>
   );
 }
