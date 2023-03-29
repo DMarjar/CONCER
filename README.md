@@ -6,7 +6,6 @@
   - Se implementaron algunos modal para editar la información del candidato
   - Se implementó la toma de fotos y el menú de edición de información
  
- perfil candidato, modal, ,odal toma de fotos y menu de edicion de info
   ## v0.3.3 - 2023-03-08
   - Se arregló el bug de Axios en Móvil
   - Ahora se puede iniciar sesión desde móvil
