@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/controlCertificaciones/academy")
+//URL: http://localhost:8080/controlCertificaciones/academy/
 @CrossOrigin(origins = {"*"})
 public class AcademyController {
     @Autowired
