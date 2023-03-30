@@ -9,11 +9,16 @@ import {
 } from "react-native";
 import axios from "../../../../kernel/gateway/http-auth.gateway";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import {
+  useNavigation,
+  useFocusEffect,
+  useIsFocused,
+} from "@react-navigation/native";
 import { Input, Icon } from "@rneui/base";
 
 export default function Candidates() {
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
 
   const [account, setAccount] = useState({});
   const [data, setData] = useState([]);
@@ -22,43 +27,39 @@ export default function Candidates() {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    const getAccountData = async () => {
+    const fetchData = async () => {
       try {
+        //obtener datos de la cuenta
         const accountData = await AsyncStorage.getItem("account");
         const parsedAccount = JSON.parse(accountData);
         setAccount(parsedAccount);
-      } catch (error) {
-        console.log("Error al obtener los datos de la cuenta: ", error);
-      }
-    };
-    getAccountData();
-  }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
+        //obtener datos de los candidatos con el id de la cuenta
         const response = await axios.doPost("/candidate/information", {
-          id: account.id,
+          id: parsedAccount.id,
         });
         setData(response.data.data);
+
+        //filtrar los datos de los candidatos
+        const filteredResults = response.data.data.filter((item) => {
+          const fullName = `${item[4]} ${item[5]}`.toLowerCase();
+          return fullName.includes(searchTerm.toLowerCase());
+        });
+        setFilteredData(filteredResults);
       } catch (error) {
         console.log(error);
       }
     };
-    if (account.id && refresh) {
+
+    if (isFocused) {
+      //si el componente esta enfocado, se ejecuta la funcion
       fetchData();
+      //se reinicia el estado de refresh
       setRefresh(false);
     }
-  }, [account, refresh]);
+  }, [isFocused, searchTerm, refresh]);
 
-  useEffect(() => {
-    const filteredResults = data.filter((item) => {
-      const fullName = `${item[4]} ${item[5]}`.toLowerCase();
-      return fullName.includes(searchTerm.toLowerCase());
-    });
-    setFilteredData(filteredResults);
-  }, [data, searchTerm]);
-
+  //si el componente esta enfocado, se ejecuta la funcion
   useFocusEffect(
     useCallback(() => {
       setRefresh(true);
@@ -80,7 +81,6 @@ export default function Candidates() {
           }
           value={searchTerm}
           onChangeText={(text) => setSearchTerm(text)}
-          underlineColorAndroid="transparent"
         />
       </View>
 
@@ -154,7 +154,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 10,
     height: 40,
-    underlineColorAndroid: "transparent",
   },
   searchIcon: {
     width: 30,

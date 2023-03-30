@@ -19,9 +19,6 @@ import ChangeEmailCandidate from "./components/ChangeEmailCandidate";
 import ChangePhoneCandidate from "./components/ChangePhoneCandidate";
 import ChangeTypeCandidate from "./components/ChangeTypeCandidate";
 import ChangeAcademyCandidate from "./components/ChangeAcademyCandidate";
-import ChangeCertificationCandidate from "./components/ChangeCertificationCandidate";
-import ChangeVersionCandidate from "./components/ChangeVersionCandidate";
-import ChangeCompanyCandidate from "./components/ChangeCompanyCandidate";
 import ChangeStateCandidate from "./components/ChangeStateCandidate";
 
 export default function CandidateInformation() {
@@ -69,33 +66,64 @@ export default function CandidateInformation() {
   const selectComponent = async (name) => {
     switch (name) {
       case "Name":
-        let response = await informationPerson();
+        let NameJson = await informationPerson();
         setRenderComponent(
           <ChangeNameCandidate
-            payload={JSON.stringify(response)}
+            payload={JSON.stringify(NameJson)}
             setShow={setShowModal}
           />
         );
         setShowModal(true);
         break;
       case "Lastname":
-        setRenderComponent(<ChangeLastnameCandidate />);
+        let LastnameJson = await informationPerson();
+        setRenderComponent(
+          <ChangeLastnameCandidate
+            payload={JSON.stringify(LastnameJson)}
+            setShow={setShowModal}
+          />
+        );
         setShowModal(true);
         break;
       case "Gender":
-        setRenderComponent(<ChangeGenderCandidate />);
+        let GenderJson = await informationPerson();
+        setRenderComponent(
+          <ChangeGenderCandidate
+            payload={JSON.stringify(GenderJson)}
+            setShow={setShowModal}
+          />
+        );
         setShowModal(true);
         break;
       case "Email":
-        setRenderComponent(<ChangeEmailCandidate />);
+        let EmailJson = await informationPerson();
+        setRenderComponent(
+          <ChangeEmailCandidate
+            payload={JSON.stringify(EmailJson)}
+            setShow={setShowModal}
+          />
+        );
         setShowModal(true);
         break;
       case "Phone":
-        setRenderComponent(<ChangePhoneCandidate />);
+        let PhoneJson = await informationPerson();
+        setRenderComponent(
+          <ChangePhoneCandidate
+            payload={JSON.stringify(PhoneJson)}
+            setShow={setShowModal}
+          />
+        );
         setShowModal(true);
         break;
       case "Type":
-        setRenderComponent(<ChangeTypeCandidate />);
+        let TypeJson = await informationPerson();
+
+        setRenderComponent(
+          <ChangeTypeCandidate
+            payload={JSON.stringify(TypeJson)}
+            setShow={setShowModal}
+          />
+        );
         setShowModal(true);
         break;
       case "Academy":
@@ -200,32 +228,26 @@ export default function CandidateInformation() {
         <View style={styles.card}>
           <Text style={styles.title}>Información de la certificación</Text>
 
-          <TouchableOpacity onPress={() => selectComponent("Certification")}>
-            <View style={styles.card}>
-              <View style={styles.row}>
-                <Text style={styles.label}>Nombre de la certificación: </Text>
-                <Text>{data[11]}</Text>
-              </View>
+          <View style={styles.card}>
+            <View style={styles.row}>
+              <Text style={styles.label}>Nombre de la certificación: </Text>
+              <Text>{data[11]}</Text>
             </View>
-          </TouchableOpacity>
+          </View>
 
-          <TouchableOpacity onPress={() => selectComponent("Version")}>
-            <View style={styles.card}>
-              <View style={styles.row}>
-                <Text style={styles.label}>Versión: </Text>
-                <Text>{data[12]}</Text>
-              </View>
+          <View style={styles.card}>
+            <View style={styles.row}>
+              <Text style={styles.label}>Versión: </Text>
+              <Text>{data[12]}</Text>
             </View>
-          </TouchableOpacity>
+          </View>
 
-          <TouchableOpacity onPress={() => selectComponent("Company")}>
-            <View style={styles.card}>
-              <View style={styles.row}>
-                <Text style={styles.label}>Empresa certificadora: </Text>
-                <Text>{data[13]}</Text>
-              </View>
+          <View style={styles.card}>
+            <View style={styles.row}>
+              <Text style={styles.label}>Empresa certificadora: </Text>
+              <Text>{data[13]}</Text>
             </View>
-          </TouchableOpacity>
+          </View>
         </View>
         {renderComponent && (
           <Modal show={showModal} setShow={setShowModal}>
