@@ -5,43 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1930e54-76c7-426d-8e53-5aac1b4e70af" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/CONCER" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/public/logo512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/App.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/modules/auth/LoginScreen.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/modules/auth/authContext.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/modules/auth/authReducer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/modules/auth/authReduces.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/shared/assets/img/utez.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/shared/components/AppRouter.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/shared/components/Search.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/shared/components/main/MainAdministrator.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/shared/components/main/MainCandidate.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/shared/components/main/MainCertifier.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/shared/components/main/certifier/AllCandidates.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/shared/components/main/certifier/Candidate.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/shared/components/navbar/AllNavbar.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/shared/components/sidebar/SidebarAdministrator.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/shared/components/sidebar/SidebarCandidate.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/shared/components/sidebar/SidebarCertifier.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/shared/plugins/alert.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/shared/plugins/alerts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/src/shared/plugins/axios.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontWeb/pantallas/utez.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/security/MainSecurity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/security/MainSecurity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/security/MainSecurity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/security/MainSecurity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/ejercicio" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/ejercicio" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +95,7 @@
       <workItem from="1679981309887" duration="5222000" />
       <workItem from="1680058280731" duration="784000" />
       <workItem from="1680151574084" duration="5309000" />
-      <workItem from="1680453067773" duration="3337000" />
+      <workItem from="1680453067773" duration="3341000" />
     </task>
     <servers />
   </component>
