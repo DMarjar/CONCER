@@ -1,9 +1,21 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { Button, Col, Nav } from 'react-bootstrap'
 import { VscGraph } from 'react-icons/vsc'
 import { IoIosPeople } from 'react-icons/io'
+import AuthContext from '../../modules/auth/AuthContext'
+
 
 const SidebarCertifier = () => {
+    const {setState} = useContext(AuthContext);
+
+    const logout = () =>{
+        setState({ 
+                auth: false,
+                role: '' 
+        })
+    }
+
+
     return (
         <>
             <Nav className='px-3 py-2 text-center'><h4>Control de certificaciones</h4></Nav>

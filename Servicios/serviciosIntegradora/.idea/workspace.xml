@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1930e54-76c7-426d-8e53-5aac1b4e70af" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/CandidateInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/CandidateInformation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/Candidates.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/Candidates.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/components/ChangeCertificationCandidate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/components/ChangeEmailCandidate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/components/ChangeEmailCandidate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/components/ChangeGenderCandidate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/components/ChangeGenderCandidate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/components/ChangeLastnameCandidate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/components/ChangeLastnameCandidate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/components/ChangeNameCandidate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/components/ChangeNameCandidate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/components/ChangePhoneCandidate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/components/ChangePhoneCandidate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/components/ChangeVersionCandidate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/candidate/Dtos/CandidateDtos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/candidate/Dtos/CandidateDtos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/person/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/person/PersonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/candidate/Candidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/candidate/Candidate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/person/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/person/PersonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/person/PersonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/person/PersonController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/person/PersonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/person/PersonService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/ejercicio" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/ejercicio" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,27 +31,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/BDelh/Documents/GitHub/CONCER/Servicios/serviciosIntegradora",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "spring.configuration.checksum": "8af82d19155ad4c1d13938b61eff58f9",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/BDelh/Documents/GitHub/CONCER/Servicios/serviciosIntegradora&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;8af82d19155ad4c1d13938b61eff58f9&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="ServiciosIntegradoraApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="serviciosIntegradora" />
@@ -110,6 +95,7 @@
       <workItem from="1679981309887" duration="5222000" />
       <workItem from="1680058280731" duration="784000" />
       <workItem from="1680151574084" duration="5309000" />
+      <workItem from="1680453067773" duration="3341000" />
     </task>
     <servers />
   </component>

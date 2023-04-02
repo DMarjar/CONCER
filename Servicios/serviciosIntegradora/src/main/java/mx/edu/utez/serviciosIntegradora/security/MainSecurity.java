@@ -69,7 +69,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/controlCertificaciones/auth/**").permitAll()
+                .antMatchers("/controlCertificaciones/auth/**","/controlCertificaciones/user/person" ).permitAll()
                 .antMatchers(HttpMethod.GET, "/controlCertificaciones/**").permitAll() // Permitir todos los endpoints con el método GET
                 .antMatchers(HttpMethod.POST, "/controlCertificaciones/**").hasAnyAuthority("GESTOR", "ADMIN") // Permitir los endpoints POST solo para GESTOR y ADMIN
                 .antMatchers(HttpMethod.PUT, "/controlCertificaciones/**").hasAnyAuthority("GESTOR", "ADMIN") // Permitir los endpoints PUT solo para GESTOR y ADMIN

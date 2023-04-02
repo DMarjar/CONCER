@@ -27,16 +27,15 @@ export default function Login() {
       setShow(true);
 
       try {
-        console.log(data.user, data.password);
         const account = await axios.doPost("/auth/inicioSesion", {
           username: data.user,
           password: data.password,
         });
 
-        console.log(account.data.data);
-        AxiosInstance.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${account.data.data.token}`;
+        await AsyncStorage.setItem(
+          "token",
+          JSON.stringify(user.data.data.token)
+        );
 
         const user = await axios.doPost("/user/person", {
           username: data.user,
