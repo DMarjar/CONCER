@@ -8,6 +8,7 @@ import mx.edu.utez.serviciosIntegradora.model.certification.Certification;
 import mx.edu.utez.serviciosIntegradora.model.person.Person;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "candidates")
@@ -20,8 +21,10 @@ public class Candidate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "date", nullable = false)
-    private String date;
+
+    private LocalDate fechaInicio;
+
+    private LocalDate fechaFin;
 
     @Enumerated(EnumType.STRING)
     private Estado estado;

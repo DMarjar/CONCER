@@ -9,14 +9,15 @@ import mx.edu.utez.serviciosIntegradora.model.person.Person;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
 public class CandidateDtos {
     private long id;
-    @NotNull
-    @NotBlank
-    private String date;
+    private LocalDate fechaInicio;
+
+    private LocalDate fechaFin;
     @NotNull
     @NotBlank
     private Estado estado;
@@ -34,7 +35,8 @@ public class CandidateDtos {
     public Candidate castToCandidate() {
         return new Candidate(
                 this.id,
-                this.date,
+                this.fechaInicio,
+                this.fechaFin,
                 this.estado,
                 this.status,
                 this.certification,
