@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import { Button } from "react-native-elements";
 import axios from "../../../../../kernel/gateway/http-auth.gateway";
 
-export default function ChangeNameCandidate(props) {
+export default function ChangeEmailCandidate(props) {
   const { payload, setShow } = props;
   const data = JSON.parse(payload);
 
