@@ -40,6 +40,19 @@ public class PersonService {
         );
     }
 
+    //getOneByEmail
+    @Transactional(readOnly = true)
+    public CustomResponse<Person> getOneByEmail(String email){
+        if(!this.personRepository.existsByEmail(email)){
+            return new CustomResponse<>(null,true,400,"no existe");
+        }
+        return new CustomResponse<>(
+                this.personRepository.findByEmail(email),false,200,"ok"
+        );
+    }
+
+
+
     //getOneByUsername
     @Transactional(rollbackFor = {SQLException.class})
     public CustomResponse<Person> getOneByUsername(Person person){

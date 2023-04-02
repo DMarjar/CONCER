@@ -18,4 +18,6 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     // Verificar si la persona ya existe por su email
     boolean existsByEmail(String email);
     Person findByUser(User user);
+
+    Person findByEmail(String email);
 }

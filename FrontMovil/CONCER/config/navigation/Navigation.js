@@ -22,7 +22,7 @@ export default function Navigation(){
             >
 
 				<Tab.Screen
-					name="Candidatos"
+					name="Candidaturas"
 					component={HomeStack}
 					options={{ title: "Candidatos" }}
 				/>
@@ -43,7 +43,7 @@ const screenOptions = (route, color) => {
 		case "Perfil":
 			iconName = "account";
 			break;
-		case "Candidatos":
+		case "Candidaturas":
 			iconName = "animation";
 			break;
 	}
