@@ -65,6 +65,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 
     /*NO ES LA SEGURIDAD OFICIAL, SOLO ES PARA IR RESTRINGIENDO EN PRUEBA DE TOKENS*/
 
+    /*
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.cors().and().csrf().disable()
@@ -83,10 +84,10 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                 http.addFilterBefore(jwtTokenFilter(),
                 UsernamePasswordAuthenticationFilter.class);
 
-    }
+    }*/
 
     //EN CASO DE NECESITAR QUITAR LA SEGURIDAD PRO PRUEBAS
-/*
+
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.cors().and().csrf().disable()
@@ -101,5 +102,5 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                 UsernamePasswordAuthenticationFilter.class);
 
     }
-*/
+
 }
