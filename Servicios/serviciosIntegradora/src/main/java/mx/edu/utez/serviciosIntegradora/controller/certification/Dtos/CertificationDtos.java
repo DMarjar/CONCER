@@ -23,6 +23,7 @@ public class CertificationDtos {
     private String version;
     private Boolean status=true;
     private Person person;
+    private String picture;
     private CertifyingCompany certifyingCompany;
 
     public Certification castToCertification() {
