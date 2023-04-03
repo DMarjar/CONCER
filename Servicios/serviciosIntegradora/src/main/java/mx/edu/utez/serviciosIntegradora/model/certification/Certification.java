@@ -29,6 +29,7 @@ public class Certification {
     @Column(nullable = false, columnDefinition = "TINYINT DEFAULT 1")
     private Boolean status;
 
+
     //Relaciones
 
     /*Persona*/
