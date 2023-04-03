@@ -22,6 +22,8 @@ public class CandidateDtos {
     @NotBlank
     private Estado estado;
     private Boolean status=true;
+
+    private double puntaje;
     @NotNull
     @NotBlank
     private Certification certification;
@@ -39,6 +41,7 @@ public class CandidateDtos {
                 this.fechaFin,
                 this.estado,
                 this.status,
+                this.puntaje,
                 this.certification,
                 this.person,
                 this.academy

@@ -15,6 +15,6 @@ public interface CertificationRepository extends JpaRepository<Certification, Lo
     )
     boolean updateStatusById(@Param("id") Long id, @Param("status") boolean status);
     boolean existsByNameAndVersion(String name, String version);
-
+    int countAllBy();
 
 }
