@@ -7,6 +7,8 @@ import {BsPersonCheckFill} from 'react-icons/bs'
 import {TbCertificate} from 'react-icons/tb'
 import {BsFillBuildingsFill} from 'react-icons/bs'
 import {IoMdSchool} from 'react-icons/io'
+import { Navigate } from 'react-router-dom';
+
 const SidebarAdministrator = () => {
     return (
         <>

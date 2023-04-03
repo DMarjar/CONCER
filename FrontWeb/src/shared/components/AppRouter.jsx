@@ -37,7 +37,7 @@ export const AppRouter = () => {
                                     <SidebarCandidate />
                                 </Col>
                                 <Col className='col-lg-10 col-md-9 col-sm-9 square border border-2 m-0'>
-                                    <AllCandidates />
+                                    <MainCandidate /> 
                                  </Col>
                             </Row> 
                             {/* LOGEADO COMO CANDIDATO */}

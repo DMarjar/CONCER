@@ -2,7 +2,8 @@ import React,{useContext} from 'react'
 import { Button, Col, Nav } from 'react-bootstrap'
 import { VscGraph } from 'react-icons/vsc'
 import { IoIosPeople } from 'react-icons/io'
-import AuthContext from '../../modules/auth/AuthContext'
+import { AuthContext } from '../../../modules/auth/authContext'
+
 
 
 const SidebarCertifier = () => {
@@ -30,4 +31,4 @@ const SidebarCertifier = () => {
     )
 }
 
-export default SidebarCertifier
+export default SidebarCertifier;
