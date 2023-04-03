@@ -13,6 +13,10 @@ public class StatsDto {
     private int totalCertifications;
     private int totalCandidates;
     private int totalPendingCandidates;
+    private int totalFinishedCandidates;
+    private double pendingPercentage;
+    private double finishedPercentage;
+    private double averageScore;
     private List<Candidate> candidates;
 
     public Stats castToStats() {
@@ -20,6 +24,10 @@ public class StatsDto {
                 this.totalCertifications,
                 this.totalCandidates,
                 this.totalPendingCandidates,
+                this.totalFinishedCandidates,
+                this.pendingPercentage,
+                this.finishedPercentage,
+                this.averageScore,
                 this.candidates
         );
     }

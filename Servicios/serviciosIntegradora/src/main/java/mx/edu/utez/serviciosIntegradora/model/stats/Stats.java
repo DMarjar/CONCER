@@ -14,5 +14,9 @@ public class Stats {
     private int totalCertifications;
     private int totalCandidates;
     private int totalPendingCandidates;
+    private int totalFinishedCandidates;
+    private double pendingPercentage;
+    private double finishedPercentage;
+    private double averageScore;
     private List<Candidate> candidates;
 }
