@@ -4,10 +4,11 @@ import NavbarAll from '../../shared/components/Navbar'
 import AsideGestor from '../../shared/components/AsideGestor'
 
 
-export const HomeGestor = () => {
+export const IndexGestor = () => {
 
     return (
         <>
+        <div className="container-fluid" >
             <Row className="m-0">
                 <NavbarAll />
             </Row>
@@ -29,6 +30,8 @@ export const HomeGestor = () => {
                 </Col>
 
             </Row>
+        </div>
+            
         </>
     )
 }

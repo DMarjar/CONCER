@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AuthContext from '../../modules/auth/AuthContext';
-import { HomeUser } from '../../modules/home/HomeUser';
-import { HomeGestor } from '../../modules/home/HomeGestor';
-import { HomeAdmin } from '../../modules/home/HomeAdmin';
+import { IndexUser } from '../../modules/index/IndexUser';
+import { IndexGestor } from '../../modules/index/IndexGestor';
+import { IndexAdmin } from '../../modules/index/IndexAdmin';
 
 export const RoleRoute = () => {
     const { isRole } = useContext(AuthContext);
@@ -11,13 +11,13 @@ export const RoleRoute = () => {
 
     return (
             <Routes>
-                <Route exact path="/" element={
+                <Route path="/*" element={
                     isRole === 'ADMIN' ?
-                    <><HomeAdmin /></>
+                    <>< IndexAdmin/></>
                     : isRole === 'GESTOR' ? 
-                    <><HomeGestor /></>
+                    <><IndexGestor /></>
                     :   
-                    <><HomeUser/></>
+                    <><IndexUser/></>
                     }
                 />
             </Routes>

@@ -13,8 +13,7 @@ function App() {
           <Router>
             <Routes>
               <Route
-                exact
-                path="/"
+                path="/*"
                 element={isAuth ? <RoleRoute /> : <Login />}
               />
             </Routes>

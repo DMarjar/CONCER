@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { AiFillHome } from 'react-icons/ai';
 import { FaUserCircle } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 export const NavbarAll = () => {
     return (
@@ -21,11 +22,11 @@ export const NavbarAll = () => {
                     </Navbar.Brand>
                     <Nav className="justify-content-end mx-0" activeKey="/home">
                         <Nav.Item>
-                            <Nav.Link href="/home"><AiFillHome size={"35"} color="#002e60" /></Nav.Link>
+                            <NavLink to="/"><AiFillHome size={"35"} color="#002e60" /></NavLink>
                         </Nav.Item>
                         &nbsp;&nbsp;
                         <Nav.Item>
-                            <Nav.Link href="/profile"><FaUserCircle size={"35"} color="#002e60" /></Nav.Link>
+                            <NavLink to="/profile"><FaUserCircle size={"35"} color="#002e60" /></NavLink>
                         </Nav.Item>
                     </Nav>
                 </Container>

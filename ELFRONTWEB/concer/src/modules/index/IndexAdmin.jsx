@@ -3,12 +3,15 @@ import React from 'react'
 
 import { NavbarAll } from '../../shared/components/Navbar';
 import { AsideAdmin } from '../../shared/components/AsideAdmin';
-import {MainAdmin} from '../../shared/components/MainAdmin'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from '../home/Home';
 
-export const HomeAdmin = () => {
+
+export const IndexAdmin = () => {
 
     return (
-        <>
+        <>  
+        <div className="container-fluid" >
             <Row className="m-0">
                 <NavbarAll />
             </Row>
@@ -21,17 +24,16 @@ export const HomeAdmin = () => {
                     <AsideAdmin />
                 </Col>
                 <Col className="col-lg-10 col-md-9 col-sm-9 square border border-bottom-0 m-0">
-                    {/* <Router>    
-                     <Routes>
-
-                    </Routes>
-                </Router> */}
-                    <MainAdmin/>
+                    <section className="container-fluid">
+                            <Routes>
+                                <Route path="" element={<Home/>} />
+                                <Route path="about" element={<h1>About</h1>} />
+                                <Route path="contact" element={<h1>Contact</h1>} />
+                            </Routes>
+                    </section>
                 </Col>
-
             </Row>
-
-
+        </div>
 
         </>
     )

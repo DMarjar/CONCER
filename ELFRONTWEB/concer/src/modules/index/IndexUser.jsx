@@ -5,11 +5,12 @@ import { AsideUser } from "../../shared/components/AsideUser";
 
 
 
-export const HomeUser = () => {
+export const IndexUser = () => {
 
 
   return (
     <>
+    <div className="container-fluid" >
     <Row className="m-0">
       <NavbarAll />
     </Row>
@@ -30,7 +31,7 @@ export const HomeUser = () => {
           contenido user
         </Col>
       </Row>
-
+    </div>
     </>
   );
 };
