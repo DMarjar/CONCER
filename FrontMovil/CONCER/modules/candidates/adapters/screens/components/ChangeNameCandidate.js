@@ -36,7 +36,7 @@ export default function ChangeNameCandidate(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Ingresa el nuevo nombre</Text>
+      <Text style={styles.title}>Nombre</Text>
       <TextInput
         value={newName}
         onChangeText={(text) => setNewName(text)}

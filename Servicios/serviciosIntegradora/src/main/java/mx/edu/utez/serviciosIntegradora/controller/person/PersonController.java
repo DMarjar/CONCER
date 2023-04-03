@@ -8,6 +8,7 @@ import mx.edu.utez.serviciosIntegradora.utils.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +46,9 @@ public class PersonController {
     @PutMapping("/update")
     // URL: http://localhost:8080/controlCertificaciones/person/{id}
     public ResponseEntity<CustomResponse<Person>> update(@RequestBody Person person) {
+        System.out.println("aaaa");
         return new ResponseEntity<>(
+
                 this.service.update(person), HttpStatus.OK
         );
     }
