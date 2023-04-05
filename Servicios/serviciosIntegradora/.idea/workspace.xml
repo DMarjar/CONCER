@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1930e54-76c7-426d-8e53-5aac1b4e70af" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/home/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/index/IndexAdmin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/index/IndexAdmin.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/index/IndexGestor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/index/IndexGestor.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/index/IndexUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/index/IndexUser.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideAdmin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideAdmin.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideGestor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideGestor.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideUser.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/Navbar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/certification/Dtos/CertificationDtos.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/certification/Dtos/CertificationDtos.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/certification/Certification.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/certification/Certification.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +57,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/BDelh/Documents/GitHub/CONCER/Servicios/serviciosIntegradora&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/abiga/Downloads/Ana Belen Velasquez Diaz/integradora CONCER/rqama jose2/CONCER/Servicios/serviciosIntegradora&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -75,11 +83,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Spring Boot.ServiciosIntegradoraApplication" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
