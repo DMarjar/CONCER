@@ -86,6 +86,7 @@ public class CandidateController {
         );
     }
 
+
     //Delete
     @DeleteMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/candidate/{id}

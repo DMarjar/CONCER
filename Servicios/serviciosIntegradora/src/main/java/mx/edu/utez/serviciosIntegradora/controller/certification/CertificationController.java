@@ -1,6 +1,7 @@
 package mx.edu.utez.serviciosIntegradora.controller.certification;
 
 import mx.edu.utez.serviciosIntegradora.controller.certification.Dtos.CertificationDtos;
+import mx.edu.utez.serviciosIntegradora.controller.certification.Dtos.ImageCertificationRequest;
 import mx.edu.utez.serviciosIntegradora.model.academy.Academy;
 import mx.edu.utez.serviciosIntegradora.model.certification.Certification;
 import mx.edu.utez.serviciosIntegradora.model.person.Person;
@@ -13,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -34,11 +36,11 @@ public class CertificationController {
 
 
     // Get one
-    @GetMapping("/{id}")
+    @GetMapping("/one")
     // URL: http://localhost:8080/controlCertificaciones/certification/{id}
-    public ResponseEntity<CustomResponse<Certification>> getOne(@PathVariable Long id){
+    public ResponseEntity<CustomResponse<Certification>> getOne(@RequestBody Certification certification){
         return new ResponseEntity<>(
-                this.service.getOne(id),
+                this.service.getOne(certification.getId()),
                 HttpStatus.OK);
     }
 
@@ -75,6 +77,16 @@ public class CertificationController {
                 this.service.changeStatus(certification.castToCertification()), HttpStatus.OK
         );
     }
+
+    //update image
+    @PutMapping("/image")
+    // URL: http://localhost:8080/controlCertificaciones/certification/image
+    public ResponseEntity<CustomResponse<Certification>> updateImage(@Valid @RequestBody ImageCertificationRequest certification) throws IOException {
+        return new ResponseEntity<>(
+                this.service.updateImage(certification), HttpStatus.OK
+        );
+    }
+
 
     //Delete
     @DeleteMapping("/")
