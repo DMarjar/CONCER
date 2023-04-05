@@ -23,7 +23,8 @@ public class CertificationDtos {
     private String version;
     private Boolean status=true;
     private Person person;
-    private String picture;
+    private String pictureUrl;
+    private String pictureBase64;
     private CertifyingCompany certifyingCompany;
 
     public Certification castToCertification() {
@@ -32,6 +33,8 @@ public class CertificationDtos {
                 this.name,
                 this.version,
                 this.status,
+                this.pictureUrl,
+                this.pictureBase64,
                 this.person,
                 this.certifyingCompany,
                 null

@@ -21,11 +21,7 @@ export const IndexGestor = () => {
                     <AsideGestor />
                 </Col>
                 <Col className="col-lg-10 col-md-9 col-sm-9 square border border-bottom-0 m-0">
-                    {/* <Router>    
-                        <Routes>
-
-                        </Routes>
-                    </Router> */}
+                    
                     contenido gestor
                 </Col>
 
