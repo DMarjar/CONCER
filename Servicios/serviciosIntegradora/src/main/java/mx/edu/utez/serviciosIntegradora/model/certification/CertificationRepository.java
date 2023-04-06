@@ -1,3 +1,4 @@
+
 package mx.edu.utez.serviciosIntegradora.model.certification;
 
 import mx.edu.utez.serviciosIntegradora.model.stats.CertificationStats;
