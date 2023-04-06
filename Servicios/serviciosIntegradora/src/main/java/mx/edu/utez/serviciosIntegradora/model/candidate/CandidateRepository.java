@@ -1,3 +1,4 @@
+
 package mx.edu.utez.serviciosIntegradora.model.candidate;
 
 import mx.edu.utez.serviciosIntegradora.model.certification.Certification;

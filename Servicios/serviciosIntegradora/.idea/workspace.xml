@@ -67,8 +67,7 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;8af82d19155ad4c1d13938b61eff58f9&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
+&gt;</component>
   <component name="RunManager">
     <configuration name="ServiciosIntegradoraApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="serviciosIntegradora" />
@@ -83,6 +82,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.ServiciosIntegradoraApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -108,6 +112,9 @@
       <workItem from="1680058280731" duration="784000" />
       <workItem from="1680151574084" duration="5309000" />
       <workItem from="1680453067773" duration="3341000" />
+      <workItem from="1680540267559" duration="124000" />
+      <workItem from="1680540413024" duration="370000" />
+      <workItem from="1680540798639" duration="10760000" />
     </task>
     <servers />
   </component>
