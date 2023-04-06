@@ -1,6 +1,7 @@
 package mx.edu.utez.serviciosIntegradora.controller.candidate;
 
 import mx.edu.utez.serviciosIntegradora.controller.candidate.Dtos.CandidateDtos;
+import mx.edu.utez.serviciosIntegradora.controller.candidate.Dtos.ImageCandidateRequest;
 import mx.edu.utez.serviciosIntegradora.model.candidate.Candidate;
 import mx.edu.utez.serviciosIntegradora.model.person.Person;
 import mx.edu.utez.serviciosIntegradora.service.candidate.CandidateService;
@@ -40,11 +41,24 @@ public class CandidateController {
     }
 
     //get Information candidaturas
+<<<<<<< HEAD
+    @PostMapping("/informationEntregadas")
+    public  ResponseEntity<CustomResponse<List<Object[]>>> getInformationEntregadas(@RequestBody Person person){
+=======
     @PostMapping("/information")
     // URL: http://localhost:8080/controlCertificaciones/candidate/information
     public  ResponseEntity<CustomResponse<List<Object[]>>> getInformation(@RequestBody Person person){
+>>>>>>> 5e2a537bb5b859af9a9c041ad66026f3284c6a64
         return new ResponseEntity<>(
-                this.service.getInformation(person), HttpStatus.OK
+                this.service.getInformationENTREGADAS(person), HttpStatus.OK
+        );
+    }
+
+    //get Information candidaturas
+    @PostMapping("/informationPendientes")
+    public  ResponseEntity<CustomResponse<List<Object[]>>> getInformationPendientes(@RequestBody Person person){
+        return new ResponseEntity<>(
+                this.service.getInformationPENDIENTES(person), HttpStatus.OK
         );
     }
 
@@ -64,6 +78,15 @@ public class CandidateController {
     public ResponseEntity<CustomResponse<Candidate>> insert(@Valid @RequestBody CandidateDtos candidate) {
         return new ResponseEntity<>(
                 this.service.insert(candidate.castToCandidate()), HttpStatus.CREATED
+        );
+    }
+
+    //update Estado and load image
+    @PostMapping("/estado")
+    public ResponseEntity<CustomResponse<Candidate>> updateEstado(@RequestBody ImageCandidateRequest candidate){
+        System.out.println(candidate.getId());
+        return new ResponseEntity<>(
+                this.service.updateWithImage(candidate), HttpStatus.OK
         );
     }
 

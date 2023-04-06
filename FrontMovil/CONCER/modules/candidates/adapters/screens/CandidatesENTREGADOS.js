@@ -16,7 +16,7 @@ import {
 } from "@react-navigation/native";
 import { Input, Icon } from "@rneui/base";
 
-export default function Candidates() {
+export default function CandidatesENTREGADOS() {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
 
@@ -35,9 +35,12 @@ export default function Candidates() {
         setAccount(parsedAccount);
 
         //obtener datos de los candidatos con el id de la cuenta
-        const response = await axios.doPost("/candidate/information", {
-          id: parsedAccount.id,
-        });
+        const response = await axios.doPost(
+          "/candidate/informationEntregadas",
+          {
+            id: parsedAccount.id,
+          }
+        );
         setData(response.data.data);
 
         //filtrar los datos de los candidatos
@@ -67,7 +70,7 @@ export default function Candidates() {
   );
 
   const handleCandidatePress = (candidateId) => {
-    navigation.navigate("Candidatura", { candidateId });
+    navigation.navigate("Entregado", { candidateId });
   };
 
   return (
@@ -89,7 +92,7 @@ export default function Candidates() {
           <TouchableOpacity
             key={index}
             style={styles.item}
-            onPress={() => handleCandidatePress(item[2])}
+            onPress={() => handleCandidatePress(item[1])}
           >
             <View style={styles.itemContent}>
               <View style={styles.itemInfo}>
