@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1930e54-76c7-426d-8e53-5aac1b4e70af" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/home/Home.jsx" afterDir="false" />
@@ -18,6 +19,18 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/stats/Dtos/StatsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/stats/Dtos/StatsDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/candidate/Candidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/candidate/Candidate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/candidate/CandidateRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/candidate/CandidateRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/stats/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/stats/Stats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/stats/StatsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/stats/StatsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/stats/Dtos/StatsDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/stats/Dtos/StatsDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/candidate/Candidate.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/candidate/Candidate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/stats/Stats.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/model/stats/Stats.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/stats/StatsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/stats/StatsService.class" afterDir="false" />
+>>>>>>> parent of bf7c7ea (Estadisticas de Certificaciones)
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +61,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
@@ -67,8 +81,30 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;8af82d19155ad4c1d13938b61eff58f9&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/BDelh/Documents/GitHub/CONCER/Servicios/serviciosIntegradora",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "spring.configuration.checksum": "8af82d19155ad4c1d13938b61eff58f9",
+    "vue.rearranger.settings.migration": "true"
+>>>>>>> parent of bf7c7ea (Estadisticas de Certificaciones)
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="ServiciosIntegradoraApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="serviciosIntegradora" />
@@ -108,6 +144,12 @@
       <workItem from="1680058280731" duration="784000" />
       <workItem from="1680151574084" duration="5309000" />
       <workItem from="1680453067773" duration="3341000" />
+<<<<<<< HEAD
+=======
+      <workItem from="1680540267559" duration="124000" />
+      <workItem from="1680540413024" duration="370000" />
+      <workItem from="1680540798639" duration="10760000" />
+>>>>>>> parent of bf7c7ea (Estadisticas de Certificaciones)
     </task>
     <servers />
   </component>
