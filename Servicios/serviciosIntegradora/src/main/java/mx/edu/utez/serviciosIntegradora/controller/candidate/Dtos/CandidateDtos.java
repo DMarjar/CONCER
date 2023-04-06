@@ -43,9 +43,12 @@ public class CandidateDtos {
                 this.estado,
                 this.status,
 <<<<<<< HEAD
+<<<<<<< HEAD
                 this.puntaje,
                 this.pictureUrl,
                 this.pictureBase64,
+=======
+>>>>>>> parent of 5e2a537 (Estadisticas de Certificacion)
 =======
 >>>>>>> parent of 5e2a537 (Estadisticas de Certificacion)
                 this.certification,
