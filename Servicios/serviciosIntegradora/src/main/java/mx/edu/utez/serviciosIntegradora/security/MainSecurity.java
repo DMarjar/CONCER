@@ -28,12 +28,12 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
     private JwtEntryPoint entryPoint;
 
     @Bean
-    public JwtTokenFilter jwtTokenFilter() {
+    public JwtTokenFilter jwtTokenFilter(){
         return new JwtTokenFilter();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
@@ -44,12 +44,12 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 
     @Bean
     @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
+    public AuthenticationManager authenticationManagerBean() throws Exception{
         return super.authenticationManagerBean();
     }
 
     @Override
-    public AuthenticationManager authenticationManager() throws Exception {
+    public AuthenticationManager authenticationManager() throws Exception{
         return super.authenticationManager();
     }
     //END POINTS::
@@ -61,17 +61,16 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
         "/controlCertificaciones/certifyingCompany/**"
         "/controlCertificaciones/person/**"
         "/controlCertificaciones/user/**"
-        "/controlCertificaciones/stats/**"
      */
 
     /*NO ES LA SEGURIDAD OFICIAL, SOLO ES PARA IR RESTRINGIENDO EN PRUEBA DE TOKENS*/
 
     /*
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception{
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/controlCertificaciones/auth/**", "/controlCertificaciones/user/person", "/controlCertificaciones/stats").permitAll()
+                .antMatchers("/controlCertificaciones/auth/**","/controlCertificaciones/user/person" ).permitAll()
                 .antMatchers(HttpMethod.GET, "/controlCertificaciones/**").permitAll() // Permitir todos los endpoints con el método GET
                 .antMatchers(HttpMethod.POST, "/controlCertificaciones/**").hasAnyAuthority("GESTOR", "ADMIN") // Permitir los endpoints POST solo para GESTOR y ADMIN
                 .antMatchers(HttpMethod.PUT, "/controlCertificaciones/**").hasAnyAuthority("GESTOR", "ADMIN") // Permitir los endpoints PUT solo para GESTOR y ADMIN
@@ -82,7 +81,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtTokenFilter(),
+                http.addFilterBefore(jwtTokenFilter(),
                 UsernamePasswordAuthenticationFilter.class);
 
     }*/

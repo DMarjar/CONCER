@@ -1,9 +1,11 @@
 package mx.edu.utez.serviciosIntegradora.service.certification;
 
 import mx.edu.utez.serviciosIntegradora.controller.certification.Dtos.ImageCertificationRequest;
+import mx.edu.utez.serviciosIntegradora.model.candidate.Candidate;
+import mx.edu.utez.serviciosIntegradora.model.candidate.CandidateRepository;
 import mx.edu.utez.serviciosIntegradora.model.certification.Certification;
 import mx.edu.utez.serviciosIntegradora.model.certification.CertificationRepository;
-import mx.edu.utez.serviciosIntegradora.service.image.ImageService;
+import mx.edu.utez.serviciosIntegradora.model.person.Person;
 import mx.edu.utez.serviciosIntegradora.utils.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,9 +16,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StreamUtils;
 
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -24,25 +32,18 @@ public class CertificationService {
     @Autowired
     private CertificationRepository Repository;
 
-    @Autowired
-    private ImageService imageService;
+    @Value("${spring.os}")
+    private String os;
+
+    String separator = FileSystems.getDefault().getSeparator();
+
+
 
     //getAll
     @Transactional(readOnly = true)
     public CustomResponse<List<Certification>> getAll(){
-        List<Certification> certifications = this.Repository.findAll();
-
-        for(Certification certification : certifications) {
-            if(certification.getPictureUrl() != null){
-                try {
-                    certification.setPictureBase64(imageService.getPicture(certification.getPictureUrl()));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
         return new CustomResponse<>(
-                certifications,false,200,"ok"
+                this.Repository.findAll(),false,200,"ok"
         );
     }
 
@@ -55,15 +56,23 @@ public class CertificationService {
 
             if(certification.getPictureUrl() != null){
                 try {
-                    certification.setPictureBase64(imageService.getPicture(certification.getPictureUrl()));
+                    Resource resource = new FileSystemResource(certification.getPictureUrl());
+
+                    byte[] pictureData = StreamUtils.copyToByteArray(resource.getInputStream());
+
+                    String pictureBase64 = Base64.getEncoder().encodeToString(pictureData);
+
+                    certification.setPictureBase64(pictureBase64);
+
+                    return new CustomResponse<>(
+                            certification,false,200,"ok"
+                    );
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
 
-            return new CustomResponse<>(
-                    certification,false,200,"ok"
-            );
         }
         return new CustomResponse<>(
                 null,true,400,"no existe"
@@ -101,7 +110,15 @@ public class CertificationService {
 
         try {
             Certification certificationUpdateImage = this.Repository.findById(certification.getId()).get();
-            certificationUpdateImage.setPictureUrl(imageService.savePicture(certification.getPicture()));
+
+            byte[] image = Base64.getDecoder().decode(certification.getPicture());
+
+            String nombreImage = UUID.randomUUID().toString()+".png";
+            String imagePath = os + separator + nombreImage;
+
+            Files.write(Paths.get(imagePath),image);
+
+            certificationUpdateImage.setPictureUrl(os + nombreImage);
 
             return new CustomResponse<>(
                     this.Repository.saveAndFlush(certificationUpdateImage),false,200,"ok"
