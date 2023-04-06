@@ -40,6 +40,7 @@ public class CandidateController {
                 HttpStatus.OK);
     }
 
+    //aa
     //get Information candidaturas
 <<<<<<< HEAD
     @PostMapping("/informationEntregadas")
