@@ -25,6 +25,9 @@ public class CandidateDtos {
     @NotNull
     @NotBlank
     private Certification certification;
+
+    private String pictureUrl;
+    private String pictureBase64;
     @NotNull
     @NotBlank
     private Person person;
@@ -39,6 +42,8 @@ public class CandidateDtos {
                 this.fechaFin,
                 this.estado,
                 this.status,
+                this.pictureUrl,
+                this.pictureBase64,
                 this.certification,
                 this.person,
                 this.academy

@@ -32,10 +32,7 @@ export default function Login() {
           password: data.password,
         });
 
-        await AsyncStorage.setItem(
-          "token",
-          JSON.stringify(user.data.data.token)
-        );
+        await AsyncStorage.setItem("token", account.data.data.token);
 
         const user = await axios.doPost("/user/person", {
           username: data.user,
