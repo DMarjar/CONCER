@@ -40,6 +40,7 @@ public class CandidateController {
                 HttpStatus.OK);
     }
 
+    //aa
     //get Information candidaturas
     @PostMapping("/informationEntregadas")
     public  ResponseEntity<CustomResponse<List<Object[]>>> getInformationEntregadas(@RequestBody Person person){

@@ -8,4 +8,5 @@ import lombok.NoArgsConstructor;
 public class ImageCandidateRequest {
     private Long id;
     private String picture;
+    //aaaa
 }

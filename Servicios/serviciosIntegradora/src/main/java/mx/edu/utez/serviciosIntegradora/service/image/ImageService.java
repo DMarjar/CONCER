@@ -22,7 +22,7 @@ public class ImageService {
     String separator = FileSystems.getDefault().getSeparator();
 
 
-
+    //aaa
     public String getPicture (String path) throws IOException {
         try{
 
