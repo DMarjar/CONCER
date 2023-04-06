@@ -34,12 +34,6 @@ public class Candidate {
     @Column(columnDefinition = "integer default 0")
     private double puntaje;
 
-    @Column
-    private String pictureUrl;
-
-    @Transient
-    private String pictureBase64;
-
     //Relaciones
 
     /*Certification*/

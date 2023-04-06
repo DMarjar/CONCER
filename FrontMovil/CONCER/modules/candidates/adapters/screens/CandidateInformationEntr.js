@@ -5,9 +5,13 @@ import { useRoute } from "@react-navigation/native";
 import axios from "../../../../kernel/gateway/http-auth.gateway";
 import MyModal from "../../../../kernel/components/Modal";
 import ChangeStateCandidate from "./components/ChangeStateCandidate";
+import { useNavigation } from "@react-navigation/native";
 
-export default function CandidateInformationEntr() {
+const placeholderImage = require("../../../../assets/icon.png");
+
+export default function Candidato() {
   const [showModal, setShowModal] = useState(false);
+  const Navigator = useNavigation();
   const temporal = false;
   const [data, setdata] = useState([]);
   const route = useRoute();
@@ -33,6 +37,9 @@ export default function CandidateInformationEntr() {
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
+          <View style={styles.profileImageContainer}>
+            <Image source={placeholderImage} style={styles.profileImage} />
+          </View>
           <Text style={styles.profileName}>
             {data[3]} {data[4]}
           </Text>
@@ -133,6 +140,32 @@ export default function CandidateInformationEntr() {
       <MyModal show={showModal} setShow={setShowModal}>
         <ChangeStateCandidate />
       </MyModal>
+
+      <View style={styles.actionSection}>
+        <Button
+          icon={
+            <Icon
+              type="material-community"
+              name="arrow-up-bold"
+              color="#ffffff"
+            />
+          }
+          title=" Actualizar Estado"
+          containerStyle={styles.editButtonContainer}
+          buttonStyle={styles.editButton}
+          onPress={() => setShowModal(!showModal)}
+        />
+
+        <Button
+          icon={
+            <Icon type="material-community" name="pencil" color="#ffffff" />
+          }
+          title=" Editar informacion"
+          containerStyle={styles.editButtonContainer}
+          buttonStyle={styles.editButton}
+          onPress={() => Navigator.navigate("Editar Informacion", { data })}
+        />
+      </View>
     </View>
   );
 }
@@ -147,14 +180,22 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center", // centrado horizontal
     marginBottom: 20,
+  },
+  profileImageContainer: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    overflow: "hidden",
+  },
+  profileImage: {
+    width: "100%",
+    height: "100%",
   },
   profileName: {
     fontSize: 24,
     fontWeight: "bold",
     marginLeft: 20,
-    flex: 1, // ocupa todo el espacio disponible verticalmente
   },
   infoSection: {
     marginBottom: 10,
