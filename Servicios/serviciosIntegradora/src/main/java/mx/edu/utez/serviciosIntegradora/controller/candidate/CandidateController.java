@@ -42,14 +42,10 @@ public class CandidateController {
 
     //aa
     //get Information candidaturas
-<<<<<<< HEAD
     @PostMapping("/informationEntregadas")
     public  ResponseEntity<CustomResponse<List<Object[]>>> getInformationEntregadas(@RequestBody Person person){
 
-=======
-    @PostMapping("/information")
-    public  ResponseEntity<CustomResponse<List<Object[]>>> getInformation(@RequestBody Person person){
->>>>>>> parent of 5e2a537 (Estadisticas de Certificacion)
+
         return new ResponseEntity<>(
                 this.service.getInformationENTREGADAS(person), HttpStatus.OK
         );
