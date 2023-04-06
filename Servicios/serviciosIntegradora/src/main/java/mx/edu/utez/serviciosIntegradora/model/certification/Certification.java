@@ -11,10 +11,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "certifications")
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 public class Certification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,4 +54,15 @@ public class Certification {
     private List<Candidate> candidate;
 
 
+    public Certification(Long id, String name, String version, Boolean status, String pictureUrl, String pictureBase64, Person person, CertifyingCompany company, List<Candidate> candidate) {
+        this.id = id;
+        this.name = name;
+        this.version = version;
+        this.status = status;
+        this.pictureUrl = pictureUrl;
+        this.pictureBase64 = pictureBase64;
+        this.person = person;
+        this.company = company;
+        this.candidate = candidate;
+    }
 }

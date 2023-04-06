@@ -61,4 +61,5 @@ public class Candidate {
     private Academy academy;
 
 
+
 }
