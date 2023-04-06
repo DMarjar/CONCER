@@ -31,6 +31,8 @@ public class Candidate {
 
     @Column(nullable = false, columnDefinition = "TINYINT DEFAULT 1")
     private Boolean status;
+    @Column(columnDefinition = "integer default 0")
+    private double puntaje;
 
     @Column
     private String pictureUrl;
