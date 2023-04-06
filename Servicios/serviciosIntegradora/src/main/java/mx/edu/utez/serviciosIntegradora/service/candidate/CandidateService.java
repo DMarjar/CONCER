@@ -4,6 +4,7 @@ import mx.edu.utez.serviciosIntegradora.model.academy.Academy;
 import mx.edu.utez.serviciosIntegradora.model.academy.AcademyRepository;
 import mx.edu.utez.serviciosIntegradora.model.candidate.Candidate;
 import mx.edu.utez.serviciosIntegradora.model.candidate.CandidateRepository;
+import mx.edu.utez.serviciosIntegradora.model.candidate.Estado;
 import mx.edu.utez.serviciosIntegradora.model.person.Person;
 import mx.edu.utez.serviciosIntegradora.utils.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +36,29 @@ public class CandidateService {
         );
     }
 
-    //Certifications
+
+    //Certifications PENDIENTEs
     @Transactional(readOnly = true)
-    public CustomResponse<List<Object[]>> getInformation(Person person){
+    public CustomResponse<List<Object[]>> getInformationPENDIENTES(Person person){
+
+        String estado = Estado.PENDIENTE.toString();
+
         return new CustomResponse<>(
-                this.Repository.findCertificationsByPersonId(person.getId()),false,200,"ok"
+                this.Repository.findCertificationsByPersonId(person.getId(), estado),false,200,"ok"
         );
     }
+
+    //Certifications ENTREGADAS
+    @Transactional(readOnly = true)
+    public CustomResponse<List<Object[]>> getInformationENTREGADAS(Person person){
+
+        String estado = Estado.ENTREGADO.toString();
+
+        return new CustomResponse<>(
+                this.Repository.findCertificationsByPersonId(person.getId(), estado),false,200,"ok"
+        );
+    }
+
 
     //Informacion Candidato
     @Transactional(readOnly = true)
