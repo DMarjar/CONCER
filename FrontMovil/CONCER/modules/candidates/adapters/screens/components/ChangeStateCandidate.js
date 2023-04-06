@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Image, Alert } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Button, Icon } from "react-native-elements";
-import * as FileSystem from "expo-file-system";
-import axios from "../../../../../kernel/gateway/http-auth.gateway";
 
-const ChangeStateCandidate = (props) => {
+const ChangeStateCandidate = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const { payload, setShow } = props;
 
   const SelectImage = async () => {
     let permissionResult =
@@ -48,36 +45,6 @@ const ChangeStateCandidate = (props) => {
     }
   };
 
-  const saveImage = async () => {
-    const base64 = await FileSystem.readAsStringAsync(selectedImage, {
-      encoding: FileSystem.EncodingType.Base64,
-    });
-
-    try {
-      await axios.doPost("/candidate/estado", {
-        id: payload,
-        picture: base64,
-      });
-
-      setShow(false);
-
-      Alert.alert(
-        "Estado actualizado correctamente",
-        "",
-        [{ text: "Ok", style: "cancel" }],
-        { cancelable: true }
-      );
-    } catch (error) {
-      console.log("Error al actualizar la imagen: ", error);
-      Alert.alert(
-        "Error al actualizar la imagen",
-        "intente de nuevo",
-        [{ text: "Ok", style: "cancel" }],
-        { cancelable: true }
-      );
-    }
-  };
-
   return (
     <View>
       {selectedImage ? (
@@ -88,7 +55,7 @@ const ChangeStateCandidate = (props) => {
             resizeMode="contain"
           />
           <Button
-            onPress={() => saveImage()}
+            onPress={() => console.log("aaaaa")}
             title={"  Subir"}
             icon={
               <Icon
