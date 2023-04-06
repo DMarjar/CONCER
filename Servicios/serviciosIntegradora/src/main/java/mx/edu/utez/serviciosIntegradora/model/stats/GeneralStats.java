@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Stats {
+public class GeneralStats {
     private int totalCertifications;
     private int totalCandidates;
     private int totalPendingCandidates;

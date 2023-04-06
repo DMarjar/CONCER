@@ -3,7 +3,7 @@ package mx.edu.utez.serviciosIntegradora.controller.stats.Dtos;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import mx.edu.utez.serviciosIntegradora.model.candidate.Candidate;
-import mx.edu.utez.serviciosIntegradora.model.stats.Stats;
+import mx.edu.utez.serviciosIntegradora.model.stats.GeneralStats;
 
 import java.util.List;
 
@@ -19,8 +19,8 @@ public class StatsDto {
     private double averageScore;
     private List<Candidate> candidates;
 
-    public Stats castToStats() {
-        return new Stats(
+    public GeneralStats castToStats() {
+        return new GeneralStats(
                 this.totalCertifications,
                 this.totalCandidates,
                 this.totalPendingCandidates,
