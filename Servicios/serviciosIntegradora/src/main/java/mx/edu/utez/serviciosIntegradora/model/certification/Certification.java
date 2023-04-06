@@ -29,6 +29,13 @@ public class Certification {
     @Column(nullable = false, columnDefinition = "TINYINT DEFAULT 1")
     private Boolean status;
 
+    @Column
+    private String pictureUrl;
+
+    @Transient
+    private String pictureBase64;
+
+
     //Relaciones
 
     /*Persona*/
