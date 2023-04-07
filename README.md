@@ -1,5 +1,10 @@
-# CONCER v0.3.4
+# CONCER v0.4.0
  Proyecto Integrador II "Control de Certificaciones"
+ 
+  ## v0.4.0 - 2023-04-06
+  - Se implementó el módulo de estadísticas en los servicios por completo
+  - Se implementó el uso de imágenes para Front Web y Front Móvil desde los servicios
+  - Avances en Front Web
  
   ## v0.3.4 - 2023-03-29
   - Se actualizó el diseño del perfil de candidato

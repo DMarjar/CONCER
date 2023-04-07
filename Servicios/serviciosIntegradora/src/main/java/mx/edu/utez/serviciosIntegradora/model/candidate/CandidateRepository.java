@@ -3,6 +3,7 @@ package mx.edu.utez.serviciosIntegradora.model.candidate;
 
 import mx.edu.utez.serviciosIntegradora.model.certification.Certification;
 import mx.edu.utez.serviciosIntegradora.model.person.Person;
+import mx.edu.utez.serviciosIntegradora.model.stats.CandidateStats;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -42,4 +43,75 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
 
     @Query(nativeQuery = true, value = "SELECT certifications.id as idCertificacion, candidates.id as idCandidatura, people.id as idCandidato, people.first_name as nombreCandidato, people.last_name as apellidoCandidato, people.gender as sexo, people.email as email,people.phone_number as phone, people.type_person as tipo, academy.academy_name as academia, candidates.estado as estadoCertificacion, certifications.certification_name, certifications.version as version, certifying_companies.company_name as empresaCertificadora, managers.first_name as Gestor FROM certifications JOIN candidates ON candidates.certification_id = certifications.id JOIN people ON candidates.person_id = people.id JOIN people as managers ON certifications.person_id = managers.id JOIN academy ON candidates.academy_id = academy.id JOIN certifying_companies on certifications.company_id = certifying_companies.id WHERE candidates.id=:personId AND certifications.status=1  AND candidates.status=1")
     List<Object[]> candidateInformation(@Param("personId") Long personId);
+
+    @Query(nativeQuery = true, value = "SELECT \n" +
+            "    cert1.certification_name AS mostCandidatesCertification,\n" +
+            "    cert1.totalCandidates,\n" +
+            "    cert1.averageScore AS mostCandidatesAvgScore,\n" +
+            "    cert4.certification_name AS leastPopularCertification,\n" +
+            "    cert4.totalCandidates AS leastPopularTotalCandidates,\n" +
+            "    cert4.averageScore AS leastPopularAvgScore,\n" +
+            "    cert2.certification_name AS bestAvgScoreCertification,\n" +
+            "    cert2.averageScore AS bestAvgScore,\n" +
+            "    cert3.certification_name AS worstAvgScoreCertification,\n" +
+            "    cert3.averageScore AS worstAvgScore\n" +
+            "FROM (\n" +
+            "    SELECT \n" +
+            "        certifications.certification_name, \n" +
+            "        COUNT(candidates.id) AS totalCandidates, \n" +
+            "        AVG(candidates.puntaje) AS averageScore\n" +
+            "    FROM \n" +
+            "        certifications \n" +
+            "    JOIN candidates \n" +
+            "        ON certifications.id = candidates.certification_id \n" +
+            "    GROUP BY \n" +
+            "        certifications.id \n" +
+            "    ORDER BY \n" +
+            "        totalCandidates DESC \n" +
+            "    LIMIT 1\n" +
+            ") AS cert1\n" +
+            "JOIN (\n" +
+            "    SELECT \n" +
+            "        certifications.certification_name, \n" +
+            "        AVG(candidates.puntaje) AS averageScore\n" +
+            "    FROM \n" +
+            "        certifications \n" +
+            "    JOIN candidates \n" +
+            "        ON certifications.id = candidates.certification_id \n" +
+            "    GROUP BY \n" +
+            "        certifications.id \n" +
+            "    ORDER BY \n" +
+            "        averageScore DESC \n" +
+            "    LIMIT 1\n" +
+            ") AS cert2\n" +
+            "JOIN (\n" +
+            "    SELECT \n" +
+            "        certifications.certification_name, \n" +
+            "        AVG(candidates.puntaje) AS averageScore\n" +
+            "    FROM \n" +
+            "        certifications \n" +
+            "    JOIN candidates \n" +
+            "        ON certifications.id = candidates.certification_id \n" +
+            "    GROUP BY \n" +
+            "        certifications.id \n" +
+            "    ORDER BY \n" +
+            "        averageScore ASC \n" +
+            "    LIMIT 1\n" +
+            ") AS cert3\n" +
+            "JOIN (\n" +
+            "    SELECT \n" +
+            "        certifications.certification_name, \n" +
+            "        COUNT(candidates.id) AS totalCandidates, \n" +
+            "        AVG(candidates.puntaje) AS averageScore\n" +
+            "    FROM \n" +
+            "        certifications \n" +
+            "    JOIN candidates \n" +
+            "        ON certifications.id = candidates.certification_id \n" +
+            "    GROUP BY \n" +
+            "        certifications.id \n" +
+            "    ORDER BY \n" +
+            "        totalCandidates ASC \n" +
+            "    LIMIT 1\n" +
+            ") AS cert4;")
+    Object[] findCandidateStats();
 }
