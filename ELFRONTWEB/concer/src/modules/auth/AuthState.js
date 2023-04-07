@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AuthContext from "./AuthContext";
 
 const AuthState = (props) => {
+  //estado inicial
   const initialAuthState = {
     auth: false,
     role: "",
@@ -15,7 +16,7 @@ const AuthState = (props) => {
       return JSON.parse(savedState);
     }
 
-    //si no a existido ningun cambio de estado, se retorna el estado inicial
+    //si no a existido ningun cambio de estado, se guardara el estado inicial
     return initialAuthState;
   });
 

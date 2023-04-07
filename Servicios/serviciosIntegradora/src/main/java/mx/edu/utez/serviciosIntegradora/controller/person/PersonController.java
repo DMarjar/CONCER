@@ -31,6 +31,15 @@ public class PersonController {
                 HttpStatus.OK);
     }
 
+    //get certifiers
+    @GetMapping("/certifiers")
+    // URL: http://localhost:8080/controlCertificaciones/person/certifiers
+    public ResponseEntity<CustomResponse<List<Person>>> getCertifiers() {
+        return new ResponseEntity<>(
+                this.service.getCertifiers(),
+                HttpStatus.OK);
+    }
+
     // Get one by Email
     @PostMapping("/one")
     // URL: http://localhost:8080/controlCertificaciones/person/one

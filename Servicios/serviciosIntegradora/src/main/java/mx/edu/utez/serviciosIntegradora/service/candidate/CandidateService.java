@@ -30,9 +30,9 @@ public class CandidateService {
 
     //getAll
     @Transactional(readOnly = true)
-    public CustomResponse<List<Candidate>> getAll(){
+    public CustomResponse<List<Object[]>> getAll(){
         return new CustomResponse<>(
-                this.Repository.findAll(),false,200,"ok"
+                this.Repository.findALl(),false,200,"ok"
         );
     }
     //getOne

@@ -1,65 +1,114 @@
-import React, { useState }  from 'react'
-import Search from '../../shared/components/Search'
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { Paginator } from 'primereact/paginator';
+import React, { useState, useEffect }  from 'react'
+import DataTable from "react-data-table-component";
+import { Link } from 'react-router-dom';
+import { Button, Container, Card, Row, Col} from 'react-bootstrap';
+import AxiosClient from '../../shared/http-client.gateway';
+
 
 export const AllCompanies = () => {
-    const [first, setFirst] = useState(0);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [filteredData, setFilteredData] = useState([]);
+    const [candidates, setCandidates] = useState([]);
+    const [filtrado, setFiltrado] = useState([]);
 
-    const onPageChange = (event) => {
-        setFirst(event.first);
-    };
+    const getCandidates = async () => {
+        try {
+            const account = JSON.parse(localStorage.getItem('account'));
+            if(account.user.role === "ADMIN"){
+                const data = await AxiosClient.doGet('/certifyingCompany/', {});
+                setCandidates(data.data.data);
+                console.log(data.data.data)
+            }else{
+                const data = await AxiosClient.doGet(`/candidate/informationPendientes`, {
+                    id: account.id
+                });
+                setCandidates(data.data.data);
+                setFiltrado(candidates)
+            }
+        } catch (error) {
+            
+        }
+    }
 
-    const handleSearch = (event) => {
-        event.preventDefault();
-        setSearchTerm(event.target.value);
-    };
+    useEffect(() => {
+        getCandidates();
+    }, []);
 
-    const handleInputChange = (event) => {
-        setSearchTerm(event.target.value);
-    };
+    useEffect(() => {
+        setFiltrado(candidates)
+    }, [candidates]);
 
-    const data = [
-        { name: 'John Smith', country: { name: 'USA' }, company: 'ABC Inc.', representative: { name: 'Jane Doe' } },
-        { name: 'Alice Johnson', country: { name: 'Canada' }, company: 'XYZ Ltd.', representative: { name: 'Bob Brown' } },
-        { name: 'Juan Garcia', country: { name: 'Mexico' }, company: 'DEF SA', representative: { name: 'Maria Hernandez' } },
-        { name: 'John Smith', country: { name: 'USA' }, company: 'ABC Inc.', representative: { name: 'Jane Doe' } },
-        { name: 'Alice Johnson', country: { name: 'Canada' }, company: 'XYZ Ltd.', representative: { name: 'Bob Brown' } },
-        { name: 'Juan Garcia', country: { name: 'Mexico' }, company: 'DEF SA', representative: { name: 'Maria Hernandez' } },
-        { name: 'John Smith', country: { name: 'USA' }, company: 'ABC Inc.', representative: { name: 'Jane Doe' } },
-        { name: 'Alice Johnson', country: { name: 'Canada' }, company: 'XYZ Ltd.', representative: { name: 'Bob Brown' } },
-        // Agrega más objetos con datos adicionales aquí
-    ];
+    const columns = React.useMemo(() => [
+        {
+            name: 'Empresa',
+            cell: row => <div>{row.name}</div>,
+        },
+        {
+            name: 'Email',
+            cell: row => <div>{row.email}</div>,
+        },
+        {
+            name: 'Telefono',
+            cell: row => <div>{row.phone}</div>,
+        },
+        {
+            name: 'Acciones',
+            cell: row =>
+            <div><Link to={`/company`}><Button variant="primary">Ver</Button></Link></div>,
+            
+            rigth: true
+        }
+    
+    ]);
+   
+    function Filter(event){
+        const newData = candidates.filter(row => {
+            return row[4].toLowerCase().includes(event.target.value.toLowerCase()) || row[5].toLowerCase().includes(event.target.value.toLowerCase()) || row[3].toLowerCase().includes(event.target.value.toLowerCase())
+        })
+        setFiltrado(newData);
+    }
+    
 
+    return (
+        <>
+            <Container className='px-5 mt-3'>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Empresas Certificadoras</h2>
+                <Card>
+                    <Card.Header>
+                        <Card.Title as="h5">
+                            
+                            <Row>
+                                <Col className="col-md-4">
+                                    <input type="text" className="form-control" placeholder="Buscar" onChange={Filter} />
+                                </Col>
+                                <Col className="col-md-7"></Col>
+                                <Col className="col-md-1">
+                                    <Link to="/newCompany"><Button>Agregar</Button></Link>
+                                </Col>
+                            </Row>
+                        </Card.Title>
+                    </Card.Header>
+                    <Card.Body>
 
-  return (
-    <>
-       <h2 className="d-flex justify-content-center pt-3" style={{ color: "#002e60" }}>Empresas certificadoras</h2>
-            <br />
-            <Search handleSearch={handleSearch} handleInputChange={handleInputChange} />
-            <br />
-            <DataTable value={filteredData.length ? filteredData : data} paginator rows={6}
-                tableStyle={{
-                    minWidth: '50rem',
-                    border: '1px solid #ccc',
-                    borderRadius: '5px',
-                    boxShadow: '0 0 10px #ccc',
-                    backgroundColor: '#fff',
-                    color: '#000',
-                    padding: '10px',
-                    margin: '0 auto'
-                }}>
-                <Column field="name" header="Name" style={{ width: '25%' }}></Column>
-                <Column field="country.name" header="Country" style={{ width: '25%' }}></Column>
-                <Column field="company" header="Company" style={{ width: '25%' }}></Column>
-                <Column field="representative.name" header="Representative" style={{ width: '25%' }}></Column>
-                <Paginator className='p-paginator-sm p-paginator-first-last' rows={5} totalRecords={filteredData.length ? filteredData.length : data.length} first={first} onPageChange={onPageChange}></Paginator>
-            </DataTable>
-    </>
-  )
+                        <DataTable
+                            columns={columns}
+                            data={filtrado}
+                            noDataComponent="No hay candidatos"
+                            pagination
+                            paginationComponentOptions={{
+                                rowsPerPageText: 'Filas por página:',
+                                rangeSeparatorText: 'de',
+        
+                            }}
+                            paginationPerPage={6}
+                            paginationRowsPerPageOptions={[6, 12, 18, 24, 30]}
+                            fixedHeader
+                        />
+                    
+                        
+                    </Card.Body>
+                </Card>           
+            </Container>       
+        </>
+    )
 }
 
 export default AllCompanies

@@ -17,13 +17,10 @@ public class CertifyingCompanyDtos {
     @Length(min = 1, max = 150)
     private String name;
     private Boolean status=true;
+    private String email;
+    private String phone;
 
     public CertifyingCompany castToCertifyingCompany() {
-        return new CertifyingCompany(
-                this.id,
-                this.name,
-                this.status,
-                null
-        );
+        return new CertifyingCompany(this.id, this.name, this.status, this.email, this.phone);
     }
 }

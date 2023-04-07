@@ -22,12 +22,15 @@ import java.util.List;
 @Transactional
 public class StatsService {
 
-    //INYECCIONES-----------------------------------------------------------------------------------------------
+    //INYECCIONES--------------------------------------------------------------------------------------------------
     @Autowired
     private CertificationRepository certificationRepository;
 
     @Autowired
     private CandidateRepository candidateRepository;
+
+
+    //METODOS------------------------------------------------------------------------------------------------------
 
     @Autowired
     private AcademyRepository academyRepository;
@@ -36,6 +39,7 @@ public class StatsService {
     private PersonRepository personRepository;
 
     //METODOS---------------------------------------------------------------------------------------------------
+
 
     // Get general stats
     // TODO: Optimizar el metodo para evitar usar el objeto GeneralStats

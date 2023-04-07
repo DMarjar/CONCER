@@ -5,25 +5,25 @@ import { Button, Container, Card, Row, Col} from 'react-bootstrap';
 import AxiosClient from '../../shared/http-client.gateway';
 
 
-export const AllCandidates = () => {
-    
-    const [candidates, setCandidates] = useState([]);
+export const AllCertifications = () => {
+
+    const [Certifications, setCertifications] = useState([]);
     const [filtrado, setFiltrado] = useState([]);
 
 
-    const getCandidates = async () => {
+    const getCertifications = async () => {
         try {
             const account = JSON.parse(localStorage.getItem('account'));
             if(account.user.role === "ADMIN"){
-                const data = await AxiosClient.doGet('/candidate/', {});
-                setCandidates(data.data.data);
+                const data = await AxiosClient.doGet('/certification/', {});
+                setCertifications(data.data.data);
                 console.log(data.data.data)
             }else{
-                const data = await AxiosClient.doGet(`/candidate/informationPendientes`, {
+                const data = await AxiosClient.doGet(`/certification/informationPendientes`, {
                     id: account.id
                 });
-                setCandidates(data.data.data);
-                setFiltrado(candidates)
+                setCertifications(data.data.data);
+                setFiltrado(Certifications)
             }
         } catch (error) {
             
@@ -31,52 +31,53 @@ export const AllCandidates = () => {
     }
 
     useEffect(() => {
-        getCandidates();
+        getCertifications();
     }, []);
 
     useEffect(() => {
-        setFiltrado(candidates)
-    }, [candidates]);
+        setFiltrado(Certifications)
+    }, [Certifications]);
 
     const columns = React.useMemo(() => [
         {
-            name: 'Nombre',
+            name: 'Certificacion',
+            cell: row => <div>{row[1]}</div>,
+        },
+        {
+            name: 'Version',
+            cell: row => <div>{row[2]}</div>,
+        },
+        {
+            name: 'Empresa',
             cell: row => <div>{row[4]}</div>,
         },
         {
-            name: 'Apellido',
-            cell: row => <div>{row[5]}</div>,
-        },
-        {
-            name: 'Certificacion',
-            cell: row => <div>{row[3]}</div>,
-        },
-        {
             name: 'Gestor',
-            cell: row => <div>{row[6]}</div>,
+            cell: row => <div>{row[3]}</div>,
             
 
         },
         {
             name: 'Acciones',
             cell: row =>
-            <div><Link to={`/candidate`}><Button variant="primary">Ver</Button></Link></div>,
+            <div><Link to={`/certification`}><Button variant="primary">Ver</Button></Link></div>,
             
             rigth: true
         }
     
     ]);
-   
+
     function Filter(event){
-        const newData = candidates.filter(row => {
-            return row[4].toLowerCase().includes(event.target.value.toLowerCase()) || row[5].toLowerCase().includes(event.target.value.toLowerCase()) || row[3].toLowerCase().includes(event.target.value.toLowerCase())
+        const newData = Certifications.filter(row => {
+            return row.firstName.toLowerCase().includes(event.target.value.toLowerCase()) || row.lastName.toLowerCase().includes(event.target.value.toLowerCase()) || row.email.toLowerCase().includes(event.target.value.toLowerCase())
         })
         setFiltrado(newData);
     }
 
     return (
+        <>
             <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>Candidatos</h2>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Certificaciones</h2>
                 <Card>
                     <Card.Header>
                         <Card.Title as="h5">
@@ -87,7 +88,7 @@ export const AllCandidates = () => {
                                 </Col>
                                 <Col className="col-md-7"></Col>
                                 <Col className="col-md-1">
-                                    <Link to="/NewCandidate"><Button>Agregar</Button></Link>
+                                    <Link to="/newCertification"><Button>Agregar</Button></Link>
                                 </Col>
                             </Row>
                         </Card.Title>
@@ -111,15 +112,10 @@ export const AllCandidates = () => {
                     
                         
                     </Card.Body>
-                </Card>
-                        
-                
-                
-                
-            </Container>
-
-
+                </Card>           
+            </Container>       
+        </>
     )
 }
 
-export default AllCandidates
+export default AllCertifications

@@ -20,6 +20,11 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     boolean existsByEmail(String email);
     Person findByUser(User user);
     Person findByEmail(String email);
+
+
+    @Query(nativeQuery = true, value = "select distinct p.* from people p join certifications c on c.person_id = p.id;")
+    List<Person> findCertifiers();
+
     @Query(nativeQuery = true, value = "SELECT\n" +
             "    CONCAT(people.first_name, ' ', people.last_name) AS fullName,\n" +
             "    certifications.certification_name AS certificationName,\n" +
@@ -41,4 +46,5 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
             "GROUP BY\n" +
             "    fullName, certificationName, version;")
     List<Object[]> findGestorStats();
+
 }
