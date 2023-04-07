@@ -1,8 +1,5 @@
 import React, { useState, useEffect }  from 'react'
-import Search from '../../shared/components/Search'
 import DataTable from "react-data-table-component";
-import { Column } from 'primereact/column';
-import { Paginator } from 'primereact/paginator';
 import { Link } from 'react-router-dom';
 import { Button, Container, Card, Row, Col} from 'react-bootstrap';
 import AxiosClient from '../../shared/http-client.gateway';

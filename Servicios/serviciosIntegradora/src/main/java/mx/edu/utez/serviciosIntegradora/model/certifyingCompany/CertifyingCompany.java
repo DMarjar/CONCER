@@ -23,17 +23,24 @@ public class CertifyingCompany {
     @Column( nullable = false, columnDefinition = "TINYINT DEFAULT 1")
     private Boolean status;
 
+    @Column
+    private String email;
+
+    @Column
+    private String phone;
+
     //Relaciones
     /*compañia - certificacion*/
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Certification> certification;
 
-    public CertifyingCompany(Long id, String name, Boolean status, List<Certification> certification) {
+    public CertifyingCompany(Long id, String name, Boolean status, String email, String phone) {
         this.id = id;
         this.name = name;
         this.status = status;
-        this.certification = certification;
+        this.email = email;
+        this.phone = phone;
     }
 
 

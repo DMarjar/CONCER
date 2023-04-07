@@ -29,20 +29,9 @@ public class CertificationService {
 
     //getAll
     @Transactional(readOnly = true)
-    public CustomResponse<List<Certification>> getAll(){
-        List<Certification> certifications = this.Repository.findAll();
-
-        for(Certification certification : certifications) {
-            if(certification.getPictureUrl() != null){
-                try {
-                    certification.setPictureBase64(imageService.getPicture(certification.getPictureUrl()));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+    public CustomResponse<List<Object[]>> getAll(){
         return new CustomResponse<>(
-                certifications,false,200,"ok"
+                this.Repository.findAllCertifications(),false,200,"ok"
         );
     }
 

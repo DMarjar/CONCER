@@ -19,6 +19,9 @@ public interface CertificationRepository extends JpaRepository<Certification, Lo
 
     boolean existsByNameAndVersion(String name, String version);
 
+    @Query(nativeQuery = true, value = "select certifications.id as id, certifications.certification_name, certifications.version, people.first_name,certifying_companies.company_name from certifications join people on certifications.person_id = people.id join certifying_companies on certifying_companies.id = company_id")
+    List<Object[]> findAllCertifications();
+
     @Query(nativeQuery = true,
             value = "SELECT \n" +
                     "    certification_name AS certificationName,\n" +

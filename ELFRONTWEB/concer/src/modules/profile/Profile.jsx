@@ -21,7 +21,7 @@ export const Profile = () => {
     return (
         <>
             <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>Información básica</h2>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Perfil</h2>
                 <Row className='mt-4 pt-4'>
                     <Col className='col-lg-7 col-md-8 col-sm-7'>
                         <Row >

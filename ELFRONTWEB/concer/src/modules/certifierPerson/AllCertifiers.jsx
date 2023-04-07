@@ -48,7 +48,7 @@ export const AllCertifiers = () => {
             cell: row => <div>{row.lastName}</div>,
         },
         {
-            name: 'email',
+            name: 'Email',
             cell: row => <div>{row.email}</div>,
         },
         {
