@@ -20,15 +20,14 @@ import java.util.List;
 @Transactional
 public class StatsService {
 
-    //INYECCIONES-----------------------------------------------------------------------------------------------
+    //INYECCIONES--------------------------------------------------------------------------------------------------
     @Autowired
     private CertificationRepository certificationRepository;
 
     @Autowired
     private CandidateRepository candidateRepository;
 
-    //METODOS---------------------------------------------------------------------------------------------------
-
+    //METODOS------------------------------------------------------------------------------------------------------
     // Get general stats
     @Transactional(readOnly = true)
     public CustomResponse<GeneralStats> getGeneralStats() {

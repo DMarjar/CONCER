@@ -32,6 +32,7 @@ export default function ChangePhoneCandidate(props) {
         });
 
         setShow(false);
+        
       } catch (error) {
         console.log("Error al actualizar el nombre: ", error);
       }

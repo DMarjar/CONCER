@@ -22,7 +22,7 @@ export const NavbarAll = () => {
                     </Navbar.Brand>
                     <Nav className="justify-content-end mx-0" activeKey="/home">
                         <Nav.Item>
-                            <NavLink to="/home"><AiFillHome size={"35"} color="#002e60" /></NavLink>
+                            <NavLink to="/"><AiFillHome size={"35"} color="#002e60" /></NavLink>
                         </Nav.Item>
                         &nbsp;&nbsp;
                         <Nav.Item>

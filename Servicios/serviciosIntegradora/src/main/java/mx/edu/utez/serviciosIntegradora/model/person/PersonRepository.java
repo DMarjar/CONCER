@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
     // Actualizar el status
@@ -20,4 +22,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     Person findByUser(User user);
 
     Person findByEmail(String email);
+
+    @Query(nativeQuery = true, value = "select distinct p.* from people p join certifications c on c.person_id = p.id;")
+    List<Person> findCertifiers();
 }

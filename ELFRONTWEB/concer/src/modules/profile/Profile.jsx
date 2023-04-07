@@ -1,8 +1,22 @@
-import React from 'react'
-import { Col, Container, Figure, Row } from 'react-bootstrap'
+import React, {useEffect, useState}from 'react'
+import { Button, Col, Container, Figure, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
+
+
 
 
 export const Profile = () => {
+
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+
+        const account = JSON.parse(localStorage.getItem('account'));
+        if(account){
+            setUser(account)
+        }
+    }, []);
+    
 
     return (
         <>
@@ -15,7 +29,7 @@ export const Profile = () => {
                                 Nombre(s)
                             </Col>
                             <Col>
-                                Ana Belen
+                                {user.firstName}
                             </Col>
                         </Row>
                         <hr />
@@ -24,7 +38,7 @@ export const Profile = () => {
                                 Apellido(s)
                             </Col>
                             <Col>
-                                Velasquez Diaz
+                                {user.lastName}
                             </Col>
                         </Row>
                         <hr />
@@ -33,7 +47,7 @@ export const Profile = () => {
                                 Teléfono
                             </Col>
                             <Col>
-                                772 156 6806
+                                {user.phoneNumber}
                             </Col>
                         </Row>
                         <hr />
@@ -42,7 +56,7 @@ export const Profile = () => {
                                 Correo electrónico
                             </Col>
                             <Col>
-                                20213tn149@utez.edu.mx
+                                {user.email}
                             </Col>
                         </Row>
                         <hr />
@@ -51,7 +65,7 @@ export const Profile = () => {
                                 Género
                             </Col>
                             <Col>
-                                Femenino
+                                {user.gender}
                             </Col>
                         </Row>
                     </Col>
@@ -67,55 +81,21 @@ export const Profile = () => {
                         </Row>
                     </Col>
                 </Row>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+
+                <Link to="/editProfile">
+                    <Button style={{ backgroundColor: "#019979" }}  >Editar Informacion</Button>
+                </Link>
+                
             </Container>
 
-            {/* <Container className='px-5 mt-5'>
-            <h4 className='text-center'>Información básica</h4>
-            <Row >
-                <Col className='col-lg-2 col-md-4 col-sm-4'>
-                    Nombre(s)
-                </Col>
-                <Col>
-                    Ana Belen
-                </Col>
-            </Row>
-            <hr />
-            <Row >
-                <Col className='col-lg-2 col-md-4 col-sm-4'>
-                    Apellido(s)
-                </Col>
-                <Col>
-                    Velasquez Diaz
-                </Col>
-            </Row>
-            <hr />
-            <Row >
-                <Col className='col-lg-2 col-md-4 col-sm-4'>
-                    Teléfono
-                </Col>
-                <Col>
-                    772 156 6806
-                </Col>
-            </Row>
-            <hr />
-            <Row >
-                <Col className='col-lg-2 col-md-4 col-sm-4'>
-                    Correo electrónico
-                </Col>
-                <Col>
-                    20213tn149@utez.edu.mx
-                </Col>
-            </Row>
-            <hr />
-            <Row >
-                <Col className='col-lg-2 col-md-4 col-sm-4'>
-                    Género
-                </Col>
-                <Col>
-                    Femenino
-                </Col>
-            </Row>
-            </Container> */}
+            
 
         </>
     )

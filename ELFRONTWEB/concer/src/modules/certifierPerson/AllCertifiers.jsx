@@ -1,32 +1,29 @@
-import React, { useState, useEffect }  from 'react'
-import Search from '../../shared/components/Search'
-import DataTable from "react-data-table-component";
-import { Column } from 'primereact/column';
-import { Paginator } from 'primereact/paginator';
-import { Link } from 'react-router-dom';
-import { Button, Container, Card, Row, Col} from 'react-bootstrap';
+import React, {useState, useEffect} from 'react'
+import { Button, Col, Container, Figure, Row, Card } from 'react-bootstrap'
 import AxiosClient from '../../shared/http-client.gateway';
+import { Link } from 'react-router-dom';
+import DataTable from "react-data-table-component";
 
 
-export const AllCandidates = () => {
-    
-    const [candidates, setCandidates] = useState([]);
+export const AllCertifiers = () => {
+
+    const [Certifiers, setCertifiers] = useState([]);
     const [filtrado, setFiltrado] = useState([]);
 
 
-    const getCandidates = async () => {
+    const getCertifiers = async () => {
         try {
             const account = JSON.parse(localStorage.getItem('account'));
             if(account.user.role === "ADMIN"){
-                const data = await AxiosClient.doGet('/candidate/', {});
-                setCandidates(data.data.data);
+                const data = await AxiosClient.doGet('/person/certifiers', {});
+                setCertifiers(data.data.data);
                 console.log(data.data.data)
             }else{
                 const data = await AxiosClient.doGet(`/candidate/informationPendientes`, {
                     id: account.id
                 });
-                setCandidates(data.data.data);
-                setFiltrado(candidates)
+                setCertifiers(data.data.data);
+                setFiltrado(Certifiers)
             }
         } catch (error) {
             
@@ -34,36 +31,36 @@ export const AllCandidates = () => {
     }
 
     useEffect(() => {
-        getCandidates();
+        getCertifiers();
     }, []);
 
     useEffect(() => {
-        setFiltrado(candidates)
-    }, [candidates]);
+        setFiltrado(Certifiers)
+    }, [Certifiers]);
 
     const columns = React.useMemo(() => [
         {
             name: 'Nombre',
-            cell: row => <div>{row[4]}</div>,
+            cell: row => <div>{row.firstName}</div>,
         },
         {
             name: 'Apellido',
-            cell: row => <div>{row[5]}</div>,
+            cell: row => <div>{row.lastName}</div>,
         },
         {
-            name: 'Certificacion',
-            cell: row => <div>{row[3]}</div>,
+            name: 'email',
+            cell: row => <div>{row.email}</div>,
         },
         {
-            name: 'Gestor',
-            cell: row => <div>{row[6]}</div>,
+            name: 'Telefono',
+            cell: row => <div>{row.phoneNumber}</div>,
             
 
         },
         {
             name: 'Acciones',
             cell: row =>
-            <div><Link to={`/candidate`}><Button variant="primary">Ver</Button></Link></div>,
+            <div><Link to={`/certifier`}><Button variant="primary">Ver</Button></Link></div>,
             
             rigth: true
         }
@@ -71,15 +68,17 @@ export const AllCandidates = () => {
     ]);
    
     function Filter(event){
-        const newData = candidates.filter(row => {
-            return row[4].toLowerCase().includes(event.target.value.toLowerCase()) || row[5].toLowerCase().includes(event.target.value.toLowerCase()) || row[3].toLowerCase().includes(event.target.value.toLowerCase())
+        const newData = Certifiers.filter(row => {
+            return row.firstName.toLowerCase().includes(event.target.value.toLowerCase()) || row.lastName.toLowerCase().includes(event.target.value.toLowerCase()) || row.email.toLowerCase().includes(event.target.value.toLowerCase())
         })
         setFiltrado(newData);
     }
+    
 
     return (
+        <>
             <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>Candidatos</h2>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Personal Certificador</h2>
                 <Card>
                     <Card.Header>
                         <Card.Title as="h5">
@@ -90,7 +89,7 @@ export const AllCandidates = () => {
                                 </Col>
                                 <Col className="col-md-7"></Col>
                                 <Col className="col-md-1">
-                                    <Link to="/NewCandidate"><Button>Agregar</Button></Link>
+                                    <Link to="/newCertifier"><Button>Agregar</Button></Link>
                                 </Col>
                             </Row>
                         </Card.Title>
@@ -114,15 +113,10 @@ export const AllCandidates = () => {
                     
                         
                     </Card.Body>
-                </Card>
-                        
-                
-                
-                
-            </Container>
-
-
+                </Card>           
+            </Container>       
+        </>
     )
 }
 
-export default AllCandidates
+export default AllCertifiers

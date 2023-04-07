@@ -51,6 +51,14 @@ public class PersonService {
         );
     }
 
+    //getManagers
+    @Transactional(readOnly = true)
+    public CustomResponse<List<Person>> getCertifiers(){
+        return new CustomResponse<>(
+                this.personRepository.findCertifiers(),false,200,"ok"
+        );
+    }
+
 
 
     //getOneByUsername

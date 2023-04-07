@@ -24,6 +24,13 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     int countAllBy();
 
     int countAllByEstado(Estado estado);
+    @Query(nativeQuery = true, value = "select certifications.id as idCertificacion, candidates.id as idCandidatura, people.id as idCandidato, certification_name, people.first_name, people.last_name as apellidoCandidato, managers.first_name as manager_name "
+            + "from certifications "
+            + "join candidates on candidates.certification_id = certifications.id "
+            + "join people on candidates.person_id = people.id "
+            + "join people as managers on certifications.person_id = managers.id "
+            + "where candidates.status = 1 ")
+    List<Object[]> findALl();
 
     @Query(nativeQuery = true, value = "select certifications.id as idCertificacion, candidates.id as idCandidatura, people.id as idCandidato, certification_name, people.first_name, people.last_name as apellidoCandidato, managers.first_name as manager_name "
             + "from certifications "

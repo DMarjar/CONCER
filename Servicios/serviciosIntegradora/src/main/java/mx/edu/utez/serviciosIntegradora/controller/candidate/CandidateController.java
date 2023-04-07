@@ -25,7 +25,7 @@ public class CandidateController {
     // Get all
     @GetMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/candidate/
-    public ResponseEntity<CustomResponse<List<Candidate>>> getAll() {
+    public ResponseEntity<CustomResponse<List<Object[]>>> getAll() {
         return new ResponseEntity<>(
                 this.service.getAll(),
                 HttpStatus.OK);

@@ -35,9 +35,12 @@ export default function Candidates() {
         setAccount(parsedAccount);
 
         //obtener datos de los candidatos con el id de la cuenta
-        const response = await axios.doPost("/candidate/information", {
-          id: parsedAccount.id,
-        });
+        const response = await axios.doPost(
+          "/candidate/informationPendientes",
+          {
+            id: parsedAccount.id,
+          }
+        );
         setData(response.data.data);
 
         //filtrar los datos de los candidatos

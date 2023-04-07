@@ -6,12 +6,16 @@ import { AsideAdmin } from '../../shared/components/AsideAdmin';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from '../home/Home';
 import Profile from '../profile/Profile';
-import AllCandidates from '../candidate/AllCandidates';
 import Candidate from '../candidate/Candidate';
 import Certification from '../certification/Certification';
-import Certifier from '../certifier/Certifier';
-import Company from '../company/Company';
+import Certifier from '../certifierPerson/Certifier';
 import AllCompanies from '../company/AllCompanies';
+import EditProfile from '../profile/EditProfile';
+import Indicadores from '../indicadores/Indicadores';
+import AllCandidates from '../candidate/AllCandidates';
+import NewCandidate from '../candidate/NewCandidate';
+import AllCertifiers from '../certifierPerson/AllCertifiers';
+import NewCertifier from '../certifierPerson/NewCertifier';
 
 
 
@@ -19,7 +23,7 @@ export const IndexAdmin = () => {
 
     return (
         <>
-            <div className="container-fluid" >
+            <div className="container-fluid"  >
                 <Row className="m-0">
                     <NavbarAll />
                 </Row>
@@ -34,11 +38,16 @@ export const IndexAdmin = () => {
                     <Col className="col-lg-10 col-md-9 col-sm-9 square border border-bottom-0 m-0">
                         <section className="container-fluid">
                             <Routes>
-                                <Route path="/home" element={<Home />} />
+                                <Route path="/" element={<Home />} />
                                 <Route path="/profile" element={<Profile />} />
-                                <Route path="/indicators" element={<Company/>}></Route> {/* <h1>INDICADORES </h1> */}
-                                <Route path="/candidates" element={<Candidate/>}></Route> {/*<h1>Candidates, dataTable</h1>*/}
-                                <Route path="/staff" element={<Certifier/>}></Route> {/* <h1>Personal certificador, misma tabla de candidates</h1> */}
+                                <Route path="/editProfile" element={<EditProfile/>}></Route>
+                                <Route path="/indicators" element={<Indicadores/>}></Route> {/* <h1>INDICADORES </h1> */}
+                                <Route path="/candidates" element={<AllCandidates/>}></Route>
+                                <Route path="/candidate" element={<Candidate/>}></Route>
+                                <Route path="/newCandidate" element={<NewCandidate/>}></Route>
+                                <Route path="/certifiers" element={<AllCertifiers/>}></Route>
+                                <Route path="/certifier" element={<Certifier/>}></Route>
+                                <Route path="/newCertifier" element={<NewCertifier/>}></Route>
                                 <Route path="/certifications" element={<Certification/>}></Route> {/* <h1>Certificaciones, misma tabla de candidates</h1> */}
                                 <Route path="/companies" element={<AllCompanies/>}></Route> {/* <h1>Companies, misma tabla de candidates</h1> */}
                                 <Route path="/utez" element={<h1>UTEZ</h1>}></Route>

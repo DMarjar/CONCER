@@ -3,7 +3,7 @@ import { Button, Col, Nav, Row } from 'react-bootstrap'
 import { VscGraph } from 'react-icons/vsc'
 import { IoIosPeople } from 'react-icons/io'
 import AuthContext from '../../modules/auth/AuthContext'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const AsideGestor = () => {
     const { setState } = useContext(AuthContext);
@@ -26,7 +26,9 @@ const AsideGestor = () => {
             </Row>
 
             <Col className='mb-3' style={{ position: "absolute", bottom: "0", left: "50%", transform: "translate(-50%, 0)" }}>
+                <Link to="/">
                 <Button style={{ backgroundColor: "#019979" }} onClick={() => logout()} >Cerrar sesión</Button>
+                </Link>
             </Col>
 
         </>
