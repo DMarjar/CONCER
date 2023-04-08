@@ -74,6 +74,9 @@ export const AllCertifiers = () => {
         setFiltrado(newData);
     }
     
+    useEffect(() => {
+        document.title = 'CONCER | Control de Personal Certificador';
+    }, []);
 
     return (
         <>

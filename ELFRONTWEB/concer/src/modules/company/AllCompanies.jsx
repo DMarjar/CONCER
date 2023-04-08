@@ -66,6 +66,9 @@ export const AllCompanies = () => {
         setFiltrado(newData);
     }
     
+    useEffect(() => {
+        document.title = 'CONCER | Control de Empresas';
+    }, []);
 
     return (
         <>

@@ -6,7 +6,7 @@ import DataTable from "react-data-table-component";
 
 
 
-export const AllUtez = () => {
+export const AllAcademis = () => {
 
     //ACADEMIAS
     const [Academias, setAcademias] = useState([]);
@@ -56,7 +56,7 @@ export const AllUtez = () => {
         {
             name: 'Acciones',
             cell: row =>
-            <div><Link to={`/certifier`}><Button variant="primary">Ver</Button></Link></div>,
+            <div><Link to={`/academy`}><Button variant="primary">Ver</Button></Link></div>,
             
             rigth: true
         }
@@ -70,60 +70,9 @@ export const AllUtez = () => {
         setFiltrado(newData);
     }
 
-    //CUENTAS
-
-    const [cuentas, setCuentas] = useState([]);
-    const [filtradoCuentas, setFiltradoCuentas] = useState([]);
-
-
-    const getCuentas = async () => {
-        try {
-            const account = JSON.parse(localStorage.getItem('account'));
-            if(account.user.role === "ADMIN"){
-                const data = await AxiosClient.doGet('/person/', {});
-                setAcademias(data.data.data);
-                console.log(data.data.data)
-            }else{
-                const data = await AxiosClient.doGet(`/candidate/informationPendientes`, {
-                    id: account.id
-                });
-                setAcademias(data.data.data);
-                setFiltrado(cuentas)
-            }
-        } catch (error) {
-            
-        }
-    }
-
     useEffect(() => {
-        getCuentas();
+        document.title = 'CONCER | Control de Academias';
     }, []);
-
-    useEffect(() => {
-        setFiltrado(cuentas)
-    }, [cuentas]);
-
-    const columns2 = React.useMemo(() => [
-        {
-            name: 'Nombre',
-            cell: row => <div>{row.firstName}</div>,
-        },
-        {
-            name: 'Apellido',
-            cell: row => <div>{row.lastName}</div>,
-        },
-        {
-            name: 'Acciones',
-            cell: row =>
-            <div><Link to={`/certifier`}><Button variant="primary">Ver</Button></Link></div>,
-            
-            rigth: true
-        }
-    
-    ]);
-   
-    function Filter2(event){
-    }
 
     return (
         <>
@@ -135,49 +84,11 @@ export const AllUtez = () => {
                             
                             <Row>
                                 <Col className="col-md-4">
-                                    <input type="text" className="form-control" placeholder="Buscar" onChange={Filter2} />
-                                </Col>
-                                <Col className="col-md-7"></Col>
-                                <Col className="col-md-1">
-                                    <Link to="/newCertifier"><Button>Agregar</Button></Link>
-                                </Col>
-                            </Row>
-                        </Card.Title>
-                    </Card.Header>
-                    <Card.Body>
-
-                        <DataTable
-                            columns={columns2}
-                            data={filtradoCuentas}
-                            noDataComponent="No hay candidatos"
-                            pagination
-                            paginationComponentOptions={{
-                                rowsPerPageText: 'Filas por página:',
-                                rangeSeparatorText: 'de',
-        
-                            }}
-                            paginationPerPage={3}
-                            paginationRowsPerPageOptions={[3, 5, 10, 15, 20, 25, 30]}
-                            
-                            fixedHeader
-                        />
-                    
-                        
-                    </Card.Body>
-                </Card>
-
-                <h2 className='text-center' style={{ color: "#002e60" }}>Cuentas</h2>
-                <Card>
-                    <Card.Header>
-                        <Card.Title as="h5">
-                            
-                            <Row>
-                                <Col className="col-md-4">
                                     <input type="text" className="form-control" placeholder="Buscar" onChange={Filter} />
                                 </Col>
                                 <Col className="col-md-7"></Col>
                                 <Col className="col-md-1">
-                                    <Link to="/newCertifier"><Button>Agregar</Button></Link>
+                                    <Link to="/newAcademy"><Button>Agregar</Button></Link>
                                 </Col>
                             </Row>
                         </Card.Title>
@@ -202,10 +113,10 @@ export const AllUtez = () => {
                     
                         
                     </Card.Body>
-                </Card>                      
+                </Card>
             </Container>       
         </>
     )
 }
 
-export default AllUtez
+export default AllAcademis

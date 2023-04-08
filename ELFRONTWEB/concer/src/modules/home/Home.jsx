@@ -1,10 +1,14 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Carousel from 'react-bootstrap/Carousel';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import { Container } from 'react-bootstrap';
 
 export const Home = () => {
+    useEffect(() => {
+        document.title = 'CONCER | Principal';
+    }, []);
+
     return (
         <>
             <Container className='px-4 mt-3'>

@@ -32,11 +32,18 @@ public class Candidate {
 
     @Column(nullable = false, columnDefinition = "TINYINT DEFAULT 1")
     private Boolean status;
+
     @Column(columnDefinition = "integer default 0")
     private double puntaje;
 
     @Column
     private String pictureUrl;
+
+    @Column
+    private String clave;
+
+    @Column
+    private char Grupo;
 
     @Transient
     private String pictureBase64;
@@ -62,6 +69,19 @@ public class Candidate {
     private Academy academy;
 
 
-
+    public Candidate(long id, LocalDate fechaInicio, LocalDate fechaFin, Estado estado, Boolean status, double puntaje, String pictureUrl, String clave, char grupo, Certification certification, Person person, Academy academy) {
+        this.id = id;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.estado = estado;
+        this.status = status;
+        this.puntaje = puntaje;
+        this.pictureUrl = pictureUrl;
+        this.clave = clave;
+        this.Grupo = grupo;
+        this.certification = certification;
+        this.person = person;
+        this.academy = academy;
+    }
 }
 

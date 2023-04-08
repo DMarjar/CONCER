@@ -29,7 +29,7 @@ export const AsideAdmin = () => {
                 <NavLink style={{ textDecoration: 'none', color: 'black' }} className='pt-1 px-3' to="/indicators"><VscGraph size={"35"} color="#002e60"/>&nbsp; Estadisticas</NavLink>
             </Row>
             <Row className='pb-2'>
-                <NavLink style={{ textDecoration: 'none', color: 'black' }} className='pt-1 px-3' to="/candidates"><IoIosPeople size={"35"} color="#002e60"/>&nbsp; Candidatos</NavLink>
+                <NavLink style={{ textDecoration: 'none', color: 'black' }} className='pt-1 px-3' to="/candidates"><IoIosPeople size={"35"} color="#002e60"/>&nbsp; Candidaturas</NavLink>
             </Row>
             <Row className='pb-2'>
                 <NavLink style={{ textDecoration: 'none', color: 'black' }} className=' pt-1 px-3' to="/certifiers"><BsPersonCheckFill size={"30"} color="#002e60"/>&nbsp; Personal C.</NavLink>
@@ -41,7 +41,7 @@ export const AsideAdmin = () => {
             <NavLink style={{ textDecoration: 'none', color: 'black' }} className='pt-1 px-3' to="/companies"><BsFillBuildingsFill size={"30"} color="#002e60" />&nbsp; Empresas C. </NavLink>
             </Row>
             <Row className='pb-2'>
-            <NavLink style={{ textDecoration: 'none', color: 'black' }} className='pt-1 px-3' to="/utez"><IoMdSchool size={"30"} color="#002e60" />&nbsp; UTEZ </NavLink>
+            <NavLink style={{ textDecoration: 'none', color: 'black' }} className='pt-1 px-3' to="/academies"><IoMdSchool size={"30"} color="#002e60" />&nbsp; UTEZ </NavLink>
             </Row>            
             <Col className='mb-3' style={{ position: "absolute", bottom: "0", left: "50%", transform: "translate(-50%, 0)" }}>
                 <Link to="/">
