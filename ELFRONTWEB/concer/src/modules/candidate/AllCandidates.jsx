@@ -60,7 +60,7 @@ export const AllCandidates = () => {
         {
             name: 'Acciones',
             cell: row =>
-            <div><Link to={`/candidate`}><Button variant="primary">Ver</Button></Link></div>,
+            <div><Link to={`/candidate/${row[1]}`}><Button variant="primary">Ver</Button></Link></div>,
             
             rigth: true
         }
@@ -74,9 +74,15 @@ export const AllCandidates = () => {
         setFiltrado(newData);
     }
 
+    useEffect(() => {
+        document.title = 'CONCER | Control de Candidatos';
+    }, []);
+
+
     return (
             <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>Candidatos</h2>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Candidaturas</h2>
+                <br/>
                 <Card>
                     <Card.Header>
                         <Card.Title as="h5">
@@ -104,21 +110,15 @@ export const AllCandidates = () => {
                                 rangeSeparatorText: 'de',
         
                             }}
-                            paginationPerPage={6}
-                            paginationRowsPerPageOptions={[6, 12, 18, 24, 30]}
+                            paginationPerPage={5}
+                            paginationRowsPerPageOptions={[5, 10, 15, 20, 25]}
                             fixedHeader
                         />
                     
                         
                     </Card.Body>
-                </Card>
-                        
-                
-                
-                
+                </Card>   
             </Container>
-
-
     )
 }
 

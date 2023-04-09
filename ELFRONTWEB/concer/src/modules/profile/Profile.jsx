@@ -17,6 +17,9 @@ export const Profile = () => {
         }
     }, []);
     
+    useEffect(() => {
+        document.title = 'CONCER | Perfil';
+    }, []);
 
     return (
         <>

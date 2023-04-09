@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 export const NavbarAll = () => {
     return (
         <>
-            <Navbar className='mx-0' style={{ display: 'flex', justifyContent: 'center' }}>
+            <Navbar  className='mx-0' style={{ display: 'flex', justifyContent: 'center' }}>
                 <Container className="mx-0 my-0 px-0 center" style={{ width: "100%" }}>
                     <Navbar.Brand href="http://www.utez.edu.mx/" target={'_blank'} bg="dark">
                         <img

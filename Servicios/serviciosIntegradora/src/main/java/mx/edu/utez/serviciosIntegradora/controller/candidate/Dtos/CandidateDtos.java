@@ -7,6 +7,7 @@ import mx.edu.utez.serviciosIntegradora.model.candidate.Estado;
 import mx.edu.utez.serviciosIntegradora.model.certification.Certification;
 import mx.edu.utez.serviciosIntegradora.model.person.Person;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -15,7 +16,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class CandidateDtos {
     private long id;
-    private LocalDate fechaInicio;
 
     private LocalDate fechaFin;
     @NotNull
@@ -30,6 +30,10 @@ public class CandidateDtos {
 
     private String pictureUrl;
     private String pictureBase64;
+
+    private String clave;
+
+    private char Grupo;
     @NotNull
     @NotBlank
     private Person person;
@@ -40,13 +44,13 @@ public class CandidateDtos {
     public Candidate castToCandidate() {
         return new Candidate(
                 this.id,
-                this.fechaInicio,
                 this.fechaFin,
                 this.estado,
                 this.status,
                 this.puntaje,
                 this.pictureUrl,
-                this.pictureBase64,
+                this.clave,
+                this.Grupo,
                 this.certification,
                 this.person,
                 this.academy

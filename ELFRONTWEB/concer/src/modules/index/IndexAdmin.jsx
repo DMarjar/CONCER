@@ -20,7 +20,11 @@ import AllCertifications from '../certification/AllCertifications';
 import NewCertification from '../certification/NewCertification';
 import Company from '../company/Company';
 import NewCompany from '../company/NewCompany';
-import AllUtez from '../utez/AllUtez';
+import AllAcademis  from '../utez/academy/AllAcademis';
+import Academy from '../utez/academy/Academy';
+import NewAcademy from '../utez/academy/NewAcademy';
+import Menu from '../utez/Menu';
+import NewPerson from '../utez/person/NewPerson';
 
 
 
@@ -48,20 +52,32 @@ export const IndexAdmin = () => {
                                 <Route path="/" element={<Home />} />
                                 <Route path="/profile" element={<Profile />} />
                                 <Route path="/editProfile" element={<EditProfile/>}/>
+
                                 <Route path="/indicators" element={<Indicadores/>}/>
+
                                 <Route path="/candidates" element={<AllCandidates/>}/>
-                                <Route path="/candidate" element={<Candidate/>}/>
+                                <Route path="/candidate/:candidatura" element={<Candidate/>}/>
                                 <Route path="/newCandidate" element={<NewCandidate/>}/>
+
                                 <Route path="/certifiers" element={<AllCertifiers/>}/>
                                 <Route path="/certifier" element={<Certifier/>}/>
                                 <Route path="/newCertifier" element={<NewCertifier/>}/>
+
                                 <Route path="/certifications" element={<AllCertifications/>}/>
                                 <Route path="/certification" element={<Certification/>}/>
                                 <Route path="/newCertification" element={<NewCertification/>}/>
+
                                 <Route path="/companies" element={<AllCompanies/>}/>
                                 <Route path="/company" element={<Company/>}/>
                                 <Route path="/newCompany" element={<NewCompany/>}/>
-                                <Route path="/utez" element={<AllUtez/>}/>
+
+                                <Route path="/utez" element={<Menu/>}/>
+
+                                <Route path="/newAccount" element={<NewPerson/>}/>
+
+                                <Route path="/academies" element={<AllAcademis/>}/>
+                                <Route path="/academy" element={<Academy/>} />
+                                <Route path="/newAcademy" element={<NewAcademy/>} />
                             </Routes>
                         </section>
                     </Col>

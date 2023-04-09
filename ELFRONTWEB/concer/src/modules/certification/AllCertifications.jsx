@@ -74,6 +74,10 @@ export const AllCertifications = () => {
         setFiltrado(newData);
     }
 
+    useEffect(() => {
+        document.title = 'CONCER | Control de Certificaciones';
+    }, []);
+
     return (
         <>
             <Container className='px-5 mt-3'>

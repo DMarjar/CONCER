@@ -1,6 +1,7 @@
 package mx.edu.utez.serviciosIntegradora.controller.candidate;
 
 import mx.edu.utez.serviciosIntegradora.controller.candidate.Dtos.CandidateDtos;
+import mx.edu.utez.serviciosIntegradora.controller.candidate.Dtos.CandidateRequest;
 import mx.edu.utez.serviciosIntegradora.controller.candidate.Dtos.ImageCandidateRequest;
 import mx.edu.utez.serviciosIntegradora.model.candidate.Candidate;
 import mx.edu.utez.serviciosIntegradora.model.person.Person;
@@ -13,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -60,7 +62,7 @@ public class CandidateController {
 
     //get information Candidato
     @PostMapping("/candidature")
-    public ResponseEntity<CustomResponse<List<Object[]>>> getInformationCandidature(@RequestBody Person person){
+    public ResponseEntity<CustomResponse<List<Object[]>>> getInformationCandidature(@RequestBody Person person) throws IOException {
 
         return new ResponseEntity<>(
 
@@ -71,9 +73,9 @@ public class CandidateController {
     // Insert
     @PostMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/candidate/
-    public ResponseEntity<CustomResponse<Candidate>> insert(@Valid @RequestBody CandidateDtos candidate) {
+    public ResponseEntity<CustomResponse<Candidate>> insert(@Valid @RequestBody CandidateRequest candidate) {
         return new ResponseEntity<>(
-                this.service.insert(candidate.castToCandidate()), HttpStatus.CREATED
+                this.service.insert(candidate), HttpStatus.CREATED
         );
     }
 

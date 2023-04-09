@@ -67,18 +67,27 @@ public class CandidateService {
 
     //Informacion Candidato
     @Transactional(readOnly = true)
-    public CustomResponse<List<Object[]>> getCandidatureInformation(Person person){
-        return new CustomResponse<>(
-                this.Repository.candidateInformation(person.getId()), false, 200, "ok"
-        );
+    public CustomResponse<List<Object[]>> getCandidatureInformation(Person person) throws IOException {
+        List<Object[]> candidateInformation = this.Repository.candidateInformation(person.getId());
+        //19
+
+        if(candidateInformation.get(0)[19] != null){
+            String picture = imageService.getPicture(candidateInformation.get(0)[19].toString());
+            candidateInformation.get(0)[19] = picture;
+            return new CustomResponse<>(
+                    candidateInformation, false, 200, "ok"
+            );
+        }else {
+            candidateInformation.get(0)[19] = "";
+            return new CustomResponse<>(
+                    candidateInformation, false, 200, "ok"
+            );
+        }
     }
 
     //insert
     @Transactional(rollbackFor = {SQLException.class})
     public CustomResponse<Candidate> insert(Candidate candidate){
-        if(this.Repository.existsByPersonAndCertification(candidate.getPerson(),candidate.getCertification())){
-            return new CustomResponse<>(null,true,400,"ya existe");
-        }
         return new CustomResponse<>(
                 this.Repository.saveAndFlush(candidate),false,200,"ok"
         );
@@ -98,13 +107,10 @@ public class CandidateService {
     //update estado and load image
     @Transactional(rollbackFor = {SQLException.class})
     public CustomResponse<Candidate> updateWithImage(ImageCandidateRequest candidate){
-        System.out.println("aaaaaaaaaaaaaaaaaaa aqui si llegamos 000");
 
         Candidate candidateChangeState = this.Repository.findById(candidate.getId()).get();
-        System.out.println("aaaaaaaaaaaaaaaaaaa aqui si llegamos 111");
 
         if(candidateChangeState != null){
-            System.out.println("aaaaaaaaaaaaaaaaaaa aqui si llegamos 222");
             try{
                 candidateChangeState.setPictureUrl(imageService.savePicture(candidate.getPicture()));
                 candidateChangeState.setEstado(Estado.ENTREGADO);

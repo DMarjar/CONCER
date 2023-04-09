@@ -24,14 +24,14 @@ public class StatsController {
     // Get general stats
     @GetMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/stats/
-    public ResponseEntity<CustomResponse<GeneralStats>> getGeneralStats() {
+    public ResponseEntity<CustomResponse<List<GeneralStats>>> getGeneralStats() {
         return new ResponseEntity<>(this.service.getGeneralStats(), HttpStatus.OK);
     }
 
     // Get candidate stats
     @GetMapping("/candidate")
     // URL: http://localhost:8080/controlCertificaciones/stats/candidate
-    public ResponseEntity<CustomResponse<CandidateStats>> getCandidateStats() {
+    public ResponseEntity<CustomResponse<List<CandidateStats>>> getCandidateStats() {
         return new ResponseEntity<>(this.service.getCandidateStats(), HttpStatus.OK);
     }
 

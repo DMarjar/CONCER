@@ -44,8 +44,9 @@ public class StatsService {
     // Get general stats
     // TODO: Optimizar el metodo para evitar usar el objeto GeneralStats
     @Transactional(readOnly = true)
-    public CustomResponse<GeneralStats> getGeneralStats() {
+    public CustomResponse<List<GeneralStats>> getGeneralStats() {
         try {
+            List<GeneralStats> listGeneral = new ArrayList<>();
             GeneralStats generalStats = new GeneralStats();
             generalStats.setTotalCertifications((int) this.certificationRepository.count());
             generalStats.setTotalCandidates((int) this.candidateRepository.count());
@@ -55,7 +56,8 @@ public class StatsService {
             generalStats.setPendingPercentage(this.getPendingPercentage(this.candidateRepository.findAll()));
             generalStats.setFinishedPercentage(this.getFinishedPercentage(this.candidateRepository.findAll()));
             generalStats.setCandidates(this.candidateRepository.findAll());
-            return new CustomResponse<>(generalStats, false, 200, "OK");
+            listGeneral.add(generalStats);
+            return new CustomResponse<>(listGeneral, false, 200, "OK");
         } catch (Exception e) {
             return new CustomResponse<>(null, true, 500, "Error al obtener las estadisticas generales: " + e.getMessage());
         }
@@ -63,9 +65,10 @@ public class StatsService {
 
     // Get candidate stats
     @Transactional(readOnly = true)
-    public CustomResponse<CandidateStats> getCandidateStats() {
+    public CustomResponse<List<CandidateStats>> getCandidateStats() {
         try {
             Object[] queryResult = this.candidateRepository.findCandidateStats();
+            List<CandidateStats> candidateStatsList = new ArrayList<>();
             CandidateStats candidateStats = new CandidateStats();
             candidateStats.setMostPopularCertification((String) ((Object[]) queryResult[0])[0]);
             candidateStats.setMostPopularCertificationCount(((BigInteger) ((Object[]) queryResult[0])[1]).intValue());
@@ -78,7 +81,8 @@ public class StatsService {
             candidateStats.setWorstScoreCertification((String) ((Object[]) queryResult[0])[8]);
             candidateStats.setWorstScoreCertificationScore(((BigDecimal) ((Object[]) queryResult[0])[9]).doubleValue());
 
-            return new CustomResponse<>(candidateStats, false, 200, "OK");
+            candidateStatsList.add(candidateStats);
+            return new CustomResponse<>(candidateStatsList, false, 200, "OK");
         } catch (Exception e) {
             return new CustomResponse<>(null, true, 500, "Error al obtener las estadisticas de los candidatos: " + e.getMessage());
         }

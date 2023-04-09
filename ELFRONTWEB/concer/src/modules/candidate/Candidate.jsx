@@ -1,12 +1,30 @@
-import React from 'react'
+import React, {useEffect, useState } from 'react'
 import { Col, Container, Figure, Row } from 'react-bootstrap'
 import Buttons from '../../shared/components/Buttons'
+import AxiosClient from '../../shared/http-client.gateway';
+import { useParams } from 'react-router-dom';
 
-export const Candidate = () => {
+
+export const Candidate = (props) => {
+    const [payload, setPayload] = useState([]);
+    const {candidatura} = useParams();
+
+    const getCandidature =  () => {
+        const data = AxiosClient.doPost("/candidate/candidature", {id: candidatura})
+        .then((response) => {
+            setPayload(response.data.data[0]);
+        });    
+    }
+
+    useEffect(() => {
+        getCandidature();
+    }, []);
+
+
     return (
         <>
             <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>Nombre del candidato</h2>
+                <h2 className='text-center' style={{ color: "#002e60" }}>{payload[3]} {payload[4]}</h2>
                 <Row className='mt-4 pt-4'>
                     <Col className='col-lg-6 col-md-8 col-sm-7'>
                         <Row >
@@ -14,7 +32,7 @@ export const Candidate = () => {
                                 Correo
                             </Col>
                             <Col>
-                                20213tn149@utez.edu.mx
+                                {payload[6]}
                             </Col>
                         </Row>
                         <hr />
@@ -23,7 +41,7 @@ export const Candidate = () => {
                                 Teléfono
                             </Col>
                             <Col>
-                                772 156 6806
+                                {payload[7]}
                             </Col>
                         </Row>
                         <hr />
@@ -32,7 +50,7 @@ export const Candidate = () => {
                                 Tipo de candidato
                             </Col>
                             <Col>
-                                Estudiante de la UTEZ
+                                {payload[8]}
                             </Col>
                         </Row>
                         <hr />
@@ -41,7 +59,7 @@ export const Candidate = () => {
                                 Fecha
                             </Col>
                             <Col>
-                                2023-08-01
+                                {payload[18]}
                             </Col>
                         </Row>
                         <hr />
@@ -50,16 +68,7 @@ export const Candidate = () => {
                                 Grupo
                             </Col>
                             <Col>
-                                D
-                            </Col>
-                        </Row>
-                        <hr />
-                        <Row >
-                            <Col className='col-lg-5 col-md-4 col-sm-4'>
-                                Carrera
-                            </Col>
-                            <Col>
-                                DSM
+                                {payload[16]}
                             </Col>
                         </Row>
                         <hr />
@@ -68,14 +77,21 @@ export const Candidate = () => {
                                 División / Academia
                             </Col>
                             <Col>
-                                DATIC
+                                {payload[9]}
                             </Col>
                         </Row>
                     </Col>
                     <Col className='col-lg-6 col-md-4 col-sm-5'>
                         <Row className='justify-content-center'>
-                            <div className='rounded-3 border border-4 border-secondary text-center bg-light' style={{ height: "203px", width: "300px", color: "black" }}>
-                                Imagen de la certificación
+                            <div className='rounded-3 border border-4 border-secondary text-center bg-light' style={{ height: "203px", width: "300px", color: "black" }}>                            
+                                {
+                                    payload[19] === "" ?
+                                        <p>PENDIENTE...</p>
+                                        :
+                                        <img src={`data:image/png;base64, ${payload[19]}`} alt="Imagen" style={{ height: "100%", width: "100%", objectFit: "cover" }} />
+
+                                }
+                            
                             </div>
                         </Row>
 
@@ -85,7 +101,7 @@ export const Candidate = () => {
                                 Nombre de la certificación
                             </Col>
                             <Col className='mx-4'>
-                                Microsoft Word Expert
+                                {payload[11]}
                             </Col>
                         </Row>
                         <hr />
@@ -94,7 +110,7 @@ export const Candidate = () => {
                                 Clave de la certificación
                             </Col>
                             <Col className='mx-4'>
-                                MO-101
+                                {payload[15]}
                             </Col>
                         </Row>
                         <hr />
@@ -103,12 +119,17 @@ export const Candidate = () => {
                                 Estado
                             </Col>
                             <Col className='mx-4'>
-                                PENDIENTE
+                                {payload[10]}
                             </Col>
                         </Row>
                     </Col>
                 </Row>
                 <br />
+                <Row className='justify-content-center'>
+                
+
+                </Row>
+
             </Container>
             {/* <Container className='px-5 mt-3'>
                 <h2 className='text-center' style={{ color: "#002e60" }}>Nombre del candidato</h2>
