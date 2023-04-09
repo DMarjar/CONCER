@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GestorStats {
     private String fullName;
-    private String certificationName;
-    private String version;
     private int totalCandidates;
+    private int totalCertifications;
     private double averageScore;
     private double passPercentage;
     private double failPercentage;
