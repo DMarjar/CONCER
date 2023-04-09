@@ -20,9 +20,11 @@ import AllCertifications from '../certification/AllCertifications';
 import NewCertification from '../certification/NewCertification';
 import Company from '../company/Company';
 import NewCompany from '../company/NewCompany';
-import  AllAcademis  from '../utez/AllAcademis';
-import Academy from '../utez/Academy';
-import NewAcademy from '../utez/NewAcademy';
+import AllAcademis  from '../utez/academy/AllAcademis';
+import Academy from '../utez/academy/Academy';
+import NewAcademy from '../utez/academy/NewAcademy';
+import Menu from '../utez/Menu';
+import NewPerson from '../utez/person/NewPerson';
 
 
 
@@ -54,7 +56,7 @@ export const IndexAdmin = () => {
                                 <Route path="/indicators" element={<Indicadores/>}/>
 
                                 <Route path="/candidates" element={<AllCandidates/>}/>
-                                <Route path="/candidate/:clave" element={<Candidate/>}/>
+                                <Route path="/candidate/:candidatura" element={<Candidate/>}/>
                                 <Route path="/newCandidate" element={<NewCandidate/>}/>
 
                                 <Route path="/certifiers" element={<AllCertifiers/>}/>
@@ -68,6 +70,10 @@ export const IndexAdmin = () => {
                                 <Route path="/companies" element={<AllCompanies/>}/>
                                 <Route path="/company" element={<Company/>}/>
                                 <Route path="/newCompany" element={<NewCompany/>}/>
+
+                                <Route path="/utez" element={<Menu/>}/>
+
+                                <Route path="/newAccount" element={<NewPerson/>}/>
 
                                 <Route path="/academies" element={<AllAcademis/>}/>
                                 <Route path="/academy" element={<Academy/>} />

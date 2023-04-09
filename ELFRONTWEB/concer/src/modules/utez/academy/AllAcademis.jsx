@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Button, Col, Container, Figure, Row, Card } from 'react-bootstrap'
-import AxiosClient from '../../shared/http-client.gateway';
+import AxiosClient from '../../../shared/http-client.gateway';
 import { Link } from 'react-router-dom';
 import DataTable from "react-data-table-component";
 
@@ -77,7 +77,7 @@ export const AllAcademis = () => {
     return (
         <>
             <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>Academias</h2>
+                <h4 className='text-center' style={{ color: "#002e60" }}>Academias</h4>
                 <Card>
                     <Card.Header>
                         <Card.Title as="h5">

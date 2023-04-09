@@ -41,7 +41,31 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
             + "where certifications.person_id = :personId and certifications.status = 1 and candidates.status = 1 and candidates.estado = :estado")
     List<Object[]> findCertificationsByPersonId(@Param("personId") Long personId, @Param("estado") String estado);
 
-    @Query(nativeQuery = true, value = "SELECT certifications.id as idCertificacion, candidates.id as idCandidatura, people.id as idCandidato, people.first_name as nombreCandidato, people.last_name as apellidoCandidato, people.gender as sexo, people.email as email,people.phone_number as phone, people.type_person as tipo, academy.academy_name as academia, candidates.estado as estadoCertificacion, certifications.certification_name, certifications.version as version, certifying_companies.company_name as empresaCertificadora, managers.first_name as Gestor FROM certifications JOIN candidates ON candidates.certification_id = certifications.id JOIN people ON candidates.person_id = people.id JOIN people as managers ON certifications.person_id = managers.id JOIN academy ON candidates.academy_id = academy.id JOIN certifying_companies on certifications.company_id = certifying_companies.id WHERE candidates.id=:personId AND certifications.status=1  AND candidates.status=1")
+    @Query(nativeQuery = true, value = "SELECT \n" +
+            "certifications.id as idCertificacion, \n" +
+            "candidates.id as idCandidatura, \n" +
+            "people.id as idCandidato, \n" +
+            "people.first_name as nombreCandidato, \n" +
+            "people.last_name as apellidoCandidato, \n" +
+            "people.gender as sexo, \n" +
+            "people.email as email,\n" +
+            "people.phone_number as phone, \n" +
+            "people.type_person as tipo, \n" +
+            "academy.academy_name as academia, \n" +
+            "candidates.estado as estadoCertificacion, \n" +
+            "certifications.certification_name, \n" +
+            "certifications.version as version, \n" +
+            "certifying_companies.company_name as empresaCertificadora, \n" +
+            "managers.first_name as Gestor,\n" +
+            "candidates.clave as clave,\n" +
+            "candidates.grupo as grupo,\n" +
+            "candidates.puntaje as puntaje,\n" +
+            "candidates.fecha_fin as fecha,\n" +
+            "candidates.picture_url as imagen\n" +
+            "FROM certifications JOIN candidates ON candidates.certification_id = certifications.id JOIN people ON candidates.person_id = people.id \n" +
+            "JOIN people as managers ON certifications.person_id = managers.id \n" +
+            "JOIN academy ON candidates.academy_id = academy.id \n" +
+            "JOIN certifying_companies on certifications.company_id = certifying_companies.id WHERE candidates.id=:personId AND certifications.status=1  AND candidates.status=1")
     List<Object[]> candidateInformation(@Param("personId") Long personId);
 
     @Query(nativeQuery = true, value = "SELECT \n" +

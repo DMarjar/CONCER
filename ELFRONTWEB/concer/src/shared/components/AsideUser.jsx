@@ -3,16 +3,28 @@ import { Button, Col, Nav } from 'react-bootstrap'
 import { VscGraph } from 'react-icons/vsc'
 import AuthContext from '../../modules/auth/AuthContext'
 import { Link, NavLink } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 export const AsideUser = () => {
 
     const {setState} = useContext(AuthContext);
 
-    const logout = () =>{
-        setState({ 
-                auth: false,
-                role: '' 
-        })
+    const logout = () => {
+        Swal.fire({
+            title: '¿Estas seguro?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#002e60',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, cerrar sesión'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                    setState({
+                                auth: false,
+                                role: ''
+                            })
+            }
+        })  
     }
 
     return (

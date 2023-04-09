@@ -22,9 +22,6 @@ public class Candidate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    private LocalDate fechaInicio;
-
     private LocalDate fechaFin;
 
     @Enumerated(EnumType.STRING)
@@ -69,9 +66,9 @@ public class Candidate {
     private Academy academy;
 
 
-    public Candidate(long id, LocalDate fechaInicio, LocalDate fechaFin, Estado estado, Boolean status, double puntaje, String pictureUrl, String clave, char grupo, Certification certification, Person person, Academy academy) {
+    public Candidate(long id, LocalDate fechaFin, Estado estado, Boolean status, double puntaje, String pictureUrl, String clave, char grupo, Certification certification, Person person, Academy academy) {
         this.id = id;
-        this.fechaInicio = fechaInicio;
+
         this.fechaFin = fechaFin;
         this.estado = estado;
         this.status = status;
@@ -82,6 +79,16 @@ public class Candidate {
         this.certification = certification;
         this.person = person;
         this.academy = academy;
+    }
+
+    public Candidate(Long id, Estado estado, boolean status, Long idAcademy, Long idCertification, Long idPerson, LocalDate fechaFin, double puntaje, char grupo, String clave) {
+        this.id = id;
+        this.estado = estado;
+        this.status = status;
+        this.fechaFin = fechaFin;
+        this.puntaje = puntaje;
+        this.Grupo = grupo;
+        this.clave = clave;
     }
 }
 

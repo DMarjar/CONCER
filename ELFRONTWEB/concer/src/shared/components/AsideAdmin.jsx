@@ -2,23 +2,40 @@ import React, { useContext } from 'react'
 import { Button, Col, Nav, Row } from 'react-bootstrap'
 import { VscGraph } from 'react-icons/vsc'
 import { IoIosPeople } from 'react-icons/io'
-import { FcBusinessman } from 'react-icons/fc'
 import { BsPersonCheckFill } from 'react-icons/bs'
 import { TbCertificate } from 'react-icons/tb'
 import { BsFillBuildingsFill } from 'react-icons/bs'
 import { IoMdSchool } from 'react-icons/io'
 import AuthContext from '../../modules/auth/AuthContext'
-import { Link, NavLink } from 'react-router-dom'
+import {  NavLink, useNavigate} from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 export const AsideAdmin = () => {
 
     const { setState } = useContext(AuthContext);
 
+    const history = useNavigate();
+
     const logout = () => {
-        setState({
-            auth: false,
-            role: ''
-        })
+        Swal.fire({
+            title: '¿Estas seguro?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#002e60',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, cerrar sesión'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                //navegar a la ruta /login
+                
+                localStorage.removeItem('token');
+                    setState({
+                                auth: false,
+                                role: ''
+                            })
+                history('/');
+            }
+        })  
     }
 
     return (
@@ -41,12 +58,12 @@ export const AsideAdmin = () => {
             <NavLink style={{ textDecoration: 'none', color: 'black' }} className='pt-1 px-3' to="/companies"><BsFillBuildingsFill size={"30"} color="#002e60" />&nbsp; Empresas C. </NavLink>
             </Row>
             <Row className='pb-2'>
-            <NavLink style={{ textDecoration: 'none', color: 'black' }} className='pt-1 px-3' to="/academies"><IoMdSchool size={"30"} color="#002e60" />&nbsp; UTEZ </NavLink>
+            <NavLink style={{ textDecoration: 'none', color: 'black' }} className='pt-1 px-3' to="/utez"><IoMdSchool size={"30"} color="#002e60" />&nbsp; UTEZ </NavLink>
             </Row>            
             <Col className='mb-3' style={{ position: "absolute", bottom: "0", left: "50%", transform: "translate(-50%, 0)" }}>
-                <Link to="/">
+              
                     <Button style={{ backgroundColor: "#019979" }} onClick={() => logout()} >Cerrar sesión</Button>
-                </Link>
+                
                 
             </Col>
         </>

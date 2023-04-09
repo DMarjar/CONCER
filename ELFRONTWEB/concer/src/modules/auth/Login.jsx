@@ -2,7 +2,6 @@ import React, {useEffect, useContext} from 'react'
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Card, Col, Container, Figure, Row, Form, Button } from 'react-bootstrap';
-import Alert from '../../shared/plugins/alerts'
 import FeatherIcon from 'feather-icons-react';
 import axios from '../../shared/http-client.gateway'
 import AuthContext from './AuthContext';
@@ -46,13 +45,7 @@ export const Login = () => {
 
                       
             } catch (err) {
-                Alert.fire({
-                    title: 'Verificar los datos',
-                    text: 'Usuario o contraseña incorrecta',
-                    icon: 'error',
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'Aceptar',
-                });
+                
             }
         },
     });

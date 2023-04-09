@@ -44,6 +44,14 @@ public class CertificationController {
                 HttpStatus.OK);
     }
 
+    //get images
+    @GetMapping("/images")
+    // URL: http://localhost:8080/controlCertificaciones/certification/images
+    public ResponseEntity<CustomResponse<List<Certification>>> getImages() throws IOException {
+        return new ResponseEntity<>(
+                this.service.getImages(),
+                HttpStatus.OK);
+    }
     // Insert
     @PostMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/certification/

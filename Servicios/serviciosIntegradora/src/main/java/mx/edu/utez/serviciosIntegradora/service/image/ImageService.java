@@ -25,7 +25,7 @@ public class ImageService {
     //aaa
     public String getPicture (String path) throws IOException {
         try{
-
+            System.out.println(path);
             Resource resource = new FileSystemResource(path);
             byte[] pictureData = StreamUtils.copyToByteArray(resource.getInputStream());
 
@@ -46,7 +46,7 @@ public class ImageService {
             String pictureName = UUID.randomUUID().toString() + ".png";
             String imagePath = os + separator + pictureName;
 
-            Files.write(Paths.get(imagePath),pictureData);
+            Files.write(Paths.get(os+pictureName),pictureData);
 
             return imagePath;
         }catch (IOException e){

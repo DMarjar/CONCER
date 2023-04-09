@@ -21,6 +21,8 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     Person findByUser(User user);
     Person findByEmail(String email);
 
+    @Query(nativeQuery = true, )
+    List<Object[]> findALl(@Param());
 
     @Query(nativeQuery = true, value = "select distinct p.* from people p join certifications c on c.person_id = p.id;")
     List<Person> findCertifiers();

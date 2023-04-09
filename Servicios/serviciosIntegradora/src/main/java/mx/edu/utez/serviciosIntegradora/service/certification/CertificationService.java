@@ -35,7 +35,16 @@ public class CertificationService {
         );
     }
 
-
+    @Transactional
+    public CustomResponse<List<Certification>> getImages() throws IOException {
+        List<Certification> images = this.Repository.findAll();
+        for (Certification i : images) {
+            i.setPictureBase64(imageService.getPicture(i.getPictureUrl()));
+        }
+        return new CustomResponse<>(
+                images,false,200,"ok"
+        );
+    }
     //getOne
     @Transactional(readOnly = true)
     public CustomResponse<Certification> getOne(Long id){

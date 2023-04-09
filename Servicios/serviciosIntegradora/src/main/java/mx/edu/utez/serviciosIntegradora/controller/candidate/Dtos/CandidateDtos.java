@@ -16,7 +16,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class CandidateDtos {
     private long id;
-    private LocalDate fechaInicio;
 
     private LocalDate fechaFin;
     @NotNull
@@ -45,7 +44,6 @@ public class CandidateDtos {
     public Candidate castToCandidate() {
         return new Candidate(
                 this.id,
-                this.fechaInicio,
                 this.fechaFin,
                 this.estado,
                 this.status,
