@@ -22,6 +22,17 @@ public class PersonController {
     @Autowired
     private PersonService service;
 
+    //get One
+    @GetMapping("/one/{id}")
+    // URL: http://localhost:8080/controlCertificaciones/person/one
+    public ResponseEntity<CustomResponse<Person>> getOne(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(
+                this.service.getOne(id),
+                HttpStatus.OK);
+    }
+
+
+
     // Get all
     @GetMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/person/

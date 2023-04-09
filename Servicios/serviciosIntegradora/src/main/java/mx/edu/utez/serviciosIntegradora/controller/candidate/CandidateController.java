@@ -3,10 +3,16 @@ package mx.edu.utez.serviciosIntegradora.controller.candidate;
 import mx.edu.utez.serviciosIntegradora.controller.candidate.Dtos.CandidateDtos;
 import mx.edu.utez.serviciosIntegradora.controller.candidate.Dtos.CandidateRequest;
 import mx.edu.utez.serviciosIntegradora.controller.candidate.Dtos.ImageCandidateRequest;
+import mx.edu.utez.serviciosIntegradora.model.academy.AcademyRepository;
 import mx.edu.utez.serviciosIntegradora.model.candidate.Candidate;
 import mx.edu.utez.serviciosIntegradora.model.candidate.Estado;
+import mx.edu.utez.serviciosIntegradora.model.certification.CertificationRepository;
 import mx.edu.utez.serviciosIntegradora.model.person.Person;
+import mx.edu.utez.serviciosIntegradora.model.person.PersonRepository;
+import mx.edu.utez.serviciosIntegradora.service.academy.AcademyService;
 import mx.edu.utez.serviciosIntegradora.service.candidate.CandidateService;
+import mx.edu.utez.serviciosIntegradora.service.certification.CertificationService;
+import mx.edu.utez.serviciosIntegradora.service.person.PersonService;
 import mx.edu.utez.serviciosIntegradora.utils.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +30,12 @@ import java.util.List;
 public class CandidateController {
     @Autowired
     private CandidateService service;
+    @Autowired
+    private PersonRepository personService;
+    @Autowired
+    private CertificationRepository certificationService;
+    @Autowired
+    private AcademyRepository academyService;
 
     // Get all
     @GetMapping("/")
@@ -75,10 +87,20 @@ public class CandidateController {
     @PostMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/candidate/
     public ResponseEntity<CustomResponse<Candidate>> insert(@RequestBody CandidateRequest candidate) {
-        candidate.setEstado(Estado.PENDIENTE);
-        candidate.setStatus(true);
+        Candidate newCandidate = new Candidate();
+        newCandidate.setPerson(this.personService.findById(candidate.getIdPerson()).get());
+        newCandidate.setCertification(this.certificationService.findById(candidate.getIdCertification()).get());
+        newCandidate.setAcademy(this.academyService.findById(candidate.getIdAcademy()).get());
+        newCandidate.setEstado(Estado.PENDIENTE);
+        newCandidate.setStatus(true);
+        newCandidate.setFechaFin(candidate.getFechaFin());
+        newCandidate.setPuntaje(candidate.getPuntaje());
+        newCandidate.setGrupo(candidate.getGrupo());
+        newCandidate.setClave(candidate.getClave());
+
+        System.out.println(candidate.getFechaFin());
         return new ResponseEntity<>(
-                this.service.insert(candidate.castToCandidate()), HttpStatus.CREATED
+                this.service.insert(newCandidate), HttpStatus.CREATED
         );
     }
 

@@ -233,7 +233,7 @@ export const NewPerson = () => {
                                                     <option value="" label="" />
                                                     <option value="ADMIN" label="Administrador" />
                                                     <option value="USER" label="Usuario" />
-                                                    <option value="GESTOR" label="Gestor" />
+                                                    <option value="GESTOR" label="Gestor (certificador)" />
                                                 </>
                                                 
                                             ):

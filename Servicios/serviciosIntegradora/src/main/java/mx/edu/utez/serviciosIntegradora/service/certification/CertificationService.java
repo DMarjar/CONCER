@@ -55,13 +55,13 @@ public class CertificationService {
     }
     //getOne
     @Transactional(readOnly = true)
-    public CustomResponse<Certification> getOne(Long id){
-        Certification certification = this.Repository.findById(id).get();
+    public CustomResponse<List<Object[]>> getOne(Long id){
+        List<Object[]> certification = this.Repository.findCertification(id);
         if(certification != null){
-
-            if(certification.getPictureUrl() != null){
+            System.out.println(certification.get(0)[6]);
+            if(certification.get(0)[6] != null){
                 try {
-                    certification.setPictureBase64(imageService.getPicture(certification.getPictureUrl()));
+                    certification.get(0)[6]=(imageService.getPicture((String) certification.get(0)[6]));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -82,9 +82,15 @@ public class CertificationService {
         if(this.Repository.existsByNameAndVersion(certification.getName(),certification.getVersion())){
             return new CustomResponse<>(null,true,400,"ya existe");
         }
-        return new CustomResponse<>(
-                this.Repository.saveAndFlush(certification),false,200,"ok"
-        );
+
+        try{
+            certification.setPictureUrl(imageService.savePicture(certification.getPictureBase64()));
+            return new CustomResponse<>(
+                    this.Repository.saveAndFlush(certification),false,200,"ok"
+            );
+        } catch (IOException e) {
+            return new CustomResponse<>(null,true,400,"error");
+        }
     }
 
     //update
@@ -118,6 +124,16 @@ public class CertificationService {
 
     }
 
+    // update status
+    @Transactional(rollbackFor = {SQLException.class})
+    public CustomResponse<Boolean> changeStatus(Certification certification) {
+        if (!this.Repository.updateStatusById(certification.getId(), certification.getStatus())) {
+            return new CustomResponse<>(null, true, 400, "Error update status");
+        }
+        return new CustomResponse<>(
+                this.Repository.updateStatusById(certification.getId(), certification.getStatus()), false, 200, "certification updated correctly!"
+        );
+    }
 
     //delate
     @Transactional(rollbackFor = {SQLException.class})
@@ -132,14 +148,5 @@ public class CertificationService {
         );
     }
 
-    // update status
-    @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Boolean> changeStatus(Certification certification) {
-        if (!this.Repository.updateStatusById(certification.getId(), certification.getStatus())) {
-            return new CustomResponse<>(null, true, 400, "Error update status");
-        }
-        return new CustomResponse<>(
-                this.Repository.updateStatusById(certification.getId(), certification.getStatus()), false, 200, "certification updated correctly!"
-        );
-    }
+
 }

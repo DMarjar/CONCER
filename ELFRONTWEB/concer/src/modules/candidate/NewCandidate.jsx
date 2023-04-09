@@ -3,6 +3,7 @@ import {Card, Col, Container, Row, Button } from 'react-bootstrap'
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2';
 
 import AxiosClient from '../../shared/http-client.gateway';
 
@@ -15,7 +16,6 @@ export const NewCandidate = () => {
     const getPerson = async () => {
         try {
             const dataPerson = await AxiosClient.doGet('/person/users', {});
-            console.log(dataPerson.data.data)
             setPerson(dataPerson.data.data);
         } catch (error) {
 
@@ -29,7 +29,6 @@ export const NewCandidate = () => {
             if(account.user.role === "ADMIN"){
                 const data = await AxiosClient.doGet('/certification/', {});
                 setCertificaciones(data.data.data);
-                console.log(data.data.data)
             }else{
                 const data = await AxiosClient.doGet(`/certification/person`, {
                     id: account.id
@@ -45,7 +44,6 @@ export const NewCandidate = () => {
     const getAcademys = async () => {
         try {
             const dataAcademy = await AxiosClient.doGet('/academy/', {});
-            console.log(dataAcademy.data.data)
             setAcademys(dataAcademy.data.data);
         } catch (error) {
 
@@ -104,6 +102,54 @@ export const NewCandidate = () => {
                                     onSubmit={async (values, { setSubmitting }) => {
                                         setSubmitting(true);
                                         console.log(values);
+                                        Swal.fire({
+                                            title: '¿Estas seguro?',
+                                            icon: 'question',
+                                            showCancelButton: true,
+                                            confirmButtonText: 'Guardar',
+                                            cancelButtonText: 'No'
+                                        }).then(async (result) => {
+                                            if (result.isConfirmed) {
+                                                try {
+                                                    const data = await AxiosClient.doPost('/candidate/', {
+                                                        idAcademy: values.idAcademy,
+                                                        idCertification: values.idCertification,
+                                                        idPerson: values.idPerson,
+                                                        fechaFin: values.fechaFin,
+                                                        puntaje: values.puntaje,
+                                                        grupo: values.grupo,
+                                                        clave: values.clave
+                                                    });
+                                                    Swal.fire({
+                                                        title: 'Candidatura agregada correctamente',
+                                                        icon: 'success',
+                                                        showCancelButton: false,
+                                                        confirmButtonText: 'Aceptar'
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            window.location.href = "/candidate";
+                                                        }
+                                                    })
+                                                    setSubmitting(false);
+                                                } catch (error) {
+                                                    Swal.fire({
+                                                        title: 'Error al agregar candidatura',
+                                                        icon: 'error',
+                                                        showCancelButton: false,
+                                                        confirmButtonText: 'Aceptar'
+                                                    })
+                                                    setSubmitting(false);
+                                                }
+                                            }else{
+                                                Swal.fire({
+                                                    title: 'Cancelado',
+                                                    icon: 'error',
+                                                    showCancelButton: false,
+                                                    confirmButtonText: 'Aceptar'
+                                                })
+                                                setSubmitting(false);
+                                            }
+                                        })
                                     }}
                                 >
                                     {({ errors, touched, isSubmitting }) => (

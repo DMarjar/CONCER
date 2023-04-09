@@ -94,7 +94,7 @@ export const AllCompanies = () => {
                         <DataTable
                             columns={columns}
                             data={filtrado}
-                            noDataComponent="No hay candidatos"
+                            noDataComponent="No hay empresas certificadoras registradas"
                             pagination
                             paginationComponentOptions={{
                                 rowsPerPageText: 'Filas por página:',

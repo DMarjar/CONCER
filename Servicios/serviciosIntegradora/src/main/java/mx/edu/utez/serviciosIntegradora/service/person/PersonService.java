@@ -32,6 +32,17 @@ public class PersonService {
 
     //METODOS---------------------------------------------------------------------------------------------------
 
+    //getOne
+    @Transactional(readOnly = true)
+    public CustomResponse<Person> getOne(Long id){
+        if(!this.personRepository.existsById(id)){
+            return new CustomResponse<>(null,true,400,"no existe");
+        }
+        return new CustomResponse<>(
+                this.personRepository.findById(id).get(),false,200,"ok"
+        );
+    }
+
     //getAll
     @Transactional(readOnly = true)
     public CustomResponse<List<Person>> getAll(){

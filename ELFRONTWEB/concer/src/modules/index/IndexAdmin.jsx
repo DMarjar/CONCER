@@ -15,7 +15,6 @@ import Indicadores from '../indicadores/Indicadores';
 import AllCandidates from '../candidate/AllCandidates';
 import NewCandidate from '../candidate/NewCandidate';
 import AllCertifiers from '../certifierPerson/AllCertifiers';
-import NewCertifier from '../certifierPerson/NewCertifier';
 import AllCertifications from '../certification/AllCertifications';
 import NewCertification from '../certification/NewCertification';
 import Company from '../company/Company';
@@ -60,11 +59,10 @@ export const IndexAdmin = () => {
                                 <Route path="/newCandidate" element={<NewCandidate/>}/>
 
                                 <Route path="/certifiers" element={<AllCertifiers/>}/>
-                                <Route path="/certifier" element={<Certifier/>}/>
-                                <Route path="/newCertifier" element={<NewCertifier/>}/>
+                                <Route path="/certifier/:certifier" element={<Certifier/>}/>
 
                                 <Route path="/certifications" element={<AllCertifications/>}/>
-                                <Route path="/certification" element={<Certification/>}/>
+                                <Route path="/certification/:certification" element={<Certification/>}/>
                                 <Route path="/newCertification" element={<NewCertification/>}/>
 
                                 <Route path="/companies" element={<AllCompanies/>}/>
