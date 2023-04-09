@@ -4,6 +4,7 @@ import mx.edu.utez.serviciosIntegradora.controller.candidate.Dtos.CandidateDtos;
 import mx.edu.utez.serviciosIntegradora.controller.candidate.Dtos.CandidateRequest;
 import mx.edu.utez.serviciosIntegradora.controller.candidate.Dtos.ImageCandidateRequest;
 import mx.edu.utez.serviciosIntegradora.model.candidate.Candidate;
+import mx.edu.utez.serviciosIntegradora.model.candidate.Estado;
 import mx.edu.utez.serviciosIntegradora.model.person.Person;
 import mx.edu.utez.serviciosIntegradora.service.candidate.CandidateService;
 import mx.edu.utez.serviciosIntegradora.utils.CustomResponse;
@@ -73,9 +74,11 @@ public class CandidateController {
     // Insert
     @PostMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/candidate/
-    public ResponseEntity<CustomResponse<Candidate>> insert(@Valid @RequestBody CandidateRequest candidate) {
+    public ResponseEntity<CustomResponse<Candidate>> insert(@RequestBody CandidateRequest candidate) {
+        candidate.setEstado(Estado.PENDIENTE);
+        candidate.setStatus(true);
         return new ResponseEntity<>(
-                this.service.insert(candidate), HttpStatus.CREATED
+                this.service.insert(candidate.castToCandidate()), HttpStatus.CREATED
         );
     }
 

@@ -34,7 +34,15 @@ public class CertificationService {
                 this.Repository.findAllCertifications(),false,200,"ok"
         );
     }
+    //get by person
+    @Transactional(readOnly = true)
+    public CustomResponse<List<Certification>> getByPerson(Long id){
+        return new CustomResponse<>(
+                this.Repository.findCertificationsByPersonId(id),false,200,"ok"
+        );
+    }
 
+    //getWhitImages
     @Transactional
     public CustomResponse<List<Certification>> getImages() throws IOException {
         List<Certification> images = this.Repository.findAll();

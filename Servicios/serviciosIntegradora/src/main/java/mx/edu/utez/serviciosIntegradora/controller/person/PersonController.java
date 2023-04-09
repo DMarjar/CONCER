@@ -40,6 +40,15 @@ public class PersonController {
                 HttpStatus.OK);
     }
 
+    //get Users
+    @GetMapping("/users")
+    // URL: http://localhost:8080/controlCertificaciones/person/users
+    public ResponseEntity<CustomResponse<List<Person>>> getUsers() {
+        return new ResponseEntity<>(
+                this.service.getUsers(),
+                HttpStatus.OK);
+    }
+
     // Get one by Email
     @PostMapping("/one")
     // URL: http://localhost:8080/controlCertificaciones/person/one

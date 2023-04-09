@@ -59,6 +59,14 @@ public class PersonService {
         );
     }
 
+    //getUsers
+    @Transactional(readOnly = true)
+    public CustomResponse<List<Person>> getUsers(){
+        String role = "USER";
+        return new CustomResponse<>(
+                this.personRepository.findUsers(role),false,200,"ok"
+        );
+    }
 
 
     //getOneByUsername

@@ -33,14 +33,21 @@ public class CertificationController {
                 HttpStatus.OK);
     }
 
-
-
     // Get one
     @GetMapping("/one")
     // URL: http://localhost:8080/controlCertificaciones/certification/{id}
     public ResponseEntity<CustomResponse<Certification>> getOne(@RequestBody Certification certification){
         return new ResponseEntity<>(
                 this.service.getOne(certification.getId()),
+                HttpStatus.OK);
+    }
+
+    //get by person
+    @PostMapping("/person")
+    // URL: http://localhost:8080/controlCertificaciones/certification/person
+    public ResponseEntity<CustomResponse<List<Certification>>> getByPerson(@RequestBody Person person) {
+        return new ResponseEntity<>(
+                this.service.getByPerson(person.getId()),
                 HttpStatus.OK);
     }
 
