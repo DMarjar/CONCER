@@ -27,9 +27,8 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     @Query(nativeQuery = true, value = "SELECT\n" +
             "    CONCAT(people.first_name, ' ', people.last_name) AS fullName,\n" +
-            "    certifications.certification_name AS certificationName,\n" +
-            "    certifications.version AS version,\n" +
             "    COUNT(candidates.id) AS totalCandidates,\n" +
+            "    COUNT(DISTINCT certifications.id) AS totalCertifications,\n" +
             "    AVG(candidates.puntaje) AS averageScore,\n" +
             "    SUM(CASE WHEN candidates.estado = 'ENTREGADO' THEN 1 ELSE 0 END) / COUNT(candidates.id) * 100 AS percentageApproved,\n" +
             "    SUM(CASE WHEN candidates.estado = 'PENDIENTE' THEN 1 ELSE 0 END) / COUNT(candidates.id) * 100 AS percentagePending\n" +
@@ -44,7 +43,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
             "WHERE\n" +
             "    users.role = 'GESTOR' AND users.status = 1\n" +
             "GROUP BY\n" +
-            "    fullName, certificationName, version;")
+            "    fullName;")
     List<Object[]> findGestorStats();
 
 }
