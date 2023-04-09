@@ -140,12 +140,11 @@ public class StatsService {
             for (Object[] row : queryResult) {
                 GestorStats gestorStats = new GestorStats();
                 gestorStats.setFullName((String) row[0]);
-                gestorStats.setCertificationName((String) row[1]);
-                gestorStats.setVersion((String) row[2]);
-                gestorStats.setTotalCandidates(((BigInteger) row[3]).intValue());
-                gestorStats.setAverageScore(((BigDecimal) row[4]).doubleValue());
-                gestorStats.setPassPercentage(((BigDecimal) row[5]).doubleValue());
-                gestorStats.setFailPercentage(((BigDecimal) row[6]).doubleValue());
+                gestorStats.setTotalCandidates(((BigInteger) row[1]).intValue());
+                gestorStats.setTotalCertifications(((BigInteger) row[2]).intValue());
+                gestorStats.setAverageScore(((BigDecimal) row[3]).doubleValue());
+                gestorStats.setPassPercentage(((BigDecimal) row[4]).doubleValue());
+                gestorStats.setFailPercentage(((BigDecimal) row[5]).doubleValue());
                 gestorStatsList.add(gestorStats);
             }
             return new CustomResponse<>(gestorStatsList, false, 200, "OK");
