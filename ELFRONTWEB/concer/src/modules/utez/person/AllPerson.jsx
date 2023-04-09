@@ -99,7 +99,7 @@ export const AllPerson = () => {
                         <DataTable
                             columns={columns}
                             data={filtrado}
-                            noDataComponent="No hay candidatos"
+                            noDataComponent="No hay personas registradas"
                             pagination
                             paginationComponentOptions={{
                                 rowsPerPageText: 'Filas por página:',

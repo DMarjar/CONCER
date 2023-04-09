@@ -1,14 +1,15 @@
 import React, {useEffect, useState } from 'react'
-import { Col, Container, Figure, Row } from 'react-bootstrap'
+import { Col, Container, Figure, Row,Card } from 'react-bootstrap'
 import Buttons from '../../shared/components/Buttons'
 import AxiosClient from '../../shared/http-client.gateway';
 import { useParams } from 'react-router-dom';
 
 
-export const Candidate = (props) => {
+export const Candidate = () => {
     const [payload, setPayload] = useState([]);
     const {candidatura} = useParams();
 
+    //lo hice con then pq por wey se me olvido usar async await
     const getCandidature =  () => {
         const data = AxiosClient.doPost("/candidate/candidature", {id: candidatura})
         .then((response) => {
@@ -83,12 +84,25 @@ export const Candidate = (props) => {
                     </Col>
                     <Col className='col-lg-6 col-md-4 col-sm-5'>
                         <Row className='justify-content-center'>
-                            <div className='rounded-3 border border-4 border-secondary text-center bg-light' style={{ height: "203px", width: "300px", color: "black" }}>                            
+                            <div  style={{ height: "203px", width: "300px", color: "black" }}>                            
                                 {
                                     payload[19] === "" ?
-                                        <p>PENDIENTE...</p>
+                                        <div className='text-center' >
+                                            <Figure>
+                                                <Figure.Image
+                                                    className='rounded-circle border border-3 border-dark p-4'
+                                                    width={181}
+                                                    height={190}
+                                                    alt="171x180"
+                                                    src="https://cdn-icons-png.flaticon.com/512/666/666201.png"
+                                                />
+                                            </Figure>
+                                        </div>
+                                   
                                         :
-                                        <img src={`data:image/png;base64, ${payload[19]}`} alt="Imagen" style={{ height: "100%", width: "100%", objectFit: "cover" }} />
+                                        <Card className='rounded-3 border border-4 border-secondary text-center bg-light' style={{ height: "203px", width: "300px", color: "black" }}>
+                                            <img src={`data:image/png;base64, ${payload[19]}`} alt="Imagen" style={{ height: "100%", width: "100%", objectFit: "cover" }} />
+                                        </Card>
 
                                 }
                             

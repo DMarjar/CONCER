@@ -1,27 +1,45 @@
-import React from 'react'
-import { Col, Container, Figure, Row } from 'react-bootstrap'
+import React,{useEffect, useState} from 'react'
+import { Card, Col, Container, Figure, Row } from 'react-bootstrap'
 import Buttons from '../../shared/components/Buttons'
+import { useParams } from 'react-router-dom'
+import AxiosClient from '../../shared/http-client.gateway';
 
 export const Certification = () => {
+    const [payload, setPayload] = useState([]);
+    const {certification} = useParams();
+
+    const getCertification = async () => {
+        try {
+            const data = await AxiosClient.doPost(`/certification/one/${certification}`, {});
+            console.log(data.data.data[0])
+            setPayload(data.data.data[0]);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        getCertification();
+    }, [certification])
+
     return (
         <>
             <Container className='px-5 mt-3'>
                 <h2 className='text-center' style={{ color: "#002e60" }}>Certificación</h2>
-                <Row className='pt-2'>
-                    <div className='w-10 rounded-3 border border-4 border-secondary text-center' style={{ height: "300px", color: "black" }}>
-                        Imagen de la certificación
-                    </div>
-                    {/* nombre, version, nombre del personal a cargo.... imagen de la empresa, nombre de la empresa | botones */}
-                </Row>
+                
+                <br />
+                <br />
                 <br />
                 <Row className='pt-2'>
+                    
                     <Col className='col-lg-6 col-md-8 col-sm-7'>
+                       
                         <Row >
                             <Col className='col-lg-6 col-md-4 col-sm-4'>
                                 Nombre de la certificación
                             </Col>
                             <Col>
-                                Microsoft Word Expert
+                                {payload[1]}
                             </Col>
                         </Row>
                         <hr />
@@ -30,30 +48,31 @@ export const Certification = () => {
                                 Versión
                             </Col>
                             <Col>
-                                v1.1
+                                {payload[3]}
                             </Col>
                         </Row>
                         <hr />
                         <Row >
                             <Col className='col-lg-6 col-md-4 col-sm-4'>
-                                Nombre del personal a cargo
+                                Nombre del gestor a cargo
                             </Col>
                             <Col>
-                                Ing. Jazmin
+                                {payload[10]} {payload[11]}
                             </Col>
                         </Row>
                     </Col>
                     <Col className='col-lg-6 col-md-4 col-sm-5'>
-                        <div className='w-10 rounded-3 border border-4 border-secondary text-center bg-light' style={{ height: "150px", color: "black" }}>
-                            Imagen de la certificación
+                        <div className=' text-center' style={{ height: "260px", color: "black" }}>
+                            <img src={`data:image/png;base64, ${payload[6]}`} style={{height: "200px", width:"600px"}}className="card"/>
                         </div>
                         <br />
                         <Row >
+                            <br/>
                             <Col className='col-lg-7 col-md-4 col-sm-4 text-end'>
                                 Nombre de la empresa
                             </Col>
                             <Col className='mx-4'>
-                                Microsoft
+                                {payload[8]}
                             </Col>
                         </Row>
                         <br />

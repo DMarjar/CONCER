@@ -46,7 +46,6 @@ export const Indicadores = () => {
     const getEstadisticasGestor = async () => {
         try {
             const data = await AxiosClient.doGet('/stats/gestor', {});
-            console.log(data.data.data)
             setPayload(data.data.data)
         } catch (error) {
 
@@ -55,7 +54,7 @@ export const Indicadores = () => {
 
 
     //columnas
-    const generalStatsColums = React.useMemo(() => [
+    const generalStatsColums = [
         {
             name: 'Total de Certificaciones',
             cell: row => <div>{row.totalCertifications}</div>,
@@ -85,9 +84,9 @@ export const Indicadores = () => {
             cell: row => <div>{row.averageScore}</div>,
         }
     
-    ]);
+    ]
 
-    const candidateStatsColums = React.useMemo(() => [
+    const candidateStatsColums = [
         {
             name: 'Mas popular',
             cell: row => <div>{row.mostPopularCertification}</div>,
@@ -112,9 +111,9 @@ export const Indicadores = () => {
             name: 'Puntuacion Promedio',
             cell: row => <div>{row.leastPopularCertificationAverageScore}</div>,
         }
-    ]);
+    ]
 
-    const certificationStatsColums = React.useMemo(() => [
+    const certificationStatsColums = [
         {
             name: 'Certificacion',
             cell: row => <div>{row.name}</div>,
@@ -139,9 +138,9 @@ export const Indicadores = () => {
             name: 'Entregados (%)',
             cell: row => <div>{row.passPercentage}</div>,
         },
-    ]);
+    ]
 
-    const academyStatsColums = React.useMemo(() => [
+    const academyStatsColums = [
         {
             name: 'Academia',
             cell: row => <div>{row.name}</div>,
@@ -162,14 +161,34 @@ export const Indicadores = () => {
             name: 'Entregados (%)',
             cell: row => <div>{row.passPercentage}</div>,
         },
-    ]);
+    ]
 
-    const gestorStatsColums = React.useMemo(() => [
+    const gestorStatsColums = [
         {
             name: 'Nombre',
-            cell: row => <div>{row[0]}</div>,
+            cell: row => <div>{row.fullName}</div>,
         },
-    ]);
+        {
+            name: 'No. Candidaturas',
+            cell: row => <div>{row.totalCandidates}</div>,
+        },
+        {
+            name: 'No. Certificaciones',
+            cell: row => <div>{row.totalCertifications}</div>,
+        },
+        {
+            name: 'Puntaje Promedio',
+            cell: row => <div>{row.averageScore}</div>,
+        },
+        {
+            name: 'Pendientes (%)',
+            cell: row => <div>{row.failPercentage}</div>,
+        },
+        {
+            name: 'Entregados (%)',
+            cell: row => <div>{row.passPercentage}</div>,
+        },
+    ]
 
    
     useEffect(() => {

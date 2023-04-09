@@ -60,7 +60,7 @@ export const AllCertifications = () => {
         {
             name: 'Acciones',
             cell: row =>
-            <div><Link to={`/certification`}><Button variant="primary">Ver</Button></Link></div>,
+            <div><Link to={`/certification/${row[0]}`}><Button variant="primary">Ver</Button></Link></div>,
             
             rigth: true
         }
@@ -82,6 +82,7 @@ export const AllCertifications = () => {
         <>
             <Container className='px-5 mt-3'>
                 <h2 className='text-center' style={{ color: "#002e60" }}>Certificaciones</h2>
+                <br />
                 <Card>
                     <Card.Header>
                         <Card.Title as="h5">
@@ -102,7 +103,7 @@ export const AllCertifications = () => {
                         <DataTable
                             columns={columns}
                             data={filtrado}
-                            noDataComponent="No hay candidatos"
+                            noDataComponent="No hay certificaciones registradas"
                             pagination
                             paginationComponentOptions={{
                                 rowsPerPageText: 'Filas por página:',

@@ -1,26 +1,106 @@
-import React from 'react'
-import { Col, Container, Figure, Row, Button } from 'react-bootstrap'
+import React, {useState, useEffect} from 'react'
+import { Col, Container, Figure, Row, Button, Card } from 'react-bootstrap'
 import Buttons from '../../shared/components/Buttons'
+import { Link, useParams } from 'react-router-dom'
+import AxiosClient from '../../shared/http-client.gateway';
+import DataTable from "react-data-table-component";
+
 
 export const Certifier = () => {
+    const [certifications, setCertifications] = useState([]);
+    const [payload, setPayload] = useState([]);
+    const {certifier} = useParams();
+
+    const getCertifications = async () => {
+        try {
+            const data = await AxiosClient.doPost(`/certification/person/${certifier}`, {});
+            console.log(data.data.data)
+            setCertifications(data.data.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getCertifier =  () => {
+        console.log(certifier)
+        try {
+            AxiosClient.doGet(`/person/one/${certifier}`, {})
+            .then((res) => {
+                console.log(res.data.data)
+                setPayload(res.data.data)
+                getCertifications();
+            })   
+        } catch (error) {
+            
+        }
+    }
+
+
+    useEffect(() => {
+        getCertifier();
+    }, [certifier])
+
+    const columns =  [
+        {
+            name: 'Cerefiticación',
+            cell: row => <div>{row.name}</div>,
+        },
+        {
+            name: 'version',
+            cell: row => <div>{row.version}</div>,
+        },
+        {
+            name: 'status',
+            cell: row => {
+                if(row.status === true){
+                    return <div>Activa</div>
+                }else{
+                    return <div>Inactiva</div>
+                }
+            },
+        },
+        {
+            name: 'Accion',
+            cell: row => <div><Link><Button>Ver</Button></Link></div>,
+        },
+    ]
     return (
         <>
             <Container className='px-5 mt-5'>
+            <h2 className='text-center' style={{ color: "#002e60" }}>Certificador</h2>
+            <br />
                 <Row>
-                    <Col className='col-lg-6 col-md-8 col-sm-7'>
-                        <br />
-                        <h4 style={{ color: "#002e60" }}>Certificaciones a cargo</h4>
-                        <div className='text-end mt-1'>
-                            <Button className='ml-auto' style={{ backgroundColor: "#002e60" }}>Agregar</Button>
-                        </div>
-                        <br />
-                        <div className='rounded-3 border border-1 border-secondary w-100' style={{height: "300px"}}>
-                        tabla de certificaciones
+                    <Col className='col-md-5 col-sm-5'>
+                        <div>
+                            <Card >
+                                <Card.Header>
+                                    <Row>
+                                        <Col className='col-md-5 col-sm-4 text-end'>
+                                            <h5 style={{ color: "#002e60" }}>Certificaciones a Cargo</h5>
+                                        </Col>
+                                        <Col className='col-md-4 col-sm-4 text-end'></Col>
+                                        <Col >
+                                            <Button className='ml-auto' style={{ backgroundColor: "#002e60" }}>Agregar</Button>
+                                        </Col>
+                                    </Row>
+                                    
+                                </Card.Header>
+                                <Card.Body>
+                                    <DataTable
+                                        columns={columns}
+                                        data={certifications}
+                                        highlightOnHover
+                                        pagination
+                                        paginationPerPage={2}
+                                        paginationRowsPerPageOptions={[2, 4, 6]}
+                                        
+                                        />
+                                </Card.Body>
+                            </Card>
                         </div>
                     </Col>
-                    <Col className='text-center'>
-                        <h2 style={{ color: "#002e60" }}>Certificador</h2>
-                        <br />
+                    <Col></Col>
+                    <Col className='text-center col-md-6 col-sm-6'>
                         <Figure>
                             <Figure.Image
                                 className='rounded-circle border border-3 border-dark p-4'
@@ -35,7 +115,7 @@ export const Certifier = () => {
                                 Nombre completo
                             </Col>
                             <Col className='mx-4 text-start'>
-                                Ana Belen Velasquez Diaz
+                                {payload.firstName} {payload.lastName}
                             </Col>
                         </Row>
                         <hr />
@@ -44,7 +124,7 @@ export const Certifier = () => {
                                 Correo electrónico
                             </Col>
                             <Col className='mx-4 text-start'>
-                                20213tn149@utez.edu.mx
+                                {payload.email}
                             </Col>
                         </Row>
                         <hr />
@@ -53,7 +133,7 @@ export const Certifier = () => {
                                 Número de teléfono
                             </Col>
                             <Col className='mx-4 text-start'>
-                                772 156 6806
+                                {payload.phoneNumber}
                             </Col>
                         </Row>
                         <br />

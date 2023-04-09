@@ -98,7 +98,7 @@ export const AllAcademis = () => {
                         <DataTable
                             columns={columns}
                             data={filtrado}
-                            noDataComponent="No hay candidatos"
+                            noDataComponent="No hay academias registradas"
                             pagination
                             paginationComponentOptions={{
                                 rowsPerPageText: 'Filas por página:',

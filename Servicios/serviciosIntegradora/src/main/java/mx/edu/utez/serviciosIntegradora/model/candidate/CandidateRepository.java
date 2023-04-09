@@ -22,6 +22,7 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     // Verificar si el candidato ya existe en esa certificacion
     boolean existsByPersonAndCertification(Person person, Certification certification);
 
+    boolean existsByClave(String clave);
     int countAllBy();
 
     int countAllByEstado(Estado estado);

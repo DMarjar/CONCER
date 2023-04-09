@@ -1,10 +1,14 @@
 package mx.edu.utez.serviciosIntegradora.controller.certification;
 
 import mx.edu.utez.serviciosIntegradora.controller.certification.Dtos.CertificationDtos;
+import mx.edu.utez.serviciosIntegradora.controller.certification.Dtos.CertificationRequest;
 import mx.edu.utez.serviciosIntegradora.controller.certification.Dtos.ImageCertificationRequest;
 import mx.edu.utez.serviciosIntegradora.model.academy.Academy;
+import mx.edu.utez.serviciosIntegradora.model.academy.AcademyRepository;
 import mx.edu.utez.serviciosIntegradora.model.certification.Certification;
+import mx.edu.utez.serviciosIntegradora.model.certifyingCompany.CertifyingCompanyRepository;
 import mx.edu.utez.serviciosIntegradora.model.person.Person;
+import mx.edu.utez.serviciosIntegradora.model.person.PersonRepository;
 import mx.edu.utez.serviciosIntegradora.service.certification.CertificationService;
 import mx.edu.utez.serviciosIntegradora.utils.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +27,13 @@ import java.util.List;
 public class CertificationController {
     @Autowired
     private CertificationService service;
+    @Autowired
+    private PersonRepository personRepository;
+    @Autowired
+    private CertifyingCompanyRepository companyRepository;
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Get all
     @GetMapping("/")
@@ -33,14 +44,21 @@ public class CertificationController {
                 HttpStatus.OK);
     }
 
-
-
     // Get one
-    @GetMapping("/one")
+    @PostMapping("/one/{id}")
     // URL: http://localhost:8080/controlCertificaciones/certification/{id}
-    public ResponseEntity<CustomResponse<Certification>> getOne(@RequestBody Certification certification){
+    public ResponseEntity<CustomResponse<List<Object[]>>> getOne(@PathVariable Long id){
         return new ResponseEntity<>(
-                this.service.getOne(certification.getId()),
+                this.service.getOne(id),
+                HttpStatus.OK);
+    }
+
+    //get by person
+    @PostMapping("/person/{id}")
+    // URL: http://localhost:8080/controlCertificaciones/certification/person
+    public ResponseEntity<CustomResponse<List<Certification>>> getByPerson(@PathVariable Long id) {
+        return new ResponseEntity<>(
+                this.service.getByPerson(id),
                 HttpStatus.OK);
     }
 
@@ -52,17 +70,24 @@ public class CertificationController {
                 this.service.getImages(),
                 HttpStatus.OK);
     }
+
+
     // Insert
     @PostMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/certification/
-    public ResponseEntity<CustomResponse<Certification>> insert(@RequestBody CertificationDtos certification, @Valid BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(
-                    new CustomResponse<>(null, true, 400, "The certification already exists"),
-                    HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<CustomResponse<Certification>> insert(@RequestBody CertificationRequest certification) {
+
+        Certification newCertification = new Certification();
+        newCertification.setName(certification.getName());
+        newCertification.setVersion(certification.getVersion());
+        newCertification.setPictureBase64(certification.getPictureBase64());
+        newCertification.setPerson(personRepository.findById(certification.getIdPerson()).get());
+        newCertification.setCompany(companyRepository.findById(certification.getIdCompany()).get());
+        newCertification.setStatus(true);
+
+
         return new ResponseEntity<>(
-                this.service.insert(certification.castToCertification()), HttpStatus.CREATED
+                this.service.insert(newCertification), HttpStatus.CREATED
         );
     }
 
