@@ -42,6 +42,13 @@ public class Person {
     @Enumerated(EnumType.STRING)
     private TypePerson typePerson;
 
+    @Column
+    private String pictureUrl;
+
+    @Transient
+    private String pictureBase64;
+
+
     //Relaciones
 
     /*persona*/
@@ -59,4 +66,28 @@ public class Person {
     @JsonIgnore
     private List<Candidate> candidates;
 
+    public Person(Long id, String firstName, String lastName, String phoneNumber, String email, Gender gender, Boolean status, TypePerson typePerson, User user, String pictureBase64) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.gender = gender;
+        this.status = status;
+        this.typePerson = typePerson;
+        this.user = user;
+        this.pictureBase64 = pictureBase64;
+    }
+
+    public Person(Long id, String firstName, String lastName, String phoneNumber, String email, Gender gender, Boolean status, TypePerson typePerson, User user) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.gender = gender;
+        this.status = status;
+        this.typePerson = typePerson;
+        this.user = user;
+    }
 }

@@ -1,8 +1,9 @@
 import React,{useEffect, useState} from 'react'
-import { Card, Col, Container, Figure, Row } from 'react-bootstrap'
+import { Card, Col, Container, Figure, Row, Button } from 'react-bootstrap'
 import Buttons from '../../shared/components/Buttons'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import AxiosClient from '../../shared/http-client.gateway';
+
 
 export const Certification = () => {
     const [payload, setPayload] = useState([]);
@@ -24,7 +25,7 @@ export const Certification = () => {
 
     return (
         <>
-            <Container className='px-5 mt-3'>
+            <Container className='px-5 mt-3 '>
                 <h2 className='text-center' style={{ color: "#002e60" }}>Certificación</h2>
                 
                 <br />
@@ -79,7 +80,25 @@ export const Certification = () => {
                     </Col>
                 </Row>
                 <br />
-                <Buttons/>
+                <div className='mb-3' style={{ position: "absolute", bottom: 0, width: "90%" }}>
+                    <Row>
+                        <Col className="col-lg-9 col-md-8 col-sm-9">
+                        <Button style={{ width: "110px" }} className="ms-4" variant="warning">
+                            Deshabilitar
+                        </Button>
+                        <Link to={`/editCertification/${certification}`} >
+                        <Button style={{ width: "110px" }} className="ms-4" variant="primary">
+                            Editar
+                        </Button>
+                        </Link>
+                        </Col>
+                        <Col>
+                        <Button style={{ width: "110px" }} variant="danger">
+                            Eliminar
+                        </Button>
+                        </Col>
+                    </Row>
+                </div>
             </Container>
         </>
 

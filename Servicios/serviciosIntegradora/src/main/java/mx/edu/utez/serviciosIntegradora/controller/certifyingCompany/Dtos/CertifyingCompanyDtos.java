@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import mx.edu.utez.serviciosIntegradora.model.certifyingCompany.CertifyingCompany;
 import org.hibernate.validator.constraints.Length;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -20,7 +21,16 @@ public class CertifyingCompanyDtos {
     private String email;
     private String phone;
 
+    private String pictureBase64;
+
     public CertifyingCompany castToCertifyingCompany() {
-        return new CertifyingCompany(this.id, this.name, this.status, this.email, this.phone);
+        return new CertifyingCompany(
+                this.id,
+                this.name,
+                this.status,
+                this.email,
+                this.phone,
+                this.pictureBase64
+        );
     }
 }

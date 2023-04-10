@@ -6,6 +6,7 @@ import mx.edu.utez.serviciosIntegradora.model.person.Person;
 import mx.edu.utez.serviciosIntegradora.model.person.PersonRepository;
 import mx.edu.utez.serviciosIntegradora.model.user.User;
 import mx.edu.utez.serviciosIntegradora.model.user.UserRepository;
+import mx.edu.utez.serviciosIntegradora.service.image.ImageService;
 import mx.edu.utez.serviciosIntegradora.utils.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +31,9 @@ public class PersonService {
     @Autowired
     private PasswordEncoder encoder;
 
+    @Autowired
+    private ImageService imageService;
+
 
     //METODOS---------------------------------------------------------------------------------------------------
 
@@ -38,6 +43,17 @@ public class PersonService {
         if(!this.personRepository.existsById(id)){
             return new CustomResponse<>(null,true,400,"no existe");
         }
+
+        Person person = this.personRepository.findById(id).get();
+
+        if(person.getPictureUrl() != null){
+            try {
+                person.setPictureBase64(this.imageService.getPicture(person.getPictureUrl()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         return new CustomResponse<>(
                 this.personRepository.findById(id).get(),false,200,"ok"
         );
@@ -111,7 +127,15 @@ public class PersonService {
         if((!this.personRepository.existsById(person.getId()))){
             return new CustomResponse<>(null,true,400,"no existe");
         }
+        if (person.getPictureBase64() != null) {
 
+            try {
+                person.setPictureUrl(imageService.savePicture(person.getPictureBase64()));
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         return new CustomResponse<>(
                 this.personRepository.saveAndFlush(person),false,200,"ok"
         );

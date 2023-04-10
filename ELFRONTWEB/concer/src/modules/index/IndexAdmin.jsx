@@ -20,10 +20,13 @@ import NewCertification from '../certification/NewCertification';
 import Company from '../company/Company';
 import NewCompany from '../company/NewCompany';
 import AllAcademis  from '../utez/academy/AllAcademis';
-import Academy from '../utez/academy/Academy';
 import NewAcademy from '../utez/academy/NewAcademy';
 import Menu from '../utez/Menu';
 import NewPerson from '../utez/person/NewPerson';
+import EditAcademy from '../utez/academy/EditAcademy';
+import { EditCertification } from '../certification/EditCertification';
+import EditPerson from '../utez/person/EditPerson';
+import Person from '../utez/person/Person';
 
 
 
@@ -64,17 +67,19 @@ export const IndexAdmin = () => {
                                 <Route path="/certifications" element={<AllCertifications/>}/>
                                 <Route path="/certification/:certification" element={<Certification/>}/>
                                 <Route path="/newCertification" element={<NewCertification/>}/>
+                                <Route path="/editCertification/:certification" element={<EditCertification/>}/>
 
                                 <Route path="/companies" element={<AllCompanies/>}/>
-                                <Route path="/company" element={<Company/>}/>
+                                <Route path="/company/:company" element={<Company/>}/>
                                 <Route path="/newCompany" element={<NewCompany/>}/>
 
                                 <Route path="/utez" element={<Menu/>}/>
 
                                 <Route path="/newAccount" element={<NewPerson/>}/>
+                                <Route path="/editAccount/:account" element={<EditPerson/>}/>
+                                <Route path="/account/:account" element={<Person/>}/>
 
-                                <Route path="/academies" element={<AllAcademis/>}/>
-                                <Route path="/academy" element={<Academy/>} />
+                                <Route path="/editAcademy/:academy" element={<EditAcademy/>} />
                                 <Route path="/newAcademy" element={<NewAcademy/>} />
                             </Routes>
                         </section>

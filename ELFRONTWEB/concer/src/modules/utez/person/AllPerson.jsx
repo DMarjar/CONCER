@@ -61,7 +61,7 @@ export const AllPerson = () => {
         {
             name: 'Acciones',
             cell: row =>
-            <div><Link to={`/academy`}><Button variant="primary">Ver</Button></Link></div>,
+            <div><Link to={`/account/${row.id}`}><Button variant="primary">Ver</Button></Link></div>,
             
             rigth: true
         }
@@ -70,7 +70,7 @@ export const AllPerson = () => {
    
     function Filter(event){
         const newData = Person.filter(row => {
-            return row.name.toLowerCase().includes(event.target.value.toLowerCase())
+            return row.firstName.toLowerCase().includes(event.target.value.toLowerCase()) || row.lastName.toLowerCase().includes(event.target.value.toLowerCase()) || row.email.toLowerCase().includes(event.target.value.toLowerCase()) || row.user.username.toLowerCase().includes(event.target.value.toLowerCase())
         })
         setFiltrado(newData);
     }
@@ -108,7 +108,8 @@ export const AllPerson = () => {
                             }}
                             paginationPerPage={5}
                             paginationRowsPerPageOptions={[5, 10, 15, 20, 25, 30]}
-                            
+                            highlightOnHover
+                            responsive
                             fixedHeader
                         />
                     

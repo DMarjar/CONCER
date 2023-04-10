@@ -241,7 +241,7 @@ export const NewCandidate = () => {
 
                                             <Row>
                                                 <Col className="col-md-12 mb-3">
-                                                    <Button type="submit" disabled={isSubmitting} className="btn btn-primary">Guardar</Button>
+                                                    <Button type="submit" disabled={isSubmitting} className="btn btn-primary">Registrar</Button>
                                                 </Col>
                                             </Row>
                                         </Form>

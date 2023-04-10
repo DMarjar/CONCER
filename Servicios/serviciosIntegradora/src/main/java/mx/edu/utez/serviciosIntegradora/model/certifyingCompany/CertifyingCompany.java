@@ -29,19 +29,32 @@ public class CertifyingCompany {
     @Column
     private String phone;
 
+    @Column
+    private String pictureUrl;
+
+    @Transient
+    private String pictureBase64;
+
     //Relaciones
     /*compañia - certificacion*/
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Certification> certification;
 
-    public CertifyingCompany(Long id, String name, Boolean status, String email, String phone) {
+
+    public CertifyingCompany(Long id, String name, Boolean status, String email, String phone, String pictureBase64) {
         this.id = id;
         this.name = name;
         this.status = status;
         this.email = email;
         this.phone = phone;
+        this.pictureBase64 = pictureBase64;
     }
 
-
+    public CertifyingCompany(String name, String email, String phone, String pictureBase64) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.pictureBase64 = pictureBase64;
+    }
 }

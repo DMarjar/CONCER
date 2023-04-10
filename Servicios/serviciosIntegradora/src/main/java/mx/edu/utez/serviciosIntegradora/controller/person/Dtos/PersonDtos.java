@@ -44,6 +44,8 @@ public class PersonDtos {
 
 
 
+
+
     public Person castToPerson() {
         return new Person(
                 this.id,
@@ -54,9 +56,7 @@ public class PersonDtos {
                 this.gender,
                 this.status,
                 this.typePerson,
-                this.user,
-                null,
-                null
+                this.user
         );
     }
 }

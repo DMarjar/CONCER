@@ -45,6 +45,7 @@ public class AcademyController {
     @PostMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/academy/
     public ResponseEntity<CustomResponse<Academy>> insert(@Valid @RequestBody AcademyDtos academy) {
+        academy.setStatus(true);
         return new ResponseEntity<> (
                 this.service.insert(academy.castToAcademy()),
                 HttpStatus.CREATED

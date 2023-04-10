@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -7,6 +7,16 @@ import { FaUserCircle } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 
 export const NavbarAll = () => {
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+
+        const account = JSON.parse(localStorage.getItem('account'));
+        if(account){
+            setUser(account)
+        }
+    }, []);
+
     return (
         <>
             <Navbar  className='mx-0' style={{ display: 'flex', justifyContent: 'center' }}>
@@ -26,7 +36,7 @@ export const NavbarAll = () => {
                         </Nav.Item>
                         &nbsp;&nbsp;
                         <Nav.Item>
-                            <NavLink to="/profile"><FaUserCircle size={"35"} color="#002e60" /></NavLink>
+                            <NavLink to={`/account/${user.id}`}><FaUserCircle size={"35"} color="#002e60" /></NavLink>
                         </Nav.Item>
                     </Nav>
                 </Container>
