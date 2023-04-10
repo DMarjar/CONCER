@@ -161,7 +161,7 @@ export const EditCertification = () => {
                                             <br />
                                             <input
                                                 type="file"
-                                                className="form-control-file"
+                                                className="form-control"
                                                 id="pictureBase64"
                                                 name="pictureBase64"
                                                 accept="image/*"

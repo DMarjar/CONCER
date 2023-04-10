@@ -5,12 +5,10 @@ import { NavbarAll } from '../../shared/components/Navbar';
 import { AsideAdmin } from '../../shared/components/AsideAdmin';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from '../home/Home';
-import Profile from '../profile/Profile';
 import Candidate from '../candidate/Candidate';
 import Certification from '../certification/Certification';
 import Certifier from '../certifierPerson/Certifier';
 import AllCompanies from '../company/AllCompanies';
-import EditProfile from '../profile/EditProfile';
 import Indicadores from '../indicadores/Indicadores';
 import AllCandidates from '../candidate/AllCandidates';
 import NewCandidate from '../candidate/NewCandidate';
@@ -19,7 +17,6 @@ import AllCertifications from '../certification/AllCertifications';
 import NewCertification from '../certification/NewCertification';
 import Company from '../company/Company';
 import NewCompany from '../company/NewCompany';
-import AllAcademis  from '../utez/academy/AllAcademis';
 import NewAcademy from '../utez/academy/NewAcademy';
 import Menu from '../utez/Menu';
 import NewPerson from '../utez/person/NewPerson';
@@ -52,8 +49,7 @@ export const IndexAdmin = () => {
                         <section className="container-fluid">
                             <Routes>
                                 <Route path="/" element={<Home />} />
-                                <Route path="/profile" element={<Profile />} />
-                                <Route path="/editProfile" element={<EditProfile/>}/>
+
 
                                 <Route path="/indicators" element={<Indicadores/>}/>
 

@@ -27,25 +27,22 @@ const Profile = () => {
             <Card>
                 <Card.Body>
                     <Row className="mb-3">
-                        <Col sm={4} className="text-center mt-5">
+                        <Col sm={4} className="text-center mt-4">
                             {
                                     payload.pictureBase64 === null ?
                                         <div className='text-center' >
                                             <Figure>
                                                 <Figure.Image
                                                     className='rounded-circle border border-3 border-dark p-4'
-                                                    width={181}
-                                                    height={190}
+                                                    width={260}
+                                                    height={260}
                                                     alt="17x1801"
                                                     src="https://cdn-icons-png.flaticon.com/512/666/666201.png"
                                                 />
                                             </Figure>
                                         </div>
                                         :
-                                        <Card className='rounded-3 border border-4 border-secondary text-center bg-light' style={{ height: "203px", width: "300px", color: "black" }}>
-                                            <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="Imagen" style={{ height: "100%", width: "100%", objectFit: "cover" }} />
-                                        </Card>
-
+                                        <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="Imagen" style={{ height: "260px", width: "260px", objectFit: "cover" }} className="img-fluid rounded-circle" />
                             }
                         </Col>
                         <Col sm={8}>
