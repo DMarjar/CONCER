@@ -52,7 +52,7 @@ export const AllCompanies = () => {
         {
             name: 'Acciones',
             cell: row =>
-            <div><Link to={`/company`}><Button variant="primary">Ver</Button></Link></div>,
+            <div><Link to={`/company/${row.id}`}><Button variant="primary">Ver</Button></Link></div>,
             
             rigth: true
         }
@@ -61,7 +61,7 @@ export const AllCompanies = () => {
    
     function Filter(event){
         const newData = candidates.filter(row => {
-            return row[4].toLowerCase().includes(event.target.value.toLowerCase()) || row[5].toLowerCase().includes(event.target.value.toLowerCase()) || row[3].toLowerCase().includes(event.target.value.toLowerCase())
+            return row.name.toLowerCase().includes(event.target.value.toLowerCase()) || row.email.toLowerCase().includes(event.target.value.toLowerCase())
         })
         setFiltrado(newData);
     }
@@ -74,6 +74,7 @@ export const AllCompanies = () => {
         <>
             <Container className='px-5 mt-3'>
                 <h2 className='text-center' style={{ color: "#002e60" }}>Empresas Certificadoras</h2>
+                <br />
                 <Card>
                     <Card.Header>
                         <Card.Title as="h5">
@@ -104,6 +105,8 @@ export const AllCompanies = () => {
                             paginationPerPage={6}
                             paginationRowsPerPageOptions={[6, 12, 18, 24, 30]}
                             fixedHeader
+                            highlightOnHover
+                            responsive
                         />
                     
                         

@@ -94,6 +94,7 @@ export const Certifier = () => {
                                         paginationPerPage={2}
                                         paginationRowsPerPageOptions={[2, 4, 6]}
                                         
+                                        responsive
                                         />
                                 </Card.Body>
                             </Card>

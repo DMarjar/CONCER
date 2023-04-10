@@ -2,6 +2,7 @@ package mx.edu.utez.serviciosIntegradora.controller.person;
 
 import mx.edu.utez.serviciosIntegradora.controller.person.Dtos.PersonDtos;
 import mx.edu.utez.serviciosIntegradora.controller.person.Dtos.PersonRequest;
+import mx.edu.utez.serviciosIntegradora.controller.person.Dtos.UpdatePersonRequest;
 import mx.edu.utez.serviciosIntegradora.model.person.Person;
 import mx.edu.utez.serviciosIntegradora.service.person.PersonService;
 import mx.edu.utez.serviciosIntegradora.utils.CustomResponse;
@@ -30,8 +31,6 @@ public class PersonController {
                 this.service.getOne(id),
                 HttpStatus.OK);
     }
-
-
 
     // Get all
     @GetMapping("/")
@@ -79,6 +78,28 @@ public class PersonController {
         return new ResponseEntity<>(
 
                 this.service.update(person), HttpStatus.OK
+        );
+    }
+
+    @PutMapping("/updateWeb")
+    // URL: http://localhost:8080/controlCertificaciones/person/{id}
+    public ResponseEntity<CustomResponse<Person>> update(@RequestBody UpdatePersonRequest person) {
+        Person updatePerson = new Person();
+
+        updatePerson.setId(person.getId());
+        updatePerson.setFirstName(person.getFirstName());
+        updatePerson.setLastName(person.getLastName());
+        updatePerson.setPhoneNumber(person.getPhoneNumber());
+        updatePerson.setEmail(person.getEmail());
+        updatePerson.setGender(person.getGender());
+        updatePerson.setStatus(true);
+        updatePerson.setTypePerson(person.getTypePerson());
+        updatePerson.setUser(person.getUser());
+        updatePerson.setPictureBase64(person.getPictureBase64());
+
+
+        return new ResponseEntity<>(
+                this.service.update(updatePerson), HttpStatus.OK
         );
     }
 

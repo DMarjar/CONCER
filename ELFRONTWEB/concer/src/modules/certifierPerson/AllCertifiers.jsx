@@ -113,6 +113,8 @@ export const AllCertifiers = () => {
                             paginationPerPage={6}
                             paginationRowsPerPageOptions={[6, 12, 18, 24, 30]}
                             fixedHeader
+                            highlightOnHover
+                            responsive
                         />
                     
                         

@@ -69,7 +69,7 @@ export const AllCertifications = () => {
 
     function Filter(event){
         const newData = Certifications.filter(row => {
-            return row.firstName.toLowerCase().includes(event.target.value.toLowerCase()) || row.lastName.toLowerCase().includes(event.target.value.toLowerCase()) || row.email.toLowerCase().includes(event.target.value.toLowerCase())
+            return row[1].toLowerCase().includes(event.target.value.toLowerCase()) || row[2].toLowerCase().includes(event.target.value.toLowerCase()) || row[4].toLowerCase().includes(event.target.value.toLowerCase()) || row[3].toLowerCase().includes(event.target.value.toLowerCase())
         })
         setFiltrado(newData);
     }
@@ -113,6 +113,8 @@ export const AllCertifications = () => {
                             paginationPerPage={6}
                             paginationRowsPerPageOptions={[6, 12, 18, 24, 30]}
                             fixedHeader
+                            highlightOnHover
+                            responsive
                         />
                     
                         

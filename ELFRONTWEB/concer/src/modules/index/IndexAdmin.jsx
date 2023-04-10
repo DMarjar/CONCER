@@ -5,12 +5,10 @@ import { NavbarAll } from '../../shared/components/Navbar';
 import { AsideAdmin } from '../../shared/components/AsideAdmin';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from '../home/Home';
-import Profile from '../profile/Profile';
 import Candidate from '../candidate/Candidate';
 import Certification from '../certification/Certification';
 import Certifier from '../certifierPerson/Certifier';
 import AllCompanies from '../company/AllCompanies';
-import EditProfile from '../profile/EditProfile';
 import Indicadores from '../indicadores/Indicadores';
 import AllCandidates from '../candidate/AllCandidates';
 import NewCandidate from '../candidate/NewCandidate';
@@ -19,11 +17,13 @@ import AllCertifications from '../certification/AllCertifications';
 import NewCertification from '../certification/NewCertification';
 import Company from '../company/Company';
 import NewCompany from '../company/NewCompany';
-import AllAcademis  from '../utez/academy/AllAcademis';
-import Academy from '../utez/academy/Academy';
 import NewAcademy from '../utez/academy/NewAcademy';
 import Menu from '../utez/Menu';
 import NewPerson from '../utez/person/NewPerson';
+import EditAcademy from '../utez/academy/EditAcademy';
+import { EditCertification } from '../certification/EditCertification';
+import EditPerson from '../utez/person/EditPerson';
+import Person from '../utez/person/Person';
 
 
 
@@ -49,8 +49,7 @@ export const IndexAdmin = () => {
                         <section className="container-fluid">
                             <Routes>
                                 <Route path="/" element={<Home />} />
-                                <Route path="/profile" element={<Profile />} />
-                                <Route path="/editProfile" element={<EditProfile/>}/>
+
 
                                 <Route path="/indicators" element={<Indicadores/>}/>
 
@@ -64,17 +63,19 @@ export const IndexAdmin = () => {
                                 <Route path="/certifications" element={<AllCertifications/>}/>
                                 <Route path="/certification/:certification" element={<Certification/>}/>
                                 <Route path="/newCertification" element={<NewCertification/>}/>
+                                <Route path="/editCertification/:certification" element={<EditCertification/>}/>
 
                                 <Route path="/companies" element={<AllCompanies/>}/>
-                                <Route path="/company" element={<Company/>}/>
+                                <Route path="/company/:company" element={<Company/>}/>
                                 <Route path="/newCompany" element={<NewCompany/>}/>
 
                                 <Route path="/utez" element={<Menu/>}/>
 
                                 <Route path="/newAccount" element={<NewPerson/>}/>
+                                <Route path="/editAccount/:account" element={<EditPerson/>}/>
+                                <Route path="/account/:account" element={<Person/>}/>
 
-                                <Route path="/academies" element={<AllAcademis/>}/>
-                                <Route path="/academy" element={<Academy/>} />
+                                <Route path="/editAcademy/:academy" element={<EditAcademy/>} />
                                 <Route path="/newAcademy" element={<NewAcademy/>} />
                             </Routes>
                         </section>

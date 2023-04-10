@@ -42,7 +42,7 @@ public class CertificationService {
         );
     }
 
-    //getWhitImages
+    //getAll Whit Images
     @Transactional
     public CustomResponse<List<Certification>> getImages() throws IOException {
         List<Certification> images = this.Repository.findAll();
@@ -76,6 +76,14 @@ public class CertificationService {
         );
     }
 
+    //get by company
+    @Transactional(readOnly = true)
+    public CustomResponse<List<Certification>> getByCompany(Long id){
+        return new CustomResponse<>(
+                this.Repository.findCertificationsByCompany(id),false,200,"ok"
+        );
+    }
+
     //insert
     @Transactional(rollbackFor = {SQLException.class})
     public CustomResponse<Certification> insert(Certification certification){
@@ -99,9 +107,14 @@ public class CertificationService {
         if((!this.Repository.existsById(certification.getId()))){
             return new CustomResponse<>(null,true,400,"no existe");
         }
-        return new CustomResponse<>(
-                this.Repository.saveAndFlush(certification),false,200,"ok"
-        );
+        try{
+            certification.setPictureUrl(imageService.savePicture(certification.getPictureBase64()));
+            return new CustomResponse<>(
+                    this.Repository.saveAndFlush(certification),false,200,"ok"
+            );
+        } catch (IOException e) {
+            return new CustomResponse<>(null,true,400,"error");
+        }
     }
 
     //actualizar imagen

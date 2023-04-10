@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import AuthContext from "../../auth/AuthContext";
 import AxiosClient from '../../../shared/http-client.gateway';
 import Swal from "sweetalert2";

@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 
 import Home from '../home/Home';
-import Profile from '../profile/Profile';
 
 
 export const IndexGestor = () => {
@@ -32,7 +31,6 @@ export const IndexGestor = () => {
                         <section className="container-fluid">
                             <Routes>
                                 <Route path="/" element={<Home />} />
-                                <Route path="/profile" element={<Profile />} />
                                 <Route path="about" element={<h1>About</h1>} />
                                 <Route path="contact" element={<h1>Contact</h1>} />
                             </Routes>

@@ -69,7 +69,7 @@ export const AllCandidates = () => {
    
     function Filter(event){
         const newData = candidates.filter(row => {
-            return row[4].toLowerCase().includes(event.target.value.toLowerCase()) || row[5].toLowerCase().includes(event.target.value.toLowerCase()) || row[3].toLowerCase().includes(event.target.value.toLowerCase())
+            return row[4].toLowerCase().includes(event.target.value.toLowerCase()) || row[5].toLowerCase().includes(event.target.value.toLowerCase()) || row[3].toLowerCase().includes(event.target.value.toLowerCase()) || row[6].toLowerCase().includes(event.target.value.toLowerCase())
         })
         setFiltrado(newData);
     }
@@ -113,6 +113,8 @@ export const AllCandidates = () => {
                             paginationPerPage={5}
                             paginationRowsPerPageOptions={[5, 10, 15, 20, 25]}
                             fixedHeader
+                            highlightOnHover
+                            responsive
                         />
                     
                         

@@ -1,14 +1,12 @@
 package mx.edu.utez.serviciosIntegradora.controller.certifyingCompany;
 
 import mx.edu.utez.serviciosIntegradora.controller.certifyingCompany.Dtos.CertifyingCompanyDtos;
-import mx.edu.utez.serviciosIntegradora.model.academy.Academy;
 import mx.edu.utez.serviciosIntegradora.model.certifyingCompany.CertifyingCompany;
 import mx.edu.utez.serviciosIntegradora.service.certifyingCompany.CertifyingCompanyService;
 import mx.edu.utez.serviciosIntegradora.utils.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -42,7 +40,8 @@ public class CertifyingCompanyController {
     // Insert
     @PostMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/cerifyingCompany/
-    public ResponseEntity<CustomResponse<CertifyingCompany>> insert(@Valid @RequestBody CertifyingCompanyDtos certifyingCompany) {
+    public ResponseEntity<CustomResponse<CertifyingCompany>> insert(@RequestBody CertifyingCompanyDtos certifyingCompany) {
+        certifyingCompany.setStatus(true);
         return new ResponseEntity<>(
                 this.service.insert(certifyingCompany.castToCertifyingCompany()), HttpStatus.CREATED
         );

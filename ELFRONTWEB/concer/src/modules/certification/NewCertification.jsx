@@ -78,6 +78,12 @@ export const NewCertification = () => {
                         'error'
                     )
                 }
+            }else{
+                Swal.fire({
+                    text: "Se cancelo el registro",
+                    icon: "error",
+                    timer: 2000,
+                });
             }
         })
 
@@ -89,9 +95,6 @@ export const NewCertification = () => {
                 <h2 className='text-center' style={{ color: "#002e60" }}>Agregar Certificacion</h2>
                 <br/>
                 <Card>
-                    <Card.Header>
-                        <h5 className='text-center' style={{ color: "#002e60" }}>Formulario</h5>
-                    </Card.Header>
                     <Card.Body>
                         <Formik
                             initialValues={{
@@ -119,7 +122,7 @@ export const NewCertification = () => {
                             {({ errors, touched, isSubmitting, validateForm }) => (
                                 <Form>
                                     <Row>
-                                        <Col className='col-lg-6 col-md-6 col-sm-6'>
+                                        <Col className='col-12'>
                                             <label htmlFor="name">Nombre de la certificación</label>
                                             <Field
                                                 type="text"
@@ -130,7 +133,10 @@ export const NewCertification = () => {
                                                 <div className="invalid-feedback">{errors.name}</div>
                                             ) : null}
                                         </Col>
-                                        <Col className='col-lg-6 col-md-6 col-sm-6'>
+                                    </Row>
+                                    <br/>
+                                    <Row>
+                                        <Col className='col-12'>
                                             <label htmlFor="version">Versión</label>
                                             <Field
                                                 type="text"
@@ -144,7 +150,7 @@ export const NewCertification = () => {
                                     </Row>
                                     <br/>
                                     <Row>
-                                        <Col className='col-lg-6 col-md-6 col-sm-6'>
+                                        <Col className='col-12'>
                                             <label htmlFor="idCompany">Empresa</label>
                                                 <Field
                                                     as="select"
@@ -160,8 +166,11 @@ export const NewCertification = () => {
                                                     <div className="invalid-feedback">{errors.idCompany}</div>
                                                 ) : null}
                                         </Col>
-                                        <Col className='col-lg-6 col-md-6 col-sm-6'>
-                                            <label htmlFor="idPerson">Gestor</label>
+                                    </Row>
+                                    <br/>
+                                    <Row>
+                                        <Col className='col-12'>
+                                            <label htmlFor="idPerson">Gestor que estara a cargo</label>
                                             <Field
                                                 as="select"
                                                 name="idPerson"
@@ -182,6 +191,7 @@ export const NewCertification = () => {
                                         <Col className='col-lg-12 col-md-12 col-sm-12'>
                                         <div className="form-group">
                                             <label htmlFor="pictureBase64">Imagen</label>
+                                            <br/>
                                             <input
                                                 type="file"
                                                 className="form-control-file"
@@ -221,14 +231,14 @@ export const NewCertification = () => {
                                                     }
                                                 }
                                             />
-                                        <div id="preview" className="text-center">
-                                        {
-                                            payload.pictureBase64 ? (
-                                                <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="preview" className="img-thumbnail" style={{maxHeight:'200px'}} />
-                                            ) : null
-                                        }
-                                    </div>
-                                </div>
+                                            <div id="preview" className="text-center">
+                                            {
+                                                payload.pictureBase64 ? (
+                                                    <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="preview" className="img-thumbnail" style={{maxHeight:'200px'}} />
+                                                ) : null
+                                            }
+                                            </div>
+                                        </div>
                                         </Col>
                                     </Row>
                                     <br/>

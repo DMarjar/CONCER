@@ -71,12 +71,20 @@ public class CertificationController {
                 HttpStatus.OK);
     }
 
+    //get by company
+    @GetMapping("/company/{id}")
+    // URL: http://localhost:8080/controlCertificaciones/certification/company/{id}
+    public ResponseEntity<CustomResponse<List<Certification>>> getByCompany(@PathVariable Long id) {
+        return new ResponseEntity<>(
+                this.service.getByCompany(id),
+                HttpStatus.OK);
+    }
+
 
     // Insert
     @PostMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/certification/
     public ResponseEntity<CustomResponse<Certification>> insert(@RequestBody CertificationRequest certification) {
-
         Certification newCertification = new Certification();
         newCertification.setName(certification.getName());
         newCertification.setVersion(certification.getVersion());
@@ -94,9 +102,18 @@ public class CertificationController {
     // Update
     @PutMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/certification/{id}
-    public ResponseEntity<CustomResponse<Certification>> update(@Valid @RequestBody CertificationDtos certification) {
+    public ResponseEntity<CustomResponse<Certification>> update(@RequestBody CertificationRequest certification) {
+        Certification updateCertification = new Certification();
+        updateCertification.setId(certification.getId());
+        updateCertification.setName(certification.getName());
+        updateCertification.setVersion(certification.getVersion());
+        updateCertification.setPictureBase64(certification.getPictureBase64());
+        updateCertification.setPerson(personRepository.findById(certification.getIdPerson()).get());
+        updateCertification.setCompany(companyRepository.findById(certification.getIdCompany()).get());
+        updateCertification.setStatus(true);
+
         return new ResponseEntity<>(
-                this.service.update(certification.castToCertification()), HttpStatus.OK
+                this.service.update(updateCertification), HttpStatus.OK
         );
     }
 

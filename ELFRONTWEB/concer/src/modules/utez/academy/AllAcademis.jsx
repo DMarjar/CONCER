@@ -54,11 +54,18 @@ export const AllAcademis = () => {
             }</div>,
         },
         {
-            name: 'Acciones',
+            name: 'Nombre completo',
             cell: row =>
-            <div><Link to={`/academy`}><Button variant="primary">Ver</Button></Link></div>,
+            <div>{row.fullName}</div>,
             
             rigth: true
+        },
+        {
+            name: 'Acciones',
+            cell: row => <div>
+                <Link to={`/editAcademy/${row.id}`}><Button variant="primary">Editar</Button></Link>
+            </div>,
+            
         }
     
     ]);
@@ -107,7 +114,8 @@ export const AllAcademis = () => {
                             }}
                             paginationPerPage={3}
                             paginationRowsPerPageOptions={[3, 5, 10, 15, 20, 25, 30]}
-                            
+                            highlightOnHover
+                            responsive
                             fixedHeader
                         />
                     

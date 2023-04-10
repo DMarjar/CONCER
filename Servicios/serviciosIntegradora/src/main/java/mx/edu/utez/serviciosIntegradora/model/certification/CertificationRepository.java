@@ -47,4 +47,6 @@ public interface CertificationRepository extends JpaRepository<Certification, Lo
     @Query(nativeQuery = true, value = "select c.*, cc.id as idCompany, cc.company_name, p.id as idPerson, p.first_name, p.last_name from certifications c join certifying_companies cc on c.company_id = cc.id join people p on p.id = c.person_id where c.id = :id")
     List<Object[]> findCertification(@Param("id") Long id);
 
+    @Query(nativeQuery = true, value = "select c.* from certifications c join certifying_companies cc on c.company_id = cc.id where cc.id = :company")
+    List<Certification> findCertificationsByCompany(@Param("company") Long company);
 }
