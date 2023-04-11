@@ -20,19 +20,4 @@ public class CandidateRequest {
     private double puntaje;
     private char grupo;
     private String clave;
-
-    public Candidate castToCandidate() {
-        return new Candidate(
-                this.id,
-                this.estado,
-                this.status,
-                this.idAcademy,
-                this.idCertification,
-                this.idPerson,
-                this.fechaFin,
-                this.puntaje,
-                this.grupo,
-                this.clave
-        );
-    }
 }

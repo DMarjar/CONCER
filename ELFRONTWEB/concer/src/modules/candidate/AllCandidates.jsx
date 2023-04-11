@@ -54,8 +54,11 @@ export const AllCandidates = () => {
         {
             name: 'Gestor',
             cell: row => <div>{row[6]}</div>,
-            
 
+        },
+        {
+            name: 'Estado',
+            cell: row => <div>{row[7]}</div>,
         },
         {
             name: 'Acciones',

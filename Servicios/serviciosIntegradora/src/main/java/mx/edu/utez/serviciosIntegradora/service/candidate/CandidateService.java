@@ -35,11 +35,12 @@ public class CandidateService {
                 this.Repository.findALl(),false,200,"ok"
         );
     }
+
     //getOne
     @Transactional(readOnly = true)
-    public CustomResponse<Candidate> getOne(Long id){
+    public CustomResponse<List<Object[]>> getOne(Long id){
         return new CustomResponse<>(
-                this.Repository.findById(id).get(),false,200,"ok"
+                this.Repository.findCandidateById(id),false,200,"ok"
         );
     }
 
@@ -117,7 +118,7 @@ public class CandidateService {
             try{
                 candidateChangeState.setPictureUrl(imageService.savePicture(candidate.getPicture()));
                 candidateChangeState.setEstado(Estado.ENTREGADO);
-
+                System.out.println("aaaaaaaaaaaaaaaaaaaaaa yaaa");
                 return new CustomResponse<>(
                         this.Repository.saveAndFlush(candidateChangeState),false,200,"ok"
                 );

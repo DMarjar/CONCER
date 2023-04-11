@@ -24,6 +24,10 @@ import EditAcademy from '../utez/academy/EditAcademy';
 import { EditCertification } from '../certification/EditCertification';
 import EditPerson from '../utez/person/EditPerson';
 import Person from '../utez/person/Person';
+import EditCandidate from '../candidate/EditCandidate';
+import EditEstado from '../candidate/EditEstado';
+import Profile from '../profile/Profile';
+import EditCompany from '../company/EditCompany';
 
 
 
@@ -50,12 +54,15 @@ export const IndexAdmin = () => {
                             <Routes>
                                 <Route path="/" element={<Home />} />
 
+                                <Route path="/profile" element={<Profile />} />
 
                                 <Route path="/indicators" element={<Indicadores/>}/>
 
                                 <Route path="/candidates" element={<AllCandidates/>}/>
                                 <Route path="/candidate/:candidatura" element={<Candidate/>}/>
                                 <Route path="/newCandidate" element={<NewCandidate/>}/>
+                                <Route path="/editCandidate/:candidatura" element={<EditCandidate/>}/>
+                                <Route path="/editEstado/:candidatura" element={<EditEstado/>}/>
 
                                 <Route path="/certifiers" element={<AllCertifiers/>}/>
                                 <Route path="/certifier/:certifier" element={<Certifier/>}/>
@@ -68,6 +75,7 @@ export const IndexAdmin = () => {
                                 <Route path="/companies" element={<AllCompanies/>}/>
                                 <Route path="/company/:company" element={<Company/>}/>
                                 <Route path="/newCompany" element={<NewCompany/>}/>
+                                <Route path="/editCompany/:company" element={<EditCompany/>}/>
 
                                 <Route path="/utez" element={<Menu/>}/>
 

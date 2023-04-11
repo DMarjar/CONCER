@@ -19,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.w3c.dom.ls.LSOutput;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -47,9 +48,9 @@ public class CandidateController {
     }
 
     // Get one
-    @GetMapping("/{id}")
+    @PostMapping("/one/{id}")
     // URL: http://localhost:8080/controlCertificaciones/candidate/{id}
-    public ResponseEntity<CustomResponse<Candidate>> getOne(@PathVariable Long id){
+    public ResponseEntity<CustomResponse<List<Object[]>>> getOne(@PathVariable Long id){
         return new ResponseEntity<>(
                 this.service.getOne(id),
                 HttpStatus.OK);
@@ -108,7 +109,9 @@ public class CandidateController {
     @PostMapping("/estado")
     public ResponseEntity<CustomResponse<Candidate>> updateEstado(@RequestBody ImageCandidateRequest candidate){
         System.out.println(candidate.getId());
+        System.out.println(candidate.getPicture());
         return new ResponseEntity<>(
+
                 this.service.updateWithImage(candidate), HttpStatus.OK
         );
     }
@@ -117,9 +120,23 @@ public class CandidateController {
     // Update
     @PutMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/candidate/{id}
-    public ResponseEntity<CustomResponse<Candidate>> update(@Valid  @RequestBody CandidateDtos candidate) {
+    public ResponseEntity<CustomResponse<Candidate>> update(@RequestBody CandidateRequest candidate) {
+
+        Candidate updateCandidate = new Candidate();
+        updateCandidate.setId(candidate.getId());
+
+        updateCandidate.setPerson(this.personService.findById(candidate.getIdPerson()).get());
+        updateCandidate.setCertification(this.certificationService.findById(candidate.getIdCertification()).get());
+        updateCandidate.setAcademy(this.academyService.findById(candidate.getIdAcademy()).get());
+        updateCandidate.setEstado(Estado.PENDIENTE);
+        updateCandidate.setStatus(true);
+        updateCandidate.setFechaFin(candidate.getFechaFin());
+        updateCandidate.setPuntaje(candidate.getPuntaje());
+        updateCandidate.setGrupo(candidate.getGrupo());
+        updateCandidate.setClave(candidate.getClave());
+
         return new ResponseEntity<>(
-                this.service.update(candidate.castToCandidate()), HttpStatus.OK
+                this.service.update(updateCandidate), HttpStatus.OK
         );
     }
 

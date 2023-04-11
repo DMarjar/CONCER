@@ -36,7 +36,7 @@ export const NavbarAll = () => {
                         </Nav.Item>
                         &nbsp;&nbsp;
                         <Nav.Item>
-                            <NavLink to={`/account/${user.id}`}><FaUserCircle size={"35"} color="#002e60" /></NavLink>
+                            <NavLink to={`/profile`}><FaUserCircle size={"35"} color="#002e60" /></NavLink>
                         </Nav.Item>
                     </Nav>
                 </Container>
