@@ -1,8 +1,7 @@
 import React, {useEffect, useState } from 'react'
-import { Col, Container, Figure, Row,Card } from 'react-bootstrap'
-import Buttons from '../../shared/components/Buttons'
+import { Col, Container, Figure, Row,Card, Button } from 'react-bootstrap'
 import AxiosClient from '../../shared/http-client.gateway';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 
 export const Candidate = () => {
@@ -24,63 +23,77 @@ export const Candidate = () => {
 
     return (
         <>
-            <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>{payload[3]} {payload[4]}</h2>
-                <Row className='mt-4 pt-4'>
+            <Container className='px-5 mt-3 mb-3'>
+                <h2 className='text-center' style={{ color: "#002e60" }}>CANDIDATURA</h2>
+                <Row className='mt-4'>
                     <Col className='col-lg-6 col-md-8 col-sm-7'>
-                        <Row >
-                            <Col className='col-lg-5 col-md-4 col-sm-4'>
-                                Correo
-                            </Col>
-                            <Col>
-                                {payload[6]}
-                            </Col>
-                        </Row>
-                        <hr />
-                        <Row >
-                            <Col className='col-lg-5 col-md-4 col-sm-4'>
-                                Teléfono
-                            </Col>
-                            <Col>
-                                {payload[7]}
-                            </Col>
-                        </Row>
-                        <hr />
-                        <Row >
-                            <Col className='col-lg-5 col-md-4 col-sm-4'>
-                                Tipo de candidato
-                            </Col>
-                            <Col>
-                                {payload[8]}
-                            </Col>
-                        </Row>
-                        <hr />
-                        <Row >
-                            <Col className='col-lg-5 col-md-4 col-sm-4'>
-                                Fecha
-                            </Col>
-                            <Col>
-                                {payload[18]}
-                            </Col>
-                        </Row>
-                        <hr />
-                        <Row >
-                            <Col className='col-lg-5 col-md-4 col-sm-4'>
-                                Grupo
-                            </Col>
-                            <Col>
-                                {payload[16]}
-                            </Col>
-                        </Row>
-                        <hr />
-                        <Row >
-                            <Col className='col-lg-5 col-md-4 col-sm-4'>
-                                División / Academia
-                            </Col>
-                            <Col>
-                                {payload[9]}
-                            </Col>
-                        </Row>
+                        <Card>
+                            <Card.Header>
+                                <h4 className='text-center' style={{ color: "#002e60" }}>Datos personales</h4>
+                            </Card.Header>
+                            <Card.Body>
+                                <Row >
+                                    <Col className='col-md-6'>
+                                        Nombre
+                                    </Col>
+                                    <Col>
+                                        {payload[3]}
+                                    </Col>
+                                    
+                                </Row>
+                                <hr />
+                                <Row >
+                                    <Col className='col-md-6'>
+                                        Apellidos
+                                    </Col>
+                                    <Col>
+                                        {payload[4]}
+                                    </Col>
+                                </Row>
+                                <hr />
+                                <Row >
+                                    <Col className='col-md-6'>
+                                        telefono
+                                    </Col>
+                                    <Col>
+                                        {payload[7]}
+                                    </Col>
+                                </Row>
+                                <hr />
+                                <Row >
+                                    <Col className='col-md-6'>
+                                        Correo
+                                    </Col>
+                                    <Col>
+                                        {payload[6]}
+                                    </Col>
+                                </Row>
+                                <hr />
+                                <Row >
+                                    <Col className='col-md-6'>
+                                        Tipo de persona
+                                    </Col>
+                                    <Col>
+                                        {payload[8]}
+                                    </Col>
+                                </Row>
+                                <hr />
+                                <Row >
+                                    <Col className='col-md-6'>
+                                        Genero
+                                    </Col>
+                                    <Col>
+                                        {payload[5]}
+                                    </Col>
+                                </Row>
+                                <hr />
+                                <Row >
+                                    <Col className='text-right'>
+                                        <Link to={`/editAccount/${payload[2]}`} className='btn btn-primary'>Editar datos personales</Link>
+                                    </Col>
+                                </Row>
+                            </Card.Body>
+                        </Card>
                     </Col>
                     <Col className='col-lg-6 col-md-4 col-sm-5'>
                         <Row className='justify-content-center'>
@@ -90,63 +103,119 @@ export const Candidate = () => {
                                         <div className='text-center' >
                                             <Figure>
                                                 <Figure.Image
-                                                    className='rounded-circle border border-3 border-dark p-4'
-                                                    width={181}
-                                                    height={190}
-                                                    alt="171x180"
-                                                    src="https://cdn-icons-png.flaticon.com/512/666/666201.png"
+                                                        className='rounded-circle border border-3 border-dark p-4 mt-5'
+                                                        width={260}
+                                                        height={260}
+                                                        alt="171x180"
+                                                        src="https://cdn-icons-png.flaticon.com/512/666/666201.png"
                                                 />
                                             </Figure>
                                         </div>
-                                   
                                         :
-                                        <Card className='rounded-3 border border-4 border-secondary text-center bg-light' style={{ height: "203px", width: "300px", color: "black" }}>
+                                        <Card className='rounded-3 border border-4 border-secondary text-center bg-light mt-5' style={{ height: "260px", width: "300px", color: "black" }}>
                                             <img src={`data:image/png;base64, ${payload[19]}`} alt="Imagen" style={{ height: "100%", width: "100%", objectFit: "cover" }} />
                                         </Card>
-
                                 }
-                            
                             </div>
-                        </Row>
-
-                        <br />
-                        <Row >
-                            <Col className='col-lg-6 col-md-4 col-sm-4 text-end'>
-                                Nombre de la certificación
-                            </Col>
-                            <Col className='mx-4'>
-                                {payload[11]}
-                            </Col>
-                        </Row>
-                        <hr />
-                        <Row className='mt-2'>
-                            <Col className='col-lg-6 col-md-4 col-sm-4 text-end'>
-                                Clave de la certificación
-                            </Col>
-                            <Col className='mx-4'>
-                                {payload[15]}
-                            </Col>
-                        </Row>
-                        <hr />
-                        <Row className='mt-2'>
-                            <Col className='col-lg-6 col-md-4 col-sm-4 text-end'>
-                                Estado
-                            </Col>
-                            <Col className='mx-4'>
-                                {payload[10]}
-                            </Col>
                         </Row>
                     </Col>
                 </Row>
                 <br />
-                <Row className='justify-content-center'>
-                
-
+                <Row>
+                    <Col className='col-lg-12'>
+                        <Card>
+                            <Card.Header>
+                                <h4 className='text-center' style={{ color: "#002e60" }}>Datos de la candidatura</h4>
+                            </Card.Header>
+                            <Card.Body>
+                                <Row className='text-center'>
+                                    <Col >
+                                        {payload[10]}
+                                    </Col>
+                                </Row>
+                                <hr />
+                                <Row >
+                                    <Col className='col-md-3'>
+                                        certificacion
+                                    </Col>
+                                    <Col className='col-md-3 text-center'>
+                                        {payload[11]}
+                                    </Col>
+                                    <Col className='col-md-3'>
+                                        Verison
+                                    </Col>
+                                    <Col className='col-md-3 text-center'>
+                                        {payload[12]}
+                                    </Col>
+                                </Row>
+                                <hr />
+                                <Row>
+                                    <Col className='col-md-3'>
+                                        Empresa
+                                    </Col>
+                                    <Col className='col-md-3 text-center'>
+                                        {payload[13]}
+                                    </Col>
+                                    <Col className='col-md-3'>
+                                        Clave
+                                    </Col>
+                                    <Col className='col-md-3 text-center'>
+                                        {payload[15]}
+                                    </Col>
+                                </Row>
+                                <hr />
+                                <Row>
+                                    <Col className='col-md-3'>
+                                        Gestor
+                                    </Col>
+                                    <Col className='col-md-3 text-center'>
+                                        {payload[14]}
+                                    </Col>
+                                    <Col className='col-md-3'>
+                                        Fecha en que concluyo
+                                    </Col>
+                                    <Col className='col-md-3 text-center'>
+                                        {payload[18]}
+                                    </Col>
+                                </Row>
+                                <hr />
+                                <Row>
+                                    <Col className='col-md-3'>
+                                        Grupo
+                                    </Col>
+                                    <Col className='col-md-3 text-center'>
+                                        {payload[16]}
+                                    </Col>
+                                    <Col className='col-md-3'>
+                                        Puntaje final
+                                    </Col>
+                                    <Col className='col-md-3 text-center'>
+                                        {payload[17]}
+                                    </Col>
+                                </Row>
+                                <hr />
+                                <Row>
+                                    <Col className='col-md-3'>
+                                        <Link to={`/editCandidate/${candidatura}`} className='btn btn-primary'>Editar datos de la candidatura</Link>
+                                    </Col>
+                                    {
+                                        payload[10] === "ENTREGADO" ?
+                                            <>
+                                                
+                                            </>
+                                            :
+                                            <Col className='col-md-3'>
+                                                <Link to={`/editEstado/${candidatura}`} className='btn btn-primary'>Actualizar Estado</Link>
+                                            </Col>
+                                    }
+                                    
+                                </Row>
+                            </Card.Body>
+                        </Card>
+                    </Col>
                 </Row>
-
+                <br />
             </Container>
-            <br />
-            <Buttons />
         </>
     )
 }

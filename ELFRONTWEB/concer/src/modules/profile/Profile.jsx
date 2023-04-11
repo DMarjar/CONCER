@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Figure, Row } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
-import AxiosClient from "../../../shared/http-client.gateway";
+import AxiosClient from "../../shared/http-client.gateway";
 
-const Person = () => {
+const Profile = () => {
     const [payload, setPayload] = useState({});
-    const { account } = useParams();
+    const [account, setAccount] = useState();
+
+    const getAccount = () => {
+        const account = JSON.parse(localStorage.getItem("account"));
+        setAccount(account.id);
+    };
+
 
     const getPerson = async () => {
         try {
@@ -18,6 +24,7 @@ const Person = () => {
     };
 
     useEffect(() => {
+        getAccount();
         getPerson();
     }, [account]);
 
@@ -133,4 +140,4 @@ const Person = () => {
     );
 };
 
-export default Person;
+export default Profile;

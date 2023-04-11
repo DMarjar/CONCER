@@ -22,11 +22,14 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     // Verificar si el candidato ya existe en esa certificacion
     boolean existsByPersonAndCertification(Person person, Certification certification);
 
+    @Query (nativeQuery = true, value = "select c.id, c.estado,c.status,c.fecha_fin,c.picture_url,c.puntaje,c.grupo,c.clave, c.person_id,c.academy_id,c.certification_id from candidates c where c.id = :id")
+    List<Object[]> findCandidateById(@Param("id") Long id);
+
     boolean existsByClave(String clave);
     int countAllBy();
 
     int countAllByEstado(Estado estado);
-    @Query(nativeQuery = true, value = "select certifications.id as idCertificacion, candidates.id as idCandidatura, people.id as idCandidato, certification_name, people.first_name, people.last_name as apellidoCandidato, managers.first_name as manager_name "
+    @Query(nativeQuery = true, value = "select certifications.id as idCertificacion, candidates.id as idCandidatura, people.id as idCandidato, certification_name, people.first_name, people.last_name as apellidoCandidato, managers.first_name as manager_name, candidates.estado as estadoCertificacion "
             + "from certifications "
             + "join candidates on candidates.certification_id = certifications.id "
             + "join people on candidates.person_id = people.id "
@@ -34,7 +37,7 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
             + "where candidates.status = 1 ")
     List<Object[]> findALl();
 
-    @Query(nativeQuery = true, value = "select certifications.id as idCertificacion, candidates.id as idCandidatura, people.id as idCandidato, certification_name, people.first_name, people.last_name as apellidoCandidato, managers.first_name as manager_name "
+    @Query(nativeQuery = true, value = "select certifications.id as idCertificacion, candidates.id as idCandidatura, people.id as idCandidato, certification_name, people.first_name, people.last_name as apellidoCandidato, managers.first_name as manager_name, candidates.estado as estadoCertificacion"
             + "from certifications "
             + "join candidates on candidates.certification_id = certifications.id "
             + "join people on candidates.person_id = people.id "

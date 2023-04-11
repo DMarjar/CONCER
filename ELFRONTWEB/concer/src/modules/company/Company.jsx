@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { Col, Container, Figure, Row, Button, Card } from 'react-bootstrap'
 import Buttons from '../../shared/components/Buttons'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import AxiosClient from '../../shared/http-client.gateway';
 import DataTable from "react-data-table-component";
 
@@ -136,7 +136,25 @@ export const Company = () => {
                 <br />
             </Container>
             <br />
-            <Buttons />
+            <div className='mb-3' style={{ position: "absolute", bottom: 0, width: "90%" }}>
+                    <Row>
+                        <Col lg={9} md={8} sm={9}>
+                            <Button style={{ width: "110px" }} className="ms-4" variant="warning">
+                                Deshabilitar
+                            </Button>
+                            <Link to={`/editCompany/${company}`}>
+                                <Button style={{ width: "110px" }} className="ms-4" variant="primary">
+                                Editar
+                                </Button>
+                            </Link>
+                        </Col>
+                        <Col>
+                            <Button style={{ width: "110px" }} variant="danger">
+                                Eliminar
+                            </Button>
+                        </Col>
+                    </Row>
+            </div>
         </>
     )
 }
