@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -7,19 +7,9 @@ import { FaUserCircle } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 
 export const NavbarAll = () => {
-    const [user, setUser] = useState({})
-
-    useEffect(() => {
-
-        const account = JSON.parse(localStorage.getItem('account'));
-        if(account){
-            setUser(account)
-        }
-    }, []);
-
     return (
         <>
-            <Navbar  className='mx-0' style={{ display: 'flex', justifyContent: 'center' }}>
+            <Navbar className='mx-0' style={{ display: 'flex', justifyContent: 'center' }}>
                 <Container className="mx-0 my-0 px-0 center" style={{ width: "100%" }}>
                     <Navbar.Brand href="http://www.utez.edu.mx/" target={'_blank'} bg="dark">
                         <img
@@ -32,11 +22,11 @@ export const NavbarAll = () => {
                     </Navbar.Brand>
                     <Nav className="justify-content-end mx-0" activeKey="/home">
                         <Nav.Item>
-                            <NavLink to="/"><AiFillHome size={"35"} color="#002e60" /></NavLink>
+                            <NavLink to="/home"><AiFillHome size={"35"} color="#002e60" /></NavLink>
                         </Nav.Item>
                         &nbsp;&nbsp;
                         <Nav.Item>
-                            <NavLink to={`/profile`}><FaUserCircle size={"35"} color="#002e60" /></NavLink>
+                            <NavLink to="/profile"><FaUserCircle size={"35"} color="#002e60" /></NavLink>
                         </Nav.Item>
                     </Nav>
                 </Container>
