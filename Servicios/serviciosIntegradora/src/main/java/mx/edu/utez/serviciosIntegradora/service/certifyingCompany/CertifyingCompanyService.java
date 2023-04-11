@@ -62,6 +62,18 @@ public class CertifyingCompanyService {
         );
     }
 
+    //getImgs
+    @Transactional(readOnly = true)
+    public CustomResponse<List<String>> getImgs() throws IOException {
+        List<String> images = this.Repository.findAllImages();
+        for (int i = 0; i < images.size(); i++) {
+            images.set(i,imageService.getPicture(images.get(i)));
+        }
+        return new CustomResponse<>(
+                images,false,200,"ok"
+        );
+    }
+
     //insert
     @Transactional(rollbackFor = {SQLException.class})
     public CustomResponse<CertifyingCompany> insert(CertifyingCompany company){

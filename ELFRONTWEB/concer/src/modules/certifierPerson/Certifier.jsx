@@ -102,15 +102,24 @@ export const Certifier = () => {
                     </Col>
                     <Col></Col>
                     <Col className='text-center col-md-6 col-sm-6'>
-                        <Figure>
-                            <Figure.Image
-                                className='rounded-circle border border-3 border-dark p-4'
-                                width={181}
-                                height={190}
-                                alt="171x180"
-                                src="https://cdn-icons-png.flaticon.com/512/666/666201.png"
-                            />
-                        </Figure>
+                        {payload.pictureBase64 === null ?
+                            <div className='text-center' >
+                                <Figure>
+                                <Figure.Image
+                                    className='rounded-circle border border-3 border-dark p-4'
+                                    width={200}
+                                    height={200}
+                                    alt="17x1801"
+                                    src="https://cdn-icons-png.flaticon.com/512/666/666201.png"
+                                />
+                                </Figure>
+                            </div>
+                            :
+                            <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="Imagen" style={{ height: "200px", width: "200px", objectFit: "cover" }} className="img-fluid rounded-circle" />
+                        }
+                        <br />
+                        <br />
+
                         <Row >
                             <Col className='col-lg-6 col-md-4 col-sm-4 text-end'>
                                 Nombre completo
@@ -143,7 +152,7 @@ export const Certifier = () => {
                 <br />
             </Container>
             <br />
-            <Buttons/>
+
 
         </>
     )

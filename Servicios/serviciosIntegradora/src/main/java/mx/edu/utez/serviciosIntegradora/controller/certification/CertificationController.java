@@ -65,7 +65,7 @@ public class CertificationController {
     //get images
     @GetMapping("/images")
     // URL: http://localhost:8080/controlCertificaciones/certification/images
-    public ResponseEntity<CustomResponse<List<Certification>>> getImages() throws IOException {
+    public ResponseEntity<CustomResponse<List<String>>> getImages() throws IOException {
         return new ResponseEntity<>(
                 this.service.getImages(),
                 HttpStatus.OK);

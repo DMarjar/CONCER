@@ -5,19 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1930e54-76c7-426d-8e53-5aac1b4e70af" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/home/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/index/IndexAdmin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/index/IndexAdmin.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/index/IndexGestor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/index/IndexGestor.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/index/IndexUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/index/IndexUser.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideAdmin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideAdmin.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideGestor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideGestor.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideUser.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/Navbar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/certification/CertificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/certification/CertificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/certifyingCompany/CertifyingCompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/certifyingCompany/CertifyingCompanyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/certification/CertificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/certification/CertificationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/certifyingCompany/CertifyingCompanyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/certifyingCompany/CertifyingCompanyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/candidate/CandidateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/candidate/CandidateService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/certification/CertificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/certification/CertificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/certifyingCompany/CertifyingCompanyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/certifyingCompany/CertifyingCompanyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/certification/CertificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/certification/CertificationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/candidate/CandidateService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/candidate/CandidateService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/certification/CertificationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/certification/CertificationService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +43,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2M7S4etNLc2xspSL5osozJ6nOsT" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />

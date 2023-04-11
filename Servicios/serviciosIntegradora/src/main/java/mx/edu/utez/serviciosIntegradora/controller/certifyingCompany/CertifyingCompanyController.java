@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -34,6 +35,15 @@ public class CertifyingCompanyController {
     public ResponseEntity<CustomResponse<CertifyingCompany>> getOne(@PathVariable Long id){
         return new ResponseEntity<>(
                 this.service.getOne(id),
+                HttpStatus.OK);
+    }
+
+    //get Images
+    @GetMapping("/images")
+    // URL: http://localhost:8080/controlCertificaciones/certifyingCompany/images
+    public ResponseEntity<CustomResponse<List<String>>> getImages() throws IOException {
+        return new ResponseEntity<>(
+                this.service.getImgs(),
                 HttpStatus.OK);
     }
 

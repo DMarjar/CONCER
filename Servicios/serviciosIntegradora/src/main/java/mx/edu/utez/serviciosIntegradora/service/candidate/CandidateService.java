@@ -118,7 +118,6 @@ public class CandidateService {
             try{
                 candidateChangeState.setPictureUrl(imageService.savePicture(candidate.getPicture()));
                 candidateChangeState.setEstado(Estado.ENTREGADO);
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaa yaaa");
                 return new CustomResponse<>(
                         this.Repository.saveAndFlush(candidateChangeState),false,200,"ok"
                 );

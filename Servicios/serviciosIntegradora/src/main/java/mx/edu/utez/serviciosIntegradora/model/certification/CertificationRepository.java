@@ -17,6 +17,12 @@ public interface CertificationRepository extends JpaRepository<Certification, Lo
     )
     boolean updateStatusById(@Param("id") Long id, @Param("status") boolean status);
 
+    @Query(
+            value = "select picture_url from certifications where status = 1;",
+            nativeQuery = true
+    )
+    List<String> findAllImages();
+
     boolean existsByNameAndVersion(String name, String version);
 
     @Query(nativeQuery = true, value = "select certifications.id as id, certifications.certification_name, certifications.version, people.first_name,certifying_companies.company_name from certifications join people on certifications.person_id = people.id join certifying_companies on certifying_companies.id = company_id")

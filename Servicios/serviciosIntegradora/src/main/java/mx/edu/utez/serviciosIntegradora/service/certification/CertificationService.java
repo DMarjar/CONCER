@@ -44,10 +44,10 @@ public class CertificationService {
 
     //getAll Whit Images
     @Transactional
-    public CustomResponse<List<Certification>> getImages() throws IOException {
-        List<Certification> images = this.Repository.findAll();
-        for (Certification i : images) {
-            i.setPictureBase64(imageService.getPicture(i.getPictureUrl()));
+    public CustomResponse<List<String>> getImages() throws IOException {
+        List<String> images = this.Repository.findAllImages();
+        for (int i = 0; i < images.size(); i++) {
+            images.set(i,imageService.getPicture(images.get(i)));
         }
         return new CustomResponse<>(
                 images,false,200,"ok"
