@@ -85,9 +85,17 @@ public class CertifyingCompanyService {
         if((!this.Repository.existsById(company.getId()))){
             return new CustomResponse<>(null,true,400,"no existe");
         }
-        return new CustomResponse<>(
-                this.Repository.saveAndFlush(company),false,200,"ok"
-        );
+        try{
+            company.setPictureUrl(imageService.savePicture(company.getPictureBase64()));
+            System.out.println(company.getPictureUrl());
+            return new CustomResponse<>(
+                    this.Repository.saveAndFlush(company),false,200,"ok"
+            );
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new CustomResponse<>(null,true,400,"error al guardar la imagen");
+        }
+
     }
 
     //delate

@@ -51,6 +51,7 @@ public class CertifyingCompanyController {
     @PutMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/cerifyingCompany/{id}
     public ResponseEntity<CustomResponse<CertifyingCompany>> update(@Valid @RequestBody CertifyingCompanyDtos certifyingCompany) {
+        certifyingCompany.setStatus(true);
         return new ResponseEntity<>(
                 this.service.update(certifyingCompany.castToCertifyingCompany()), HttpStatus.OK
         );

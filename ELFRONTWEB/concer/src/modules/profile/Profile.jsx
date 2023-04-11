@@ -1,124 +1,143 @@
-import React from 'react'
-import { Col, Container, Figure, Row } from 'react-bootstrap'
+import React, { useEffect, useState } from "react";
+import { Button, Card, Col, Container, Figure, Row } from "react-bootstrap";
+import { useParams, Link } from "react-router-dom";
+import AxiosClient from "../../shared/http-client.gateway";
+
+const Profile = () => {
+    const [payload, setPayload] = useState({});
+    const [account, setAccount] = useState();
+
+    const getAccount = () => {
+        const account = JSON.parse(localStorage.getItem("account"));
+        setAccount(account.id);
+    };
 
 
-export const Profile = () => {
+    const getPerson = async () => {
+        try {
+        const data = await AxiosClient.doGet(`/person/one/${account}`, {});
+        console.log(data.data.data);
+        setPayload(data.data.data);
+        } catch (error) {
+        console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getAccount();
+        getPerson();
+    }, [account]);
 
     return (
-        <>
-            <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>Información básica</h2>
-                <Row className='mt-4 pt-4'>
-                    <Col className='col-lg-7 col-md-8 col-sm-7'>
-                        <Row >
-                            <Col className='col-lg-3 col-md-4 col-sm-4'>
-                                Nombre(s)
-                            </Col>
-                            <Col>
-                                Ana Belen
-                            </Col>
-                        </Row>
-                        <hr />
-                        <Row >
-                            <Col className='col-lg-3 col-md-4 col-sm-4'>
-                                Apellido(s)
-                            </Col>
-                            <Col>
-                                Velasquez Diaz
-                            </Col>
-                        </Row>
-                        <hr />
-                        <Row >
-                            <Col className='col-lg-3 col-md-4 col-sm-4'>
-                                Teléfono
-                            </Col>
-                            <Col>
-                                772 156 6806
-                            </Col>
-                        </Row>
-                        <hr />
-                        <Row >
-                            <Col className='col-lg-3 col-md-4 col-sm-4'>
-                                Correo electrónico
-                            </Col>
-                            <Col>
-                                20213tn149@utez.edu.mx
-                            </Col>
-                        </Row>
-                        <hr />
-                        <Row >
-                            <Col className='col-lg-3 col-md-4 col-sm-4'>
-                                Género
-                            </Col>
-                            <Col>
-                                Femenino
-                            </Col>
-                        </Row>
-                    </Col>
-                    <Col className='text-center'>
-                        <Row className='justify-content-center'>
-                            <div className='rounded-3 border border-4 border-secondary text-center bg-light' style={{ height: "203px", width: "300px", color: "black" }}>
-                                Imagen de la certificación
-                            </div>
-                        </Row>
-                        <br />
-                        <Row className='text-center'>
-                            <h5>Username ?</h5>
-                        </Row>
-                    </Col>
-                </Row>
-            </Container>
+        <Container className="my-3">
+            <h2 className="text-center" style={{ color: "#002e60" }}>{payload.firstName} {payload.lastName}</h2>
+            <br />
+            <Card>
+                <Card.Body>
+                    <Row className="mb-3">
+                        <Col sm={8}>
+                            <Card>
+                                <Card.Header>Informacion de Contacto</Card.Header>
+                                <Card.Body>
+                                    <Row className="mb-2">
+                                        <Col sm={4}>
+                                        <span style={{ fontWeight: "bold" }}>Email:</span>
+                                        </Col>
+                                        <Col sm={8}>
+                                        <span>{payload.email}</span>
+                                        </Col>
+                                    </Row>
+                                    <Row className="mb-2">
+                                        <Col sm={4}>
+                                        <span style={{ fontWeight: "bold" }}>Telefono:</span>
+                                        </Col>
+                                        <Col sm={8}>
+                                        <span>{payload.phoneNumber}</span>
+                                        </Col>
+                                    </Row>
+                                <Row className="mb-2">
+                                    <Col sm={4}>
+                                    <span style={{ fontWeight: "bold" }}>Genero:</span>
+                                    </Col>
+                                    <Col sm={8}>
+                                    <span>{payload.gender}</span>
+                                    </Col>
+                                </Row>
+                                <Row className="mb-2">
+                                    <Col sm={4}>
+                                    <span style={{ fontWeight: "bold" }}>Status:</span>
+                                    </Col>
+                                    <Col sm={8}>
+                                    <span>{payload.status ? "Active" : "Inactive"}</span>
+                                    </Col>
+                                </Row>
+                                <Row className="mb-2">
+                                    <Col sm={4}>
+                                    <span style={{ fontWeight: "bold" }}>Tipo de Persona:</span>
+                                    </Col>
+                                    <Col sm={8}>
+                                    <span>{payload.typePerson}</span>
+                                    </Col>
+                                </Row>
+                                <hr />
+                                <Row className="mb-2">
+                                    <Col sm={4}>
+                                    <Link to={`/editProfile`} className='btn btn-primary'>Editar datos personales</Link>
+                                    </Col>
+                                </Row>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col sm={4} className="text-center mt-4">
+                            {
+                                    payload.pictureBase64 === null ?
+                                        <div className='text-center' >
+                                            <Figure>
+                                                <Figure.Image
+                                                    className='rounded-circle border border-3 border-dark p-4'
+                                                    width={260}
+                                                    height={260}
+                                                    alt="17x1801"
+                                                    src="https://cdn-icons-png.flaticon.com/512/666/666201.png"
+                                                />
+                                            </Figure>
+                                        </div>
+                                        :
+                                        <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="Imagen" style={{ height: "260px", width: "260px", objectFit: "cover" }} className="img-fluid rounded-circle" />
+                            }
+                        </Col>
+                        
 
-            {/* <Container className='px-5 mt-5'>
-            <h4 className='text-center'>Información básica</h4>
-            <Row >
-                <Col className='col-lg-2 col-md-4 col-sm-4'>
-                    Nombre(s)
-                </Col>
-                <Col>
-                    Ana Belen
-                </Col>
-            </Row>
-            <hr />
-            <Row >
-                <Col className='col-lg-2 col-md-4 col-sm-4'>
-                    Apellido(s)
-                </Col>
-                <Col>
-                    Velasquez Diaz
-                </Col>
-            </Row>
-            <hr />
-            <Row >
-                <Col className='col-lg-2 col-md-4 col-sm-4'>
-                    Teléfono
-                </Col>
-                <Col>
-                    772 156 6806
-                </Col>
-            </Row>
-            <hr />
-            <Row >
-                <Col className='col-lg-2 col-md-4 col-sm-4'>
-                    Correo electrónico
-                </Col>
-                <Col>
-                    20213tn149@utez.edu.mx
-                </Col>
-            </Row>
-            <hr />
-            <Row >
-                <Col className='col-lg-2 col-md-4 col-sm-4'>
-                    Género
-                </Col>
-                <Col>
-                    Femenino
-                </Col>
-            </Row>
-            </Container> */}
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Card>
+                                <Card.Header>Usuario</Card.Header>
+                                <Card.Body>
+                                    <Row className="mb-2">
+                                        <Col sm={4}>
+                                        <span style={{ fontWeight: "bold" }}>Username:</span>
+                                        </Col>
+                                        <Col sm={8}>
+                                        <span>{payload.user?.username}</span>
+                                        </Col>
+                                    </Row>
+                                    <Row className="mb-2">
+                                        <Col sm={4}>
+                                            <span style={{ fontWeight: "bold" }}>Role:</span>
+                                        </Col>
+                                        <Col sm={8}>
+                                            <span>{payload.user?.role}</span>
+                                        </Col>
+                                    </Row>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+                </Card.Body>
+            </Card>
+        </Container>
+    );
+};
 
-        </>
-    )
-}
-
-export default Profile
+export default Profile;
