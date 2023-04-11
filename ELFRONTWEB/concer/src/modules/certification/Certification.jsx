@@ -1,90 +1,70 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Card, Col, Container, Figure, Row } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
-import AxiosClient from '../../shared/http-client.gateway';
-import Buttons from '../../shared/components/Buttons';
+import React from 'react'
+import { Col, Container, Figure, Row } from 'react-bootstrap'
+import Buttons from '../../shared/components/Buttons'
 
-const Certification = () => {
-  const [payload, setPayload] = useState([]);
-  const { certification } = useParams();
+export const Certification = () => {
+    return (
+        <>
+            <Container className='px-5 mt-3'>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Certificación</h2>
+                <Row className='pt-2'>
+                    <div className='w-10 rounded-3 border border-4 border-secondary text-center' style={{ height: "300px", color: "black" }}>
+                        Imagen de la certificación
+                    </div>
+                    {/* nombre, version, nombre del personal a cargo.... imagen de la empresa, nombre de la empresa | botones */}
+                </Row>
+                <br />
+                <Row className='pt-2'>
+                    <Col className='col-lg-6 col-md-8 col-sm-7'>
+                        <Row >
+                            <Col className='col-lg-6 col-md-4 col-sm-4'>
+                                Nombre de la certificación
+                            </Col>
+                            <Col>
+                                Microsoft Word Expert
+                            </Col>
+                        </Row>
+                        <hr />
+                        <Row >
+                            <Col className='col-lg-6 col-md-4 col-sm-4'>
+                                Versión
+                            </Col>
+                            <Col>
+                                v1.1
+                            </Col>
+                        </Row>
+                        <hr />
+                        <Row >
+                            <Col className='col-lg-6 col-md-4 col-sm-4'>
+                                Nombre del personal a cargo
+                            </Col>
+                            <Col>
+                                Ing. Jazmin
+                            </Col>
+                        </Row>
+                    </Col>
+                    <Col className='col-lg-6 col-md-4 col-sm-5'>
+                        <div className='w-10 rounded-3 border border-4 border-secondary text-center bg-light' style={{ height: "150px", color: "black" }}>
+                            Imagen de la certificación
+                        </div>
+                        <br />
+                        <Row >
+                            <Col className='col-lg-7 col-md-4 col-sm-4 text-end'>
+                                Nombre de la empresa
+                            </Col>
+                            <Col className='mx-4'>
+                                Microsoft
+                            </Col>
+                        </Row>
+                        <br />
+                    </Col>
+                </Row>
+                <br />
+                <Buttons/>
+            </Container>
+        </>
 
-  const getCertification = async () => {
-    try {
-      const data = await AxiosClient.doPost(`/certification/one/${certification}`, {});
-      console.log(data.data.data[0])
-      setPayload(data.data.data[0]);
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    getCertification();
-  }, [certification])
-
-  return (
-    <Container className='px-5 mt-3'>
-      <h2 className='text-center' style={{ color: '#002e60' }}>Certificación</h2>
-      <br />
-      <br />
-      <br />
-      <br />
-      <Row>
-        <Col lg={6} md={8} sm={12}>
-          <Row>
-            <Col>
-              <h4>Nombre de la certificación</h4>
-              <p>{payload[1]}</p>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <h4>Versión</h4>
-              <p>{payload[3]}</p>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <h4>Nombre del gestor a cargo</h4>
-              <p>{payload[10]} {payload[11]}</p>
-            </Col>
-          </Row>
-          <br />
-          
-        </Col>
-        <Col lg={6} md={8} sm={12}>
-          <Figure>
-            <Figure.Image src={`data:image/png;base64, ${payload[6]}`} width="100%" height="auto" alt="Certification image" />
-            <Figure.Caption className="text-center">
-              <h4>Nombre de la empresa</h4>
-              <p>{payload[8]}</p>
-            </Figure.Caption>
-          </Figure>
-        </Col>
-      </Row>
-
-          <div className='mb-3' style={{ position: "absolute", bottom: 0, width: "90%" }}>
-                    <Row>
-                        <Col lg={9} md={8} sm={9}>
-                            <Button style={{ width: "110px" }} className="ms-4" variant="warning">
-                                Deshabilitar
-                            </Button>
-                            <Link to={`/editCertification/${certification}`}>
-                                <Button style={{ width: "110px" }} className="ms-4" variant="primary">
-                                Editar
-                                </Button>
-                            </Link>
-                        </Col>
-                        <Col>
-                            <Button style={{ width: "110px" }} variant="danger">
-                                Eliminar
-                            </Button>
-                        </Col>
-                    </Row>
-                </div>
-
-    </Container>
-  );
+    )
 }
 
-export default Certification;
+export default Certification

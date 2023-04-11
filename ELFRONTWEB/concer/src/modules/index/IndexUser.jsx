@@ -5,9 +5,12 @@ import { AsideUser } from "../../shared/components/AsideUser";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Home from '../home/Home';
+import Profile from '../profile/Profile';
 
 
 export const IndexUser = () => {
+
+
   return (
     <>
       <div className="container-fluid" >
@@ -25,7 +28,8 @@ export const IndexUser = () => {
           <Col className="col-lg-10 col-md-9 col-sm-9 square border border-bottom-0 m-0">
             <section className="container-fluid">
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="about" element={<h1>About</h1>} />
                 <Route path="contact" element={<h1>Contact</h1>} />
               </Routes>
