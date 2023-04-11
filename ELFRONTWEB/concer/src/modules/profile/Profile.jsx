@@ -82,7 +82,7 @@ const Profile = () => {
                                 <hr />
                                 <Row className="mb-2">
                                     <Col sm={4}>
-                                    <Link to={`/editAccount/${payload.id}`} className='btn btn-primary'>Editar datos personales</Link>
+                                    <Link to={`/editProfile`} className='btn btn-primary'>Editar datos personales</Link>
                                     </Col>
                                 </Row>
                                 </Card.Body>
