@@ -70,18 +70,16 @@ export const Certifier = () => {
             <h2 className='text-center' style={{ color: "#002e60" }}>Certificador</h2>
             <br />
                 <Row>
-                    <Col className='col-md-5 col-sm-5'>
+                    <Col className='col-md-7 col-sm-7'>
                         <div>
                             <Card >
                                 <Card.Header>
                                     <Row>
-                                        <Col className='col-md-5 col-sm-4 text-end'>
+                                        <Col className='col-md-5 col-sm-4 '>
                                             <h5 style={{ color: "#002e60" }}>Certificaciones a Cargo</h5>
                                         </Col>
                                         <Col className='col-md-4 col-sm-4 text-end'></Col>
-                                        <Col >
-                                            <Button className='ml-auto' style={{ backgroundColor: "#002e60" }}>Agregar</Button>
-                                        </Col>
+
                                     </Row>
                                     
                                 </Card.Header>
@@ -100,8 +98,8 @@ export const Certifier = () => {
                             </Card>
                         </div>
                     </Col>
-                    <Col></Col>
-                    <Col className='text-center col-md-6 col-sm-6'>
+
+                    <Col className='text-center col-md-5 col-sm-5'>
                         {payload.pictureBase64 === null ?
                             <div className='text-center' >
                                 <Figure>
@@ -120,40 +118,62 @@ export const Certifier = () => {
                         <br />
                         <br />
 
-                        <Row >
-                            <Col className='col-lg-6 col-md-4 col-sm-4 text-end'>
-                                Nombre completo
-                            </Col>
-                            <Col className='mx-4 text-start'>
-                                {payload.firstName} {payload.lastName}
-                            </Col>
-                        </Row>
-                        <hr />
-                        <Row className='mt-2'>
-                            <Col className='col-lg-6 col-md-4 col-sm-4 text-end'>
-                                Correo electrónico
-                            </Col>
-                            <Col className='mx-4 text-start'>
-                                {payload.email}
-                            </Col>
-                        </Row>
-                        <hr />
-                        <Row className='mt-2'>
-                            <Col className='col-lg-6 col-md-4 col-sm-4 text-end'>
-                                Número de teléfono
-                            </Col>
-                            <Col className='mx-4 text-start'>
-                                {payload.phoneNumber}
-                            </Col>
-                        </Row>
+                        
                         <br />
                     </Col>
                 </Row>
                 <br />
+                <Row>
+                    <Col className='col-md-12'>
+                        <Card>
+                            <Card.Header>
+                                <Row>
+                                    <Col className='col-md-12 col-sm-12 text-center'>
+                                        <h5 style={{ color: "#002e60" }}>Datos Personales</h5>
+                                    </Col>
+                                </Row>
+                            </Card.Header>
+                            <Card.Body>
+                                <Row >
+                                    <Col className='col-lg-6 col-md-4 col-sm-4'>
+                                        Nombre completo:
+                                    </Col>
+                                    <Col className='mx-4 text-start'>
+                                        {payload.firstName} {payload.lastName}
+                                    </Col>
+                                </Row>
+                                <hr />
+                                <Row className='mt-2'>
+                                    <Col className='col-lg-6 col-md-4 col-sm-4 '>
+                                        Correo electrónico:
+                                    </Col>
+                                    <Col className='mx-4 text-start'>
+                                        {payload.email}
+                                    </Col>
+                                </Row>
+                                <hr />
+                                <Row className='mt-2'>
+                                    <Col className='col-lg-6 col-md-4 col-sm-4 '>
+                                        Número de teléfono:
+                                    </Col>
+                                    <Col className='mx-4 text-start'>
+                                        {payload.phoneNumber}
+                                    </Col>
+                                </Row>
+                                <hr />
+                                <Row className='mt-2'>
+                                    <Col className='text-end'>
+                                        <Link to={`/editAccount/${payload.id}`}>
+                                        <Button className='ml-auto' style={{ backgroundColor: "#002e60" }}>Editar Datos Personales</Button>
+                                        </Link>
+                                    </Col>
+                                </Row>
+                            </Card.Body>
+                        </Card>
+                        
+                    </Col>
+                </Row>
             </Container>
-            <br />
-
-
         </>
     )
 }

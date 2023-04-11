@@ -43,6 +43,13 @@ public class CandidateService {
                 this.Repository.findCandidateById(id),false,200,"ok"
         );
     }
+    //get by Manager
+    @Transactional(readOnly = true)
+    public CustomResponse<List<Object[]>> getByManager(Long id){
+        return new CustomResponse<>(
+                this.Repository.findCertificationsByManager(id),false,200,"ok"
+        );
+    }
 
     //Certifications PENDIENTEs
     @Transactional(readOnly = true)

@@ -37,10 +37,10 @@ const AsideGestor = () => {
             <Nav className='px-3 py-2 mt-3 text-center'><h4 style={{ color: "#002e60" }}>Control de certificaciones</h4></Nav>
             <hr className='mt-1' />
             <Row className='pb-2'>
-                <NavLink style={{ textDecoration: 'none', color: 'black' }} className='pt-1 px-3' href="/indicators"><VscGraph size={"35"} color="#002e60" />&nbsp; Estadisticas</NavLink>
+                <NavLink style={{ textDecoration: 'none', color: 'black' }} className='pt-1 px-3' to="/indicators"><VscGraph size={"35"} color="#002e60" />&nbsp; Estadisticas</NavLink>
             </Row>
             <Row className='pb-2'>
-                <NavLink style={{ textDecoration: 'none', color: 'black' }} className='pt-1 px-3' href="/candidates"><IoIosPeople size={"35"} color="#002e60" />&nbsp; Candidatos </NavLink>
+                <NavLink style={{ textDecoration: 'none', color: 'black' }} className='pt-1 px-3' to="/candidates"><IoIosPeople size={"35"} color="#002e60" />&nbsp; Candidatos </NavLink>
             </Row>
 
             <Col className='mb-3' style={{ position: "absolute", bottom: "0", left: "50%", transform: "translate(-50%, 0)" }}>

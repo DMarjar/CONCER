@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Figure, Row } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 import AxiosClient from "../../shared/http-client.gateway";
+import DataTable from "react-data-table-component";
 
 const Profile = () => {
     const [payload, setPayload] = useState({});
@@ -11,6 +12,8 @@ const Profile = () => {
         const account = JSON.parse(localStorage.getItem("account"));
         setAccount(account.id);
     };
+
+        
 
 
     const getPerson = async () => {
@@ -79,12 +82,20 @@ const Profile = () => {
                                     <span>{payload.typePerson}</span>
                                     </Col>
                                 </Row>
-                                <hr />
-                                <Row className="mb-2">
-                                    <Col sm={4}>
-                                    <Link to={`/editProfile`} className='btn btn-primary'>Editar datos personales</Link>
-                                    </Col>
-                                </Row>
+                                {
+                                    payload.user?.role === "USER" ? (<><br/><br/></>) : (
+                                        <>
+                                            <hr />
+                                            <Row className="mb-2">
+                                                <Col sm={4}>
+                                                <Link to={`/editAccount/${payload.id}`} className='btn btn-primary'>Editar datos personales</Link>
+                                                </Col>
+                                            </Row>
+                                        </>
+                                    )
+
+                                }
+                                
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -136,6 +147,25 @@ const Profile = () => {
                     </Row>
                 </Card.Body>
             </Card>
+            {
+                payload.user?.role === "GESTOR" ?
+                    (
+                        <>
+                        
+                        </>
+                    ) 
+                    : payload.user?.role === "USER" ?
+                        (
+                            <>
+                            </>
+                        )
+                        :
+                        (
+                            <>
+                            </>
+                        )
+
+            }
         </Container>
     );
 };

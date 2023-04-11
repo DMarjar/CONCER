@@ -64,11 +64,15 @@ export const Company = () => {
                 <Row>
                     <Col className='col-lg-6 col-md-8 col-sm-7'>
                         <br />
-                        <div className='text-end mt-1'>
+                        <div className='text-center mt-1'>
                             <Card>
                                 <Card.Header>
                                     <Card.Title>
-                                        Certificaciones
+                                        <Row>
+                                            <Col className='col-12'>
+                                                <h5>Certificaciones</h5>
+                                            </Col>
+                                        </Row>
                                     </Card.Title>
                                 </Card.Header>
                                 <Card.Body>

@@ -100,19 +100,19 @@ export const Candidate = () => {
                             <div  style={{ height: "203px", width: "300px", color: "black" }}>                            
                                 {
                                     payload[19] === "" ?
-                                        <div className='text-center' >
+                                        <div className='text-center mt-5' >
                                             <Figure>
                                                 <Figure.Image
                                                         className='rounded-circle border border-3 border-dark p-4 mt-5'
-                                                        width={260}
-                                                        height={260}
+                                                        width={300}
+                                                        height={300}
                                                         alt="171x180"
                                                         src="https://cdn-icons-png.flaticon.com/512/666/666201.png"
                                                 />
                                             </Figure>
                                         </div>
                                         :
-                                        <Card className='rounded-3 border border-4 border-secondary text-center bg-light mt-5' style={{ height: "260px", width: "300px", color: "black" }}>
+                                        <Card className='rounded-3 border border-4 border-secondary text-center bg-light mt-5' style={{ height: "300px", width: "300px", color: "black" }}>
                                             <img src={`data:image/png;base64, ${payload[19]}`} alt="Imagen" style={{ height: "100%", width: "100%", objectFit: "cover" }} />
                                         </Card>
                                 }
@@ -195,18 +195,19 @@ export const Candidate = () => {
                                 </Row>
                                 <hr />
                                 <Row>
-                                    <Col className='col-md-3'>
-                                        <Link to={`/editCandidate/${candidatura}`} className='btn btn-primary'>Editar datos de la candidatura</Link>
-                                    </Col>
-                                    {
-                                        payload[10] === "ENTREGADO" ?
+                                    {payload[10] === "ENTREGADO" ?
                                             <>
                                                 
                                             </>
                                             :
-                                            <Col className='col-md-3'>
-                                                <Link to={`/editEstado/${candidatura}`} className='btn btn-primary'>Actualizar Estado</Link>
-                                            </Col>
+                                            <>
+                                                <Col className='col-md-3'>
+                                                    <Link to={`/editCandidate/${candidatura}`} className='btn btn-primary'>Editar datos de la candidatura</Link>
+                                                </Col>
+                                                <Col className='col-md-3'>
+                                                    <Link to={`/editEstado/${candidatura}`} className='btn btn-primary'>Actualizar Estado</Link>
+                                                </Col>
+                                            </>
                                     }
                                     
                                 </Row>

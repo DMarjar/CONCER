@@ -56,7 +56,15 @@ public class CandidateController {
                 HttpStatus.OK);
     }
 
-    //aa
+    //get by manager
+    @PostMapping("/manager/{id}")
+    public ResponseEntity<CustomResponse<List<Object[]>>> getByManager(@PathVariable Long id){
+        return new ResponseEntity<>(
+                this.service.getByManager(id),
+                HttpStatus.OK);
+    }
+
+
     //get Information candidaturas
     @PostMapping("/informationEntregadas")
     public  ResponseEntity<CustomResponse<List<Object[]>>> getInformationEntregadas(@RequestBody Person person){
