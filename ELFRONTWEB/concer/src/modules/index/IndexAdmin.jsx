@@ -28,6 +28,7 @@ import EditCandidate from '../candidate/EditCandidate';
 import EditEstado from '../candidate/EditEstado';
 import Profile from '../profile/Profile';
 import EditCompany from '../company/EditCompany';
+import EditProfile from '../profile/EditProfile';
 
 
 
@@ -55,6 +56,7 @@ export const IndexAdmin = () => {
                                 <Route path="/" element={<Home />} />
 
                                 <Route path="/profile" element={<Profile />} />
+                                <Route path="/editProfile" element={<EditProfile />} />
 
                                 <Route path="/indicators" element={<Indicadores/>}/>
 

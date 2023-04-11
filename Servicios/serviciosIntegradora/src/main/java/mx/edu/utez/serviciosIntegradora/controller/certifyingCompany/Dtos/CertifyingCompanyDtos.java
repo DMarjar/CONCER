@@ -20,7 +20,6 @@ public class CertifyingCompanyDtos {
     private Boolean status=true;
     private String email;
     private String phone;
-
     private String pictureBase64;
 
     public CertifyingCompany castToCertifyingCompany() {

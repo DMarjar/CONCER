@@ -47,7 +47,7 @@ export const Company = () => {
         {
             name: 'Estado',
             cell: row => {
-                if(row.status === "ACTIVE"){
+                if(row.status === true){
                     return <div>Activa</div>
                 }else{
                     return <div>Inactiva</div>
