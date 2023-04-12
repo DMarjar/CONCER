@@ -53,7 +53,7 @@ export const NewCertification = () => {
     });
 
 
-    const registrar = async () => {
+    const registrar = async (e) => {
        Swal.fire({
             title: '¿Estas seguro?',
             text: "",
@@ -65,7 +65,13 @@ export const NewCertification = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const data = await AxiosClient.doPost('/certification/', payload);
+                    const data = await AxiosClient.doPost('/certification/', {
+                        name: e.name,
+                        version: e.version,
+                        pictureBase64: payload.pictureBase64,
+                        idPerson: e.idPerson,
+                        idCompany: e.idCompany,
+                    });
                     Swal.fire(
                         'Registrado!',
                         'Se registro correctamente.',
@@ -105,17 +111,7 @@ export const NewCertification = () => {
                             }}
                             validationSchema={validationForm}
                             onSubmit={async (values, { setSubmitting }) => {
-                                setPayload(
-                                    {
-                                        name: values.name,
-                                        version: values.version,
-                                        pictureBase64: payload.pictureBase64,
-                                        idPerson: values.idPerson,
-                                        idCompany: values.idCompany,
-
-                                    }
-                                );
-                                await registrar(payload);
+                                await registrar(values);
                                 setSubmitting(false);
                             }}
                         >

@@ -81,8 +81,9 @@ public class PersonService {
     //getManagers
     @Transactional(readOnly = true)
     public CustomResponse<List<Person>> getCertifiers(){
+        String role = "GESTOR";
         return new CustomResponse<>(
-                this.personRepository.findCertifiers(),false,200,"ok"
+                this.personRepository.findCertifiers(role),false,200,"ok"
         );
     }
 
