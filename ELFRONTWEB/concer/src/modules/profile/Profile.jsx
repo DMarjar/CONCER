@@ -79,12 +79,27 @@ const Profile = () => {
                                     <span>{payload.typePerson}</span>
                                     </Col>
                                 </Row>
-                                <hr />
-                                <Row className="mb-2">
-                                    <Col sm={4}>
-                                    <Link to={`/editProfile`} className='btn btn-primary'>Editar datos personales</Link>
-                                    </Col>
-                                </Row>
+                                
+                                {
+                                    payload.user?.role !== "USER" ? (
+                                        <>
+                                            <hr />
+                                            <Row className="mb-2">
+                                                <Col sm={4}>
+                                                <Link to={`/editProfile`} className='btn btn-primary'>Editar datos personales</Link>
+                                                </Col>
+                                            </Row>
+                                        
+                                        </>
+                                       
+                                    ):(
+                                        <>
+                                            <br />
+                                            para editar sus datos personales debe contactar con su gestor
+                                        </>
+                                    )
+                                }
+                                
                                 </Card.Body>
                             </Card>
                         </Col>
