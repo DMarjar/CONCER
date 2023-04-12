@@ -75,7 +75,7 @@ const Person = () => {
                                 <hr />
                                 <Row className="mb-2">
                                     <Col sm={4}>
-                                    <Link to={`/editAccount/${payload.id}`} className='btn btn-primary'>Editar datos personales</Link>
+                                    <Link to={{pathname:`/editAccount/${payload.id}`, state:{user:{...payload}}}} className='btn btn-primary'>Editar datos personales</Link>
                                     </Col>
                                 </Row>
                                 </Card.Body>

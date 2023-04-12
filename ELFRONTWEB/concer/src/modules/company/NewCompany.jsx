@@ -21,9 +21,14 @@ export const NewCompany = () => {
         phone: Yup.string().required('Este campo no puede estar vacio').min(10, "telefono invalido").max(10, "telefono invalido").matches(/^[0-9]+$/, "telefono invalido"),
     })
     
-    const registrar = async () => {
+    const registrar = async (e) => {
         try {
-            await AxiosClient.doPost('/certifyingCompany/', payload);
+            const data = await AxiosClient.doPost('/certifyingCompany/', {
+                name: e.name,
+                email: e.email,
+                phone: e.phone,
+                pictureBase64: payload.pictureBase64
+            })
             Swal.fire({
                 title: '¡Éxito!',
                 text: 'Se ha registrado la empresa correctamente',
@@ -56,11 +61,7 @@ export const NewCompany = () => {
                     </Card.Header>
                     <Card.Body>
                         <Formik
-                            initialValues={{
-                                name: '',
-                                email: '',
-                                phone: ''
-                            }}
+                            initialValues={payload}
                             validationSchema={validationForm}
                             onSubmit={(values, { setSubmitting }) => {
                                 setSubmitting(false)
@@ -72,14 +73,7 @@ export const NewCompany = () => {
                                     confirmButtonText: 'Si, registrar'
                                 }).then((result) => {
                                     if (result.isConfirmed) {
-                                        setPayload({
-                                            ...payload,
-                                            name: values.name,
-                                            email: values.email,
-                                            phone: values.phone,
-                                            pictureBase64: payload.pictureBase64
-                                        })
-                                        registrar();
+                                        registrar(values)
                                     }else{
                                         Swal.fire({
                                             title: 'Registro cancelado',
@@ -100,6 +94,7 @@ export const NewCompany = () => {
                                                     type="text"
                                                     name="name"
                                                     className={`form-control ${errors.name && touched.name && "is-invalid"}`}
+                                                    
                                                 />
                                                 <div className="invalid-feedback">{errors.name}</div>
                                             </div>
@@ -111,6 +106,7 @@ export const NewCompany = () => {
                                                     type="email"
                                                     name="email"
                                                     className={`form-control ${errors.email && touched.email && "is-invalid"}`}
+                                                    
                                                 />
                                                 <div className="invalid-feedback">{errors.email}</div>
                                             </div>
@@ -125,6 +121,7 @@ export const NewCompany = () => {
                                                     type="text"
                                                     name="phone"
                                                     className={`form-control ${errors.phone && touched.phone && "is-invalid"}`}
+                                                    
                                                 />
                                                 <div className="invalid-feedback">{errors.phone}</div>
                                             </div>

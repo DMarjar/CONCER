@@ -4,13 +4,13 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import AxiosClient from '../../../shared/http-client.gateway';
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useLocation} from 'react-router-dom'
 import Swal from "sweetalert2";
 
 
 
 export const EditPerson = () => {
-    const yup = require('yup');
+
 
     const [payload, setPayload] = useState({
         id: '',
@@ -24,20 +24,13 @@ export const EditPerson = () => {
         user: {}
     });
 
-    const validationSchema = yup.object({
-        firstName: yup.string().required('Requerido'),
-        lastName: yup.string().required('Requerido'),
-        phoneNumber: yup.string().required('Requerido'),
-        email: yup.string().required('Requerido')
-    });
 
+    const { account } = useParams();
 
-    const {account} = useParams();
 
     const getPerson = async () => {
         try {
             const data = await AxiosClient.doGet(`/person/one/${account}`, {});
-            console.log(data.data.data);
             setPayload({
                 id: data.data.data.id,
                 firstName: data.data.data.firstName,
@@ -56,7 +49,7 @@ export const EditPerson = () => {
 
     useEffect(() => {
         getPerson();
-    }, [account]);
+    }, []);
 
     return (
         <>

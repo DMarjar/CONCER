@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -8,6 +8,21 @@ import AxiosClient from '../../../shared/http-client.gateway';
 import Swal from "sweetalert2";
 
 export const NewPerson = () => {
+
+    const [payload, setPayload] = useState({
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+        email: "",
+        gender: "",
+        typePerson: "",
+        user: {
+            username: "",
+            password: "",
+            role: ""
+        }
+    });
+
     const { isRole } = useContext(AuthContext);
     
 
@@ -35,19 +50,7 @@ export const NewPerson = () => {
         <Card>
             <Card.Body>
                     <Formik
-                    initialValues={{
-                        firstName: "",
-                        lastName: "",
-                        phoneNumber: "",
-                        email: "",
-                        gender: "",
-                        typePerson: "",
-                        user: {
-                            username: "",
-                            password: "",
-                            role: "",
-                        },
-                    }}
+                    initialValues={payload}
                     validationSchema={validationForm}
                     onSubmit={(values, { setSubmitting }) => {
                         Swal.fire({
@@ -60,10 +63,8 @@ export const NewPerson = () => {
                             if (result.isConfirmed) {
                                 (async () => {
                                     try {
-                                        const response = await AxiosClient.doPost(
-                                            "/person/",
-                                            values
-                                        );
+                                        console.log(values)
+                                        await AxiosClient.doPost("/person/", values);
                                         Swal.fire({
                                             text: "Se registro correctamente",
                                             icon: "success",
@@ -71,6 +72,7 @@ export const NewPerson = () => {
                                         });
                                         setSubmitting(false);
                                     } catch (error) {
+                                        console.log(error)
                                         Swal.fire({
                                             text: "Error al registrar",
                                             icon: "error",
@@ -177,7 +179,7 @@ export const NewPerson = () => {
                                     >
                                         <option value="" label="" />
                                         <option value="ESTUDIANTE" label="Estudiente" />
-                                        <option value="DOCENTE" label="Profesor" />
+                                        <option value="PROFESOR" label="Profesor" />
                                         <option value="ADMINISTRATIVO" label="Administrativo" />
                                         <option value="EXTERNO" label="Externo" />
                                     </Field>
