@@ -56,7 +56,14 @@ public class CandidateController {
                 HttpStatus.OK);
     }
 
-    //aa
+    //get by certifier
+    @PostMapping("/certifier/{id}")
+    public ResponseEntity<CustomResponse<List<Object[]>>> getByCertifier(@PathVariable Long id){
+        return new ResponseEntity<>(
+                this.service.getByCertifier(id),
+                HttpStatus.OK);
+    }
+
     //get Information candidaturas
     @PostMapping("/informationEntregadas")
     public  ResponseEntity<CustomResponse<List<Object[]>>> getInformationEntregadas(@RequestBody Person person){

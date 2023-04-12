@@ -18,15 +18,15 @@ export const AllCandidates = () => {
                 const data = await AxiosClient.doGet('/candidate/', {});
                 setCandidates(data.data.data);
                 console.log(data.data.data)
-            }else{
-                const data = await AxiosClient.doGet(`/candidate/informationPendientes`, {
-                    id: account.id
-                });
+            }
+            
+            if(account.user.role === "GESTOR"){
+                const data = await AxiosClient.doPost(`/candidate/certifier/${account.id}`, {});
                 setCandidates(data.data.data);
                 setFiltrado(candidates)
             }
         } catch (error) {
-            
+            console.log(error)
         }
     }
 

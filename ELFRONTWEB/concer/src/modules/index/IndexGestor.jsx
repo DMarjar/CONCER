@@ -3,9 +3,18 @@ import React from 'react'
 import NavbarAll from '../../shared/components/Navbar'
 import AsideGestor from '../../shared/components/AsideGestor'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
+import Profile from '../profile/Profile';
+import EditProfile from '../profile/EditProfile';
+import Indicadores from '../indicadores/Indicadores';
 
 import Home from '../home/Home';
+import AllCandidates from '../candidate/AllCandidates';
+import Candidate from '../candidate/Candidate';
+import NewCandidate from '../candidate/NewCandidate';
+import EditCandidate from '../candidate/EditCandidate';
+import EditEstado from '../candidate/EditEstado';
+import EditPerson from '../utez/person/EditPerson';
+import NewPerson from '../utez/person/NewPerson';
 
 
 export const IndexGestor = () => {
@@ -31,8 +40,23 @@ export const IndexGestor = () => {
                         <section className="container-fluid">
                             <Routes>
                                 <Route path="/" element={<Home />} />
-                                <Route path="about" element={<h1>About</h1>} />
-                                <Route path="contact" element={<h1>Contact</h1>} />
+
+                                <Route path="/profile" element={<Profile/>} />
+                                <Route path="/editProfile" element={<EditProfile/>} />
+
+                                <Route path="/indicators" element={<Indicadores/>} />
+
+                                <Route path="/candidates" element={<AllCandidates/>}/>
+                                <Route path="/candidate/:candidatura" element={<Candidate/>}/>
+                                <Route path="/newCandidate" element={<NewCandidate/>}/>
+                                <Route path="/editCandidate/:candidatura" element={<EditCandidate/>}/>
+                                <Route path="/editEstado/:candidatura" element={<EditEstado/>}/>
+                                
+                                <Route path="/editAccount/:account" element={<EditPerson/>}/>
+                                <Route path="/newAccount" element={<NewPerson/>}/>
+
+
+
                             </Routes>
                         </section>
                     </Col>

@@ -12,6 +12,12 @@ export const NewCandidate = () => {
     const [Person, setPerson] = useState([]);
     const [Certificaciones, setCertificaciones] = useState([]);
     const [Academys, setAcademys] = useState([]);
+    const [account, setAccount] = useState([]);
+
+    const getAccount = async () => {
+        const accountJSN = JSON.parse(localStorage.getItem('account'));
+        setAccount(accountJSN);
+    }
 
     const getPerson = async () => {
         try {
@@ -24,20 +30,19 @@ export const NewCandidate = () => {
 
     const getCertificaciones = async () => {
         try {
-            const account = JSON.parse(localStorage.getItem('account'));
 
             if(account.user.role === "ADMIN"){
                 const data = await AxiosClient.doGet('/certification/', {});
                 setCertificaciones(data.data.data);
-            }else{
-                const data = await AxiosClient.doGet(`/certification/person`, {
-                    id: account.id
-                });
+            }
+            
+            if(account.user.role === "GESTOR"){
+                const data = await AxiosClient.doPost(`/certification/person/${account.id}`, {});
                 setCertificaciones(data.data.data);
-                
+                console.log(data.data.data)
             }
         } catch (error) {
-
+            console.log(error)
         }
     }
 
@@ -51,6 +56,7 @@ export const NewCandidate = () => {
     }
 
     useEffect(() => {
+        getAccount();
         getPerson();
         getCertificaciones();
         getAcademys();
@@ -179,10 +185,27 @@ export const NewCandidate = () => {
                                                 <Col className="col-md-6 mb-3">
                                                     <label>Certificación</label>
                                                     <Field as="select" name="idCertification" className="form-control">
-                                                        <option value="">Seleccione una opción</option>
-                                                        {Certificaciones.map((item, index) => (
+                                                            <option value="">Seleccione una opción</option>
+
+                                                        {  account.user?.role === "ADMIN" ? (
+                                                            <>
+                                                            {Certificaciones.map((item, index) => (
                                                             <option key={index} value={item[0]}>{item[1]}</option>
-                                                        ))}
+                                                            ))}
+                                                            </>
+                                                            
+
+                                                            ) : account.user?.role === "GESTOR" ? (
+                                                                <>
+                                                                {Certificaciones.map((item, index) => (
+                                                                <option key={index} value={item.id}>{item.name}</option>
+                                                                ))}
+                                                                </>
+                                                            )   : null
+
+
+                                                        }
+                                                        
                                                     </Field>
                                                     {errors.idCertification && touched.idCertification ? (
                                                         <div className="text-danger">{errors.idCertification}</div>
