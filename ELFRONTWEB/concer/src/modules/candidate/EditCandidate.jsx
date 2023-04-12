@@ -175,8 +175,8 @@ export const EditCandidate = () => {
                                                 as="select"
                                                 name="idPersona"
                                                 className="form-control"
-                                                value={payload.idPersona}
-                                                onChange={(e) => setPayload({...payload, idPersona: e.target.value})}
+                                                value={payload.idPerson}
+                                                onChange={(e) => setPayload({...payload, idPerson: e.target.value})}
                                             >
                                                 <option value="0">Selecciona una opción</option>
                                                 {people.map((item) => (
@@ -193,8 +193,8 @@ export const EditCandidate = () => {
                                                 as="select"
                                                 name="idCertificacion"
                                                 className="form-control"
-                                                value={payload.idCertificacion}
-                                                onChange={(e) => setPayload({...payload, idCertificacion: e.target.value})}
+                                                value={payload.idCertification}
+                                                onChange={(e) => setPayload({...payload, idCertification: e.target.value})}
                                             >
                                                 <option value="0">Selecciona una opción</option>
                                                 {certificaciones.map((certificacion) => (

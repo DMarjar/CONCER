@@ -127,7 +127,7 @@ export const NewCandidate = () => {
                                                         confirmButtonText: 'Aceptar'
                                                     }).then((result) => {
                                                         if (result.isConfirmed) {
-                                                            window.location.href = "/candidate";
+                                                            window.location.href = `/candidate/${data.data.data.id}`;
                                                         }
                                                     })
                                                     setSubmitting(false);
