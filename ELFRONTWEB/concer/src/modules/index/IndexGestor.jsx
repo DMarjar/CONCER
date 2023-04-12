@@ -41,7 +41,9 @@ export const IndexGestor = () => {
                             <Routes>
                                 <Route path="/" element={<Home />} />
 
+
                                 <Route path="/profile" element={<Profile/>} />
+
                                 <Route path="/editProfile" element={<EditProfile/>} />
 
                                 <Route path="/indicators" element={<Indicadores/>} />
@@ -51,9 +53,11 @@ export const IndexGestor = () => {
                                 <Route path="/newCandidate" element={<NewCandidate/>}/>
                                 <Route path="/editCandidate/:candidatura" element={<EditCandidate/>}/>
                                 <Route path="/editEstado/:candidatura" element={<EditEstado/>}/>
+
                                 
                                 <Route path="/editAccount/:account" element={<EditPerson/>}/>
                                 <Route path="/newAccount" element={<NewPerson/>}/>
+
 
 
 

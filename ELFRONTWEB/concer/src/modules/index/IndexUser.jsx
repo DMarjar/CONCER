@@ -5,17 +5,20 @@ import { AsideUser } from "../../shared/components/AsideUser";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Home from '../home/Home';
+
 import Indicadores from "../indicadores/Indicadores";
 import Profile from "../profile/Profile";
 
 
+
 export const IndexUser = () => {
   return (
-    <>
-      <div className="container-fluid" >
-        <Row className="m-0">
-          <NavbarAll />
-        </Row>
+      <>
+          <div className="container-fluid" >
+              <Row className="m-0">
+                <NavbarAll />
+              </Row>
+
 
         <Row className="h-100 square border border-2 border-light " style={{ height: "100vh" }}>
           <Col
@@ -40,5 +43,6 @@ export const IndexUser = () => {
         </Row>
       </div>
     </>
+
   );
 };

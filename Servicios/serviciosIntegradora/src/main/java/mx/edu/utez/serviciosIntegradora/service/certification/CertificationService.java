@@ -34,6 +34,16 @@ public class CertificationService {
                 this.Repository.findAllCertifications(),false,200,"ok"
         );
     }
+
+    //get without images
+    @Transactional(readOnly = true)
+    public CustomResponse<List<Certification>> getAllWithoutImages(){
+        return new CustomResponse<>(
+                this.Repository.findAll(),false,200,"ok"
+        );
+    }
+
+
     //get by person
     @Transactional(readOnly = true)
     public CustomResponse<List<Certification>> getByPerson(Long id){

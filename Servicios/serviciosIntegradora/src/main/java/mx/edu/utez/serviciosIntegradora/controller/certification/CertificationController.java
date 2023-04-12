@@ -44,6 +44,15 @@ public class CertificationController {
                 HttpStatus.OK);
     }
 
+    //get all withou images
+    @GetMapping("/withoutImages")
+    // URL: http://localhost:8080/controlCertificaciones/certification/withoutImages
+    public ResponseEntity<CustomResponse<List<Certification>>> getAllWithoutImages() {
+        return new ResponseEntity<>(
+                this.service.getAllWithoutImages(),
+                HttpStatus.OK);
+    }
+
     // Get one
     @PostMapping("/one/{id}")
     // URL: http://localhost:8080/controlCertificaciones/certification/{id}

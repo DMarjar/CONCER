@@ -30,13 +30,14 @@ export const NewCandidate = () => {
 
     const getCertificaciones = async () => {
         try {
-
-            if(account.user.role === "ADMIN"){
-                const data = await AxiosClient.doGet('/certification/', {});
+            console.log(account.user?.role)
+            if(account.user?.role === "ADMIN"){
+                const data = await AxiosClient.doGet(`/certification/withoutImages`, {});
                 setCertificaciones(data.data.data);
+                console.log(data.data.data)
             }
             
-            if(account.user.role === "GESTOR"){
+            if(account.user?.role === "GESTOR"){
                 const data = await AxiosClient.doPost(`/certification/person/${account.id}`, {});
                 setCertificaciones(data.data.data);
                 console.log(data.data.data)
@@ -60,7 +61,7 @@ export const NewCandidate = () => {
         getPerson();
         getCertificaciones();
         getAcademys();
-    }, []);
+    }, [account]);
             
     /* EL REQUEST DEBE SER ASI
     private Estado estado;
@@ -186,26 +187,9 @@ export const NewCandidate = () => {
                                                     <label>Certificación</label>
                                                     <Field as="select" name="idCertification" className="form-control">
                                                             <option value="">Seleccione una opción</option>
-
-                                                        {  account.user?.role === "ADMIN" ? (
-                                                            <>
-                                                            {Certificaciones.map((item, index) => (
-                                                            <option key={index} value={item[0]}>{item[1]}</option>
-                                                            ))}
-                                                            </>
-                                                            
-
-                                                            ) : account.user?.role === "GESTOR" ? (
-                                                                <>
                                                                 {Certificaciones.map((item, index) => (
                                                                 <option key={index} value={item.id}>{item.name}</option>
-                                                                ))}
-                                                                </>
-                                                            )   : null
-
-
-                                                        }
-                                                        
+                                                                ))}     
                                                     </Field>
                                                     {errors.idCertification && touched.idCertification ? (
                                                         <div className="text-danger">{errors.idCertification}</div>

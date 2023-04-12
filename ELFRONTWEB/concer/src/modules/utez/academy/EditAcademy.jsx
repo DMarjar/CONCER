@@ -3,11 +3,14 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import AxiosClient from '../../../shared/http-client.gateway';
+
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import Swal from "sweetalert2";
 
 
+
 export const EditAcademy = () => {
+
 
     const [Academy, setAcademy] = useState({
         id: '',
@@ -47,6 +50,7 @@ export const EditAcademy = () => {
                     <Card.Body>
                         <Formik
                             initialValues={Academy}
+
                             onSubmit={async (values, { setSubmitting }) => {
                                 Swal.fire({
                                     title: '¿Está seguro?',
@@ -57,6 +61,7 @@ export const EditAcademy = () => {
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         try{
+
                                             const data = AxiosClient.doPut(`/academy/`, Academy);
                                             console.log(data)
                                             Swal.fire(
@@ -82,15 +87,18 @@ export const EditAcademy = () => {
                                 })
                             }}
                         >
+
                             {({ isSubmitting, errors, touched }) => (
                                 <Form>
                                     <Row>
                                         <Col className="col-md-6">
+
                                             <label htmlFor="name">Nombre</label>
                                             <Field
                                                 type="text"
                                                 name="name"
                                                 className="form-control"
+
                                                 value={Academy.name}
                                                 onChange={(e) => setAcademy({ ...Academy, name: e.target.value })}
                                             />
@@ -103,13 +111,16 @@ export const EditAcademy = () => {
                                                 className="form-control"
                                                 value={Academy.fullName}
                                                 onChange={(e) => setAcademy({ ...Academy, fullName: e.target.value })}
+
                                             />
                                         </Col>
                                     </Row>
                                     <br />
                                     <Row>
+
                                         <Col className="col-md-12">
                                             <Button type="submit" variant="primary" className="float-right">Guardar</Button>
+
                                         </Col>
                                     </Row>
                                 </Form>

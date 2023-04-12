@@ -21,7 +21,9 @@ export const AllCandidates = () => {
             }
             
             if(account.user.role === "GESTOR"){
+
                 const data = await AxiosClient.doPost(`/candidate/certifier/${account.id}`, {});
+
                 setCandidates(data.data.data);
                 setFiltrado(candidates)
             }

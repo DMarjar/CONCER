@@ -56,6 +56,7 @@ public class CandidateController {
                 HttpStatus.OK);
     }
 
+
     //get by certifier
     @PostMapping("/certifier/{id}")
     public ResponseEntity<CustomResponse<List<Object[]>>> getByCertifier(@PathVariable Long id){

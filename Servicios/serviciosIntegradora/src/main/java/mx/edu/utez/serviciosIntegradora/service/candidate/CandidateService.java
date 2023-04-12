@@ -43,11 +43,13 @@ public class CandidateService {
                 this.Repository.findCandidateById(id),false,200,"ok"
         );
     }
+
     //get by certifier
     @Transactional(readOnly = true)
     public CustomResponse<List<Object[]>> getByCertifier(Long id){
         return new CustomResponse<>(
                 this.Repository.findCandidatesByCertifier(id),false,200,"ok"
+
         );
     }
 

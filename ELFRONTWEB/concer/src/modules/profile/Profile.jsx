@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Figure, Row } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 import AxiosClient from "../../shared/http-client.gateway";
+import DataTable from "react-data-table-component";
 
 const Profile = () => {
     const [payload, setPayload] = useState({});
@@ -11,6 +12,8 @@ const Profile = () => {
         const account = JSON.parse(localStorage.getItem("account"));
         setAccount(account.id);
     };
+
+        
 
 
     const getPerson = async () => {
@@ -79,13 +82,16 @@ const Profile = () => {
                                     <span>{payload.typePerson}</span>
                                     </Col>
                                 </Row>
+
                                 
                                 {
                                     payload.user?.role !== "USER" ? (
+
                                         <>
                                             <hr />
                                             <Row className="mb-2">
                                                 <Col sm={4}>
+
                                                 <Link to={`/editProfile`} className='btn btn-primary'>Editar datos personales</Link>
                                                 </Col>
                                             </Row>
@@ -98,6 +104,7 @@ const Profile = () => {
                                             para editar sus datos personales debe contactar con su gestor
                                         </>
                                     )
+
                                 }
                                 
                                 </Card.Body>
@@ -152,6 +159,7 @@ const Profile = () => {
                 </Card.Body>
             </Card>
         </Container>
+
     );
 };
 
