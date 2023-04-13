@@ -46,13 +46,13 @@ export const AllCompanies = () => {
             cell: row => <div>{row.email}</div>,
         },
         {
-            name: 'Telefono',
+            name: 'Teléfono',
             cell: row => <div>{row.phone}</div>,
         },
         {
             name: 'Acciones',
             cell: row =>
-            <div><Link to={`/company/${row.id}`}><Button variant="primary">Ver</Button></Link></div>,
+            <div className='w-100'><Link to={`/company/${row.id}`}><Button style={{ backgroundColor: "#002e60", color: "white", width: "80px" }} className='btn btn-primary'>Ver</Button></Link></div>,
             
             rigth: true
         }
@@ -73,7 +73,7 @@ export const AllCompanies = () => {
     return (
         <>
             <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>Empresas Certificadoras</h2>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Empresas certificadoras</h2>
                 <br />
                 <Card>
                     <Card.Header>
@@ -83,9 +83,9 @@ export const AllCompanies = () => {
                                 <Col className="col-md-4">
                                     <input type="text" className="form-control" placeholder="Buscar" onChange={Filter} />
                                 </Col>
-                                <Col className="col-md-7"></Col>
-                                <Col className="col-md-1">
-                                    <Link to="/newCompany"><Button>Agregar</Button></Link>
+                                <Col className="col-md-6"></Col>
+                                <Col className="col-md-2 text-end">
+                                    <Link to="/newCompany"><Button style={{ backgroundColor: "#002e60", width: "100px" }}>Agregar</Button></Link>
                                 </Col>
                             </Row>
                         </Card.Title>

@@ -65,34 +65,44 @@ export const EditCertification = () => {
                             initialValues={payload}
                             onSubmit={async (values, { setSubmitting }) => {
                                 Swal.fire({
-                                    title: '¿Estas seguro de estos cambios?',
+                                    title: '¿Está usted seguro?',
                                     text: "",
                                     icon: 'question',
                                     showCancelButton: true,
-                                    confirmButtonText: 'Si, estoy seguro'
+                                    confirmButtonColor: '#019979',
+                                    cancelButtonColor: '#A0A5A1',
+                                    confirmButtonText: '!Sí, actualizar!',
+                                    cancelButtonText: 'Cancelar'
                                 }).then(async (result) => {
                                     if (result.isConfirmed) {
                                         try {
                                             const data = await AxiosClient.doPut(`/certification/`, payload);
                                             console.log(data)
                                             Swal.fire({
-                                                title: 'cambio exitoso',
-                                                text: '',
+                                                title: '!Actualizado!',
+                                                text: 'Se edito la información',
+                                                confirmButtonColor: '#019979',
                                                 icon: 'success',
+                                                confirmButtonText: 'Aceptar'
                                             })
                                         } catch (error) {
                                             console.log(error)
                                             Swal.fire({
                                                 title: 'Vaya..',
                                                 text: 'ocurrio un error al intentar guardar los cambios',
-                                                icon: 'error',
+                                                icon: 'error',                                                
+                                                confirmButtonText: 'Aceptar',
+                                                confirmButtonColor: '#019979',
                                             })
                                         }
                                     }else{
                                         Swal.fire({
-                                            title: 'cambio ',
-                                            text: '',
+                                            title: '¡Cancelado!',
+                                            text: 'No se edito la información',
+                                            confirmButtonColor: '#019979',
                                             icon: 'error',
+                                            confirmButtonText: 'Aceptar'
+
                                         })
                                     }
                                 })
@@ -207,10 +217,10 @@ export const EditCertification = () => {
                                     <br />
                                     <Row>
                                         <Col className='col-12'>
-                                            <Button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                                            <Button type="submit" style={{ width: "110px", backgroundColor: "#002e60" }} className="btn btn-primary me-4" disabled={isSubmitting}>
                                                 Guardar
                                             </Button>
-                                            <Link to={`/certification/${certification}`} className="btn btn-danger ml-2">Cancelar</Link>
+                                            <Link to={`/certification/${certification}`} style={{ width: "110px", backgroundColor: "#A0A5A1", borderColor: "#A0A5A1" }} className="btn btn-danger ml-2">Cancelar</Link>
                                         </Col>
                                     </Row>
                                 </Form>

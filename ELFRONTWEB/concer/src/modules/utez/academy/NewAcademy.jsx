@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Button, Col, Container, Figure, Row, Card } from 'react-bootstrap'
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -25,115 +25,118 @@ export const NewAcademy = () => {
                 <br />
                 <Card>
                     <Card.Body>
-                        
-                            <Row>
-                                <Col className="col-md-12">
-                                    <Formik
-                                        initialValues={Academy}
-                                        validationSchema={validationSchema}
-                                        onSubmit={(values, { setSubmitting }) => {
-                                            setSubmitting(true);
-                                            Swal.fire({
-                                                title: "¿Estas seguro?",
-                                                text: "",
-                                                icon: "question",
-                                                showCancelButton: true,
-                                                confirmButtonText: "Si, agregar",
-                                                cancelButtonText: "Cancelar",
-                                            }).then((result) => {
-                                                if (result.isConfirmed) {
-                                                    AxiosClient.doPost('/academy/', values)
-                                                        .then(res => {
-                                                            Swal.fire({
-                                                                title: "¡Éxito!",
-                                                                text: "Academia agregada correctamente",
-                                                                icon: "success",
-                                                                showCancelButton: false,
-                                                                confirmButtonText: "Aceptar",
-                                                            })                                                             
-                                                            setSubmitting(false);
-                                                            window.location.reload();     
+
+                        <Row>
+                            <Col className="col-md-12">
+                                <Formik
+                                    initialValues={Academy}
+                                    validationSchema={validationSchema}
+                                    onSubmit={(values, { setSubmitting }) => {
+                                        setSubmitting(true);
+                                        Swal.fire({
+                                            title: '¿Está usted seguro?',
+                                            text: "",
+                                            icon: "question",
+                                            showCancelButton: true,
+                                            cancelButtonText: "Cancelar",
+                                            confirmButtonColor: '#019979',
+                                            cancelButtonColor: '#A0A5A1',
+                                            confirmButtonText: "Si, agregar",
+                                            cancelButtonText: "Cancelar",
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                AxiosClient.doPost('/academy/', values)
+                                                    .then(res => {
+                                                        Swal.fire({
+                                                            title: "¡Éxito!",
+                                                            text: "Academia agregada correctamente",
+                                                            icon: "success",
+                                                            showCancelButton: false,
+                                                            confirmButtonText: "Aceptar",
+                                                            confirmButtonColor: '#019979',
                                                         })
-                                                        .catch(err => {
-                                                            Swal.fire({
-                                                                title: "vaya...",
-                                                                text: "Algo salio mal",
-                                                                icon: "error",
-                                                                showCancelButton: false,
-                                                                confirmButtonText: "Aceptar",
-                                                            })
-                                                            setSubmitting(false);
-                                                        });
-                                                }else{
-                                                    Swal.fire({
-                                                        title: "¡Cancelado!",
-                                                        text: "",
-                                                        icon: "error",
-                                                        showCancelButton: false,
-                                                        confirmButtonText: "Aceptar",
+                                                        setSubmitting(false);
+                                                        window.location.reload();
                                                     })
-                                                    setSubmitting(false);
-                                                }
-                                            });
-                                        }}
-                                    >
-                                        {({ errors, touched, isSubmitting }) => (
-                                            <Form>
-                                                <Row>
-                                                    <Col className="col-md-6">
-                                                        <div className="form-group">
-                                                            <label htmlFor="name">Nombre</label>
-                                                            <Field
-                                                                type="text"
-                                                                name="name"
-                                                                className={`form-control ${
-                                                                    touched.name && errors.name ? "is-invalid" : ""
-                                                                    }`}
-                                                            />
-                                                            <div className="invalid-feedback">{errors.name}</div>
-                                                        </div>
-                                                    </Col>
-                                                    <Col className="col-md-6">
-                                                        <div className="form-group">
-                                                            <label htmlFor="fullName">Nombre Completo</label>
-                                                            <Field
-                                                                type="text"
-                                                                name="fullName"
-                                                                className={`form-control ${
-                                                                    touched.fullName && errors.fullName ? "is-invalid" : ""
-                                                                    }`}
-                                                            />
-                                                            <div className="invalid-feedback">{errors.fullName}</div>
-                                                        </div>
-                                                    </Col>
-                                                </Row>
-                                                <br/>
-                                                <div className="form-group">
-                                                    <Button type="submit" disabled={isSubmitting}>
-                                                        Agregar
-                                                    </Button>
-                                                </div>
-                                            </Form>
-                                        )}
-                                    </Formik>
-                                </Col>
-                                
-                                </Row>
-                        
+                                                    .catch(err => {
+                                                        Swal.fire({
+                                                            title: "vaya...",
+                                                            text: "Algo salio mal",
+                                                            icon: "error",
+                                                            showCancelButton: false,
+                                                            confirmButtonText: "Aceptar",
+                                                        })
+                                                        setSubmitting(false);
+                                                    });
+                                            } else {
+                                                Swal.fire({
+                                                    title: "¡Cancelado!",
+                                                    text: "",
+                                                    icon: "error",
+                                                    showCancelButton: false,
+                                                    confirmButtonText: "Aceptar",
+                                                    confirmButtonColor: '#019979',
+                                                })
+                                                setSubmitting(false);
+                                            }
+                                        });
+                                    }}
+                                >
+                                    {({ errors, touched, isSubmitting }) => (
+                                        <Form>
+                                            <Row>
+                                                <Col className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label htmlFor="name">Nombre</label>
+                                                        <Field
+                                                            type="text"
+                                                            name="name"
+                                                            className={`form-control ${touched.name && errors.name ? "is-invalid" : ""
+                                                                }`}
+                                                        />
+                                                        <div className="invalid-feedback">{errors.name}</div>
+                                                    </div>
+                                                </Col>
+                                                <Col className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label htmlFor="fullName">Nombre Completo</label>
+                                                        <Field
+                                                            type="text"
+                                                            name="fullName"
+                                                            className={`form-control ${touched.fullName && errors.fullName ? "is-invalid" : ""
+                                                                }`}
+                                                        />
+                                                        <div className="invalid-feedback">{errors.fullName}</div>
+                                                    </div>
+                                                </Col>
+                                            </Row>
+                                            <br />
+                                            <Row className='mb-3'>
+                                                <Col className='col-md-12 text-end'>
+                                                    <Button style={{ backgroundColor: "#002e60", color: "white" }} className='btn btn-primary' type="submit" disabled={isSubmitting} >Guardar</Button>
+                                                </Col>
+                                            </Row>
+                                        </Form>
+                                    )}
+                                </Formik>
+                            </Col>
+
+                        </Row>
+
                     </Card.Body>
                 </Card>
 
                 <Row>
-                <Col className="col-md-8">
-                                <img
-                                    className="d-block h-100 w-100"
-                                    src={`data:image/png;base64, `}
-                                    alt={`una imagen para que no se vea vacio (que yo no pondre)`}
-                                    style={{ height: '100%', width:'100%', maxHeight:'300px', objectFit: 'contain'  }}
-                                    />
-                                </Col>
+                    <Col className="col-md-8">
+                        <img
+                            className="d-block h-100 w-100"
+                            src={`data:image/png;base64, `}
+                            alt={`una imagen para que no se vea vacio (que yo no pondre)`}
+                            style={{ height: '100%', width: '100%', maxHeight: '300px', objectFit: 'contain' }}
+                        />
+                    </Col>
                 </Row>
-            </Container>       
+            </Container>
         </>
     )
 }

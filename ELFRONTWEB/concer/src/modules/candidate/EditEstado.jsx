@@ -28,11 +28,14 @@ export const EditEstado = () => {
                             initialValues={payload.picture}
                             onSubmit={async (values, { setSubmitting }) => {
                                 Swal.fire({
-                                    title: '¿Está seguro?',
+                                    title: '¿Está usted seguro?',
                                     text: "",
                                     icon: 'question',
                                     showCancelButton: true,
-                                    confirmButtonText: '¡Si, actualizar!'
+                                    cancelButtonText: "Cancelar",
+                                    confirmButtonColor: '#019979',
+                                    cancelButtonColor: '#A0A5A1',
+                                    confirmButtonText: 'Sí, actualizar!'
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         try{
@@ -120,7 +123,7 @@ export const EditEstado = () => {
                                     </Row>
                                     <Row className="mb-3">
                                         <Col sm={12} className="text-center">
-                                            <Button type="submit" variant="primary" disabled={isSubmitting}>
+                                            <Button style={{ backgroundColor: "#002e60", color: "white" }} type="submit" variant="primary" disabled={isSubmitting}>
                                                 Actualizar
                                             </Button>
                                         </Col>

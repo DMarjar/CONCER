@@ -1,12 +1,12 @@
-import React, { useState, useEffect }  from 'react'
+import React, { useState, useEffect } from 'react'
 import DataTable from "react-data-table-component";
 import { Link } from 'react-router-dom';
-import { Button, Container, Card, Row, Col} from 'react-bootstrap';
+import { Button, Container, Card, Row, Col } from 'react-bootstrap';
 import AxiosClient from '../../shared/http-client.gateway';
 
 
 export const AllCandidates = () => {
-    
+
     const [candidates, setCandidates] = useState([]);
     const [filtrado, setFiltrado] = useState([]);
 
@@ -14,13 +14,13 @@ export const AllCandidates = () => {
     const getCandidates = async () => {
         try {
             const account = JSON.parse(localStorage.getItem('account'));
-            if(account.user.role === "ADMIN"){
+            if (account.user.role === "ADMIN") {
                 const data = await AxiosClient.doGet('/candidate/', {});
                 setCandidates(data.data.data);
                 console.log(data.data.data)
             }
-            
-            if(account.user.role === "GESTOR"){
+
+            if (account.user.role === "GESTOR") {
 
                 const data = await AxiosClient.doPost(`/candidate/certifier/${account.id}`, {});
 
@@ -65,14 +65,14 @@ export const AllCandidates = () => {
         {
             name: 'Acciones',
             cell: row =>
-            <div><Link to={`/candidate/${row[1]}`}><Button variant="primary">Ver</Button></Link></div>,
-            
+                <div className='w-100'><Link to={`/candidate/${row[1]}`}><Button style={{ backgroundColor: "#002e60", color: "white", width: "80px" }}>Ver</Button></Link></div>,
+
             rigth: true
         }
-    
+
     ]);
-   
-    function Filter(event){
+
+    function Filter(event) {
         const newData = candidates.filter(row => {
             return row[4].toLowerCase().includes(event.target.value.toLowerCase()) || row[5].toLowerCase().includes(event.target.value.toLowerCase()) || row[3].toLowerCase().includes(event.target.value.toLowerCase()) || row[6].toLowerCase().includes(event.target.value.toLowerCase())
         })
@@ -85,47 +85,47 @@ export const AllCandidates = () => {
 
 
     return (
-            <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>Candidaturas</h2>
-                <br/>
-                <Card>
-                    <Card.Header>
-                        <Card.Title as="h5">
-                            
-                            <Row>
-                                <Col className="col-md-4">
-                                    <input type="text" className="form-control" placeholder="Buscar" onChange={Filter} />
-                                </Col>
-                                <Col className="col-md-7"></Col>
-                                <Col className="col-md-1">
-                                    <Link to="/NewCandidate"><Button>Agregar</Button></Link>
-                                </Col>
-                            </Row>
-                        </Card.Title>
-                    </Card.Header>
-                    <Card.Body>
+        <Container className='px-5 mt-3'>
+            <h2 className='text-center' style={{ color: "#002e60" }}>Candidaturas</h2>
+            <br />
+            <Card>
+                <Card.Header>
+                    <Card.Title as="h5">
 
-                        <DataTable
-                            columns={columns}
-                            data={filtrado}
-                            noDataComponent="No hay candidatos registrados"
-                            pagination
-                            paginationComponentOptions={{
-                                rowsPerPageText: 'Filas por página:',
-                                rangeSeparatorText: 'de',
-        
-                            }}
-                            paginationPerPage={5}
-                            paginationRowsPerPageOptions={[5, 10, 15, 20, 25]}
-                            fixedHeader
-                            highlightOnHover
-                            responsive
-                        />
-                    
-                        
-                    </Card.Body>
-                </Card>   
-            </Container>
+                        <Row>
+                            <Col className="col-md-4">
+                                <input type="text" className="form-control" placeholder="Buscar" onChange={Filter} />
+                            </Col>
+                            <Col className="col-md-6"></Col>
+                            <Col className="col-md-2 text-end">
+                                <Link to="/NewCandidate"><Button style={{ backgroundColor: "#002e60", width: "100px" }}>Agregar</Button></Link>
+                            </Col>
+                        </Row>
+                    </Card.Title>
+                </Card.Header>
+                <Card.Body>
+
+                    <DataTable
+                        columns={columns}
+                        data={filtrado}
+                        noDataComponent="No hay candidatos registrados"
+                        pagination
+                        paginationComponentOptions={{
+                            rowsPerPageText: 'Filas por página:',
+                            rangeSeparatorText: 'de',
+
+                        }}
+                        paginationPerPage={5}
+                        paginationRowsPerPageOptions={[5, 10, 15, 20, 25]}
+                        fixedHeader
+                        highlightOnHover
+                        responsive
+                    />
+
+
+                </Card.Body>
+            </Card>
+        </Container>
     )
 }
 

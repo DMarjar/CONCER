@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -65,30 +65,35 @@ export const EditProfile = () => {
     return (
         <>
             <Container className='px-5 mt-3'>
-                <h4 className='text-center' style={{ color: "#002e60" }}>Editar Informacion</h4>
-                <br/>
+                {/*                 <h4 className='text-center' style={{ color: "#002e60" }}>Editar información</h4>
+ */}
+                <h2 className="text-center" style={{ color: "#002e60" }}>Editar información</h2>
+                <br />
                 <Card>
                     <Card.Body>
                         <Formik
                             initialValues={payload}
                             onSubmit={async (values, { setSubmitting }) => {
                                 Swal.fire({
-                                    title: '¿Estas seguro?',
+                                    title: '¿Está usted seguro?',
                                     text: "",
                                     icon: 'question',
                                     showCancelButton: true,
-                                    
-                                    confirmButtonText: 'Si, editar!'
+                                    confirmButtonColor: '#019979',
+                                    cancelButtonColor: '#A0A5A1',
+                                    confirmButtonText: '!Sí, actualizar!',
+                                    cancelButtonText: 'Cancelar'
                                 }).then(async (result) => {
                                     if (result.isConfirmed) {
                                         try {
                                             const data = await AxiosClient.doPut('/person/updateWeb/', payload);
                                             console.log(data.data.data);
                                             Swal.fire({
-                                                title: 'Exito!',
-                                                text: 'Se edito la informacion',
+                                                title: '!Actualizado!',
+                                                text: 'Se edito la información',
+                                                confirmButtonColor: '#019979',
                                                 icon: 'success',
-                                                confirmButtonText: 'Ok'
+                                                confirmButtonText: 'Aceptar'
                                             })
                                         } catch (error) {
                                             console.log(error);
@@ -96,21 +101,24 @@ export const EditProfile = () => {
                                                 title: 'Vaya..',
                                                 text: 'Algo salio mal',
                                                 icon: 'error',
-                                                confirmButtonText: 'Ok'
+                                                confirmButtonText: 'Aceptar',
+                                                confirmButtonColor: '#019979',
                                             })
                                         }
-                                    }else{
+                                    } else {
                                         Swal.fire({
-                                            title: 'Cancelado!',
-                                            text: 'No se edito la informacion',
+                                            title: '¡Cancelado!',
+                                            text: 'No se edito la información',
+                                            confirmButtonColor: '#019979',
                                             icon: 'error',
-                                            confirmButtonText: 'Ok'
+                                            confirmButtonText: 'Aceptar'
+
                                         })
-                                    } 
+                                    }
                                 })
                             }}
                         >
-                            
+
                             <Form >
                                 <Row className='mb-3'>
                                     <Col className="col-md-6">
@@ -119,7 +127,7 @@ export const EditProfile = () => {
                                             name="firstName"
                                             type="text"
                                             value={payload.firstName}
-                                            onChange={e => setPayload({...payload, firstName: e.target.value})}
+                                            onChange={e => setPayload({ ...payload, firstName: e.target.value })}
                                             className="form-control"
                                         />
                                     </Col>
@@ -129,20 +137,20 @@ export const EditProfile = () => {
                                             name="lastName"
                                             type="text"
                                             value={payload.lastName}
-                                            onChange={e => setPayload({...payload, lastName: e.target.value})}
+                                            onChange={e => setPayload({ ...payload, lastName: e.target.value })}
                                             className="form-control"
                                         />
                                     </Col>
                                 </Row>
-                                <br/>
+                                <br />
                                 <Row className='mb-3'>
                                     <Col className="col-md-6">
-                                        <label className="form-label">Telefono</label>
+                                        <label className="form-label">Teléfono</label>
                                         <Field
                                             name="phoneNumber"
                                             type="text"
                                             value={payload.phoneNumber}
-                                            onChange={e => setPayload({...payload, phoneNumber: e.target.value})}
+                                            onChange={e => setPayload({ ...payload, phoneNumber: e.target.value })}
                                             className="form-control"
                                         />
                                     </Col>
@@ -152,36 +160,36 @@ export const EditProfile = () => {
                                             name="email"
                                             type="text"
                                             value={payload.email}
-                                            onChange={e => setPayload({...payload, email: e.target.value})}
+                                            onChange={e => setPayload({ ...payload, email: e.target.value })}
                                             className="form-control"
                                         />
                                     </Col>
                                 </Row>
-                                <br/>
+                                <br />
                                 <Row className='mb-3'>
                                     <Col className="col-md-6">
-                                        <label className="form-label">Genero</label>
+                                        <label className="form-label">Género</label>
                                         <Field
                                             name='gender'
                                             as='select'
                                             value={payload.gender}
                                             className="form-control"
-                                            onChange={e => setPayload({...payload, gender: e.target.value})}
-                                            >
+                                            onChange={e => setPayload({ ...payload, gender: e.target.value })}
+                                        >
                                             <option value=''>Seleccione</option>
                                             <option value='MASCULINO'>Masculino</option>
                                             <option value='FEMENINO'>Femenino</option>
                                         </Field>
                                     </Col>
                                     <Col className="col-md-6">
-                                        <label className="form-label">Tipo de Persona</label>
+                                        <label className="form-label">Tipo de persona</label>
                                         <Field
                                             name='typePerson'
                                             as='select'
                                             value={payload.typePerson}
                                             className="form-control"
-                                            onChange={e => setPayload({...payload, typePerson: e.target.value})}
-                                            >
+                                            onChange={e => setPayload({ ...payload, typePerson: e.target.value })}
+                                        >
                                             <option value=''>Seleccione</option>
                                             <option value='ESTUDIANTE'>Estudiante</option>
                                             <option value='PROFESOR'>Profesor</option>
@@ -201,41 +209,41 @@ export const EditProfile = () => {
                                             accept="image/*"
                                             onChange={
                                                 (e) => {
-                                                const file = e.target.files[0];
-                                                const reader = new FileReader();
-                                                reader.onload = (e) => {
-                                                    const base64 = e.target.result;
+                                                    const file = e.target.files[0];
+                                                    const reader = new FileReader();
+                                                    reader.onload = (e) => {
+                                                        const base64 = e.target.result;
                                                         if (base64) {
                                                             setPayload({
                                                                 ...payload,
                                                                 pictureBase64: base64.toString().replace(/^data:image\/(png|jpeg);base64,/, ""),
                                                             });
-                                                        }  
+                                                        }
                                                     };
-                                                        reader.readAsDataURL(file);
-                                                    }
+                                                    reader.readAsDataURL(file);
                                                 }
-                                            />
-                                        
+                                            }
+                                        />
+
                                     </Col>
-                                    
+
                                 </Row>
-                                <br/>
+                                <br />
                                 <Row className='mb-3'>
                                     <Col className="col-md-12">
                                         <div id="preview" className="text-center">
-                                        {
-                                            payload.pictureBase64 ? (
-                                                <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="preview" className="img-thumbnail" style={{maxHeight:'200px'}} />
-                                            ) : null
-                                        }
+                                            {
+                                                payload.pictureBase64 ? (
+                                                    <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="preview" className="img-thumbnail" style={{ maxHeight: '200px' }} />
+                                                ) : null
+                                            }
                                         </div>
                                     </Col>
                                 </Row>
-                                
+
                                 <Row className='mb-3'>
-                                    <Col className="col-md-6">
-                                        <Button variant="primary" type="submit" className="btn btn-primary">
+                                    <Col className="col-md-12 text-end">
+                                        <Button style={{ backgroundColor: "#002e60", color: "white" }} type="submit" className="btn btn-primary">
                                             Guardar
                                         </Button>
                                     </Col>

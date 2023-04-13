@@ -232,17 +232,13 @@ export const EditCandidate = () => {
                                         </Col>
                                     </Row>
                                     <br />
-                                    <Row>
-                                        <Col>
-                                            <Button
-                                                variant="primary"
-                                                type="submit"   
-                                                disabled={isSubmitting}
-                                            >
-                                                Guardar
-                                            </Button>
-                                        </Col>
-                                    </Row>
+                                    <Row className='mb-3'>
+                                    <Col className="col-md-12 text-end">
+                                        <Button style={{ backgroundColor: "#002e60", color: "white" }} type="submit" className="btn btn-primary">
+                                            Guardar
+                                        </Button>
+                                    </Col>
+                                </Row>
                                 </Form>
                             )}
                         </Formik>

@@ -11,10 +11,7 @@ const Profile = () => {
     const getAccount = () => {
         const account = JSON.parse(localStorage.getItem("account"));
         setAccount(account.id);
-    };
-
-        
-
+    }; 
 
     const getPerson = async () => {
         try {
@@ -40,7 +37,7 @@ const Profile = () => {
                     <Row className="mb-3">
                         <Col sm={8}>
                             <Card>
-                                <Card.Header>Informacion de Contacto</Card.Header>
+                                <Card.Header>Información de contacto</Card.Header>
                                 <Card.Body>
                                     <Row className="mb-2">
                                         <Col sm={4}>
@@ -52,7 +49,7 @@ const Profile = () => {
                                     </Row>
                                     <Row className="mb-2">
                                         <Col sm={4}>
-                                        <span style={{ fontWeight: "bold" }}>Telefono:</span>
+                                        <span style={{ fontWeight: "bold" }}>Teléfono:</span>
                                         </Col>
                                         <Col sm={8}>
                                         <span>{payload.phoneNumber}</span>
@@ -60,7 +57,7 @@ const Profile = () => {
                                     </Row>
                                 <Row className="mb-2">
                                     <Col sm={4}>
-                                    <span style={{ fontWeight: "bold" }}>Genero:</span>
+                                    <span style={{ fontWeight: "bold" }}>Género:</span>
                                     </Col>
                                     <Col sm={8}>
                                     <span>{payload.gender}</span>
@@ -68,7 +65,7 @@ const Profile = () => {
                                 </Row>
                                 <Row className="mb-2">
                                     <Col sm={4}>
-                                    <span style={{ fontWeight: "bold" }}>Status:</span>
+                                    <span style={{ fontWeight: "bold" }}>Estado:</span>
                                     </Col>
                                     <Col sm={8}>
                                     <span>{payload.status ? "Active" : "Inactive"}</span>
@@ -76,7 +73,7 @@ const Profile = () => {
                                 </Row>
                                 <Row className="mb-2">
                                     <Col sm={4}>
-                                    <span style={{ fontWeight: "bold" }}>Tipo de Persona:</span>
+                                    <span style={{ fontWeight: "bold" }}>Tipo de persona:</span>
                                     </Col>
                                     <Col sm={8}>
                                     <span>{payload.typePerson}</span>
@@ -92,7 +89,7 @@ const Profile = () => {
                                             <Row className="mb-2">
                                                 <Col sm={4}>
 
-                                                <Link to={`/editProfile`} className='btn btn-primary'>Editar datos personales</Link>
+                                                <Link to={`/editProfile`} className='btn' style={{ backgroundColor: "#002e60", color: "white" }}>Editar datos personales</Link>
                                                 </Col>
                                             </Row>
                                         
@@ -101,7 +98,7 @@ const Profile = () => {
                                     ):(
                                         <>
                                             <br />
-                                            para editar sus datos personales debe contactar con su gestor
+                                            <p style={{ color: "#A0A5A1"}}>para editar sus datos personales debe contactar con su gestor </p> 
                                         </>
                                     )
 
@@ -138,7 +135,7 @@ const Profile = () => {
                                 <Card.Body>
                                     <Row className="mb-2">
                                         <Col sm={4}>
-                                        <span style={{ fontWeight: "bold" }}>Username:</span>
+                                        <span style={{ fontWeight: "bold" }}>Nombre de usuario:</span>
                                         </Col>
                                         <Col sm={8}>
                                         <span>{payload.user?.username}</span>
@@ -146,7 +143,7 @@ const Profile = () => {
                                     </Row>
                                     <Row className="mb-2">
                                         <Col sm={4}>
-                                            <span style={{ fontWeight: "bold" }}>Role:</span>
+                                            <span style={{ fontWeight: "bold" }}>Rol:</span>
                                         </Col>
                                         <Col sm={8}>
                                             <span>{payload.user?.role}</span>

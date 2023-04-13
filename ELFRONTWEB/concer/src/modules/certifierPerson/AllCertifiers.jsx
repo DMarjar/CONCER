@@ -60,7 +60,7 @@ export const AllCertifiers = () => {
         {
             name: 'Acciones',
             cell: row =>
-            <div><Link to={`/certifier/${row.id}`}><Button variant="primary">Ver</Button></Link></div>,
+            <div className='w-100'><Link to={`/certifier/${row.id}`}><Button style={{ backgroundColor: "#002e60", color: "white", width: "80px" }}>Ver</Button></Link></div>,
             
             rigth: true
         }
@@ -81,7 +81,7 @@ export const AllCertifiers = () => {
     return (
         <>
             <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>Personal Certificador</h2>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Personal certificador</h2>
                 <br/>
                 <Card>
                     <Card.Header>
@@ -91,9 +91,9 @@ export const AllCertifiers = () => {
                                 <Col className="col-md-4">
                                     <input type="text" className="form-control" placeholder="Buscar" onChange={Filter} />
                                 </Col>
-                                <Col className="col-md-7"></Col>
-                                <Col className="col-md-1">
-                                    <Link to="/newAccount"><Button>Agregar</Button></Link>
+                                <Col className="col-md-6"></Col>
+                                <Col className="col-md-2 text-end">
+                                    <Link to="/newAccount"><Button style={{ backgroundColor: "#002e60", width: "100px" }}>Agregar</Button></Link>
                                 </Col>
                             </Row>
                         </Card.Title>

@@ -1,5 +1,5 @@
-import React,{useState, useEffect} from 'react'
-import {Card, Col, Container, Row, Button } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react'
+import { Card, Col, Container, Row, Button } from 'react-bootstrap'
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Link } from 'react-router-dom'
@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import AxiosClient from '../../shared/http-client.gateway';
 
 export const NewCandidate = () => {
-    
+
     const [Person, setPerson] = useState([]);
     const [Certificaciones, setCertificaciones] = useState([]);
     const [Academys, setAcademys] = useState([]);
@@ -31,13 +31,13 @@ export const NewCandidate = () => {
     const getCertificaciones = async () => {
         try {
             console.log(account.user?.role)
-            if(account.user?.role === "ADMIN"){
+            if (account.user?.role === "ADMIN") {
                 const data = await AxiosClient.doGet(`/certification/withoutImages`, {});
                 setCertificaciones(data.data.data);
                 console.log(data.data.data)
             }
-            
-            if(account.user?.role === "GESTOR"){
+
+            if (account.user?.role === "GESTOR") {
                 const data = await AxiosClient.doPost(`/certification/person/${account.id}`, {});
                 setCertificaciones(data.data.data);
                 console.log(data.data.data)
@@ -62,7 +62,7 @@ export const NewCandidate = () => {
         getCertificaciones();
         getAcademys();
     }, [account]);
-            
+
     /* EL REQUEST DEBE SER ASI
     private Estado estado;
     private Long idAcademy;
@@ -73,7 +73,7 @@ export const NewCandidate = () => {
     private char grupo;
     private String clave;
     */
-    
+
     const validationForm = Yup.object().shape({
         idPerson: Yup.string().required("Este campo no puede estar vacio"),
         idAcademy: Yup.string().required("Este campo no puede estar vacio"),
@@ -88,10 +88,10 @@ export const NewCandidate = () => {
 
     return (
         <>
-            <Container className='px-5 mt-3'>
-                <h1 className='text-center' style={{ color: "#002e60" }}>Agregar Candidatura</h1>
-                <br/>
-                <Card className='mt-3'>
+            <Container className='px-5 my-3'>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Agregar candidatura</h2>
+                <br />
+                <Card>
                     <Card.Body>
                         <Row>
                             <Col>
@@ -110,11 +110,14 @@ export const NewCandidate = () => {
                                         setSubmitting(true);
                                         console.log(values);
                                         Swal.fire({
-                                            title: '¿Estas seguro?',
+                                            title: '¿Está usted seguro?',
+                                            text: "",
                                             icon: 'question',
                                             showCancelButton: true,
-                                            confirmButtonText: 'Guardar',
-                                            cancelButtonText: 'No'
+                                            confirmButtonColor: '#019979',
+                                            cancelButtonColor: '#A0A5A1',
+                                            confirmButtonText: '!Sí, actualizar!',
+                                            cancelButtonText: 'Cancelar'
                                         }).then(async (result) => {
                                             if (result.isConfirmed) {
                                                 try {
@@ -131,7 +134,8 @@ export const NewCandidate = () => {
                                                         title: 'Candidatura agregada correctamente',
                                                         icon: 'success',
                                                         showCancelButton: false,
-                                                        confirmButtonText: 'Aceptar'
+                                                        confirmButtonText: 'Aceptar',
+                                                        confirmButtonColor: '#019979',
                                                     }).then((result) => {
                                                         if (result.isConfirmed) {
                                                             window.location.href = `/candidate/${data.data.data.id}`;
@@ -143,15 +147,16 @@ export const NewCandidate = () => {
                                                         title: 'Error al agregar candidatura',
                                                         icon: 'error',
                                                         showCancelButton: false,
-                                                        confirmButtonText: 'Aceptar'
+                                                        confirmButtonText: 'Aceptar',
+                                                        confirmButtonColor: '#019979',
                                                     })
                                                     setSubmitting(false);
                                                 }
-                                            }else{
+                                            } else {
                                                 Swal.fire({
-                                                    title: 'Cancelado',
+                                                    title: '¡Cancelado!',
+                                                    confirmButtonColor: '#019979',
                                                     icon: 'error',
-                                                    showCancelButton: false,
                                                     confirmButtonText: 'Aceptar'
                                                 })
                                                 setSubmitting(false);
@@ -176,9 +181,9 @@ export const NewCandidate = () => {
                                                 </Col>
 
                                                 <Col className="col-md-6 mb-3">
-                                                    <label>Aun no esta registrado?</label>
+                                                    <label>¿Todavía no se ha registrado?</label>
                                                     <br></br>
-                                                    <Link to="/newAccount" className="btn btn-primary btn-block">Registrar</Link>
+                                                    <Link to="/newAccount" className="btn btn-primary btn-block" style={{ border: "none", backgroundColor: "#A0A5A1", width: "120px" }}>Dar de alta</Link>
                                                 </Col>
                                             </Row>
 
@@ -186,10 +191,10 @@ export const NewCandidate = () => {
                                                 <Col className="col-md-6 mb-3">
                                                     <label>Certificación</label>
                                                     <Field as="select" name="idCertification" className="form-control">
-                                                            <option value="">Seleccione una opción</option>
-                                                                {Certificaciones.map((item, index) => (
-                                                                <option key={index} value={item.id}>{item.name}</option>
-                                                                ))}     
+                                                        <option value="">Seleccione una opción</option>
+                                                        {Certificaciones.map((item, index) => (
+                                                            <option key={index} value={item.id}>{item.name}</option>
+                                                        ))}
                                                     </Field>
                                                     {errors.idCertification && touched.idCertification ? (
                                                         <div className="text-danger">{errors.idCertification}</div>
@@ -197,7 +202,7 @@ export const NewCandidate = () => {
                                                 </Col>
 
                                                 <Col className="col-md-6 mb-3">
-                                                    <label>Fecha en que concluyo</label>
+                                                    <label>Fecha de culminación</label>
                                                     <Field type="date" name="fechaFin" className="form-control" />
                                                     {errors.fechaFin && touched.fechaFin ? (
                                                         <div className="text-danger">{errors.fechaFin}</div>
@@ -247,18 +252,18 @@ export const NewCandidate = () => {
                                             </Row>
 
                                             <Row>
-                                                <Col className="col-md-12 mb-3">
-                                                    <Button type="submit" disabled={isSubmitting} className="btn btn-primary">Registrar</Button>
+                                                <Col className="col-md-12 mb-3 text-end">
+                                                    <Button type="submit" disabled={isSubmitting} className="btn btn-primary" style={{ backgroundColor: "#002e60", width: "110px" }}>Registrar</Button>
                                                 </Col>
                                             </Row>
                                         </Form>
                                     )}
                                 </Formik>
                             </Col>
-                        </Row>                              
+                        </Row>
                     </Card.Body>
                 </Card>
-            </Container>       
+            </Container>
         </>
     )
 }

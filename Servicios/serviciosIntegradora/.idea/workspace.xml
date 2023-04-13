@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1930e54-76c7-426d-8e53-5aac1b4e70af" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/home/Home.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/certification/CertificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/certification/CertificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/certifyingCompany/CertifyingCompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/controller/certifyingCompany/CertifyingCompanyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/certification/CertificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/certification/CertificationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/certifyingCompany/CertifyingCompanyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/model/certifyingCompany/CertifyingCompanyRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/candidate/CandidateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/candidate/CandidateService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/certification/CertificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/certification/CertificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/certifyingCompany/CertifyingCompanyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/serviciosIntegradora/service/certifyingCompany/CertifyingCompanyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/certification/CertificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/controller/certification/CertificationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/candidate/CandidateService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/candidate/CandidateService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/certification/CertificationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/utez/serviciosIntegradora/service/certification/CertificationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,11 +75,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Spring Boot.ServiciosIntegradoraApplication" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

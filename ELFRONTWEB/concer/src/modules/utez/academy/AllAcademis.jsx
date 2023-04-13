@@ -62,8 +62,8 @@ export const AllAcademis = () => {
         },
         {
             name: 'Acciones',
-            cell: row => <div>
-                <Link to={`/editAcademy/${row.id}`}><Button variant="primary">Editar</Button></Link>
+            cell: row => <div className='w-100'>
+                <Link to={`/editAcademy/${row.id}`}><Button style={{ backgroundColor: "#002e60", color: "white", width: "80px" }} variant="primary">Editar</Button></Link>
             </div>,
             
         }
@@ -93,9 +93,9 @@ export const AllAcademis = () => {
                                 <Col className="col-md-4">
                                     <input type="text" className="form-control" placeholder="Buscar" onChange={Filter} />
                                 </Col>
-                                <Col className="col-md-7"></Col>
-                                <Col className="col-md-1">
-                                    <Link to="/newAcademy"><Button>Agregar</Button></Link>
+                                <Col className="col-md-6"></Col>
+                                <Col className="col-md-2 text-end">
+                                    <Link to="/newAcademy"><Button style={{ backgroundColor: "#002e60", width: "100px" }}>Agregar</Button></Link>
                                 </Col>
                             </Row>
                         </Card.Title>

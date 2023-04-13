@@ -13,12 +13,13 @@ export const AsideUser = () => {
 
     const logout = () => {
         Swal.fire({
-            title: '¿Estas seguro?',
+            title: '¿Está usted seguro?',
             icon: 'question',
             showCancelButton: true,
-            confirmButtonColor: '#002e60',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, cerrar sesión'
+            confirmButtonColor: '#019979',
+            cancelButtonColor: '#A0A5A1',
+            confirmButtonText: 'Sí, cerrar sesión',
+            cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
                 //navegar a la ruta /login

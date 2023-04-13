@@ -61,7 +61,7 @@ export const Certifier = () => {
         },
         {
             name: 'Accion',
-            cell: row => <div><Link><Button>Ver</Button></Link></div>,
+            cell: row => <div  className='w-100'><Link><Button style={{ backgroundColor: "#002e60", color: "white", width: "80px" }}>Ver</Button></Link></div>,
         },
     ]
     return (
@@ -75,7 +75,7 @@ export const Certifier = () => {
                             <Card >
                                 <Card.Header>
                                     <Row>
-                                        <Col className='col-md-5 col-sm-4 '>
+                                        <Col className='col-md-8'>
                                             <h5 style={{ color: "#002e60" }}>Certificaciones a Cargo</h5>
                                         </Col>
                                         <Col className='col-md-4 col-sm-4 text-end'></Col>
@@ -122,14 +122,14 @@ export const Certifier = () => {
                         <br />
                     </Col>
                 </Row>
-                <br />
+                
                 <Row>
                     <Col className='col-md-12'>
                         <Card>
                             <Card.Header>
                                 <Row>
                                     <Col className='col-md-12 col-sm-12 text-center'>
-                                        <h5 style={{ color: "#002e60" }}>Datos Personales</h5>
+                                        <h5 style={{ color: "#002e60" }}>Datos personales</h5>
                                     </Col>
                                 </Row>
                             </Card.Header>
@@ -164,7 +164,7 @@ export const Certifier = () => {
                                 <Row className='mt-2'>
                                     <Col className='text-end'>
                                         <Link to={`/editAccount/${payload.id}`}>
-                                        <Button className='ml-auto' style={{ backgroundColor: "#002e60" }}>Editar Datos Personales</Button>
+                                        <Button className='ml-auto' style={{ backgroundColor: "#002e60" }}>Editar datos personales</Button>
                                         </Link>
                                     </Col>
                                 </Row>

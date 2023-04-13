@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
@@ -19,10 +19,10 @@ export const EditAcademy = () => {
         status: '',
     });
 
-    const {academy} = useParams()
+    const { academy } = useParams()
 
     const getAcademy = async () => {
-        try{
+        try {
             const res = await AxiosClient.doGet(`/academy/${academy}`);
             console.log(res.data.data)
             setAcademy({
@@ -31,7 +31,7 @@ export const EditAcademy = () => {
                 fullName: res.data.data.fullName,
                 status: res.data.data.status,
             });
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
     }
@@ -53,36 +53,46 @@ export const EditAcademy = () => {
 
                             onSubmit={async (values, { setSubmitting }) => {
                                 Swal.fire({
-                                    title: '¿Está seguro?',
+                                    title: '¿Está usted seguro?',
                                     text: "",
                                     icon: 'question',
                                     showCancelButton: true,
-                                    confirmButtonText: '¡Si, actualizar!'
+                                    confirmButtonColor: '#019979',
+                                    cancelButtonColor: '#A0A5A1',
+                                    confirmButtonText: '!Sí, actualizar!',
+                                    cancelButtonText: 'Cancelar'
                                 }).then((result) => {
                                     if (result.isConfirmed) {
-                                        try{
+                                        try {
 
                                             const data = AxiosClient.doPut(`/academy/`, Academy);
                                             console.log(data)
-                                            Swal.fire(
-                                                '¡Actualizado!',
-                                                'La academia ha sido actualizada.',
-                                                'success'
+                                            Swal.fire({
+                                                title: '¡Actualizado!',
+                                                text: 'Se edito la información',
+                                                confirmButtonColor: '#019979',
+                                                icon: 'success',
+                                                confirmButtonText: 'Aceptar'
+                                            }
+
                                             )
-                                            
-                                        }catch(error){
+
+                                        } catch (error) {
                                             Swal.fire(
                                                 '¡Error!',
                                                 'La academia no ha sido actualizada.',
                                                 'error'
                                             )
                                         }
-                                    }else{
-                                        Swal.fire(
-                                            '¡Cancelado!',
-                                            'La academia no ha sido actualizada.',
-                                            'error'
-                                        )
+                                    } else {
+                                        Swal.fire({
+                                            title: '¡Cancelado!',
+                                            text: 'La academia no ha sido actualizada.',
+                                            confirmButtonColor: '#019979',
+                                            icon: 'error',
+                                            confirmButtonText: 'Aceptar'
+
+                                        })
                                     }
                                 })
                             }}
@@ -116,11 +126,11 @@ export const EditAcademy = () => {
                                         </Col>
                                     </Row>
                                     <br />
-                                    <Row>
-
-                                        <Col className="col-md-12">
-                                            <Button type="submit" variant="primary" className="float-right">Guardar</Button>
-
+                                    <Row className='mb-3'>
+                                        <Col className="col-md-12 text-end">
+                                            <Button style={{ backgroundColor: "#002e60", color: "white" }} type="submit" className="btn btn-primary">
+                                                Guardar
+                                            </Button>
                                         </Col>
                                     </Row>
                                 </Form>

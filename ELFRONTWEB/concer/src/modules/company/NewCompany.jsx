@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Button, Card, Col, Container, Row } from 'react-bootstrap'
@@ -20,7 +20,7 @@ export const NewCompany = () => {
         email: Yup.string().email('Este campo no puede estar vacio').required('El email es requerido'),
         phone: Yup.string().required('Este campo no puede estar vacio').min(10, "telefono invalido").max(10, "telefono invalido").matches(/^[0-9]+$/, "telefono invalido"),
     })
-    
+
     const registrar = async (e) => {
         try {
             const data = await AxiosClient.doPost('/certifyingCompany/', {
@@ -30,9 +30,10 @@ export const NewCompany = () => {
                 pictureBase64: payload.pictureBase64
             })
             Swal.fire({
-                title: '¡Éxito!',
+                title: '¡Correcto!',
                 text: 'Se ha registrado la empresa correctamente',
                 icon: 'success',
+                confirmButtonColor: '#019979',
                 confirmButtonText: 'Aceptar'
             })
         } catch (error) {
@@ -49,7 +50,7 @@ export const NewCompany = () => {
     return (
         <>
             <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>Agregar Empresa Certificadora</h2>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Agregar Empresa certificadora</h2>
                 <br />
                 <Card>
                     <Card.Header>
@@ -66,19 +67,23 @@ export const NewCompany = () => {
                             onSubmit={(values, { setSubmitting }) => {
                                 setSubmitting(false)
                                 Swal.fire({
-                                    title: '¿Está seguro?',
+                                    title: '¿Está usted seguro?',
                                     text: "",
                                     icon: 'question',
                                     showCancelButton: true,
-                                    confirmButtonText: 'Si, registrar'
+                                    cancelButtonText: "Cancelar",
+                                    confirmButtonColor: '#019979',
+                                    cancelButtonColor: '#A0A5A1',
+                                    confirmButtonText: 'Sí, guardar!'
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         registrar(values)
-                                    }else{
+                                    } else {
                                         Swal.fire({
                                             title: 'Registro cancelado',
                                             icon: 'error',
-                                            confirmButtonText: 'Aceptar'
+                                            confirmButtonText: 'Aceptar',
+                                            confirmButtonColor: '#019979'
                                         })
                                     }
                                 })
@@ -94,7 +99,7 @@ export const NewCompany = () => {
                                                     type="text"
                                                     name="name"
                                                     className={`form-control ${errors.name && touched.name && "is-invalid"}`}
-                                                    
+
                                                 />
                                                 <div className="invalid-feedback">{errors.name}</div>
                                             </div>
@@ -106,7 +111,7 @@ export const NewCompany = () => {
                                                     type="email"
                                                     name="email"
                                                     className={`form-control ${errors.email && touched.email && "is-invalid"}`}
-                                                    
+
                                                 />
                                                 <div className="invalid-feedback">{errors.email}</div>
                                             </div>
@@ -121,7 +126,7 @@ export const NewCompany = () => {
                                                     type="text"
                                                     name="phone"
                                                     className={`form-control ${errors.phone && touched.phone && "is-invalid"}`}
-                                                    
+
                                                 />
                                                 <div className="invalid-feedback">{errors.phone}</div>
                                             </div>
@@ -130,53 +135,55 @@ export const NewCompany = () => {
                                             <div className="form-group">
                                                 <label htmlFor="pictureBase64">Logo</label>
                                                 <input
-                                                type="file"
-                                                className="form-control-file"
-                                                id="pictureBase64"
-                                                name="pictureBase64"
-                                                accept="image/*"
-                                                required
-                                                onChange={
-                                                    (e) => {
-                                                        const file = e.target.files[0];
-                                                        const reader = new FileReader();
+                                                    type="file"
+                                                    className="form-control-file"
+                                                    id="pictureBase64"
+                                                    name="pictureBase64"
+                                                    accept="image/*"
+                                                    required
+                                                    onChange={
+                                                        (e) => {
+                                                            const file = e.target.files[0];
+                                                            const reader = new FileReader();
 
-                                                        reader.onload = (e) => {
-                                                            const base64 = e.target.result;
-                                                            if (base64) {
-                                                                setPayload({
-                                                                    ...payload,
-                                                                    pictureBase64: base64.toString().replace(/^data:image\/(png|jpeg);base64,/, ""),
-                                                                });
+                                                            reader.onload = (e) => {
+                                                                const base64 = e.target.result;
+                                                                if (base64) {
+                                                                    setPayload({
+                                                                        ...payload,
+                                                                        pictureBase64: base64.toString().replace(/^data:image\/(png|jpeg);base64,/, ""),
+                                                                    });
+                                                                }
+
                                                             }
-                                                             
+                                                            reader.readAsDataURL(file);
                                                         }
-                                                        reader.readAsDataURL(file);
                                                     }
-                                                }
-                                            />
-                                            <div id="preview" className="text-center">
-                                            {
-                                                payload.pictureBase64 ? (
-                                                    <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="preview" className="img-thumbnail" style={{maxHeight:'200px'}} />
-                                                ) : null
-                                            }
-                                            </div>
+                                                />
+                                                <div id="preview" className="text-center">
+                                                    {
+                                                        payload.pictureBase64 ? (
+                                                            <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="preview" className="img-thumbnail" style={{ maxHeight: '200px' }} />
+                                                        ) : null
+                                                    }
+                                                </div>
                                             </div>
                                         </Col>
                                     </Row>
                                     <br />
-                                    <div className="form-group">
-                                        <Button type="submit" disabled={isSubmitting} className='btn btn-primary btn-block'>
-                                            Registrar
-                                        </Button>
-                                    </div>
+                                    <Row className='mb-3'>
+                                        <Col className='col-md-12 text-end'>
+                                            <Button style={{ backgroundColor: "#002e60", color: "white" }} type="submit" disabled={isSubmitting} className='btn btn-primary'>
+                                                Guardar
+                                            </Button>
+                                        </Col>
+                                    </Row>
                                 </Form>
                             )}
                         </Formik>
                     </Card.Body>
                 </Card>
-            </Container>       
+            </Container>
         </>
     )
 }

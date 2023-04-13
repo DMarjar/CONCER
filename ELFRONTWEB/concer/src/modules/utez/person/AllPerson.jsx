@@ -61,7 +61,7 @@ export const AllPerson = () => {
         {
             name: 'Acciones',
             cell: row =>
-            <div><Link to={`/account/${row.id}`}><Button variant="primary">Ver</Button></Link></div>,
+            <div className='w-100'><Link to={`/account/${row.id}`}><Button  style={{ backgroundColor: "#002e60", color: "white", width: "80px" }} className='btn btn-primary'>Ver</Button></Link></div>,
             
             rigth: true
         }
@@ -87,9 +87,9 @@ export const AllPerson = () => {
                                 <Col className="col-md-4">
                                     <input type="text" className="form-control" placeholder="Buscar" onChange={Filter} />
                                 </Col>
-                                <Col className="col-md-7"></Col>
-                                <Col className="col-md-1">
-                                    <Link to="/newAccount"><Button>Agregar</Button></Link>
+                                <Col className="col-md-6"></Col>
+                                <Col className="col-md-2 tex-end">
+                                    <Link to="/newAccount"><Button style={{ backgroundColor: "#002e60", width: "100px" }}>Agregar</Button></Link>
                                 </Col>
                             </Row>
                         </Card.Title>

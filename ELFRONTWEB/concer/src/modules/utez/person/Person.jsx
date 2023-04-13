@@ -75,7 +75,7 @@ const Person = () => {
                                 <hr />
                                 <Row className="mb-2">
                                     <Col sm={4}>
-                                    <Link to={{pathname:`/editAccount/${payload.id}`}} className='btn btn-primary'>Editar datos personales</Link>
+                                    <Link to={{pathname:`/editAccount/${payload.id}`}} style={{ backgroundColor: "#002e60", color: "white" }} className='btn'>Editar datos personales</Link>
                                     </Col>
                                 </Row>
                                 </Card.Body>

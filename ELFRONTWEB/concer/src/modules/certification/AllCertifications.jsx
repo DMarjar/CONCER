@@ -60,7 +60,7 @@ export const AllCertifications = () => {
         {
             name: 'Acciones',
             cell: row =>
-            <div><Link to={`/certification/${row[0]}`}><Button variant="primary">Ver</Button></Link></div>,
+            <div className='w-100'><Link to={`/certification/${row[0]}`}><Button style={{ backgroundColor: "#002e60", color: "white", width: "80px" }}>Ver</Button></Link></div>,
             
             rigth: true
         }
@@ -86,14 +86,13 @@ export const AllCertifications = () => {
                 <Card>
                     <Card.Header>
                         <Card.Title as="h5">
-                            
                             <Row>
                                 <Col className="col-md-4">
                                     <input type="text" className="form-control" placeholder="Buscar" onChange={Filter} />
                                 </Col>
-                                <Col className="col-md-7"></Col>
-                                <Col className="col-md-1">
-                                    <Link to="/newCertification"><Button>Agregar</Button></Link>
+                                <Col className="col-md-6"></Col>
+                                <Col className="col-md-2 text-end">
+                                    <Link to="/newCertification"><Button style={{ backgroundColor: "#002e60", width: "100px" }}>Agregar</Button></Link>
                                 </Col>
                             </Row>
                         </Card.Title>

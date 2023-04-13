@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -19,7 +19,7 @@ export const EditCompany = () => {
         pictureBase64: "",
     });
 
-    const {company} = useParams();
+    const { company } = useParams();
 
     const getCompany = async () => {
         try {
@@ -41,7 +41,7 @@ export const EditCompany = () => {
         getCompany();
     }, [company])
 
-    return(
+    return (
         <>
             <Container className="mt-3">
                 <h2 className='text-center' style={{ color: "#002e60" }}>Editar Empresa Certificadora</h2>
@@ -52,33 +52,42 @@ export const EditCompany = () => {
                             initialValues={payload}
                             onSubmit={async (values, { setSubmitting }) => {
                                 Swal.fire({
-                                    title: '¿Está seguro?',
+                                    title: '¿Está usted seguro?',
                                     text: "",
                                     icon: 'question',
                                     showCancelButton: true,
-                                    confirmButtonText: '¡Si, actualizar!'
+                                    confirmButtonText: '¡Sí, actualizar!',
+                                    cancelButtonText: 'Cancelar',
+                                    confirmButtonColor: '#019979',
+                                    cancelButtonColor: '#A0A5A1',
                                 }).then((result) => {
                                     if (result.isConfirmed) {
-                                        try{
+                                        try {
                                             const data = AxiosClient.doPut(`/certifyingCompany/`, payload);
-                                            Swal.fire(
-                                                '¡Actualizado!',
-                                                'La empresa ha sido actualizada.',
-                                                'success'
-                                            )
-                                            
-                                        }catch(error){
+                                            Swal.fire({
+                                                title: '!Actualizado!',
+                                                text: 'La empresa ha sido actualizada.',
+                                                confirmButtonColor: '#019979',
+                                                icon: 'success',
+                                                confirmButtonText: 'Aceptar'
+                                            })
+
+                                        } catch (error) {
                                             Swal.fire(
                                                 '¡Error!',
                                                 'La empresa no ha sido actualizada.',
                                                 'error'
                                             )
                                         }
-                                    }else{
+                                    } else {
                                         Swal.fire(
-                                            '¡Cancelado!',
-                                            'La empresa no ha sido actualizada.',
-                                            'error'
+                                            {
+                                                title: 'Error!',
+                                                text: 'La imagen debe ser lo más cuadrada posible.',
+                                                icon: 'error',
+                                                confirmButtonColor: '#019979',
+                                                confirmButtonText: 'Aceptar'
+                                            }
                                         )
                                     }
                                 })
@@ -95,7 +104,7 @@ export const EditCompany = () => {
                                                 className="form-control"
                                                 placeholder="Nombre"
                                                 value={payload.name}
-                                                onChange={(e) => setPayload({...payload, name: e.target.value})}
+                                                onChange={(e) => setPayload({ ...payload, name: e.target.value })}
                                             />
                                         </Col>
                                         <Col>
@@ -106,7 +115,7 @@ export const EditCompany = () => {
                                                 className="form-control"
                                                 placeholder="Correo"
                                                 value={payload.email}
-                                                onChange={(e) => setPayload({...payload, email: e.target.value})}
+                                                onChange={(e) => setPayload({ ...payload, email: e.target.value })}
                                             />
                                         </Col>
                                     </Row>
@@ -120,13 +129,13 @@ export const EditCompany = () => {
                                                 className="form-control"
                                                 placeholder="Teléfono"
                                                 value={payload.phone}
-                                                onChange={(e) => setPayload({...payload, phone: e.target.value})}
+                                                onChange={(e) => setPayload({ ...payload, phone: e.target.value })}
                                             />
                                         </Col>
                                         <Col>
                                             <label htmlFor="pictureBase64">Logo</label>
                                             <input
-                                                type="file" 
+                                                type="file"
                                                 className="form-control-file"
                                                 id="picture"
                                                 name="picture"
@@ -143,10 +152,14 @@ export const EditCompany = () => {
                                                             img.onload = () => {
                                                                 const aspectRatio = img.width / img.height;
                                                                 if (aspectRatio > 1.2 || aspectRatio < 0.8) {
-                                                                    Swal.fire(
-                                                                        'Error!',
-                                                                        'La imagen debe ser lo mas cuadrada posible.',
-                                                                        'error'
+                                                                    Swal.fire({
+                                                                        title: 'Error!',
+                                                                        text: 'La imagen debe ser lo más cuadrada posible.',
+                                                                        icon: 'error',
+                                                                        confirmButtonColor: '#019979',
+                                                                        confirmButtonText: 'Aceptar'
+                                                                    }
+
                                                                     )
                                                                     return;
                                                                 }
@@ -171,22 +184,21 @@ export const EditCompany = () => {
                                             <div id="preview" className="text-center">
                                                 {
                                                     payload.pictureBase64 ? (
-                                                        <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="preview" className="img-thumbnail" style={{maxHeight:'200px'}} />
+                                                        <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="preview" className="img-thumbnail" style={{ maxHeight: '200px' }} />
                                                     ) : null
                                                 }
                                             </div>
                                         </Col>
                                     </Row>
-                                    <br />
-                                    <Row>
-                                        <Col>
+                                    <Row className='mb-3'>
+                                        <Col className="col-md-12 text-end">
                                             <Button
-                                                variant="primary"
+                                                style={{ backgroundColor: "#002e60", color: "white" }}
                                                 type="submit"
                                                 className="btn btn-primary"
                                                 disabled={isSubmitting}
                                             >
-                                                Actualizar
+                                                Guardar
                                             </Button>
                                         </Col>
                                     </Row>

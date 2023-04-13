@@ -87,9 +87,9 @@ export const Candidate = () => {
                                     </Col>
                                 </Row>
                                 <hr />
-                                <Row >
-                                    <Col className='text-right'>
-                                        <Link to={`/editAccount/${payload[2]}`} className='btn btn-primary'>Editar datos personales</Link>
+                                <Row className="mb-2">
+                                    <Col className='col-md-10 '>
+                                        <Link to={`/editAccount/${payload[2]}`} className='btn btn-primary' style={{ backgroundColor: "#002e60", color: "white", width: "220px" }}>Editar datos personales</Link>
                                     </Col>
                                 </Row>
                             </Card.Body>
@@ -136,7 +136,7 @@ export const Candidate = () => {
                                 <hr />
                                 <Row >
                                     <Col className='col-md-3'>
-                                        certificacion
+                                        Certificación
                                     </Col>
                                     <Col className='col-md-3 text-center'>
                                         {payload[11]}
@@ -202,10 +202,10 @@ export const Candidate = () => {
                                             :
                                             <>
                                                 <Col className='col-md-3'>
-                                                    <Link to={`/editCandidate/${candidatura}`} className='btn btn-primary'>Editar datos de la candidatura</Link>
+                                                    <Link to={`/editCandidate/${candidatura}`} className='btn btn-primary' style={{ backgroundColor: "#002e60", color: "white" }}>Editar Datos</Link>
                                                 </Col>
                                                 <Col className='col-md-3'>
-                                                    <Link to={`/editEstado/${candidatura}`} className='btn btn-primary'>Actualizar Estado</Link>
+                                                    <Link to={`/editEstado/${candidatura}`} className='btn btn-primary' style={{ backgroundColor: "#A0A5A1", color: "white", borderColor: "#A0A5A1" }}>Actualizar Estado</Link>
                                                 </Col>
                                             </>
                                     }

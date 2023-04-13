@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Figure, Row, Button, Card } from 'react-bootstrap'
 import Buttons from '../../shared/components/Buttons'
 import { useParams, Link } from 'react-router-dom'
@@ -6,9 +6,9 @@ import AxiosClient from '../../shared/http-client.gateway';
 import DataTable from "react-data-table-component";
 
 export const Company = () => {
-    const[payload, setPayload] = useState([]);
+    const [payload, setPayload] = useState([]);
     const [certifications, setCertifications] = useState([]);
-    const {company} = useParams();
+    const { company } = useParams();
 
     useEffect(() => {
         getCompany();
@@ -21,7 +21,6 @@ export const Company = () => {
             console.log(data.data.data)
             setPayload(data.data.data)
         } catch (error) {
-
         }
     }
 
@@ -47,9 +46,9 @@ export const Company = () => {
         {
             name: 'Estado',
             cell: row => {
-                if(row.status === true){
+                if (row.status === true) {
                     return <div>Activa</div>
-                }else{
+                } else {
                     return <div>Inactiva</div>
                 }
             }
@@ -59,8 +58,8 @@ export const Company = () => {
     return (
         <>
             <Container className='px-5 mt-5'>
-            <h2 className='text-center' style={{ color: "#002e60" }}>Empresa Certificadora</h2>
-            <br />
+                <h2 className='text-center' style={{ color: "#002e60" }}>Empresa Certificadora</h2>
+                <br />
                 <Row>
                     <Col className='col-lg-6 col-md-8 col-sm-7'>
                         <br />
@@ -84,7 +83,7 @@ export const Company = () => {
                                         responsive
                                         noDataComponent={<div className='text-center'>No hay certificaciones</div>}
                                         paginationPerPage={3}
-                                        paginationRowsPerPageOptions={[3,6, 12, 18, 24, 30]}
+                                        paginationRowsPerPageOptions={[3, 6, 12, 18, 24, 30]}
                                     />
                                 </Card.Body>
                             </Card>
@@ -94,20 +93,20 @@ export const Company = () => {
                         <br />
                         <br />
                         <Row className='justify-content-center'>
-                            <div  style={{ height: "203px", width: "300px", color: "black" }}>                            
+                            <div style={{ height: "203px", width: "300px", color: "black" }}>
                                 {
                                     payload[19] === "" ?
                                         <div className='text-center' >
-                                            
+
                                         </div>
-                                   
+
                                         :
                                         <Card className='rounded-3 border border-4 border-secondary text-center bg-light' style={{ height: "203px", width: "300px", color: "black" }}>
                                             <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="Imagen" style={{ height: "100%", width: "100%", objectFit: "cover" }} />
                                         </Card>
 
                                 }
-                            
+
                             </div>
                         </Row>
                         <br />
@@ -141,23 +140,23 @@ export const Company = () => {
             </Container>
             <br />
             <div className='mb-3' style={{ position: "absolute", bottom: 0, width: "90%" }}>
-                    <Row>
-                        <Col lg={9} md={8} sm={9}>
-                            <Button style={{ width: "110px" }} className="ms-4" variant="warning">
-                                Deshabilitar
-                            </Button>
-                            <Link to={`/editCompany/${company}`}>
-                                <Button style={{ width: "110px" }} className="ms-4" variant="primary">
+                <Row>
+                    <Col lg={9} md={8} sm={9}>
+                        <Button style={{ width: "110px", backgroundColor: "#A0A5A1", borderColor: "#A0A5A1" }} className="ms-4">
+                            Deshabilitar
+                        </Button>
+                        <Link to={`/editCompany/${company}`}>
+                            <Button style={{ width: "110px", backgroundColor: "#002e60" }} className="ms-4">
                                 Editar
-                                </Button>
-                            </Link>
-                        </Col>
-                        <Col>
-                            <Button style={{ width: "110px" }} variant="danger">
-                                Eliminar
                             </Button>
-                        </Col>
-                    </Row>
+                        </Link>
+                    </Col>
+                    <Col>
+                        <Button style={{ width: "110px", backgroundColor: "#002e60" }}>
+                            Eliminar
+                        </Button>
+                    </Col>
+                </Row>
             </div>
         </>
     )

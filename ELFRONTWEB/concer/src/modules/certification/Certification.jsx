@@ -50,7 +50,7 @@ const Certification = () => {
             </Col>
           </Row>
           <br />
-          
+
         </Col>
         <Col lg={6} md={8} sm={12}>
           <Figure>
@@ -63,25 +63,25 @@ const Certification = () => {
         </Col>
       </Row>
 
-          <div className='mb-3' style={{ position: "absolute", bottom: 0, width: "90%" }}>
-                    <Row>
-                        <Col lg={9} md={8} sm={9}>
-                            <Button style={{ width: "110px" }} className="ms-4" variant="warning">
-                                Deshabilitar
-                            </Button>
-                            <Link to={`/editCertification/${certification}`}>
-                                <Button style={{ width: "110px" }} className="ms-4" variant="primary">
-                                Editar
-                                </Button>
-                            </Link>
-                        </Col>
-                        <Col>
-                            <Button style={{ width: "110px" }} variant="danger">
-                                Eliminar
-                            </Button>
-                        </Col>
-                    </Row>
-                </div>
+      <div className='mb-3' style={{ position: "absolute", bottom: 0, width: "90%" }}>
+        <Row>
+          <Col lg={9} md={8} sm={9}>
+            <Button style={{ width: "110px", backgroundColor: "#A0A5A1", borderColor: "#A0A5A1" }} className="ms-4">
+              Deshabilitar
+            </Button>
+            <Link to={`/editCertification/${certification}`}>
+              <Button style={{ width: "110px", backgroundColor: "#002e60" }} className="ms-4">
+                Editar
+              </Button>
+            </Link>
+          </Col>
+          <Col>
+            <Button style={{ width: "110px", backgroundColor: "#002e60" }}>
+              Eliminar
+            </Button>
+          </Col>
+        </Row>
+      </div>
 
     </Container>
   );

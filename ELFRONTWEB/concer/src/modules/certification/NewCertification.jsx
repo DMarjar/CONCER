@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -26,7 +26,7 @@ export const NewCertification = () => {
             setPerson(data.data.data);
             console.log(data.data.data)
         } catch (error) {
-            
+
         }
     }
 
@@ -54,14 +54,15 @@ export const NewCertification = () => {
 
 
     const registrar = async (e) => {
-       Swal.fire({
-            title: '¿Estas seguro?',
+        Swal.fire({
+            title: '¿Está usted seguro?',
             text: "",
             icon: 'question',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, registrar!'
+            cancelButtonText: "Cancelar",
+            confirmButtonColor: '#019979',
+            cancelButtonColor: '#A0A5A1',
+            confirmButtonText: 'Sí, guardar!'
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
@@ -72,11 +73,13 @@ export const NewCertification = () => {
                         idPerson: e.idPerson,
                         idCompany: e.idCompany,
                     });
-                    Swal.fire(
-                        'Registrado!',
-                        'Se registro correctamente.',
-                        'success'
-                    )
+                    Swal.fire({
+                        title: '¡Correcto!',
+                        text: 'Se ha registrado la certificación correctamente',
+                        icon: 'success',
+                        confirmButtonColor: '#019979',
+                        confirmButtonText: 'Aceptar'
+                    })
                 } catch (error) {
                     Swal.fire(
                         'Error!',
@@ -84,7 +87,7 @@ export const NewCertification = () => {
                         'error'
                     )
                 }
-            }else{
+            } else {
                 Swal.fire({
                     text: "Se cancelo el registro",
                     icon: "error",
@@ -98,8 +101,8 @@ export const NewCertification = () => {
     return (
         <>
             <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>Agregar Certificacion</h2>
-                <br/>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Agregar certificación</h2>
+                <br />
                 <Card>
                     <Card.Body>
                         <Formik
@@ -130,7 +133,7 @@ export const NewCertification = () => {
                                             ) : null}
                                         </Col>
                                     </Row>
-                                    <br/>
+                                    <br />
                                     <Row>
                                         <Col className='col-12'>
                                             <label htmlFor="version">Versión</label>
@@ -144,29 +147,29 @@ export const NewCertification = () => {
                                             ) : null}
                                         </Col>
                                     </Row>
-                                    <br/>
+                                    <br />
                                     <Row>
                                         <Col className='col-12'>
                                             <label htmlFor="idCompany">Empresa</label>
-                                                <Field
-                                                    as="select"
-                                                    name="idCompany"
-                                                    className={`form-control ${touched.idCompany && errors.idCompany ? "is-invalid" : ""}`}
-                                                >
-                                                    <option value="">Seleccione una empresa</option>
-                                                    {company.map((item) => (
-                                                        <option key={item.id} value={item.id}>{item.name}</option>
-                                                    ))}
-                                                </Field>
-                                                {touched.idCompany && errors.idCompany ? (
-                                                    <div className="invalid-feedback">{errors.idCompany}</div>
-                                                ) : null}
+                                            <Field
+                                                as="select"
+                                                name="idCompany"
+                                                className={`form-control ${touched.idCompany && errors.idCompany ? "is-invalid" : ""}`}
+                                            >
+                                                <option value="">Seleccione una empresa</option>
+                                                {company.map((item) => (
+                                                    <option key={item.id} value={item.id}>{item.name}</option>
+                                                ))}
+                                            </Field>
+                                            {touched.idCompany && errors.idCompany ? (
+                                                <div className="invalid-feedback">{errors.idCompany}</div>
+                                            ) : null}
                                         </Col>
                                     </Row>
-                                    <br/>
+                                    <br />
                                     <Row>
                                         <Col className='col-12'>
-                                            <label htmlFor="idPerson">Gestor que estara a cargo</label>
+                                            <label htmlFor="idPerson">Encargado de la gestión</label>
                                             <Field
                                                 as="select"
                                                 name="idPerson"
@@ -182,66 +185,64 @@ export const NewCertification = () => {
                                             ) : null}
                                         </Col>
                                     </Row>
-                                    <br/>
+                                    <br />
                                     <Row>
                                         <Col className='col-lg-12 col-md-12 col-sm-12'>
-                                        <div className="form-group">
-                                            <label htmlFor="pictureBase64">Imagen</label>
-                                            <br/>
-                                            <input
-                                                type="file"
-                                                className="form-control-file"
-                                                id="pictureBase64"
-                                                name="pictureBase64"
-                                                accept="image/*"
-                                                required
-                                                onChange={
-                                                    (e) => {
-                                                        const file = e.target.files[0];
-                                                        const reader = new FileReader();
-                                                        reader.onload = (e) => {
+                                            <div className="form-group">
+                                                <label htmlFor="pictureBase64">Imagen</label>
+                                                <br />
+                                                <input
+                                                    type="file"
+                                                    className="form-control-file"
+                                                    id="pictureBase64"
+                                                    name="pictureBase64"
+                                                    accept="image/*"
+                                                    required
+                                                    onChange={
+                                                        (e) => {
+                                                            const file = e.target.files[0];
+                                                            const reader = new FileReader();
+                                                            reader.onload = (e) => {
 
 
-                                                            const img = new Image();
-                                                            img.src = e.target.result;
-                                                            img.onload = () => {
-                                                                const aspectRatio = img.width / img.height;
-                                                                if (aspectRatio < 1.5) {
-                                                                    Swal.fire(
-                                                                        'Error!',
-                                                                        'La imagen debe ser rectangular para el carrusel y lo suficientemente grande',
-                                                                        'error'
-                                                                    )
-                                                                    return;
+                                                                const img = new Image();
+                                                                img.src = e.target.result;
+                                                                img.onload = () => {
+                                                                    const aspectRatio = img.width / img.height;
+                                                                    if (aspectRatio < 1.5) {
+                                                                        Swal.fire(
+                                                                            'Error!',
+                                                                            'La imagen debe ser rectangular para el carrusel y lo suficientemente grande',
+                                                                            'error'
+                                                                        )
+                                                                        return;
+                                                                    }
+                                                                    const base64 = e.target.result;
+                                                                    if (base64) {
+                                                                        setPayload({
+                                                                            ...payload,
+                                                                            pictureBase64: base64.toString().replace(/^data:image\/(png|jpeg);base64,/, ""),
+                                                                        });
+                                                                    }
                                                                 }
-                                                                const base64 = e.target.result;
-                                                                if (base64) {
-                                                                    setPayload({
-                                                                        ...payload,
-                                                                        pictureBase64: base64.toString().replace(/^data:image\/(png|jpeg);base64,/, ""),
-                                                                    });
-                                                                }
-                                                            }   
-                                                        };
-                                                        reader.readAsDataURL(file);
+                                                            };
+                                                            reader.readAsDataURL(file);
+                                                        }
                                                     }
-                                                }
-                                            />
-                                            <div id="preview" className="text-center">
-                                            {
-                                                payload.pictureBase64 ? (
-                                                    <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="preview" className="img-thumbnail" style={{maxHeight:'200px'}} />
-                                                ) : null
-                                            }
+                                                />
+                                                <div id="preview" className="text-center">
+                                                    {
+                                                        payload.pictureBase64 ? (
+                                                            <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="preview" className="img-thumbnail" style={{ maxHeight: '200px' }} />
+                                                        ) : null
+                                                    }
+                                                </div>
                                             </div>
-                                        </div>
                                         </Col>
                                     </Row>
-                                    <br/>
-                                    <Row>
-                                        <Col className='col-lg-12 col-md-12 col-sm-12' style={{textAlign: 'right'}}>
-                                            <br/>
-                                            <Button className='btn btn-primary btn-block' type="submit" disabled={isSubmitting} >Registrar</Button>
+                                    <Row className='mb-3'>
+                                        <Col className='col-md-12 text-end'>
+                                            <Button style={{ backgroundColor: "#002e60", color: "white" }} className='btn btn-primary' type="submit" disabled={isSubmitting} >Guardar</Button>
                                         </Col>
                                     </Row>
                                 </Form>
@@ -250,9 +251,9 @@ export const NewCertification = () => {
                     </Card.Body>
                 </Card>
 
-                <br/>
-                
-            </Container>       
+                <br />
+
+            </Container>
         </>
     )
 }

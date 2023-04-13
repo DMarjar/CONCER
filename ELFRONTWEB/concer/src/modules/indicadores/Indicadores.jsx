@@ -1,7 +1,7 @@
-import React, { useState, useEffect }  from 'react'
+import React, { useState, useEffect } from 'react'
 import DataTable from "react-data-table-component";
 import { Link } from 'react-router-dom';
-import { Button, Container, Card, Row, Col} from 'react-bootstrap';
+import { Button, Container, Card, Row, Col } from 'react-bootstrap';
 import AxiosClient from '../../shared/http-client.gateway';
 
 
@@ -16,7 +16,7 @@ export const Indicadores = () => {
             const data = await AxiosClient.doGet('/stats/', {});
             setPayload(data.data.data)
         } catch (error) {
-            
+
         }
     }
     const getEstadisticasCandidate = async () => {
@@ -24,7 +24,7 @@ export const Indicadores = () => {
             const data = await AxiosClient.doGet('/stats/candidate', {});
             setPayload(data.data.data)
         } catch (error) {
-            
+
         }
     }
     const getEstadisticasCertification = async () => {
@@ -32,7 +32,7 @@ export const Indicadores = () => {
             const data = await AxiosClient.doGet('/stats/certification', {});
             setPayload(data.data.data)
         } catch (error) {
-            
+
         }
     }
     const getEstadisticasAcademy = async () => {
@@ -83,7 +83,7 @@ export const Indicadores = () => {
             name: 'Puntuacion Promedio',
             cell: row => <div>{row.averageScore}</div>,
         }
-    
+
     ]
 
     const candidateStatsColums = [
@@ -190,7 +190,7 @@ export const Indicadores = () => {
         },
     ]
 
-   
+
     useEffect(() => {
         switch (Estadisticas) {
             case "GENERALES":
@@ -217,44 +217,39 @@ export const Indicadores = () => {
     useEffect(() => {
         document.title = 'CONCER | Estadisticas';
     }, []);
-    
+
 
     return (
         <>
             <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>Estadisticas </h2>
-                <br/>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Estadísticas </h2>
+                <br />
                 <section>
                     <Row>
-                                <Col className='col-md-1'>
-                                    <Button variant="primary" onClick={() => setEstadisticas("GENERALES")}>Generales</Button>
-                                </Col>
-                                <Col className='col-md-1'>
-                                    <Button variant="primary" onClick={() => setEstadisticas("CANDIDATO")}>Popularidad</Button>
-                                </Col>
-                                <Col className='col-md-7'></Col>
+                        <Col className='col-md-4'>
+                            <Button className='ms-3' style={{ backgroundColor: "#002e60", width: "100px" }} onClick={() => setEstadisticas("GENERALES")}>Generales</Button>
+                            <Button className='ms-4' style={{ backgroundColor: "#002e60", width: "110px" }} onClick={() => setEstadisticas("CANDIDATO")}>Popularidad</Button>
+                        </Col>
+                        <Col className='col-md-3'>
+                        </Col>
+                        <Col className='col-md-5 text-end'>
+                            <Button style={{ backgroundColor: "#002e60", width: "110px" }} onClick={() => setEstadisticas("CERTIFICACION")}>Certificación</Button>
+                            <Button className='ms-4' style={{ backgroundColor: "#002e60", width: "100px" }} onClick={() => setEstadisticas("ACADEMIA")}>Academia</Button>
+                            <Button className='mx-4' style={{ backgroundColor: "#002e60", width: "100px" }} onClick={() => setEstadisticas("GESTOR")}>Gestor</Button>
 
-                                <Col className='col-md-1 '>
-                                    <Button variant="primary" onClick={() => setEstadisticas("CERTIFICACION")}>Certificacion</Button>
-                                </Col>
-                                <Col className='col-md-1 '>
-                                    <Button variant="primary" onClick={() => setEstadisticas("ACADEMIA")}>Academia</Button>
-                                </Col>
-                                <Col className='col-md-1 '>
-                                    <Button variant="primary" onClick={() => setEstadisticas("GESTOR")}>Gestor</Button>
-                                </Col>
-                            </Row>
+                        </Col>
+                    </Row>
                 </section>
-                <br/>
+                <br />
                 <Card>
                     <Card.Header>
                         <Card.Title as="h5">
                             {
-                                Estadisticas === "GENERALES" ? "Estadisticas Generales" :
-                                    Estadisticas === "CANDIDATO" ? "Estadisticas de Popularidad" :
-                                        Estadisticas === "CERTIFICACION" ? "Estadisticas de Certificacion" :
-                                            Estadisticas === "ACADEMIA" ? "Estadisticas de Academia" :
-                                                Estadisticas === "GESTOR" ? "Estadisticas de Gestor" : ""
+                                Estadisticas === "GENERALES" ? "Estadísticas Generales" :
+                                    Estadisticas === "CANDIDATO" ? "Estadísticas de Popularidad" :
+                                        Estadisticas === "CERTIFICACION" ? "Estadísticas de Certificacion" :
+                                            Estadisticas === "ACADEMIA" ? "Estadísticas de Academia" :
+                                                Estadisticas === "GESTOR" ? "Estadísticas de Gestor" : ""
                             }
                         </Card.Title>
                     </Card.Header>
@@ -284,7 +279,7 @@ export const Indicadores = () => {
                                             paginationComponentOptions={{
                                                 rowsPerPageText: 'Filas por página:',
                                                 rangeSeparatorText: 'de',
-                        
+
                                             }}
                                             paginationPerPage={5}
                                             paginationRowsPerPageOptions={[5, 10, 15, 20, 25]}
@@ -300,10 +295,10 @@ export const Indicadores = () => {
                                                 paginationComponentOptions={{
                                                     rowsPerPageText: 'Filas por página:',
                                                     rangeSeparatorText: 'de',
-                            
+
                                                 }}
                                                 paginationPerPage={5}
-                                                    paginationRowsPerPageOptions={[5, 10, 15, 20, 25]}
+                                                paginationRowsPerPageOptions={[5, 10, 15, 20, 25]}
                                                 highlightOnHover
                                                 responsive
                                             />
@@ -315,7 +310,7 @@ export const Indicadores = () => {
                                                     paginationComponentOptions={{
                                                         rowsPerPageText: 'Filas por página:',
                                                         rangeSeparatorText: 'de',
-                                
+
                                                     }}
                                                     paginationPerPage={5}
                                                     paginationRowsPerPageOptions={[5, 10, 15, 20, 25]}
@@ -325,11 +320,11 @@ export const Indicadores = () => {
                                                 : null
 
                         }
-                        
-                        
+
+
                     </Card.Body>
-                </Card>          
-            </Container>       
+                </Card>
+            </Container>
         </>
     )
 }
