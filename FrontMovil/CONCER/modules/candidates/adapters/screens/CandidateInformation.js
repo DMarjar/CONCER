@@ -25,10 +25,9 @@ export default function CandidateInformation() {
   const route = useRoute();
   const { candidateId } = route.params;
   const [data, setdata] = useState([]);
-
+  const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [renderComponent, setRenderComponent] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -273,6 +272,7 @@ export default function CandidateInformation() {
 
         <Loading setShow={loading} text="" />
       </View>
+      <Loading setShow={loading} />
     </ScrollView>
   );
 }

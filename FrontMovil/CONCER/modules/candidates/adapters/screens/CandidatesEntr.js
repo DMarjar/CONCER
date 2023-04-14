@@ -15,9 +15,8 @@ import {
   useIsFocused,
 } from "@react-navigation/native";
 import { Input, Icon } from "@rneui/base";
-import { Button } from "react-native-elements";
 
-export default function Candidates() {
+export default function CandidatesEntr() {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
 
@@ -37,7 +36,7 @@ export default function Candidates() {
 
         //obtener datos de los candidatos con el id de la cuenta
         const response = await axios.doPost(
-          "/candidate/informationPendientes",
+          "/candidate/informationEntregadas",
           {
             id: parsedAccount.id,
           }
@@ -50,7 +49,9 @@ export default function Candidates() {
           return fullName.includes(searchTerm.toLowerCase());
         });
         setFilteredData(filteredResults);
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     if (isFocused) {
@@ -69,7 +70,7 @@ export default function Candidates() {
   );
 
   const handleCandidatePress = (candidateId) => {
-    navigation.navigate("Candidatura", { candidateId });
+    navigation.navigate("Informacion", { candidateId });
   };
 
   return (
@@ -107,13 +108,6 @@ export default function Candidates() {
           </TouchableOpacity>
         ))}
       </ScrollView>
-      <View style={styles.containerEntr}>
-        <Button
-          title="Candidatos entregados"
-          onPress={() => navigation.navigate("Entregadas")}
-          buttonStyle={styles.buttonEntr}
-        />
-      </View>
     </View>
   );
 }
@@ -123,15 +117,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     backgroundColor: "#F2F2F2",
-  },
-  containerEntr: {
-    marginBottom: 15,
-  },
-  buttonEntr: {
-    backgroundColor: "#FFFFFF",
-    borderRadius: 5,
-    borderColor: "#0e639c",
-    borderWidth: 1,
   },
   item: {
     padding: 10,

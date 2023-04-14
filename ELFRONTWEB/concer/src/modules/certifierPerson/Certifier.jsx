@@ -122,7 +122,7 @@ export const Certifier = () => {
                         <br />
                     </Col>
                 </Row>
-                
+                <br />
                 <Row>
                     <Col className='col-md-12'>
                         <Card>
