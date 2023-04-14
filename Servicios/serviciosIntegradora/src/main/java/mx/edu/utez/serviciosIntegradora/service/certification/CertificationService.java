@@ -72,7 +72,7 @@ public class CertificationService {
                 try {
 
                     certification.get(0)[2]=(imageService.getPicture((String) certification.get(0)[2]));
-                    
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

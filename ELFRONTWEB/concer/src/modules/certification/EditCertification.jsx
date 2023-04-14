@@ -27,10 +27,10 @@ export const EditCertification = () => {
             setPayload({
                 id: data.data.data[0][0],
                 name: data.data.data[0][1],
-                version: data.data.data[0][3],
-                idPerson: data.data.data[0][5],
-                pictureBase64: data.data.data[0][6],
-                idCompany: data.data.data[0][4],
+                version: data.data.data[0][4],
+                idPerson: data.data.data[0][6],
+                pictureBase64: data.data.data[0][2],
+                idCompany: data.data.data[0][7],
               });
         } catch (error) {
             console.log(error)
