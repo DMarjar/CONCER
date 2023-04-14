@@ -8,6 +8,15 @@ import Swal from 'sweetalert2';
 import AxiosClient from '../../shared/http-client.gateway';
 
 export const NewCandidate = () => {
+    const [payload, setPayload] = useState({
+        idPerson: "",
+        idAcademy: "",
+        idCertification: "",
+        fechaFin: "",
+        puntaje: "",
+        grupo: "",
+        clave: "",
+    })
 
     const [Person, setPerson] = useState([]);
     const [Certificaciones, setCertificaciones] = useState([]);
@@ -58,6 +67,10 @@ export const NewCandidate = () => {
 
     useEffect(() => {
         getAccount();
+    }, []);
+
+    useEffect(() => {
+        
         getPerson();
         getCertificaciones();
         getAcademys();
@@ -96,15 +109,7 @@ export const NewCandidate = () => {
                         <Row>
                             <Col>
                                 <Formik
-                                    initialValues={{
-                                        idPerson: "",
-                                        idAcademy: "",
-                                        idCertification: "",
-                                        fechaFin: "",
-                                        puntaje: "",
-                                        grupo: "",
-                                        clave: "",
-                                    }}
+                                    initialValues={payload}
                                     validationSchema={validationForm}
                                     onSubmit={async (values, { setSubmitting }) => {
                                         setSubmitting(true);
@@ -121,15 +126,7 @@ export const NewCandidate = () => {
                                         }).then(async (result) => {
                                             if (result.isConfirmed) {
                                                 try {
-                                                    const data = await AxiosClient.doPost('/candidate/', {
-                                                        idAcademy: values.idAcademy,
-                                                        idCertification: values.idCertification,
-                                                        idPerson: values.idPerson,
-                                                        fechaFin: values.fechaFin,
-                                                        puntaje: values.puntaje,
-                                                        grupo: values.grupo,
-                                                        clave: values.clave
-                                                    });
+                                                    const data = await AxiosClient.doPost('/candidate/', values);
                                                     Swal.fire({
                                                         title: 'Candidatura agregada correctamente',
                                                         icon: 'success',
