@@ -10,8 +10,6 @@ import Swal from "sweetalert2";
 
 
 export const EditPerson = () => {
-
-
     const [payload, setPayload] = useState({
         id: '',
         firstName: '',
@@ -211,9 +209,7 @@ export const EditPerson = () => {
                                                 }
                                             }
                                         />
-
                                     </Col>
-
                                 </Row>
                                 <br />
                                 <Row className='mb-3'>

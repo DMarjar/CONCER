@@ -37,7 +37,7 @@ export const IndexAdmin = () => {
     return (
         <>
             <div className="container-fluid"  >
-                <Row className="m-0">
+                <Row className="m-0 mx-0 px-0"  style={{backgroundColor: '#002e60'}} >
                     <NavbarAll />
                 </Row>
 

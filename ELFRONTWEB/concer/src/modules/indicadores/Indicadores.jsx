@@ -89,27 +89,27 @@ export const Indicadores = () => {
     const candidateStatsColums = [
         {
             name: 'Mas popular',
-            cell: row => <div>{row.mostPopularCertification}</div>,
+            cell: row => <div>{row?.mostPopularCertification}</div>,
         },
         {
             name: 'No. Candidaturas',
-            cell: row => <div>{row.mostPopularCertificationCount}</div>,
+            cell: row => <div>{row?.mostPopularCertificationCount}</div>,
         },
         {
             name: 'Puntuacion Promedio',
-            cell: row => <div>{row.mostPopularCertificationAverageScore}</div>,
+            cell: row => <div>{row?.mostPopularCertificationAverageScore}</div>,
         },
         {
             name: 'Menos popular',
-            cell: row => <div>{row.leastPopularCertification}</div>,
+            cell: row => <div>{row?.leastPopularCertification}</div>,
         },
         {
             name: 'No. Candidaturas',
-            cell: row => <div>{row.leastPopularCertificationCount}</div>,
+            cell: row => <div>{row?.leastPopularCertificationCount}</div>,
         },
         {
             name: 'Puntuacion Promedio',
-            cell: row => <div>{row.leastPopularCertificationAverageScore}</div>,
+            cell: row => <div>{row?.leastPopularCertificationAverageScore}</div>,
         }
     ]
 
@@ -264,7 +264,7 @@ export const Indicadores = () => {
                                 />
                                 : Estadisticas === "CANDIDATO" ?
                                     <DataTable
-
+                                        noDataComponent="No hay candidatos registrados"
                                         columns={candidateStatsColums}
                                         data={payload}
                                         highlightOnHover

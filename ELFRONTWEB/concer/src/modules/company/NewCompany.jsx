@@ -30,11 +30,12 @@ export const NewCompany = () => {
                 pictureBase64: payload.pictureBase64
             })
             Swal.fire({
-                title: '¡Correcto!',
-                text: 'Se ha registrado la empresa correctamente',
-                icon: 'success',
+                title: "¡Éxito!",
+                text: "Empresa registrada correctamente",
+                icon: "success",
+                showCancelButton: false,
+                confirmButtonText: "Aceptar",
                 confirmButtonColor: '#019979',
-                confirmButtonText: 'Aceptar'
             })
         } catch (error) {
             console.log(error)
@@ -50,7 +51,7 @@ export const NewCompany = () => {
     return (
         <>
             <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>Agregar Empresa certificadora</h2>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Agregar empresa certificadora</h2>
                 <br />
                 <Card>
                     <Card.Header>
@@ -80,7 +81,8 @@ export const NewCompany = () => {
                                         registrar(values)
                                     } else {
                                         Swal.fire({
-                                            title: 'Registro cancelado',
+                                            title: '¡Operación cancelada!',
+                                            text: "Registro no procesado",
                                             icon: 'error',
                                             confirmButtonText: 'Aceptar',
                                             confirmButtonColor: '#019979'
@@ -136,7 +138,7 @@ export const NewCompany = () => {
                                                 <label htmlFor="pictureBase64">Logo</label>
                                                 <input
                                                     type="file"
-                                                    className="form-control-file"
+                                                    className="form-control"
                                                     id="pictureBase64"
                                                     name="pictureBase64"
                                                     accept="image/*"
@@ -145,7 +147,6 @@ export const NewCompany = () => {
                                                         (e) => {
                                                             const file = e.target.files[0];
                                                             const reader = new FileReader();
-
                                                             reader.onload = (e) => {
                                                                 const base64 = e.target.result;
                                                                 if (base64) {
@@ -154,21 +155,24 @@ export const NewCompany = () => {
                                                                         pictureBase64: base64.toString().replace(/^data:image\/(png|jpeg);base64,/, ""),
                                                                     });
                                                                 }
-
                                                             }
                                                             reader.readAsDataURL(file);
                                                         }
                                                     }
+
                                                 />
-                                                <div id="preview" className="text-center">
-                                                    {
-                                                        payload.pictureBase64 ? (
-                                                            <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="preview" className="img-thumbnail" style={{ maxHeight: '200px' }} />
-                                                        ) : null
-                                                    }
-                                                </div>
                                             </div>
                                         </Col>
+                                    </Row>
+                                    <br />
+                                    <Row className='mt-3'>
+                                        <div id="preview" className="text-center">
+                                            {
+                                                payload.pictureBase64 ? (
+                                                    <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="preview" className="img-thumbnail" style={{ maxHeight: '200px' }} />
+                                                ) : null
+                                            }
+                                        </div>
                                     </Row>
                                     <br />
                                     <Row className='mb-3'>

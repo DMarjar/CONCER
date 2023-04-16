@@ -44,7 +44,7 @@ export const EditCompany = () => {
     return (
         <>
             <Container className="mt-3">
-                <h2 className='text-center' style={{ color: "#002e60" }}>Editar Empresa Certificadora</h2>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Editar empresa certificadora</h2>
                 <br />
                 <Card>
                     <Card.Body>
@@ -65,7 +65,7 @@ export const EditCompany = () => {
                                         try {
                                             const data = AxiosClient.doPut(`/certifyingCompany/`, payload);
                                             Swal.fire({
-                                                title: '!Actualizado!',
+                                                title: '¡Actualizado!',
                                                 text: 'La empresa ha sido actualizada.',
                                                 confirmButtonColor: '#019979',
                                                 icon: 'success',
@@ -82,7 +82,7 @@ export const EditCompany = () => {
                                     } else {
                                         Swal.fire(
                                             {
-                                                title: 'Error!',
+                                                title: '¡Error!',
                                                 text: 'La imagen debe ser lo más cuadrada posible.',
                                                 icon: 'error',
                                                 confirmButtonColor: '#019979',
@@ -136,7 +136,7 @@ export const EditCompany = () => {
                                             <label htmlFor="pictureBase64">Logo</label>
                                             <input
                                                 type="file"
-                                                className="form-control-file"
+                                                className="form-control"
                                                 id="picture"
                                                 name="picture"
                                                 accept="image/*"
@@ -179,8 +179,7 @@ export const EditCompany = () => {
                                         </Col>
                                     </Row>
                                     <br />
-                                    <Row>
-                                        <Col>
+                                    <Row className="mt-3">
                                             <div id="preview" className="text-center">
                                                 {
                                                     payload.pictureBase64 ? (
@@ -188,7 +187,6 @@ export const EditCompany = () => {
                                                     ) : null
                                                 }
                                             </div>
-                                        </Col>
                                     </Row>
                                     <Row className='mb-3'>
                                         <Col className="col-md-12 text-end">

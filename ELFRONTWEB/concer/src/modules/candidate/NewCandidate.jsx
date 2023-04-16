@@ -250,7 +250,7 @@ export const NewCandidate = () => {
 
                                             <Row>
                                                 <Col className="col-md-12 mb-3 text-end">
-                                                    <Button type="submit" disabled={isSubmitting} className="btn btn-primary" style={{ backgroundColor: "#002e60", width: "110px" }}>Registrar</Button>
+                                                    <Button type="submit" disabled={isSubmitting} className="btn btn-primary" style={{ backgroundColor: "#002e60", width: "110px" }}>Guardar</Button>
                                                 </Col>
                                             </Row>
                                         </Form>

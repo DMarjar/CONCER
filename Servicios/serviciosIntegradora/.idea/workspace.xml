@@ -5,6 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1930e54-76c7-426d-8e53-5aac1b4e70af" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/indicadores/Indicadores.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/indicadores/Indicadores.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/profile/EditProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/profile/EditProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideAdmin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideAdmin.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideGestor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideGestor.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/AsideUser.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/shared/components/Navbar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />

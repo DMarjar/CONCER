@@ -81,7 +81,7 @@ export const EditProfile = () => {
                                     showCancelButton: true,
                                     confirmButtonColor: '#019979',
                                     cancelButtonColor: '#A0A5A1',
-                                    confirmButtonText: '!Sí, actualizar!',
+                                    confirmButtonText: '¡Sí, actualizar!',
                                     cancelButtonText: 'Cancelar'
                                 }).then(async (result) => {
                                     if (result.isConfirmed) {
@@ -89,8 +89,8 @@ export const EditProfile = () => {
                                             const data = await AxiosClient.doPut('/person/updateWeb/', payload);
                                             console.log(data.data.data);
                                             Swal.fire({
-                                                title: '!Actualizado!',
-                                                text: 'Se edito la información',
+                                                title: '¡Actualizado!',
+                                                text: 'Se edito la información correctamente',
                                                 confirmButtonColor: '#019979',
                                                 icon: 'success',
                                                 confirmButtonText: 'Aceptar'
@@ -98,7 +98,7 @@ export const EditProfile = () => {
                                         } catch (error) {
                                             console.log(error);
                                             Swal.fire({
-                                                title: 'Vaya..',
+                                                title: 'Vaya...',
                                                 text: 'Algo salio mal',
                                                 icon: 'error',
                                                 confirmButtonText: 'Aceptar',
@@ -226,7 +226,6 @@ export const EditProfile = () => {
                                         />
 
                                     </Col>
-
                                 </Row>
                                 <br />
                                 <Row className='mb-3'>
