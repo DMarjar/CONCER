@@ -125,10 +125,7 @@ export default function CandidateInformation() {
         );
         setShowModal(true);
         break;
-      case "Academy":
-        setRenderComponent(<ChangeAcademyCandidate />);
-        setShowModal(true);
-        break;
+
       case "Certification":
         setRenderComponent(<ChangeCertificationCandidate />);
         setShowModal(true);

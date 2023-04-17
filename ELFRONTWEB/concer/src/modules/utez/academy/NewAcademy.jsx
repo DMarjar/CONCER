@@ -126,16 +126,7 @@ export const NewAcademy = () => {
                     </Card.Body>
                 </Card>
 
-                <Row>
-                    <Col className="col-md-8">
-                        <img
-                            className="d-block h-100 w-100"
-                            src={`data:image/png;base64, `}
-                            alt={`una imagen para que no se vea vacio (que yo no pondre)`}
-                            style={{ height: '100%', width: '100%', maxHeight: '300px', objectFit: 'contain' }}
-                        />
-                    </Col>
-                </Row>
+                
             </Container>
         </>
     )

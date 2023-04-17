@@ -136,7 +136,7 @@ export const EditCompany = () => {
                                             <label htmlFor="pictureBase64">Logo</label>
                                             <input
                                                 type="file"
-                                                className="form-control-file"
+                                                className="form-control"
                                                 id="picture"
                                                 name="picture"
                                                 accept="image/*"

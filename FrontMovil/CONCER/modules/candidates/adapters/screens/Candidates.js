@@ -109,8 +109,8 @@ export default function Candidates() {
       </ScrollView>
       <View style={styles.containerEntr}>
         <Button
-          title="Candidatos entregados"
-          onPress={() => navigation.navigate("Entregadas")}
+          title="Ver entregados"
+          onPress={() => navigation.navigate("Entregados")}
           buttonStyle={styles.buttonEntr}
         />
       </View>
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   buttonEntr: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#0e639c",
     borderRadius: 5,
     borderColor: "#0e639c",
     borderWidth: 1,

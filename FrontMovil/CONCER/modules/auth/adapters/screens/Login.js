@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { Input, Image, Icon } from "@rneui/base";
 import { Button } from "react-native-elements";
+
+import { Input, Image, Icon } from "@rneui/base";
 import { isEmpty } from "lodash";
 import Loading from "../../../../kernel/components/Loading";
 import { Alert } from "react-native";
@@ -106,7 +107,8 @@ export default function Login() {
 
         <Button
           title="Iniciar Sesion"
-          containerStyle={styles.btn}
+          containerStyle={styles.btnContainer}
+          buttonStyle={styles.btn}
           Icon={
             <Icon
               type="material-community"
@@ -139,9 +141,12 @@ const styles = StyleSheet.create({
     width: "100%",
     marginVertical: 5,
   },
+  btnContainer: {
+    marginTop: 80,
+    width: "100%",
+  },
   btn: {
-    backgroundColor: "#019979ff",
-    borderRadius: 10,
-    marginTop: 30,
+    backgroundColor: "#0e639c",
+    borderRadius: 4,
   },
 });

@@ -21,7 +21,7 @@ export default function HomeStack({ route }) {
 
       <Stack.Screen name="Candidatura" component={CandidateInformation} />
 
-      <Stack.Screen name="Entregadas" component={CandidatesEntr} />
+      <Stack.Screen name="Entregados" component={CandidatesEntr} />
 
       <Stack.Screen name="Informacion" component={CandidateInformationEntr} />
     </Stack.Navigator>
