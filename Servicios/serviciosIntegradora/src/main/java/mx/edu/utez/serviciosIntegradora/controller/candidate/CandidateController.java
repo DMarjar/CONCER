@@ -159,11 +159,11 @@ public class CandidateController {
 
 
     //Delete
-    @DeleteMapping("/")
+    @DeleteMapping("/{id}")
     // URL: http://localhost:8080/controlCertificaciones/candidate/{id}
-    public ResponseEntity<CustomResponse<Candidate>> delete(@Valid @RequestBody CandidateDtos candidate){
+    public ResponseEntity<CustomResponse<Candidate>> delete(@PathVariable Long id){
         return new ResponseEntity<>(
-                this.service.delete(candidate.castToCandidate()),
+                this.service.delete(id),
                 HttpStatus.OK
         );
     }

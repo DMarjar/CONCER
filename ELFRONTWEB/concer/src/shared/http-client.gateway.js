@@ -14,4 +14,7 @@ export default {
   doDelete: async (url, data) => {
     return await AxiosClient.delete(url, data);
   },
+  doPatch: async (url, data) => {
+    return await AxiosClient.patch(url, data);
+  },
 };

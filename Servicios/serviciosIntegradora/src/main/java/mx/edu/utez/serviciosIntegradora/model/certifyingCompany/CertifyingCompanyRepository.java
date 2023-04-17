@@ -22,4 +22,10 @@ public interface CertifyingCompanyRepository extends JpaRepository<CertifyingCom
             nativeQuery = true
     )
     List<String> findAllImages();
+
+    @Query(
+            value = "select * from certifying_companies where status = 1;",
+            nativeQuery = true
+    )
+    List<CertifyingCompany> findAllActive();
 }

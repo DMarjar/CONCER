@@ -5,6 +5,7 @@ import { Card, Col, Container, Figure, Row, Form, Button } from 'react-bootstrap
 import FeatherIcon from 'feather-icons-react';
 import axios from '../../shared/http-client.gateway'
 import AuthContext from './AuthContext';
+import Swal from 'sweetalert2';
 
 
 export const Login = () => {
@@ -45,6 +46,12 @@ export const Login = () => {
 
                       
             } catch (err) {
+                Swal.fire({
+                    title: '¡Error!',
+                    text: 'Usuario o contraseña incorrectos.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                })
                 
             }
         },

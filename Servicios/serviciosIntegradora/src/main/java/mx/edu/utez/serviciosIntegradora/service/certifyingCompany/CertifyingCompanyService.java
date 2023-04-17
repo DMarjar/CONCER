@@ -42,6 +42,26 @@ public class CertifyingCompanyService {
                 companies,false,200,"ok"
         );
     }
+
+    //getAllActive
+    public CustomResponse<List<CertifyingCompany>> getAllActive(){
+        List<CertifyingCompany> companies = this.Repository.findAllActive();
+        for (CertifyingCompany c : companies) {
+            if (c.getPictureUrl() != null) {
+                try {
+                    c.setPictureBase64(imageService.getPicture(c.getPictureUrl()));
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+        return new CustomResponse<>(
+                companies,false,200,"ok"
+        );
+    }
+
+
+
     //getOne
     @Transactional(readOnly = true)
     public CustomResponse<CertifyingCompany> getOne(Long id){
@@ -125,12 +145,19 @@ public class CertifyingCompanyService {
 
     // update status
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Boolean> changeStatus(CertifyingCompany company) {
-        if (!this.Repository.updateStatusById(company.getId(), company.getStatus())) {
-            return new CustomResponse<>(null, true, 400, "Error update status");
+    public CustomResponse<CertifyingCompany> changeStatus(Long id) {
+
+        CertifyingCompany company = this.Repository.findById(id).get();
+
+        if (company.getStatus()) {
+            company.setStatus(false);
+        } else {
+            company.setStatus(true);
         }
+
+
         return new CustomResponse<>(
-                this.Repository.updateStatusById(company.getId(), company.getStatus()), false, 200, "company updated correctly!"
+                this.Repository.saveAndFlush(company), false, 200, "company updated correctly!"
         );
     }
 }

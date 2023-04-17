@@ -39,7 +39,7 @@ public class CertificationService {
     @Transactional(readOnly = true)
     public CustomResponse<List<Certification>> getAllWithoutImages(){
         return new CustomResponse<>(
-                this.Repository.findAll(),false,200,"ok"
+                this.Repository.findAllActive(),false,200,"ok"
         );
     }
 
@@ -150,12 +150,17 @@ public class CertificationService {
 
     // update status
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Boolean> changeStatus(Certification certification) {
-        if (!this.Repository.updateStatusById(certification.getId(), certification.getStatus())) {
-            return new CustomResponse<>(null, true, 400, "Error update status");
+    public CustomResponse<Certification> changeStatus(Long id) {
+        Certification certification = this.Repository.findById(id).get();
+
+        if (certification.getStatus()) {
+            certification.setStatus(false);
+        } else {
+            certification.setStatus(true);
         }
+
         return new CustomResponse<>(
-                this.Repository.updateStatusById(certification.getId(), certification.getStatus()), false, 200, "certification updated correctly!"
+                this.Repository.saveAndFlush(certification), false, 200, "certification updated correctly!"
         );
     }
 

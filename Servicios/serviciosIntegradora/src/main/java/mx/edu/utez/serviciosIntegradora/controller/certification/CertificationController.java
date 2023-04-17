@@ -57,7 +57,6 @@ public class CertificationController {
     @PostMapping("/one/{id}")
     // URL: http://localhost:8080/controlCertificaciones/certification/{id}
     public ResponseEntity<CustomResponse<List<Object[]>>> getOne(@PathVariable Long id){
-        System.out.println("idddddddddddddddddddd : " + id);
         return new ResponseEntity<>(
                 this.service.getOne(id),
                 HttpStatus.OK);
@@ -129,12 +128,12 @@ public class CertificationController {
 
 
     // Update status
-    @PatchMapping("/")
+    @PutMapping("/changeStatus/{id}")
     // URL: http://localhost:8080/controlCertificaciones/certification/{id}
-    public ResponseEntity<CustomResponse<Boolean>> patch(@Valid @RequestBody CertificationDtos certification) {
+    public ResponseEntity<CustomResponse<Certification>> patch(@PathVariable Long id) {
 
         return new ResponseEntity<>(
-                this.service.changeStatus(certification.castToCertification()), HttpStatus.OK
+                this.service.changeStatus(id), HttpStatus.OK
         );
     }
 

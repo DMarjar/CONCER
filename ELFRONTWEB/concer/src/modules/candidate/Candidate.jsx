@@ -2,6 +2,7 @@ import React, {useEffect, useState } from 'react'
 import { Col, Container, Figure, Row,Card, Button } from 'react-bootstrap'
 import AxiosClient from '../../shared/http-client.gateway';
 import { useParams, Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 export const Candidate = () => {
@@ -20,6 +21,44 @@ export const Candidate = () => {
         getCandidature();
     }, []);
 
+    const EliminarCandidatura = async () => {
+        Swal.fire({
+            title: '¿Estas seguro?',
+            text: "No podras revertir esta accion",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar!'
+            }).then(async (result) => {
+                if(result.isConfirmed){
+                    try {
+                        const response = await AxiosClient.doDelete(`/candidate/${candidatura}`, {});
+                        if(!response.data.error){
+                            Swal.fire({
+                                title: '¡Éxito!',
+                                text: 'Candidatura eliminada correctamente',
+                                icon: 'success',
+                                confirmButtonText: 'Aceptar'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = "/candidates";
+                                }
+                            })
+                        }else{
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.data.message,
+                                icon: 'error',
+                                confirmButtonText: 'Aceptar'
+                            })
+                        }
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
+            })
+    }
 
     return (
         <>
@@ -210,6 +249,9 @@ export const Candidate = () => {
                                             </>
                                     }
                                     
+                                    <Col className='col-md-3'>
+                                        <Button className='' onClick={()=>EliminarCandidatura()}>Eliminar</Button>
+                                    </Col>
                                 </Row>
                             </Card.Body>
                         </Card>

@@ -24,7 +24,6 @@ export const NewCertification = () => {
         try {
             const data = await AxiosClient.doGet('/person/certifiers', {});
             setPerson(data.data.data);
-            console.log(data.data.data)
         } catch (error) {
 
         }
@@ -32,9 +31,8 @@ export const NewCertification = () => {
 
     const getCompany = async () => {
         try {
-            const data = await AxiosClient.doGet('/certifyingCompany/', {});
+            const data = await AxiosClient.doGet('/certifyingCompany/active', {});
             setCompany(data.data.data);
-            console.log(data.data.data)
         } catch (error) {
 
         }

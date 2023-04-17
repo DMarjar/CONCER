@@ -29,6 +29,14 @@ public class CertifyingCompanyController {
                 HttpStatus.OK);
     }
 
+    @GetMapping("/active")
+    // URL: http://localhost:8080/controlCertificaciones/cerifyingCompany/
+    public ResponseEntity<CustomResponse<List<CertifyingCompany>>> getAllActive() {
+        return new ResponseEntity<>(
+                this.service.getAllActive(),
+                HttpStatus.OK);
+    }
+
     // Get one
     @GetMapping("/{id}")
     // URL: http://localhost:8080/controlCertificaciones/certifyingCompany/{id}
@@ -69,11 +77,11 @@ public class CertifyingCompanyController {
 
 
     // Update status
-    @PatchMapping("/")
+    @PutMapping("/changeState/{id}")
     // URL: http://localhost:8080/controlCertificaciones/cerifyingCompany/{id}
-    public ResponseEntity<CustomResponse<Boolean>> patch(@Valid @RequestBody CertifyingCompanyDtos certifyingCompany) {
+    public ResponseEntity<CustomResponse<CertifyingCompany>> patch(@PathVariable Long id) {
         return new ResponseEntity<>(
-                this.service.changeStatus(certifyingCompany.castToCertifyingCompany()), HttpStatus.OK
+                this.service.changeStatus(id), HttpStatus.OK
         );
     }
 

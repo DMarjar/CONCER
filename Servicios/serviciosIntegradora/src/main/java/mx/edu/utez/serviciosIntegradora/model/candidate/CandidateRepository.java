@@ -19,15 +19,10 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     )
     boolean updateStatusById(@Param("id") Long id, @Param("status") boolean status);
 
-    // Verificar si el candidato ya existe en esa certificacion
-    boolean existsByPersonAndCertification(Person person, Certification certification);
-
     @Query (nativeQuery = true, value = "select c.id, c.estado,c.status,c.fecha_fin,c.picture_url,c.puntaje,c.grupo,c.clave, c.person_id,c.academy_id,c.certification_id from candidates c where c.id = :id")
     List<Object[]> findCandidateById(@Param("id") Long id);
 
     boolean existsByClave(String clave);
-    int countAllBy();
-
     int countAllByEstado(Estado estado);
     @Query(nativeQuery = true, value = "select certifications.id as idCertificacion, candidates.id as idCandidatura, people.id as idCandidato, certification_name, people.first_name, people.last_name as apellidoCandidato, managers.first_name as manager_name, candidates.estado as estadoCertificacion "
             + "from certifications "
@@ -37,10 +32,10 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
             + "where candidates.status = 1 ")
     List<Object[]> findALl();
 
-    @Query(nativeQuery = true, value = "select certifications.id as idCertificacion, candidates.id as idCandidatura, people.id as idCandidato, certification_name, people.first_name, people.last_name as apellidoCandidato, managers.first_name as manager_name, candidates.estado as estadoCertificacion from certifications join candidates on candidates.certification_id = certifications.id join people on candidates.person_id = people.id join people as managers on certifications.person_id = managers.id  where certifications.person_id = :personId and certifications.status = 1 and candidates.status = 1 and candidates.estado = :estado" )
+    @Query(nativeQuery = true, value = "select certifications.id as idCertificacion, candidates.id as idCandidatura, people.id as idCandidato, certification_name, people.first_name, people.last_name as apellidoCandidato, managers.first_name as manager_name, candidates.estado as estadoCertificacion from certifications join candidates on candidates.certification_id = certifications.id join people on candidates.person_id = people.id join people as managers on certifications.person_id = managers.id  where certifications.person_id = :personId and candidates.estado = :estado" )
     List<Object[]> findCertificationsByPersonId(@Param("personId") Long personId, @Param("estado") String estado);
 
-    @Query(nativeQuery = true, value = "select certifications.id as idCertificacion, candidates.id as idCandidatura, people.id as idCandidato, certification_name, people.first_name, people.last_name as apellidoCandidato, managers.first_name as manager_name, candidates.estado as estadoCertificacion from certifications join candidates on candidates.certification_id = certifications.id join people on candidates.person_id = people.id join people as managers on certifications.person_id = managers.id where certifications.person_id = :personId and certifications.status = 1 and candidates.status = 1")
+    @Query(nativeQuery = true, value = "select certifications.id as idCertificacion, candidates.id as idCandidatura, people.id as idCandidato, certification_name, people.first_name, people.last_name as apellidoCandidato, managers.first_name as manager_name, candidates.estado as estadoCertificacion from certifications join candidates on candidates.certification_id = certifications.id join people on candidates.person_id = people.id join people as managers on certifications.person_id = managers.id where certifications.person_id = :personId")
 
     List<Object[]> findCandidatesByCertifier(@Param("personId") Long personId);
 
@@ -70,7 +65,7 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
             "FROM certifications JOIN candidates ON candidates.certification_id = certifications.id JOIN people ON candidates.person_id = people.id \n" +
             "JOIN people as managers ON certifications.person_id = managers.id \n" +
             "JOIN academy ON candidates.academy_id = academy.id \n" +
-            "JOIN certifying_companies on certifications.company_id = certifying_companies.id WHERE candidates.id=:personId AND certifications.status=1  AND candidates.status=1")
+            "JOIN certifying_companies on certifications.company_id = certifying_companies.id WHERE candidates.id=:personId")
     List<Object[]> candidateInformation(@Param("personId") Long personId);
 
     @Query(nativeQuery = true, value = "SELECT \n" +

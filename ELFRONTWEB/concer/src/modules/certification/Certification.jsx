@@ -3,6 +3,7 @@ import { Button, Card, Col, Container, Figure, Row } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import AxiosClient from '../../shared/http-client.gateway';
 import Buttons from '../../shared/components/Buttons';
+import Swal from 'sweetalert2';
 
 const Certification = () => {
   const [payload, setPayload] = useState([]);
@@ -11,7 +12,6 @@ const Certification = () => {
   const getCertification = async () => {
     try {
       const data = await AxiosClient.doPost(`/certification/one/${certification}`, {});
-      console.log(data.data.data[0])
       setPayload(data.data.data[0]);
     } catch (error) {
       console.log(error)
@@ -21,6 +21,53 @@ const Certification = () => {
   useEffect(() => {
     getCertification();
   }, [certification])
+
+  const changeState = async () => {
+    Swal.fire({
+      title: '¿Está seguro de cambiar el estado de la certificacion?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '¡Sí, cambiarlo!'
+    }).then( async (result) => {
+      if (result.isConfirmed) {
+          try {
+              const response = await AxiosClient.doPut(`/certification/changeStatus/${certification}`, {});
+              
+              if(!response.data.error){
+                  Swal.fire({
+                      title: '¡Éxito!',
+                      text: 'Estado camcbiado correctamente',
+                      icon: 'success',
+                      confirmButtonText: 'Aceptar'
+                  }).then((result) => {
+                      if (result.isConfirmed) {
+                          window.location.reload();
+                      }
+                  })
+              }else{
+                  Swal.fire({
+                      title: 'Error',
+                      text: response.data.message,
+                      icon: 'error',
+                      confirmButtonText: 'Aceptar'
+                  })
+              }
+
+          } catch (error) {
+              console.log(error)
+              Swal.fire({
+                  title: 'Vaya...',
+                  text: 'No se pudo cambiar el estado de la empresa',
+                  icon: 'error',
+                  confirmButtonText: 'Aceptar'
+              })
+          }
+      }
+    })  
+  }
 
   return (
     <Container className='px-5 mt-3'>
@@ -66,19 +113,19 @@ const Certification = () => {
       <div className='mb-3' style={{ position: "absolute", bottom: 0, width: "90%" }}>
         <Row>
           <Col lg={9} md={8} sm={9}>
-            <Button style={{ width: "110px", backgroundColor: "#A0A5A1", borderColor: "#A0A5A1" }} className="ms-4">
-              Deshabilitar
+            <Button style={{ width: "110px", backgroundColor: "#A0A5A1", borderColor: "#A0A5A1" }} className="ms-4" onClick={()=>changeState()}>
+              {
+                payload[3] === 1 ?
+                  "Desactivar"
+                  :
+                  "Activar"
+              }
             </Button>
             <Link to={`/editCertification/${certification}`}>
               <Button style={{ width: "110px", backgroundColor: "#002e60" }} className="ms-4">
                 Editar
               </Button>
             </Link>
-          </Col>
-          <Col>
-            <Button style={{ width: "110px", backgroundColor: "#002e60" }}>
-              Eliminar
-            </Button>
           </Col>
         </Row>
       </div>

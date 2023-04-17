@@ -142,12 +142,12 @@ public class CandidateService {
 
     //delate
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Candidate> delete(Candidate candidate){
-        Optional<Candidate> exists = this.Repository.findById(candidate.getId());
+    public CustomResponse<Candidate> delete(Long id){
+        Optional<Candidate> exists = this.Repository.findById(id);
         if((!exists.isPresent())){
             return new CustomResponse<>(null,true,400,"no existe");
         }
-        this.Repository.deleteById(candidate.getId());
+        this.Repository.deleteById(id);
         return new CustomResponse<>(
                 null,false,200,"ok"
         );
