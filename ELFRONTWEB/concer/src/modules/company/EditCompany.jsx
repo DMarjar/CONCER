@@ -41,6 +41,38 @@ export const EditCompany = () => {
         getCompany();
     }, [company])
 
+    const enviarDatos = async () => {
+        try {
+            const response = await AxiosClient.doPut(`/certifyingCompany/`, payload);
+            if (!response.data.error) {
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'La empresa ha sido actualizada.',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = `/company/${company}`;
+                    }
+                })
+            } else {
+                Swal.fire(
+                    'Vaya...',
+                    'Algo a salido mal, intentelo de nuevo.',
+                    'error'
+                )
+            }
+
+        } catch (error) {
+            console.log(error)
+            Swal.fire(
+                '¡Error!',
+                'La empresa no ha sido actualizada.',
+                'error'
+            )
+        }
+    }
+
     return (
         <>
             <Container className="mt-3">
@@ -62,28 +94,12 @@ export const EditCompany = () => {
                                     cancelButtonColor: '#A0A5A1',
                                 }).then((result) => {
                                     if (result.isConfirmed) {
-                                        try {
-                                            const data = AxiosClient.doPut(`/certifyingCompany/`, payload);
-                                            Swal.fire({
-                                                title: '¡Actualizado!',
-                                                text: 'La empresa ha sido actualizada.',
-                                                confirmButtonColor: '#019979',
-                                                icon: 'success',
-                                                confirmButtonText: 'Aceptar'
-                                            })
-
-                                        } catch (error) {
-                                            Swal.fire(
-                                                '¡Error!',
-                                                'La empresa no ha sido actualizada.',
-                                                'error'
-                                            )
-                                        }
+                                        enviarDatos();
                                     } else {
                                         Swal.fire(
                                             {
-                                                title: '¡Error!',
-                                                text: 'La imagen debe ser lo más cuadrada posible.',
+                                                title: '¡Cancelado!',
+                                                text: '',
                                                 icon: 'error',
                                                 confirmButtonColor: '#019979',
                                                 confirmButtonText: 'Aceptar'
@@ -140,7 +156,6 @@ export const EditCompany = () => {
                                                 id="picture"
                                                 name="picture"
                                                 accept="image/*"
-                                                required
                                                 onChange={
                                                     (e) => {
                                                         const file = e.target.files[0];

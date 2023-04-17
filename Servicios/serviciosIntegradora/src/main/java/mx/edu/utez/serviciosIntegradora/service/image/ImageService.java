@@ -24,7 +24,6 @@ public class ImageService {
 
     //aaa
     public String getPicture (String path) throws IOException {
-        try{
             System.out.println(path);
             Resource resource = new FileSystemResource(path);
             byte[] pictureData = StreamUtils.copyToByteArray(resource.getInputStream());
@@ -33,14 +32,10 @@ public class ImageService {
 
             return pictureBase64;
 
-        }catch (IOException e){
-            return null;
-        }
     }
 
     public String savePicture (String picture) throws IOException {
 
-        try {
             byte[] pictureData = Base64.getDecoder().decode(picture);
 
             String pictureName = UUID.randomUUID().toString() + ".png";
@@ -49,9 +44,6 @@ public class ImageService {
             Files.write(Paths.get(os+pictureName),pictureData);
 
             return imagePath;
-        }catch (IOException e){
-            return null;
-        }
 
     }
 

@@ -27,18 +27,54 @@ export const NewPerson = () => {
 
 
     const validationForm = Yup.object().shape({
-        firstName: Yup.string().required("Required").matches(/^[a-zA-Z\s\u00C0-\u00FF'-]+$/, "No debe contener números o caracteres especiales"),
-        lastName: Yup.string().required("Required").matches(/^[a-zA-Z\s\u00C0-\u00FF'-]+$/, "No debe contener números o caracteres especiales"),
-        phoneNumber: Yup.string().required("Required").min(10, "Invalid phone number").max(10, "Invalid phone number").matches(/^[0-9]+$/, "Invalid phone number"),
-        email: Yup.string().email("Invalid email").required("Required"),
-        gender: Yup.string().required("Required"),
-        typePerson: Yup.string().required("Required"),
+        firstName: Yup.string().required("Este campo no puede estar vacio").matches(/^[a-zA-Z\s\u00C0-\u00FF'-]+$/, "No debe contener números o caracteres especiales"),
+        lastName: Yup.string().required("Este campo no puede estar vacio").matches(/^[a-zA-Z\s\u00C0-\u00FF'-]+$/, "No debe contener números o caracteres especiales"),
+        phoneNumber: Yup.string().required("Este campo no puede estar vacio").min(10, "Invalid phone number").max(10, "Invalid phone number").matches(/^[0-9]+$/, "Invalid phone number"),
+        email: Yup.string().email("Coreeo no valido").required("Este campo no puede estar vacio"),
+        gender: Yup.string().required("Este campo no puede estar vacio"),
+        typePerson: Yup.string().required("Este campo no puede estar vacio"),
         user: Yup.object().shape({
-            username: Yup.string().required("Required"),
-            password: Yup.string().required("Required").min(6, "minimo 6 caracteres"),
-            role: Yup.string().required("Required"),
+            username: Yup.string().required("Este campo no puede estar vacio"),
+            password: Yup.string().required("Este campo no puede estar vacio").min(6, "minimo 6 caracteres"),
+            role: Yup.string().required("Este campo no puede estar vacio"),
         }),
     });
+
+    const enviarDatos = async(values) => {
+        try {
+            console.log(values)
+            const response = await AxiosClient.doPost("/person/", values);
+            
+            if (!response.data.error) {
+
+                Swal.fire({
+                    title: 'Persona agregada!',
+                    icon: 'success',
+                    confirmButtonColor: '#019979',
+                    confirmButtonText: 'Aceptar'
+                    
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '/utez'
+                    }
+                })
+
+            } else {
+                Swal.fire({
+                    text: response.data.message,
+                    icon: "error",
+                    timer: 2000,
+                });
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire({
+                text: "Error al registrar",
+                icon: "error",
+                timer: 2000,
+            });
+        }
+    }
 
     return (
         <>
@@ -64,26 +100,8 @@ export const NewPerson = () => {
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         (async () => {
-                                            try {
-                                                console.log(values)
-                                                await AxiosClient.doPost("/person/", values);
-                                                Swal.fire({
-                                                    text: "Se registro correctamente",
-                                                    confirmButtonColor: '#019979',
-                                                    confirmButtonText: 'Aceptar',
-                                                    icon: "success",
-                                                    timer: 2000,
-                                                });
-                                                setSubmitting(false);
-                                            } catch (error) {
-                                                console.log(error)
-                                                Swal.fire({
-                                                    text: "Error al registrar",
-                                                    icon: "error",
-                                                    timer: 2000,
-                                                });
-                                                setSubmitting(false);
-                                            }
+                                            enviarDatos(values);
+                                            setSubmitting(false);
                                         })();
                                     } else {
                                         Swal.fire({

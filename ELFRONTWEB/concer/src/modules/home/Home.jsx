@@ -68,10 +68,10 @@ export const Home = () => {
 {/*                 <h3 className='text-center text-muted'>Certificaciones</h3> */}                <br />
 
                 <h5 className='text-center text-muted'>Empresas certificadoras</h5>
-                <CardGroup className='mt-2 p-2 justify-content-center text-center"' >
-                    <Row xs={6} md={6} lg={6} className="g-4 p-0 m-0 ">
+                <CardGroup  >
+                    <Row>
                         {imgsCompany.map((img, index) => (
-                            <Col key={index}>
+                            <Col key={index} className='m-1'>
                                 <Card key={index} className='border border-3 b-0 p-0 m-0' style={{ width: '8rem', height: '8rem' }}>
                                     <div className='px-1' style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
                                         <Card.Img

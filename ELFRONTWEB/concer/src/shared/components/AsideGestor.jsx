@@ -57,7 +57,7 @@ const AsideGestor = () => {
 
             <Col className='mb-3' style={{ position: "absolute", bottom: "0", left: "50%", transform: "translate(-50%, 0)" }}>
 
-                <Button style={{ backgroundColor: "#002e60" }} onClick={() => logout()} >Cerrar sesión</Button>
+                <Button style={{ backgroundColor: "#019979" }} onClick={() => logout()} >Cerrar sesión</Button>
 
             </Col>
 

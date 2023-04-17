@@ -57,6 +57,7 @@ public class CertificationController {
     @PostMapping("/one/{id}")
     // URL: http://localhost:8080/controlCertificaciones/certification/{id}
     public ResponseEntity<CustomResponse<List<Object[]>>> getOne(@PathVariable Long id){
+        System.out.println("idddddddddddddddddddd : " + id);
         return new ResponseEntity<>(
                 this.service.getOne(id),
                 HttpStatus.OK);

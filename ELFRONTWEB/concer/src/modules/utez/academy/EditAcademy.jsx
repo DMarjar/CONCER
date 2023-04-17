@@ -41,6 +41,41 @@ export const EditAcademy = () => {
         getAcademy();
     }, [])
 
+    const enviarDatos = async () => {
+        try {
+
+            const response = await AxiosClient.doPut(`/academy/`, Academy);
+            
+            if(!response.data.error){
+                Swal.fire({
+                    title: '¡Exito!',
+                    icon: 'success',
+                    text: 'La academia ha sido actualizada.',
+                    confirmButtonColor: '#019979',
+                    confirmButtonText: 'Aceptar'
+                    
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '/utez'
+                    }
+                })
+            }else{
+                Swal.fire(
+                    'Vaya...',
+                    'Algo a salido mal, intentelo de nuevo.',
+                    'error'
+                )
+            }
+
+        } catch (error) {
+            Swal.fire(
+                '¡Error!',
+                'La academia no ha sido actualizada.',
+                'error'
+            )
+        }
+    }
+
     return (
         <>
             <Container className='px-5 mt-3'>
@@ -63,27 +98,7 @@ export const EditAcademy = () => {
                                     cancelButtonText: 'Cancelar'
                                 }).then((result) => {
                                     if (result.isConfirmed) {
-                                        try {
-
-                                            const data = AxiosClient.doPut(`/academy/`, Academy);
-                                            console.log(data)
-                                            Swal.fire({
-                                                title: '¡Éxito!',
-                                                text: 'Empresa actualizada correctamente',
-                                                confirmButtonColor: '#019979',
-                                                icon: 'success',
-                                                confirmButtonText: 'Aceptar'
-                                            }
-
-                                            )
-
-                                        } catch (error) {
-                                            Swal.fire(
-                                                '¡Error!',
-                                                'La academia no ha sido actualizada.',
-                                                'error'
-                                            )
-                                        }
+                                        enviarDatos();
                                     } else {
                                         Swal.fire({
                                             title: '¡Operación cancelada!',

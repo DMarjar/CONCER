@@ -49,6 +49,43 @@ export const EditPerson = () => {
         getPerson();
     }, []);
 
+    const enviarDatos = async () => {
+        try {
+            const response = await AxiosClient.doPut('/person/updateWeb/', payload);
+            
+            if (!response.data.error) {
+                Swal.fire({
+                    title: '¡Actualizado!',
+                    text: 'Se actualizo la información correctamente',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#019979',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = `/account/${account}`;
+                    }
+                })
+            } else {
+                Swal.fire({
+                    title: 'Vaya..',
+                    text: 'Algo salio mal',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#019979',
+                })
+            }
+        } catch (error) {
+            console.log(error);
+            Swal.fire({
+                title: 'Vaya..',
+                text: 'Algo salio mal',
+                icon: 'error',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#019979',
+            })
+        }
+    }
+
     return (
         <>
             <Container className='px-5 mt-3'>
@@ -70,30 +107,11 @@ export const EditPerson = () => {
                                     cancelButtonText: 'Cancelar'
                                 }).then(async (result) => {
                                     if (result.isConfirmed) {
-                                        try {
-                                            const data = await AxiosClient.doPut('/person/updateWeb/', payload);
-                                            console.log(data.data.data);
-                                            Swal.fire({
-                                                title: '!Actualizado!',
-                                                text: 'Se edito la información',
-                                                confirmButtonColor: '#019979',
-                                                icon: 'success',
-                                                confirmButtonText: 'Aceptar'
-                                            })
-                                        } catch (error) {
-                                            console.log(error);
-                                            Swal.fire({
-                                                title: 'Vaya..',
-                                                text: 'Algo salio mal',
-                                                icon: 'error',
-                                                confirmButtonText: 'Aceptar',
-                                                confirmButtonColor: '#019979',
-                                            })
-                                        }
+                                        enviarDatos();
                                     } else {
                                         Swal.fire({
                                             title: '¡Cancelado!',
-                                            text: 'No se edito la información',
+                                            text: '',
                                             confirmButtonColor: '#019979',
                                             icon: 'error',
                                             confirmButtonText: 'Aceptar'

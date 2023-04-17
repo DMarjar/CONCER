@@ -4,9 +4,9 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2';
-
 import AxiosClient from '../../shared/http-client.gateway';
 import Select from 'react-select'
+
 export const NewCandidate = () => {
     const [payload, setPayload] = useState({
         idPerson: "",
@@ -66,23 +66,12 @@ export const NewCandidate = () => {
         getAccount();
     }, []);
 
-    useEffect(() => {
-        
+    useEffect(() => {     
         getPerson();
         getCertificaciones();
         getAcademys();
     }, [account]);
 
-    /* EL REQUEST DEBE SER ASI
-    private Estado estado;
-    private Long idAcademy;
-    private Long idCertification;
-    private Long idPerson;
-    private LocalDate fechaFin;
-    private double puntaje;
-    private char grupo;
-    private String clave;
-    */
 
     const validationForm = Yup.object().shape({
         idAcademy: Yup.string().required("Este campo no puede estar vacio"),
@@ -93,9 +82,9 @@ export const NewCandidate = () => {
         clave: Yup.string().required("Este campo no puede estar vacio").max(10, "La clave no puede ser mayor a 10 caracteres")
     });
 
-    const enviarDatos = (e) =>{
+    const enviarDatos = async(e) =>{
         try{
-            const response = AxiosClient.doPost('/candidate/', {
+            const response = await AxiosClient.doPost('/candidate/', {
             idPerson: payload.idPerson,
             idAcademy: e.idAcademy,
             idCertification: e.idCertification,
@@ -105,15 +94,27 @@ export const NewCandidate = () => {
             clave: e.clave
 
             })
-
+            if(!response.data.error){
                 Swal.fire({
                     title: '¡Candidatura agregada!',
                     icon: 'success',
                     confirmButtonColor: '#019979',
                     confirmButtonText: 'Aceptar'
+                    
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '/candidates'
+                    }
                 })
-
-
+            }else{
+                Swal.fire({
+                    title: 'Vaya...',
+                    text: `${response.data.message}`,
+                    icon: 'error',
+                    confirmButtonColor: '#019979',
+                    confirmButtonText: 'Aceptar'
+                })
+            }
         }catch(error){
             console.log(error)
             Swal.fire({
@@ -121,11 +122,8 @@ export const NewCandidate = () => {
                 icon: 'error',
                 text: `${error}`,
                 confirmButtonColor: '#019979',
-
             })
-        }
-        
-           
+        }       
     }
 
     return (

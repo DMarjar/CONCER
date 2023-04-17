@@ -66,20 +66,35 @@ export const NewCertification = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const data = await AxiosClient.doPost('/certification/', {
+                    const response = await AxiosClient.doPost('/certification/', {
                         name: e.name,
                         version: e.version,
                         pictureBase64: payload.pictureBase64,
                         idPerson: e.idPerson,
                         idCompany: e.idCompany,
                     });
-                    Swal.fire({
-                        title: '¡Éxito!',
-                        text: 'Certificación registrada correctamente',
-                        icon: 'success',
-                        confirmButtonColor: '#019979',
-                        confirmButtonText: 'Aceptar'
-                    })
+
+                    if(!response.data.error){
+                        Swal.fire({
+                            title: '¡Exito!',
+                            text: "Certificación registrada correctamente",
+                            icon: 'success',
+                            confirmButtonColor: '#019979',
+                            confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = '/certifications';
+                            }
+                        })
+                    }else{
+                        Swal.fire({
+                            title: 'Vaya...',
+                            text: response.data.message,
+                            icon: 'error',
+                            confirmButtonColor: '#019979',
+                            confirmButtonText: 'Aceptar'
+                        })
+                    }
                 } catch (error) {
                     Swal.fire(
                         'Error!',

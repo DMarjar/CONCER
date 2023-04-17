@@ -9,13 +9,45 @@ import Swal from "sweetalert2";
 
 
 export const EditEstado = () => {
-    const navegacion = useNavigate();
 
     const [payload, setPayload] = useState({
         id: "",
         picture: "",
     });
+
     const {candidatura} = useParams();
+
+    const enviarDatos = async () => {
+        try{
+            const response = await AxiosClient.doPost(`/candidate/estado`, payload);
+            if(!response.data.error){
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'El estado ha sido actualizado.',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = `/candidate/${candidatura}`;
+                    }
+                })
+            }else{
+                Swal.fire(
+                    'Vaya...',
+                    'Algo a salido mal, intentelo de nuevo.',
+                    'error'
+                )
+            }
+            
+            
+        }catch(error){
+            Swal.fire(
+                '¡Error!',
+                'El estado no ha sido actualizado.',
+                'error'
+            )
+        }
+    }
 
     return(
         <>
@@ -38,21 +70,7 @@ export const EditEstado = () => {
                                     confirmButtonText: 'Sí, actualizar!'
                                 }).then((result) => {
                                     if (result.isConfirmed) {
-                                        try{
-                                            const data = AxiosClient.doPost(`/candidate/estado`, payload);
-                                            Swal.fire(
-                                                '¡Actualizado!',
-                                                'El estado ha sido actualizado.',
-                                                'success'
-                                            )
-                                            
-                                        }catch(error){
-                                            Swal.fire(
-                                                '¡Error!',
-                                                'El estado no ha sido actualizado.',
-                                                'error'
-                                            )
-                                        }
+                                        enviarDatos();
                                     }else{
                                         Swal.fire(
                                             '¡Cancelado!',
@@ -90,12 +108,13 @@ export const EditEstado = () => {
                                         </Col>
                                     </Row>
                                     <Row className="mb-3">
-                                        <Col sm={12} className="text-center">
+                                        <Col sm={3} className="text-center"></Col>
+                                        <Col sm={6} className="text-center">
                                             <label htmlFor="fecha">Imagen</label>
                                             <br/>
                                             <input
                                                 type="file" 
-                                                className="form-control-file"
+                                                className="form-control"
                                                 id="picture"
                                                 name="picture"
                                                 accept="image/*"
@@ -120,6 +139,7 @@ export const EditEstado = () => {
                                             />
                                             <br/>
                                         </Col>
+                                        <Col sm={3} className="text-center"></Col>
                                     </Row>
                                     <Row className="mb-3">
                                         <Col sm={12} className="text-center">

@@ -31,13 +31,17 @@ export const NavbarAll = () => {
                             alt="React Bootstrap logo"
                         />
                     </Navbar.Brand> */}
-                    <h4 className='mt-2'>
-                        Control de certificaciones | CONCER
-                    </h4>
-                    <Nav className="justify-content-end mx-0" activeKey="/home">
+                    <Nav>
                         <Nav.Item>
-                            <NavLink to="/"><AiFillHome size={"40"} color="white" /></NavLink>
+                            <NavLink to="/" style={{textDecoration:'none', color: 'white'}} >
+                                <h4 className='mt-2'>
+                                    Control de certificaciones | CONCER
+                                </h4>
+                            </NavLink>
                         </Nav.Item>
+                    </Nav>
+                    
+                    <Nav className="justify-content-end mx-0" activeKey="/home">
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <Nav.Item>
                             <NavLink to={`/profile`}><FaUserCircle size={"40"} color="white" /></NavLink>

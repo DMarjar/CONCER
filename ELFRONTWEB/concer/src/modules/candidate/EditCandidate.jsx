@@ -68,13 +68,45 @@ export const EditCandidate = () => {
     }
 
 
-
     useEffect(() => {
         getCandidature();
         getCertificaciones();
         getAcademies();
     }, [candidatura]);
 
+
+    const enviarDatos = async () => {
+        try {
+            const response = await AxiosClient.doPut(`/candidate/`, payload);
+            
+            if (!response.data.error) {
+                Swal.fire({
+                    title: '¡Actualizado!',
+                    text: 'La candidatura ha sido actualizada.',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '/candidates';
+                    }
+                })   
+            }else{
+                Swal.fire(
+                    'Vaya...',
+                    'Algo salió mal, intenta de nuevo.',
+                    'error'
+                )
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire(
+                'Vaya...',
+                'Algo salió mal, intenta de nuevo.',
+                'error'
+            )
+        }
+    }
 
     return (
         <>
@@ -94,22 +126,7 @@ export const EditCandidate = () => {
                                     confirmButtonText: 'Si, actualizar!'
                                 }).then(async (result) => {
                                     if (result.isConfirmed) {
-                                        try {
-                                            console.log(payload)
-                                            await AxiosClient.doPut(`/candidate/`, payload);
-                                            Swal.fire(
-                                                '',
-                                                'Actualización exitosa.',
-                                                'success'
-                                            )
-                                        } catch (error) {
-                                            console.log(error)
-                                            Swal.fire(
-                                                'Vaya...',
-                                                'Algo salió mal, intenta de nuevo.',
-                                                'error'
-                                            )
-                                        }
+                                        enviarDatos();
                                     }else{
                                         Swal.fire(
                                             '',

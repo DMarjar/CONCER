@@ -18,6 +18,38 @@ export const NewAcademy = () => {
         fullName: Yup.string().required("Este campo no puede estar vacio"),
     });
 
+    const enviarDatos = async (values) => {
+        try {
+
+            const response = await AxiosClient.doPost(`/academy/`, values);
+
+            if (!response.data.error) {
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'Academia registrada correctamente.',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = `/utez`;
+                    }
+                })
+            } else {
+                Swal.fire(
+                    'Vaya...',
+                    'Algo a salido mal, intentelo de nuevo.',
+                    'error'
+                )
+            }
+        } catch (error) {
+            Swal.fire(
+                '¡Error!',
+                'La academia no ha sido registrada.',
+                'error'
+            )
+        }
+    }
+
     return (
         <>
             <Container className='px-5 mt-3'>
@@ -43,29 +75,8 @@ export const NewAcademy = () => {
                                             cancelButtonColor: '#A0A5A1'
                                         }).then((result) => {
                                             if (result.isConfirmed) {
-                                                AxiosClient.doPost('/academy/', values)
-                                                    .then(res => {
-                                                        Swal.fire({
-                                                            title: "¡Éxito!",
-                                                            text: "Academia registrada correctamente",
-                                                            icon: "success",
-                                                            showCancelButton: false,
-                                                            confirmButtonText: "Aceptar",
-                                                            confirmButtonColor: '#019979',
-                                                        })
-                                                        setSubmitting(false);
-                                                        window.location.reload();
-                                                    })
-                                                    .catch(err => {
-                                                        Swal.fire({
-                                                            title: "vaya...",
-                                                            text: "Algo salio mal",
-                                                            icon: "error",
-                                                            showCancelButton: false,
-                                                            confirmButtonText: "Aceptar",
-                                                        })
-                                                        setSubmitting(false);
-                                                    });
+                                                enviarDatos(values);
+                                                setSubmitting(false);
                                             } else {
                                                 Swal.fire({
 

@@ -23,9 +23,8 @@ export const EditCertification = () => {
     const getCertification = async () => {
         try {
             const data = await AxiosClient.doPost(`/certification/one/${certification}`, {});
-            console.log(data.data.data[0])
             setPayload({
-                id: data.data.data[0][0],
+                id: certification,
                 name: data.data.data[0][1],
                 version: data.data.data[0][4],
                 idPerson: data.data.data[0][6],
@@ -33,7 +32,6 @@ export const EditCertification = () => {
                 idCompany: data.data.data[0][7],
               });
         } catch (error) {
-            console.log(error)
         }
     }
 
@@ -52,7 +50,42 @@ export const EditCertification = () => {
         getPerson();
     }, [certification])
 
-
+    const enviarDatos = async () => {
+        try {
+            console.log(
+                payload
+            )
+            const response = await AxiosClient.doPut(`/certification/`, payload);
+            
+            if (!response.data.error) {
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'La certificación ha sido actualizada.',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = `/certification/${certification}`;
+                    }
+                })
+            } else {
+                Swal.fire(
+                    'Vaya...',
+                    'Algo a salido mal, intentelo de nuevo.',
+                    'error'
+                )
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire({
+                title: 'Vaya..',
+                text: 'ocurrio un error al intentar guardar los cambios',
+                icon: 'error',                                                
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#019979',
+            })
+        }
+    }
 
     return (
         <>
@@ -75,26 +108,7 @@ export const EditCertification = () => {
                                     cancelButtonText: 'Cancelar'
                                 }).then(async (result) => {
                                     if (result.isConfirmed) {
-                                        try {
-                                            const data = await AxiosClient.doPut(`/certification/`, payload);
-                                            console.log(data)
-                                            Swal.fire({
-                                                title: '!Actualizado!',
-                                                text: 'Se edito la información',
-                                                confirmButtonColor: '#019979',
-                                                icon: 'success',
-                                                confirmButtonText: 'Aceptar'
-                                            })
-                                        } catch (error) {
-                                            console.log(error)
-                                            Swal.fire({
-                                                title: 'Vaya..',
-                                                text: 'ocurrio un error al intentar guardar los cambios',
-                                                icon: 'error',                                                
-                                                confirmButtonText: 'Aceptar',
-                                                confirmButtonColor: '#019979',
-                                            })
-                                        }
+                                        enviarDatos();
                                     }else{
                                         Swal.fire({
                                             title: '¡Cancelado!',

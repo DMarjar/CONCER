@@ -23,20 +23,32 @@ export const NewCompany = () => {
 
     const registrar = async (e) => {
         try {
-            const data = await AxiosClient.doPost('/certifyingCompany/', {
+            const response = await AxiosClient.doPost('/certifyingCompany/', {
                 name: e.name,
                 email: e.email,
                 phone: e.phone,
                 pictureBase64: payload.pictureBase64
             })
-            Swal.fire({
-                title: "¡Éxito!",
-                text: "Empresa registrada correctamente",
-                icon: "success",
-                showCancelButton: false,
-                confirmButtonText: "Aceptar",
-                confirmButtonColor: '#019979',
-            })
+            if (!response.data.error) {
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'Empresa registrada correctamente',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#019979',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '/companies'
+                    }
+                })
+            }else{
+                Swal.fire({
+                    title: 'Vaya...',
+                    text: 'Ha ocurrido un error al registrar la empresa, intente de nuevo',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                })
+            }
         } catch (error) {
             console.log(error)
             Swal.fire({
@@ -147,13 +159,31 @@ export const NewCompany = () => {
                                                         (e) => {
                                                             const file = e.target.files[0];
                                                             const reader = new FileReader();
+    
                                                             reader.onload = (e) => {
-                                                                const base64 = e.target.result;
-                                                                if (base64) {
-                                                                    setPayload({
-                                                                        ...payload,
-                                                                        pictureBase64: base64.toString().replace(/^data:image\/(png|jpeg);base64,/, ""),
-                                                                    });
+                                                                const img = new Image();
+                                                                img.src = e.target.result;
+                                                                img.onload = () => {
+                                                                    const aspectRatio = img.width / img.height;
+                                                                    if (aspectRatio > 1.2 || aspectRatio < 0.8) {
+                                                                        Swal.fire({
+                                                                            title: 'Error!',
+                                                                            text: 'La imagen debe ser lo más cuadrada posible.',
+                                                                            icon: 'error',
+                                                                            confirmButtonColor: '#019979',
+                                                                            confirmButtonText: 'Aceptar'
+                                                                        }
+    
+                                                                        )
+                                                                        return;
+                                                                    }
+                                                                    const base64 = e.target.result;
+                                                                    if (base64) {
+                                                                        setPayload({
+                                                                            ...payload,
+                                                                            pictureBase64: base64.toString().replace(/^data:image\/(png|jpeg);base64,/, ""),
+                                                                        });
+                                                                    }
                                                                 }
                                                             }
                                                             reader.readAsDataURL(file);
