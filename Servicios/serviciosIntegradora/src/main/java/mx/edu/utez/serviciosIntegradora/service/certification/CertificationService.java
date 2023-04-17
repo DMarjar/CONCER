@@ -68,10 +68,11 @@ public class CertificationService {
     public CustomResponse<List<Object[]>> getOne(Long id){
         List<Object[]> certification = this.Repository.findCertification(id);
         if(certification != null){
-            System.out.println(certification.get(0)[6]);
             if(certification.get(0)[6] != null){
                 try {
-                    certification.get(0)[6]=(imageService.getPicture((String) certification.get(0)[6]));
+
+                    certification.get(0)[2]=(imageService.getPicture((String) certification.get(0)[2]));
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

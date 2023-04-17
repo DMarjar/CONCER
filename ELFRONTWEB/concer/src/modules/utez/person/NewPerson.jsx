@@ -44,7 +44,7 @@ export const NewPerson = () => {
         <>
             <Container className="px-5 mt-3">
                 <h2 className="text-center" style={{ color: "#002e60" }}>
-                    Registrar cuenta
+                    Agregar cuenta
                 </h2>
                 <br />
                 <Card>
@@ -56,7 +56,7 @@ export const NewPerson = () => {
                                 Swal.fire({
                                     text: "¿Está  seguro de registrar la cuenta?",
                                     icon: "question",
-                                    confirmButtonText: "Guardar",
+                                    confirmButtonText: "Aceptar",
                                     showCancelButton: true,
                                     cancelButtonText: "Cancelar",
                                     confirmButtonColor: '#019979',
@@ -104,7 +104,7 @@ export const NewPerson = () => {
                                 <Form>
                                     <Row>
                                         <Col className="col-md-6 mb-3">
-                                            <label>Nombres</label>
+                                            <label>Nombre(s)</label>
                                             <Field
                                                 name="firstName"
                                                 type="text"
@@ -267,7 +267,7 @@ export const NewPerson = () => {
                                                 disabled={isSubmitting}
                                                 style={{ backgroundColor: "#002e60", color: "white" }}
                                             >
-                                                Registrar
+                                                Guardar
                                             </button>
                                         </Col>
 

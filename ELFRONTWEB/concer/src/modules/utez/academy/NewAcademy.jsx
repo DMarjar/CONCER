@@ -21,7 +21,7 @@ export const NewAcademy = () => {
     return (
         <>
             <Container className='px-5 mt-3'>
-                <h2 className='text-center' style={{ color: "#002e60" }}>Agregar Academia</h2>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Agregar academia</h2>
                 <br />
                 <Card>
                     <Card.Body>
@@ -34,22 +34,20 @@ export const NewAcademy = () => {
                                     onSubmit={(values, { setSubmitting }) => {
                                         setSubmitting(true);
                                         Swal.fire({
-                                            title: '¿Está usted seguro?',
-                                            text: "",
+                                            text: "¿Está  seguro de registrar la academia?",
                                             icon: "question",
+                                            confirmButtonText: "Aceptar",
                                             showCancelButton: true,
                                             cancelButtonText: "Cancelar",
                                             confirmButtonColor: '#019979',
-                                            cancelButtonColor: '#A0A5A1',
-                                            confirmButtonText: "Si, agregar",
-                                            cancelButtonText: "Cancelar",
+                                            cancelButtonColor: '#A0A5A1'
                                         }).then((result) => {
                                             if (result.isConfirmed) {
                                                 AxiosClient.doPost('/academy/', values)
                                                     .then(res => {
                                                         Swal.fire({
                                                             title: "¡Éxito!",
-                                                            text: "Academia agregada correctamente",
+                                                            text: "Academia registrada correctamente",
                                                             icon: "success",
                                                             showCancelButton: false,
                                                             confirmButtonText: "Aceptar",
@@ -70,12 +68,13 @@ export const NewAcademy = () => {
                                                     });
                                             } else {
                                                 Swal.fire({
-                                                    title: "¡Cancelado!",
-                                                    text: "",
-                                                    icon: "error",
-                                                    showCancelButton: false,
-                                                    confirmButtonText: "Aceptar",
+
+                                                    title: '¡Operación cancelada!',
+                                                    text: "Registro no procesado",
+                                                    icon: 'error',
+                                                    confirmButtonText: 'Aceptar',
                                                     confirmButtonColor: '#019979',
+                                                    showCancelButton: false,
                                                 })
                                                 setSubmitting(false);
                                             }
@@ -87,7 +86,7 @@ export const NewAcademy = () => {
                                             <Row>
                                                 <Col className="col-md-6">
                                                     <div className="form-group">
-                                                        <label htmlFor="name">Nombre</label>
+                                                        <label htmlFor="name">Abreviatura</label>
                                                         <Field
                                                             type="text"
                                                             name="name"
@@ -99,7 +98,7 @@ export const NewAcademy = () => {
                                                 </Col>
                                                 <Col className="col-md-6">
                                                     <div className="form-group">
-                                                        <label htmlFor="fullName">Nombre Completo</label>
+                                                        <label htmlFor="fullName">Expansión</label>
                                                         <Field
                                                             type="text"
                                                             name="fullName"

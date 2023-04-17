@@ -40,7 +40,7 @@ const Certification = () => {
           <Row>
             <Col>
               <h4>Versión</h4>
-              <p>{payload[3]}</p>
+              <p>{payload[4]}</p>
             </Col>
           </Row>
           <Row>
@@ -54,7 +54,7 @@ const Certification = () => {
         </Col>
         <Col lg={6} md={8} sm={12}>
           <Figure>
-            <Figure.Image src={`data:image/png;base64, ${payload[6]}`} width="100%" height="auto" alt="Certification image" />
+            <Figure.Image src={`data:image/png;base64, ${payload[2]}`} width="100%" height="auto" alt="Certification image" />
             <Figure.Caption className="text-center">
               <h4>Nombre de la empresa</h4>
               <p>{payload[8]}</p>

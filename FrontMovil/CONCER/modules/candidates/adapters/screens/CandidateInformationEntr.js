@@ -8,8 +8,6 @@ import ChangeStateCandidate from "./components/ChangeStateCandidate";
 import { useNavigation } from "@react-navigation/native";
 import Loading from "../../../../kernel/components/Loading";
 
-const placeholderImage = require("../../../../assets/icon.png");
-
 export default function Candidato() {
   const [showModal, setShowModal] = useState(false);
   const Navigator = useNavigation();

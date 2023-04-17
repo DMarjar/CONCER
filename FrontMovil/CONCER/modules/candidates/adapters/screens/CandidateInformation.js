@@ -139,7 +139,9 @@ export default function CandidateInformation() {
         setShowModal(true);
         break;
       case "State":
-        setRenderComponent(<ChangeStateCandidate />);
+        setRenderComponent(
+          <ChangeStateCandidate payload={candidateId} setShow={setShowModal} />
+        );
         setShowModal(true);
         break;
     }

@@ -43,8 +43,8 @@ export const EditAcademy = () => {
 
     return (
         <>
-            <Container>
-                <h4 className='text-center' style={{ color: "#002e60" }}>Editar</h4>
+            <Container className='px-5 mt-3'>
+            <h2 className="text-center" style={{ color: "#002e60" }}>Editar academia</h2>
                 <br />
                 <Card>
                     <Card.Body>
@@ -68,8 +68,8 @@ export const EditAcademy = () => {
                                             const data = AxiosClient.doPut(`/academy/`, Academy);
                                             console.log(data)
                                             Swal.fire({
-                                                title: '¡Actualizado!',
-                                                text: 'Se edito la información',
+                                                title: '¡Éxito!',
+                                                text: 'Empresa actualizada correctamente',
                                                 confirmButtonColor: '#019979',
                                                 icon: 'success',
                                                 confirmButtonText: 'Aceptar'
@@ -86,11 +86,11 @@ export const EditAcademy = () => {
                                         }
                                     } else {
                                         Swal.fire({
-                                            title: '¡Cancelado!',
-                                            text: 'La academia no ha sido actualizada.',
-                                            confirmButtonColor: '#019979',
+                                            title: '¡Operación cancelada!',
+                                            text: "Registro no procesado",
                                             icon: 'error',
-                                            confirmButtonText: 'Aceptar'
+                                            confirmButtonText: 'Aceptar',
+                                            confirmButtonColor: '#019979'
 
                                         })
                                     }
@@ -103,7 +103,7 @@ export const EditAcademy = () => {
                                     <Row>
                                         <Col className="col-md-6">
 
-                                            <label htmlFor="name">Nombre</label>
+                                            <label htmlFor="name">Abreviatura</label>
                                             <Field
                                                 type="text"
                                                 name="name"
@@ -114,7 +114,7 @@ export const EditAcademy = () => {
                                             />
                                         </Col>
                                         <Col className="col-md-6">
-                                            <label htmlFor="fullName">Nombre completo</label>
+                                            <label htmlFor="fullName">Expansión</label>
                                             <Field
                                                 type="text"
                                                 name="fullName"

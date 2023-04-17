@@ -47,11 +47,11 @@ export const EditCandidate = () => {
         try {
             const user = JSON.parse(localStorage.getItem('account'));
             if(user.user.role === "ADMIN"){
-                const data = await AxiosClient.doGet(`/certification/`, {});
-                console.log(data.data.data)
+                const data = await AxiosClient.doGet(`/certification/withoutImages`, {});
                 setCertificaciones(data.data.data);
             }else{
                 const data = await AxiosClient.doPost(`/certification/person/${user.id}`, {});
+                console.log(data.data.data)
                 setCertificaciones(data.data.data);
             }
         } catch (error) {
@@ -61,29 +61,18 @@ export const EditCandidate = () => {
     const getAcademies = async () => {
         try {
             const data = await AxiosClient.doGet(`/academy/`, {});
-            console.log(data.data.data)
             setAcademies(data.data.data);
         } catch (error) {
 
         }
     }
 
-    const getPeople = async () => {
-        try {
-            const data = await AxiosClient.doGet(`/person/users`, {});
-            console.log(data.data.data)
-            setPeople(data.data.data);
-        } catch (error) {
 
-        }
-    }
 
     useEffect(() => {
         getCandidature();
         getCertificaciones();
         getAcademies();
-        getPeople();
-        console.log(payload)
     }, [candidatura]);
 
 
@@ -169,20 +158,15 @@ export const EditCandidate = () => {
                                                 className="form-control"
                                             />
                                         </Col>
-                                        <Col>
-                                            <label>Candidato</label>
+                                        <Col md={6}>
+                                            <label>Fecha de finalización</label>
                                             <Field
-                                                as="select"
-                                                name="idPersona"
+                                                type="date"
+                                                name="fechaFin"
                                                 className="form-control"
-                                                value={payload.idPerson}
-                                                onChange={(e) => setPayload({...payload, idPerson: e.target.value})}
-                                            >
-                                                <option value="0">Selecciona una opción</option>
-                                                {people.map((item) => (
-                                                    <option value={item.id}>{item.firstName} {item.lastName}</option>
-                                                ))}
-                                            </Field>
+                                                value={payload.fechaFin}
+                                                onChange={(e) => setPayload({...payload, fechaFin: e.target.value})}
+                                            />
                                         </Col>
                                     </Row>
                                     <br />
@@ -196,9 +180,9 @@ export const EditCandidate = () => {
                                                 value={payload.idCertification}
                                                 onChange={(e) => setPayload({...payload, idCertification: e.target.value})}
                                             >
-                                                <option value="0">Selecciona una opción</option>
+                                                <option value="">Selecciona una opción</option>
                                                 {certificaciones.map((certificacion) => (
-                                                    <option value={certificacion[0]}>{certificacion[1]}</option>
+                                                    <option value={certificacion.id}>{certificacion.name}</option>
                                                 ))}
                                             </Field>
                                         </Col>
@@ -219,18 +203,6 @@ export const EditCandidate = () => {
                                         </Col>
                                     </Row>
                                     <br />
-                                    <Row>
-                                        <Col md={6}>
-                                            <label>Fecha de finalización</label>
-                                            <Field
-                                                type="date"
-                                                name="fechaFin"
-                                                className="form-control"
-                                                value={payload.fechaFin}
-                                                onChange={(e) => setPayload({...payload, fechaFin: e.target.value})}
-                                            />
-                                        </Col>
-                                    </Row>
                                     <br />
                                     <Row className='mb-3'>
                                     <Col className="col-md-12 text-end">

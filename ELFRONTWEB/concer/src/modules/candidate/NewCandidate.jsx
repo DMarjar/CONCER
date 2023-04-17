@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Col, Container, Row, Button } from 'react-bootstrap'
+import { Card, Col, Container, Row, Button, Alert } from 'react-bootstrap'
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2';
 
 import AxiosClient from '../../shared/http-client.gateway';
-
+import Select from 'react-select'
 export const NewCandidate = () => {
+    const [payload, setPayload] = useState({
+        idPerson: "",
+        idAcademy: "",
+        idCertification: "",
+        fechaFin: "",
+        puntaje: "",
+        grupo: "",
+        clave: "",
+    })
 
     const [Person, setPerson] = useState([]);
     const [Certificaciones, setCertificaciones] = useState([]);
@@ -30,17 +39,14 @@ export const NewCandidate = () => {
 
     const getCertificaciones = async () => {
         try {
-            console.log(account.user?.role)
             if (account.user?.role === "ADMIN") {
                 const data = await AxiosClient.doGet(`/certification/withoutImages`, {});
                 setCertificaciones(data.data.data);
-                console.log(data.data.data)
             }
 
             if (account.user?.role === "GESTOR") {
                 const data = await AxiosClient.doPost(`/certification/person/${account.id}`, {});
                 setCertificaciones(data.data.data);
-                console.log(data.data.data)
             }
         } catch (error) {
             console.log(error)
@@ -58,6 +64,10 @@ export const NewCandidate = () => {
 
     useEffect(() => {
         getAccount();
+    }, []);
+
+    useEffect(() => {
+        
         getPerson();
         getCertificaciones();
         getAcademys();
@@ -75,7 +85,6 @@ export const NewCandidate = () => {
     */
 
     const validationForm = Yup.object().shape({
-        idPerson: Yup.string().required("Este campo no puede estar vacio"),
         idAcademy: Yup.string().required("Este campo no puede estar vacio"),
         idCertification: Yup.string().required("Este campo no puede estar vacio"),
         fechaFin: Yup.string().required("Este campo no puede estar vacio"),
@@ -84,7 +93,40 @@ export const NewCandidate = () => {
         clave: Yup.string().required("Este campo no puede estar vacio").max(10, "La clave no puede ser mayor a 10 caracteres")
     });
 
+    const enviarDatos = (e) =>{
+        try{
+            const response = AxiosClient.doPost('/candidate/', {
+            idPerson: payload.idPerson,
+            idAcademy: e.idAcademy,
+            idCertification: e.idCertification,
+            fechaFin: e.fechaFin,
+            puntaje: e.puntaje,
+            grupo: e.grupo,
+            clave: e.clave
 
+            })
+
+                Swal.fire({
+                    title: '¡Candidatura agregada!',
+                    icon: 'success',
+                    confirmButtonColor: '#019979',
+                    confirmButtonText: 'Aceptar'
+                })
+
+
+        }catch(error){
+            console.log(error)
+            Swal.fire({
+                title: 'Vaya...',
+                icon: 'error',
+                text: `${error}`,
+                confirmButtonColor: '#019979',
+
+            })
+        }
+        
+           
+    }
 
     return (
         <>
@@ -96,19 +138,11 @@ export const NewCandidate = () => {
                         <Row>
                             <Col>
                                 <Formik
-                                    initialValues={{
-                                        idPerson: "",
-                                        idAcademy: "",
-                                        idCertification: "",
-                                        fechaFin: "",
-                                        puntaje: "",
-                                        grupo: "",
-                                        clave: "",
-                                    }}
+                                    initialValues={payload}
                                     validationSchema={validationForm}
                                     onSubmit={async (values, { setSubmitting }) => {
                                         setSubmitting(true);
-                                        console.log(values);
+
                                         Swal.fire({
                                             title: '¿Está usted seguro?',
                                             text: "",
@@ -116,31 +150,12 @@ export const NewCandidate = () => {
                                             showCancelButton: true,
                                             confirmButtonColor: '#019979',
                                             cancelButtonColor: '#A0A5A1',
-                                            confirmButtonText: '!Sí, actualizar!',
+                                            confirmButtonText: '!Sí, Agregar!',
                                             cancelButtonText: 'Cancelar'
                                         }).then(async (result) => {
                                             if (result.isConfirmed) {
                                                 try {
-                                                    const data = await AxiosClient.doPost('/candidate/', {
-                                                        idAcademy: values.idAcademy,
-                                                        idCertification: values.idCertification,
-                                                        idPerson: values.idPerson,
-                                                        fechaFin: values.fechaFin,
-                                                        puntaje: values.puntaje,
-                                                        grupo: values.grupo,
-                                                        clave: values.clave
-                                                    });
-                                                    Swal.fire({
-                                                        title: 'Candidatura agregada correctamente',
-                                                        icon: 'success',
-                                                        showCancelButton: false,
-                                                        confirmButtonText: 'Aceptar',
-                                                        confirmButtonColor: '#019979',
-                                                    }).then((result) => {
-                                                        if (result.isConfirmed) {
-                                                            window.location.href = `/candidate/${data.data.data.id}`;
-                                                        }
-                                                    })
+                                                    enviarDatos(values);
                                                     setSubmitting(false);
                                                 } catch (error) {
                                                     Swal.fire({
@@ -169,15 +184,23 @@ export const NewCandidate = () => {
                                             <Row>
                                                 <Col className="col-md-6 mb-3">
                                                     <label>Persona</label>
-                                                    <Field as="select" name="idPerson" className="form-control">
-                                                        <option value="">Seleccione una opción</option>
-                                                        {Person.map((item, index) => (
-                                                            <option key={index} value={item.id}>{item.firstName} {item.lastName}</option>
-                                                        ))}
-                                                    </Field>
-                                                    {errors.idPerson && touched.idPerson ? (
-                                                        <div className="text-danger">{errors.idPerson}</div>
-                                                    ) : null}
+                                                    <Select
+                                                        placeholder="Seleccione una opcion"
+                                                        name="idPerson"
+                                                        required
+                                                        options={
+                                                            Person.map((item, index) => ({
+                                                                label: `${item.firstName} ${item.lastName}`,
+                                                                value: item.id
+                                                            }))
+                                                        }
+                                                        onChange={(e) => {
+                                                            setPayload({
+                                                                ...payload,
+                                                                idPerson: e.value
+                                                            })
+                                                        }}
+                                                    />
                                                 </Col>
 
                                                 <Col className="col-md-6 mb-3">
@@ -253,7 +276,7 @@ export const NewCandidate = () => {
 
                                             <Row>
                                                 <Col className="col-md-12 mb-3 text-end">
-                                                    <Button type="submit" disabled={isSubmitting} className="btn btn-primary" style={{ backgroundColor: "#002e60", width: "110px" }}>Registrar</Button>
+                                                    <Button type="submit" disabled={isSubmitting} className="btn btn-primary" style={{ backgroundColor: "#002e60", width: "110px" }}>Guardar</Button>
                                                 </Col>
                                             </Row>
                                         </Form>

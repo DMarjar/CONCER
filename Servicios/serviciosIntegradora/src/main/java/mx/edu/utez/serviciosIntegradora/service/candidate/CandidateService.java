@@ -99,8 +99,10 @@ public class CandidateService {
     @Transactional(rollbackFor = {SQLException.class})
     public CustomResponse<Candidate> insert(Candidate candidate){
         if(this.Repository.existsByClave(candidate.getClave())){
-            return new CustomResponse<>(null,true,400,"ya existe");
+            return new CustomResponse<>(null,true,400,"Esa clave de certificacion ya existe");
         }
+
+
         return new CustomResponse<>(
                 this.Repository.saveAndFlush(candidate),false,200,"ok"
         );

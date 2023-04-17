@@ -74,8 +74,8 @@ export const NewCertification = () => {
                         idCompany: e.idCompany,
                     });
                     Swal.fire({
-                        title: '¡Correcto!',
-                        text: 'Se ha registrado la certificación correctamente',
+                        title: '¡Éxito!',
+                        text: 'Certificación registrada correctamente',
                         icon: 'success',
                         confirmButtonColor: '#019979',
                         confirmButtonText: 'Aceptar'
@@ -89,8 +89,11 @@ export const NewCertification = () => {
                 }
             } else {
                 Swal.fire({
-                    text: "Se cancelo el registro",
-                    icon: "error",
+                    title: '¡Operación cancelada!',
+                    text: "Registro no procesado",
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#019979',
                     timer: 2000,
                 });
             }
@@ -193,7 +196,7 @@ export const NewCertification = () => {
                                                 <br />
                                                 <input
                                                     type="file"
-                                                    className="form-control-file"
+                                                    className="form-control"
                                                     id="pictureBase64"
                                                     name="pictureBase64"
                                                     accept="image/*"
@@ -230,16 +233,21 @@ export const NewCertification = () => {
                                                         }
                                                     }
                                                 />
-                                                <div id="preview" className="text-center">
-                                                    {
-                                                        payload.pictureBase64 ? (
-                                                            <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="preview" className="img-thumbnail" style={{ maxHeight: '200px' }} />
-                                                        ) : null
-                                                    }
-                                                </div>
+
                                             </div>
                                         </Col>
                                     </Row>
+                                    <br />
+                                    <Row className='mt-3'>
+                                        <div id="preview" className="text-center">
+                                            {
+                                                payload.pictureBase64 ? (
+                                                    <img src={`data:image/png;base64, ${payload.pictureBase64}`} alt="preview" className="img-thumbnail" style={{ maxHeight: '200px' }} />
+                                                ) : null
+                                            }
+                                        </div>
+                                    </Row>
+                                    <br />
                                     <Row className='mb-3'>
                                         <Col className='col-md-12 text-end'>
                                             <Button style={{ backgroundColor: "#002e60", color: "white" }} className='btn btn-primary' type="submit" disabled={isSubmitting} >Guardar</Button>
