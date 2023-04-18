@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -28,12 +29,29 @@ public class CertifyingCompanyController {
                 HttpStatus.OK);
     }
 
+    @GetMapping("/active")
+    // URL: http://localhost:8080/controlCertificaciones/cerifyingCompany/
+    public ResponseEntity<CustomResponse<List<CertifyingCompany>>> getAllActive() {
+        return new ResponseEntity<>(
+                this.service.getAllActive(),
+                HttpStatus.OK);
+    }
+
     // Get one
     @GetMapping("/{id}")
     // URL: http://localhost:8080/controlCertificaciones/certifyingCompany/{id}
     public ResponseEntity<CustomResponse<CertifyingCompany>> getOne(@PathVariable Long id){
         return new ResponseEntity<>(
                 this.service.getOne(id),
+                HttpStatus.OK);
+    }
+
+    //get Images
+    @GetMapping("/images")
+    // URL: http://localhost:8080/controlCertificaciones/certifyingCompany/images
+    public ResponseEntity<CustomResponse<List<String>>> getImages() throws IOException {
+        return new ResponseEntity<>(
+                this.service.getImgs(),
                 HttpStatus.OK);
     }
 
@@ -59,11 +77,11 @@ public class CertifyingCompanyController {
 
 
     // Update status
-    @PatchMapping("/")
+    @PutMapping("/changeState/{id}")
     // URL: http://localhost:8080/controlCertificaciones/cerifyingCompany/{id}
-    public ResponseEntity<CustomResponse<Boolean>> patch(@Valid @RequestBody CertifyingCompanyDtos certifyingCompany) {
+    public ResponseEntity<CustomResponse<CertifyingCompany>> patch(@PathVariable Long id) {
         return new ResponseEntity<>(
-                this.service.changeStatus(certifyingCompany.castToCertifyingCompany()), HttpStatus.OK
+                this.service.changeStatus(id), HttpStatus.OK
         );
     }
 

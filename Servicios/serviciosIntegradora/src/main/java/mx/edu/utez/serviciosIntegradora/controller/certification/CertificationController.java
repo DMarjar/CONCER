@@ -44,6 +44,15 @@ public class CertificationController {
                 HttpStatus.OK);
     }
 
+    //get all withou images
+    @GetMapping("/withoutImages")
+    // URL: http://localhost:8080/controlCertificaciones/certification/withoutImages
+    public ResponseEntity<CustomResponse<List<Certification>>> getAllWithoutImages() {
+        return new ResponseEntity<>(
+                this.service.getAllWithoutImages(),
+                HttpStatus.OK);
+    }
+
     // Get one
     @PostMapping("/one/{id}")
     // URL: http://localhost:8080/controlCertificaciones/certification/{id}
@@ -65,7 +74,7 @@ public class CertificationController {
     //get images
     @GetMapping("/images")
     // URL: http://localhost:8080/controlCertificaciones/certification/images
-    public ResponseEntity<CustomResponse<List<Certification>>> getImages() throws IOException {
+    public ResponseEntity<CustomResponse<List<String>>> getImages() throws IOException {
         return new ResponseEntity<>(
                 this.service.getImages(),
                 HttpStatus.OK);
@@ -119,12 +128,12 @@ public class CertificationController {
 
 
     // Update status
-    @PatchMapping("/")
+    @PutMapping("/changeStatus/{id}")
     // URL: http://localhost:8080/controlCertificaciones/certification/{id}
-    public ResponseEntity<CustomResponse<Boolean>> patch(@Valid @RequestBody CertificationDtos certification) {
+    public ResponseEntity<CustomResponse<Certification>> patch(@PathVariable Long id) {
 
         return new ResponseEntity<>(
-                this.service.changeStatus(certification.castToCertification()), HttpStatus.OK
+                this.service.changeStatus(id), HttpStatus.OK
         );
     }
 

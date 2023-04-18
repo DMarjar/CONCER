@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1930e54-76c7-426d-8e53-5aac1b4e70af" name="Changes" comment="" />
+    <list default="true" id="a1930e54-76c7-426d-8e53-5aac1b4e70af" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/company/EditCompany.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/company/EditCompany.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/utez/academy/NewAcademy.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/utez/academy/NewAcademy.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/config/stack/HomeStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/config/stack/HomeStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/kernel/gateway/http-auth.gateway.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/kernel/gateway/http-auth.gateway.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/auth/adapters/screens/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/auth/adapters/screens/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/CandidateInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/CandidateInformation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/Candidates.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/candidates/adapters/screens/Candidates.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/profile/adapters/screens/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontMovil/CONCER/modules/profile/adapters/screens/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +40,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2M7S4etNLc2xspSL5osozJ6nOsT" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -101,7 +114,6 @@
       <workItem from="1680540267559" duration="124000" />
       <workItem from="1680540413024" duration="370000" />
       <workItem from="1680540798639" duration="10760000" />
-      <workItem from="1681009419060" duration="14000" />
     </task>
     <servers />
   </component>

@@ -15,6 +15,7 @@ import {
   useIsFocused,
 } from "@react-navigation/native";
 import { Input, Icon } from "@rneui/base";
+import { Button } from "react-native-elements";
 
 export default function Candidates() {
   const navigation = useNavigation();
@@ -49,9 +50,7 @@ export default function Candidates() {
           return fullName.includes(searchTerm.toLowerCase());
         });
         setFilteredData(filteredResults);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
 
     if (isFocused) {
@@ -92,7 +91,7 @@ export default function Candidates() {
           <TouchableOpacity
             key={index}
             style={styles.item}
-            onPress={() => handleCandidatePress(item[2])}
+            onPress={() => handleCandidatePress(item[1])}
           >
             <View style={styles.itemContent}>
               <View style={styles.itemInfo}>
@@ -108,6 +107,13 @@ export default function Candidates() {
           </TouchableOpacity>
         ))}
       </ScrollView>
+      <View style={styles.containerEntr}>
+        <Button
+          title="Ver entregados"
+          onPress={() => navigation.navigate("Entregados")}
+          buttonStyle={styles.buttonEntr}
+        />
+      </View>
     </View>
   );
 }
@@ -117,6 +123,15 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     backgroundColor: "#F2F2F2",
+  },
+  containerEntr: {
+    marginBottom: 15,
+  },
+  buttonEntr: {
+    backgroundColor: "#0e639c",
+    borderRadius: 5,
+    borderColor: "#0e639c",
+    borderWidth: 1,
   },
   item: {
     padding: 10,

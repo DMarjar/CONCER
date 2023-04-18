@@ -56,7 +56,15 @@ public class CandidateController {
                 HttpStatus.OK);
     }
 
-    //aa
+
+    //get by certifier
+    @PostMapping("/certifier/{id}")
+    public ResponseEntity<CustomResponse<List<Object[]>>> getByCertifier(@PathVariable Long id){
+        return new ResponseEntity<>(
+                this.service.getByCertifier(id),
+                HttpStatus.OK);
+    }
+
     //get Information candidaturas
     @PostMapping("/informationEntregadas")
     public  ResponseEntity<CustomResponse<List<Object[]>>> getInformationEntregadas(@RequestBody Person person){
@@ -88,6 +96,7 @@ public class CandidateController {
     @PostMapping("/")
     // URL: http://localhost:8080/controlCertificaciones/candidate/
     public ResponseEntity<CustomResponse<Candidate>> insert(@RequestBody CandidateRequest candidate) {
+
         Candidate newCandidate = new Candidate();
         newCandidate.setPerson(this.personService.findById(candidate.getIdPerson()).get());
         newCandidate.setCertification(this.certificationService.findById(candidate.getIdCertification()).get());
@@ -99,7 +108,7 @@ public class CandidateController {
         newCandidate.setGrupo(candidate.getGrupo());
         newCandidate.setClave(candidate.getClave());
 
-        System.out.println(candidate.getFechaFin());
+
         return new ResponseEntity<>(
                 this.service.insert(newCandidate), HttpStatus.CREATED
         );
@@ -124,7 +133,6 @@ public class CandidateController {
 
         Candidate updateCandidate = new Candidate();
         updateCandidate.setId(candidate.getId());
-
         updateCandidate.setPerson(this.personService.findById(candidate.getIdPerson()).get());
         updateCandidate.setCertification(this.certificationService.findById(candidate.getIdCertification()).get());
         updateCandidate.setAcademy(this.academyService.findById(candidate.getIdAcademy()).get());
@@ -134,7 +142,6 @@ public class CandidateController {
         updateCandidate.setPuntaje(candidate.getPuntaje());
         updateCandidate.setGrupo(candidate.getGrupo());
         updateCandidate.setClave(candidate.getClave());
-
         return new ResponseEntity<>(
                 this.service.update(updateCandidate), HttpStatus.OK
         );
@@ -152,11 +159,11 @@ public class CandidateController {
 
 
     //Delete
-    @DeleteMapping("/")
+    @DeleteMapping("/{id}")
     // URL: http://localhost:8080/controlCertificaciones/candidate/{id}
-    public ResponseEntity<CustomResponse<Candidate>> delete(@Valid @RequestBody CandidateDtos candidate){
+    public ResponseEntity<CustomResponse<Candidate>> delete(@PathVariable Long id){
         return new ResponseEntity<>(
-                this.service.delete(candidate.castToCandidate()),
+                this.service.delete(id),
                 HttpStatus.OK
         );
     }

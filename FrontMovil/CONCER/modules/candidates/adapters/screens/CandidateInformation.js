@@ -25,10 +25,9 @@ export default function CandidateInformation() {
   const route = useRoute();
   const { candidateId } = route.params;
   const [data, setdata] = useState([]);
-
+  const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [renderComponent, setRenderComponent] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -126,10 +125,7 @@ export default function CandidateInformation() {
         );
         setShowModal(true);
         break;
-      case "Academy":
-        setRenderComponent(<ChangeAcademyCandidate />);
-        setShowModal(true);
-        break;
+
       case "Certification":
         setRenderComponent(<ChangeCertificationCandidate />);
         setShowModal(true);
@@ -143,7 +139,9 @@ export default function CandidateInformation() {
         setShowModal(true);
         break;
       case "State":
-        setRenderComponent(<ChangeStateCandidate />);
+        setRenderComponent(
+          <ChangeStateCandidate payload={candidateId} setShow={setShowModal} />
+        );
         setShowModal(true);
         break;
     }
@@ -273,6 +271,7 @@ export default function CandidateInformation() {
 
         <Loading setShow={loading} text="" />
       </View>
+      <Loading setShow={loading} />
     </ScrollView>
   );
 }

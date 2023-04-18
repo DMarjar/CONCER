@@ -1,63 +1,131 @@
-import React, { useState }  from 'react'
-import Search from '../../shared/components/Search'
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { Paginator } from 'primereact/paginator';
+import React, { useState, useEffect } from 'react'
+import DataTable from "react-data-table-component";
+import { Link } from 'react-router-dom';
+import { Button, Container, Card, Row, Col } from 'react-bootstrap';
+import AxiosClient from '../../shared/http-client.gateway';
+
 
 export const AllCandidates = () => {
-    const [first, setFirst] = useState(0);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [filteredData, setFilteredData] = useState([]);
 
-    const onPageChange = (event) => {
-        setFirst(event.first);
-    };
+    const [candidates, setCandidates] = useState([]);
+    const [filtrado, setFiltrado] = useState([]);
 
-    const handleSearch = (event) => {
-        event.preventDefault();
-        setSearchTerm(event.target.value);
-    };
 
-    const handleInputChange = (event) => {
-        setSearchTerm(event.target.value);
-    };
+    const getCandidates = async () => {
+        try {
+            const account = JSON.parse(localStorage.getItem('account'));
+            if (account.user.role === "ADMIN") {
+                const data = await AxiosClient.doGet('/candidate/', {});
+                setCandidates(data.data.data);
+                console.log(data.data.data)
+            }
 
-    const data = [
-        { name: 'John Smith', country: { name: 'USA' }, company: 'ABC Inc.', representative: { name: 'Jane Doe' } },
-        { name: 'Alice Johnson', country: { name: 'Canada' }, company: 'XYZ Ltd.', representative: { name: 'Bob Brown' } },
-        { name: 'Juan Garcia', country: { name: 'Mexico' }, company: 'DEF SA', representative: { name: 'Maria Hernandez' } },
-        { name: 'John Smith', country: { name: 'USA' }, company: 'ABC Inc.', representative: { name: 'Jane Doe' } },
-        { name: 'Alice Johnson', country: { name: 'Canada' }, company: 'XYZ Ltd.', representative: { name: 'Bob Brown' } },
-        { name: 'Juan Garcia', country: { name: 'Mexico' }, company: 'DEF SA', representative: { name: 'Maria Hernandez' } },
-        { name: 'John Smith', country: { name: 'USA' }, company: 'ABC Inc.', representative: { name: 'Jane Doe' } },
-        { name: 'Alice Johnson', country: { name: 'Canada' }, company: 'XYZ Ltd.', representative: { name: 'Bob Brown' } },
-        // Agrega más objetos con datos adicionales aquí
-    ];
+            if (account.user.role === "GESTOR") {
+
+                const data = await AxiosClient.doPost(`/candidate/certifier/${account.id}`, {});
+
+                setCandidates(data.data.data);
+                setFiltrado(candidates)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        getCandidates();
+    }, []);
+
+    useEffect(() => {
+        setFiltrado(candidates)
+    }, [candidates]);
+
+    const columns = React.useMemo(() => [
+        {
+            name: 'Nombre',
+            cell: row => <div>{row[4]}</div>,
+        },
+        {
+            name: 'Apellido',
+            cell: row => <div>{row[5]}</div>,
+        },
+        {
+            name: 'Certificacion',
+            cell: row => <div>{row[3]}</div>,
+        },
+        {
+            name: 'Gestor',
+            cell: row => <div>{row[6]}</div>,
+
+        },
+        {
+            name: 'Estado',
+            cell: row => <div>{row[7]}</div>,
+        },
+        {
+            name: 'Acciones',
+            cell: row =>
+                <div className='w-100'><Link to={`/candidate/${row[1]}`}><Button style={{ backgroundColor: "#002e60", color: "white", width: "80px" }}>Ver</Button></Link></div>,
+
+            rigth: true
+        }
+
+    ]);
+
+    function Filter(event) {
+        const newData = candidates.filter(row => {
+            return row[4].toLowerCase().includes(event.target.value.toLowerCase()) || row[5].toLowerCase().includes(event.target.value.toLowerCase()) || row[3].toLowerCase().includes(event.target.value.toLowerCase()) || row[6].toLowerCase().includes(event.target.value.toLowerCase())
+        })
+        setFiltrado(newData);
+    }
+
+    useEffect(() => {
+        document.title = 'CONCER | Control de Candidatos';
+    }, []);
+
 
     return (
-        <>
-            <h2 className="d-flex justify-content-center pt-3" style={{ color: "#002e60" }}>Candidatos</h2>
+        <Container className='px-5 mt-3'>
+            <h2 className='text-center' style={{ color: "#002e60" }}>Candidaturas</h2>
             <br />
-            <Search handleSearch={handleSearch} handleInputChange={handleInputChange} />
-            <br />
-            <DataTable value={filteredData.length ? filteredData : data} paginator rows={6}
-                tableStyle={{
-                    minWidth: '50rem',
-                    border: '1px solid #ccc',
-                    borderRadius: '5px',
-                    boxShadow: '0 0 10px #ccc',
-                    backgroundColor: '#fff',
-                    color: '#000',
-                    padding: '10px',
-                    margin: '0 auto'
-                }}>
-                <Column field="name" header="Name" style={{ width: '25%' }}></Column>
-                <Column field="country.name" header="Country" style={{ width: '25%' }}></Column>
-                <Column field="company" header="Company" style={{ width: '25%' }}></Column>
-                <Column field="representative.name" header="Representative" style={{ width: '25%' }}></Column>
-                <Paginator className='p-paginator-sm p-paginator-first-last' rows={5} totalRecords={filteredData.length ? filteredData.length : data.length} first={first} onPageChange={onPageChange}></Paginator>
-            </DataTable>
-        </>
+            <Card>
+                <Card.Header>
+                    <Card.Title as="h5">
+
+                        <Row>
+                            <Col className="col-md-4">
+                                <input type="text" className="form-control" placeholder="Buscar" onChange={Filter} />
+                            </Col>
+                            <Col className="col-md-6"></Col>
+                            <Col className="col-md-2 text-end">
+                                <Link to="/NewCandidate"><Button style={{ backgroundColor: "#002e60", width: "100px" }}>Agregar</Button></Link>
+                            </Col>
+                        </Row>
+                    </Card.Title>
+                </Card.Header>
+                <Card.Body>
+
+                    <DataTable
+                        columns={columns}
+                        data={filtrado}
+                        noDataComponent="No hay candidatos registrados"
+                        pagination
+                        paginationComponentOptions={{
+                            rowsPerPageText: 'Filas por página:',
+                            rangeSeparatorText: 'de',
+
+                        }}
+                        paginationPerPage={5}
+                        paginationRowsPerPageOptions={[5, 10, 15, 20, 25]}
+                        fixedHeader
+                        highlightOnHover
+                        responsive
+                    />
+
+
+                </Card.Body>
+            </Card>
+        </Container>
     )
 }
 

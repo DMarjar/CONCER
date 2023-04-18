@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image, Alert } from "react-native";
 import { Button, Icon } from "react-native-elements";
 import { useRoute } from "@react-navigation/native";
 import axios from "../../../../kernel/gateway/http-auth.gateway";
 import MyModal from "../../../../kernel/components/Modal";
 import ChangeStateCandidate from "./components/ChangeStateCandidate";
 import { useNavigation } from "@react-navigation/native";
-
-const placeholderImage = require("../../../../assets/icon.png");
+import Loading from "../../../../kernel/components/Loading";
 
 export default function Candidato() {
   const [showModal, setShowModal] = useState(false);
@@ -16,6 +15,7 @@ export default function Candidato() {
   const [data, setdata] = useState([]);
   const route = useRoute();
   const { candidateId } = route.params;
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,22 +24,24 @@ export default function Candidato() {
           id: candidateId,
         });
         setdata(response.data.data[0]);
-        console.log(response.data.data[0]);
       } catch (error) {
-        console.log("Error al obtener los datos de la cuenta: ", error);
+        Alert.alert("Vaya..", "Ocurrio un error al cargar los datos");
+        Navigator.goBack();
       }
     };
 
     fetchData();
+    setLoading(false);
   }, [candidateId]);
+
+  useEffect(() => {
+    setLoading(!loading);
+  }, [data]);
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
-          <View style={styles.profileImageContainer}>
-            <Image source={placeholderImage} style={styles.profileImage} />
-          </View>
           <Text style={styles.profileName}>
             {data[3]} {data[4]}
           </Text>
@@ -54,40 +56,25 @@ export default function Candidato() {
           <Text style={styles.sectionTitle}>Información personal</Text>
 
           <View style={styles.infoRow}>
-            <Icon
-              name="email-outline"
-              type="material-community"
-              size={24}
-              color="#a1a1a1"
-            />
+            <Text>Email: </Text>
             <Text style={styles.infoText}>{data[6]}</Text>
           </View>
 
           <View style={styles.infoRow}>
-            <Icon
-              name="phone-outline"
-              type="material-community"
-              size={24}
-              color="#a1a1a1"
-            />
+            <Text>Telefono: </Text>
             <Text style={styles.infoText}>{data[7]}</Text>
           </View>
 
           <View style={styles.infoRow}>
-            <Icon
-              name="gender-male-female"
-              type="material-community"
-              size={24}
-              color="#a1a1a1"
-            />
+            <Text>Sexo: </Text>
             <Text style={styles.infoText}>{data[5]}</Text>
           </View>
           <View style={styles.infoRow}>
-            <Text>TIPO:</Text>
+            <Text>Tipo:</Text>
             <Text style={styles.infoText}>{data[8]}</Text>
           </View>
           <View style={styles.infoRow}>
-            <Text>ACADEMIA:</Text>
+            <Text>Academia:</Text>
             <Text style={styles.infoText}>{data[9]}</Text>
           </View>
         </View>
@@ -98,42 +85,41 @@ export default function Candidato() {
           </Text>
 
           <View style={styles.infoRow}>
-            <Icon
-              name="certificate-outline"
-              type="material-community"
-              size={24}
-              color="#a1a1a1"
-            />
+            <Text>Certificación: </Text>
             <Text style={styles.infoText}>{data[11]}</Text>
           </View>
 
           <View style={styles.infoRow}>
-            <Icon
-              name="file-certificate-outline"
-              type="material-community"
-              size={24}
-              color="#a1a1a1"
-            />
+            <Text>Version: </Text>
             <Text style={styles.infoText}>{data[12]}</Text>
           </View>
 
           <View style={styles.infoRow}>
-            <Icon
-              name="domain"
-              type="material-community"
-              size={24}
-              color="#a1a1a1"
-            />
+            <Text>Empresa: </Text>
             <Text style={styles.infoText}>{data[13]}</Text>
+          </View>
+
+          <View style={styles.infoRow}>
+            <Text>Gestor: </Text>
+            <Text style={styles.infoText}>{data[14]}</Text>
+          </View>
+
+          <View style={styles.infoRow}>
+            <Text>Fecha de finalizacion: </Text>
+            <Text style={styles.infoText}>{data[18]}</Text>
+          </View>
+
+          <View style={styles.infoRow}>
+            <Text>Clave: </Text>
+            <Text style={styles.infoText}>{data[15]}</Text>
           </View>
         </View>
 
         <View style={styles.imageContainer}>
-          {temporal ? (
-            <Image source={{ uri: data[14] }} style={styles.image} />
-          ) : (
-            <Text style={styles.noImageText}>Sin imagen</Text>
-          )}
+          <Image
+            source={{ uri: `data:image/png;base64,${data[19]}` }}
+            style={{ width: 200, height: 200 }}
+          />
         </View>
       </ScrollView>
 
@@ -141,31 +127,7 @@ export default function Candidato() {
         <ChangeStateCandidate />
       </MyModal>
 
-      <View style={styles.actionSection}>
-        <Button
-          icon={
-            <Icon
-              type="material-community"
-              name="arrow-up-bold"
-              color="#ffffff"
-            />
-          }
-          title=" Actualizar Estado"
-          containerStyle={styles.editButtonContainer}
-          buttonStyle={styles.editButton}
-          onPress={() => setShowModal(!showModal)}
-        />
-
-        <Button
-          icon={
-            <Icon type="material-community" name="pencil" color="#ffffff" />
-          }
-          title=" Editar informacion"
-          containerStyle={styles.editButtonContainer}
-          buttonStyle={styles.editButton}
-          onPress={() => Navigator.navigate("Editar Informacion", { data })}
-        />
-      </View>
+      <Loading setShow={loading} />
     </View>
   );
 }
@@ -180,22 +142,15 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 20,
-  },
-  profileImageContainer: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    overflow: "hidden",
-  },
-  profileImage: {
-    width: "100%",
-    height: "100%",
+    marginTop: 15,
+    marginBottom: 40,
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
   profileName: {
     fontSize: 24,
     fontWeight: "bold",
-    marginLeft: 20,
   },
   infoSection: {
     marginBottom: 10,
@@ -235,7 +190,10 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     height: 150,
-    marginBottom: 20,
+    margin: 30,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   image: {
     width: "100%",

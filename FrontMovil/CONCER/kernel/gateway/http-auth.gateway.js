@@ -10,4 +10,7 @@ export default {
   doGet(endPoint, payLoad) {
     return AxiosInstance.post(endPoint, payLoad);
   },
+  Get(endPoint, payLoad) {
+    return AxiosInstance.get(endPoint, payLoad);
+  },
 };

@@ -47,9 +47,15 @@ public class AcademyService {
     //update
     @Transactional(rollbackFor = {SQLException.class})
     public CustomResponse<Academy> update(Academy academy){
+        System.out.println("aaa");
         if((!this.Repository.existsById(academy.getId()))){
             return new CustomResponse<>(null,true,400,"no existe");
         }
+
+        System.out.println("academy = " + academy);
+        System.out.println("academy.getId() = " + academy.getId());
+        System.out.println("academy.getName() = " + academy.getName());
+        System.out.println("academy.fullName() = " + academy.getFullName());
         return new CustomResponse<>(
                 this.Repository.saveAndFlush(academy),false,200,"ok"
         );

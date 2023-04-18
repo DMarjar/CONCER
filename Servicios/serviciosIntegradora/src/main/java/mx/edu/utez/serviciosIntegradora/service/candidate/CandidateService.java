@@ -44,6 +44,15 @@ public class CandidateService {
         );
     }
 
+    //get by certifier
+    @Transactional(readOnly = true)
+    public CustomResponse<List<Object[]>> getByCertifier(Long id){
+        return new CustomResponse<>(
+                this.Repository.findCandidatesByCertifier(id),false,200,"ok"
+
+        );
+    }
+
     //Certifications PENDIENTEs
     @Transactional(readOnly = true)
     public CustomResponse<List<Object[]>> getInformationPENDIENTES(Person person){
@@ -90,8 +99,10 @@ public class CandidateService {
     @Transactional(rollbackFor = {SQLException.class})
     public CustomResponse<Candidate> insert(Candidate candidate){
         if(this.Repository.existsByClave(candidate.getClave())){
-            return new CustomResponse<>(null,true,400,"ya existe");
+            return new CustomResponse<>(null,true,400,"Esa clave de certificacion ya existe");
         }
+
+
         return new CustomResponse<>(
                 this.Repository.saveAndFlush(candidate),false,200,"ok"
         );
@@ -118,7 +129,6 @@ public class CandidateService {
             try{
                 candidateChangeState.setPictureUrl(imageService.savePicture(candidate.getPicture()));
                 candidateChangeState.setEstado(Estado.ENTREGADO);
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaa yaaa");
                 return new CustomResponse<>(
                         this.Repository.saveAndFlush(candidateChangeState),false,200,"ok"
                 );
@@ -132,12 +142,12 @@ public class CandidateService {
 
     //delate
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Candidate> delete(Candidate candidate){
-        Optional<Candidate> exists = this.Repository.findById(candidate.getId());
+    public CustomResponse<Candidate> delete(Long id){
+        Optional<Candidate> exists = this.Repository.findById(id);
         if((!exists.isPresent())){
             return new CustomResponse<>(null,true,400,"no existe");
         }
-        this.Repository.deleteById(candidate.getId());
+        this.Repository.deleteById(id);
         return new CustomResponse<>(
                 null,false,200,"ok"
         );

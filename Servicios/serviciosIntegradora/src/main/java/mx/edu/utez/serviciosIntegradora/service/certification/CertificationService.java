@@ -34,6 +34,16 @@ public class CertificationService {
                 this.Repository.findAllCertifications(),false,200,"ok"
         );
     }
+
+    //get without images
+    @Transactional(readOnly = true)
+    public CustomResponse<List<Certification>> getAllWithoutImages(){
+        return new CustomResponse<>(
+                this.Repository.findAllActive(),false,200,"ok"
+        );
+    }
+
+
     //get by person
     @Transactional(readOnly = true)
     public CustomResponse<List<Certification>> getByPerson(Long id){
@@ -44,10 +54,10 @@ public class CertificationService {
 
     //getAll Whit Images
     @Transactional
-    public CustomResponse<List<Certification>> getImages() throws IOException {
-        List<Certification> images = this.Repository.findAll();
-        for (Certification i : images) {
-            i.setPictureBase64(imageService.getPicture(i.getPictureUrl()));
+    public CustomResponse<List<String>> getImages() throws IOException {
+        List<String> images = this.Repository.findAllImages();
+        for (int i = 0; i < images.size(); i++) {
+            images.set(i,imageService.getPicture(images.get(i)));
         }
         return new CustomResponse<>(
                 images,false,200,"ok"
@@ -58,10 +68,11 @@ public class CertificationService {
     public CustomResponse<List<Object[]>> getOne(Long id){
         List<Object[]> certification = this.Repository.findCertification(id);
         if(certification != null){
-            System.out.println(certification.get(0)[6]);
             if(certification.get(0)[6] != null){
                 try {
-                    certification.get(0)[6]=(imageService.getPicture((String) certification.get(0)[6]));
+
+                    certification.get(0)[2]=(imageService.getPicture((String) certification.get(0)[2]));
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -139,12 +150,17 @@ public class CertificationService {
 
     // update status
     @Transactional(rollbackFor = {SQLException.class})
-    public CustomResponse<Boolean> changeStatus(Certification certification) {
-        if (!this.Repository.updateStatusById(certification.getId(), certification.getStatus())) {
-            return new CustomResponse<>(null, true, 400, "Error update status");
+    public CustomResponse<Certification> changeStatus(Long id) {
+        Certification certification = this.Repository.findById(id).get();
+
+        if (certification.getStatus()) {
+            certification.setStatus(false);
+        } else {
+            certification.setStatus(true);
         }
+
         return new CustomResponse<>(
-                this.Repository.updateStatusById(certification.getId(), certification.getStatus()), false, 200, "certification updated correctly!"
+                this.Repository.saveAndFlush(certification), false, 200, "certification updated correctly!"
         );
     }
 
