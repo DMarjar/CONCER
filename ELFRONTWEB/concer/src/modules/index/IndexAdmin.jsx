@@ -1,6 +1,8 @@
 import { Col, Row } from 'react-bootstrap'
 import React from 'react'
 
+import {Error} from '../../shared/components/Error'
+
 import { NavbarAll } from '../../shared/components/Navbar';
 import { AsideAdmin } from '../../shared/components/AsideAdmin';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";

@@ -1,0 +1,39 @@
+.centerE{
+    padding-top: 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #002e60 ;
+    height: 50vh;
+  }
+
+  .error-link {
+    padding: 1rem 2rem;
+    background-color: #4caf50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+    align-items: center;
+    
+  }
+
+  .error-link:hover {
+    background-color: #388e3c;
+    text-align: center;
+  }
+
+  .error-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #002e60 ;
+}
+
+  .error-text {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #002e60 ;
+    text-align: center;
+  }
