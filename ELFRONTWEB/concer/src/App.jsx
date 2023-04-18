@@ -4,6 +4,7 @@ import AuthState from "./modules/auth/AuthState";
 import { Login } from "./modules/auth/Login";
 import { RoleRoute } from "./shared/components/RoleRoute";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Error from "./shared/components/Error";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         {({ isAuth }) => (
           <Router>
             <Routes>
+              <Route path="/404" element={<Error />} />
               <Route
                 path="/*"
                 element={isAuth ? <RoleRoute /> : <Login />}

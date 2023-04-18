@@ -4,8 +4,10 @@ import '../components/Error404.css';
 
 export const Error = () => {
     return (
-        <div className='centerE'>
-            
+        <div className='centerE'  >
+        
+
+
             <h1 className="error-title">Error 404</h1>
             <p className="error-text">La página que estás buscando no existe.</p>
             <br />

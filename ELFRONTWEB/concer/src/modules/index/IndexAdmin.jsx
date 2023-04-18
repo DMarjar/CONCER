@@ -1,8 +1,5 @@
 import { Col, Row } from 'react-bootstrap'
 import React from 'react'
-
-import {Error} from '../../shared/components/Error'
-
 import { NavbarAll } from '../../shared/components/Navbar';
 import { AsideAdmin } from '../../shared/components/AsideAdmin';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -31,7 +28,7 @@ import EditEstado from '../candidate/EditEstado';
 import Profile from '../profile/Profile';
 import EditCompany from '../company/EditCompany';
 import EditProfile from '../profile/EditProfile';
-
+import Error404Redirect from '../../shared/components/Error404Redirect';
 
 
 export const IndexAdmin = () => {
@@ -89,6 +86,8 @@ export const IndexAdmin = () => {
 
                                 <Route path="/editAcademy/:academy" element={<EditAcademy/>} />
                                 <Route path="/newAcademy" element={<NewAcademy/>} />
+
+                                <Route path="*" element={<Error404Redirect/>} />
                             </Routes>
                         </section>
                     </Col>

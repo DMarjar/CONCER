@@ -46,7 +46,7 @@ export const Home = () => {
             <Container className='px-4 mt-1'>
                 <div className='p-3 m-0 h-50' style={{ width: '100%', height: '200px' }}>
                     {imgsCert.length === 0 ? (
-                        <h3 className='text-center text-muted'>Por el momento no se cuentan con certificaciones</h3>
+                        <h5 className='text-center text-muted'>Por el momento no se cuentan con certificaciones</h5>
                     ) : (
                         
                         <Carousel variant="dark" className='square border border-2 h-100 p-3 pb-5 m-0' style={{ display: 'flex', alignItems: 'center', width: '100%', height: '260px' }}>
@@ -66,8 +66,14 @@ export const Home = () => {
                     )}
                 </div>
 {/*                 <h3 className='text-center text-muted'>Certificaciones</h3> */}                <br />
-
-                <h5 className='text-center text-muted'>Empresas certificadoras</h5>
+                {
+                    imgsCompany.length === 0 ? (
+                        <h5 className='text-center text-muted'>Por el momento no se cuentan con empresas certificadoras</h5>
+                    ) : (
+                        <h5 className='text-center text-muted'>Empresas certificadoras</h5>
+                    )
+                }
+                
                 <CardGroup  >
                     <Row>
                         {imgsCompany.map((img, index) => (
