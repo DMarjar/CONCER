@@ -82,56 +82,66 @@ export const EditCandidate = () => {
             if (!response.data.error) {
                 Swal.fire({
                     title: '¡Actualizado!',
-                    text: 'La candidatura ha sido actualizada.',
+                    text: 'Se actualizo la información correctamente',
                     icon: 'success',
-                    confirmButtonText: 'Aceptar'
-
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#019979',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = '/candidates';
                     }
                 })   
             }else{
-                Swal.fire(
-                    'Vaya...',
-                    'Algo salió mal, intenta de nuevo.',
-                    'error'
-                )
+                Swal.fire({
+                    title: 'Vaya..',
+                    text: 'Algo salio mal',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#019979',
+                })
             }
         } catch (error) {
             console.log(error)
-            Swal.fire(
-                'Vaya...',
-                'Algo salió mal, intenta de nuevo.',
-                'error'
-            )
+            Swal.fire({
+                title: 'Vaya..',
+                text: 'Algo salio mal',
+                icon: 'error',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#019979',
+            })
         }
     }
 
     return (
         <>
             <Container className='px-5 mt-3'>
-                <h1 className='text-center' style={{ color: "#002e60" }}>Editar Candidatura</h1>
+                <h2 className='text-center' style={{ color: "#002e60" }}>Editar Candidatura</h2>
                 <br />
-                <Card className='mt-3'>
+                <Card >
                     <Card.Body>
                         <Formik
                             initialValues={payload}
                             onSubmit={async (values, { setSubmitting }) => {
                                 Swal.fire({
-                                    title: '¿Estás seguro?',
+                                    title: '¿Está usted seguro?',
                                     text: "",
-                                    icon: 'warning',
+                                    icon: 'question',
                                     showCancelButton: true,
-                                    confirmButtonText: 'Si, actualizar!'
+                                    confirmButtonColor: '#019979',
+                                    cancelButtonColor: '#A0A5A1',
+                                    confirmButtonText: '!Sí, actualizar!',
+                                    cancelButtonText: 'Cancelar'
                                 }).then(async (result) => {
                                     if (result.isConfirmed) {
                                         enviarDatos();
                                     }else{
-                                        Swal.fire(
-                                            '',
-                                            'Actualización cancelada',
-                                            'error'
+                                        Swal.fire({
+                                            title: '¡Cancelado!',
+                                            text: '',
+                                            confirmButtonColor: '#019979',
+                                            icon: 'error',
+                                            confirmButtonText: 'Aceptar'
+                                        }
                                         )
                                     }
                                 })

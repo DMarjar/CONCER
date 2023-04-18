@@ -15,6 +15,7 @@ import EditCandidate from '../candidate/EditCandidate';
 import EditEstado from '../candidate/EditEstado';
 import EditPerson from '../utez/person/EditPerson';
 import NewPerson from '../utez/person/NewPerson';
+import Error404Redirect from '../../shared/components/Error404Redirect';
 
 
 export const IndexGestor = () => {
@@ -57,7 +58,7 @@ export const IndexGestor = () => {
                                 <Route path="/editAccount/:account" element={<EditPerson/>}/>
                                 <Route path="/newAccount" element={<NewPerson/>}/>
 
-
+                                <Route path="*" element={<Error404Redirect/>} />
 
 
                             </Routes>

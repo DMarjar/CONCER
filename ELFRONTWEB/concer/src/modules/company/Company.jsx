@@ -36,30 +36,32 @@ export const Company = () => {
 
     const cambioEstado = async () => {
         Swal.fire({
-            title: '¿Está seguro de cambiar el estado de la empresa?',
-            text: "",
-            icon: 'warning',
+            title: '¿Está usted seguro del cambio de estado?',
+            text: "Al cambiar el estado de la empresa, podría afectar a los candidatos, personal certificador y proveedores. ",
+            icon: 'question',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: '¡Sí, cambiarlo!'
-        }).then( async (result) => {
+            confirmButtonColor: '#019979',
+            cancelButtonColor: '#A0A5A1',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+        }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
                     const response = await AxiosClient.doPut(`/certifyingCompany/changeState/${company}`, {});
-                    
-                    if(!response.data.error){
+
+                    if (!response.data.error) {
                         Swal.fire({
-                            title: '¡Éxito!',
-                            text: 'Estado camcbiado correctamente',
+                            title: '¡Actualizado!',
+                            text: 'Se actualizo el estado de la empresa correctamente',
                             icon: 'success',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#019979',
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.location.reload();
                             }
                         })
-                    }else{
+                    } else {
                         Swal.fire({
                             title: 'Error',
                             text: response.data.message,
@@ -78,7 +80,7 @@ export const Company = () => {
                     })
                 }
             }
-        })  
+        })
 
     }
 
@@ -191,7 +193,7 @@ export const Company = () => {
                 <Row>
                     <Col lg={9} md={8} sm={9}>
 
-                        <Button style={{ width: "110px", backgroundColor: "#A0A5A1", borderColor: "#A0A5A1" }} className="ms-4" onClick={()=> cambioEstado()}>
+                        <Button style={{ width: "110px", backgroundColor: "#A0A5A1", borderColor: "#A0A5A1" }} className="ms-4" onClick={() => cambioEstado()}>
                             {
                                 payload.status === true ?
                                     "Desactivar"

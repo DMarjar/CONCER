@@ -8,6 +8,7 @@ import Home from '../home/Home';
 
 import Indicadores from "../indicadores/Indicadores";
 import Profile from "../profile/Profile";
+import Error404Redirect from "../../shared/components/Error404Redirect";
 
 
 
@@ -34,7 +35,7 @@ export const IndexUser = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/indicators" element={<Indicadores/>} />
                 <Route path="/profile" element={<Profile/>} />
-
+                <Route path="*" element={<Error404Redirect/>} />
                 
               </Routes>
             </section>

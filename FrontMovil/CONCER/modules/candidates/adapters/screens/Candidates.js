@@ -100,7 +100,7 @@ export default function Candidates() {
               </View>
 
               <Image
-                source={require("../../../../assets/favicon.png")}
+                source={require("../../../../assets/usuariooo.png")}
                 style={styles.icon}
               />
             </View>

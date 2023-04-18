@@ -115,7 +115,6 @@ export const EditPerson = () => {
                                             confirmButtonColor: '#019979',
                                             icon: 'error',
                                             confirmButtonText: 'Aceptar'
-
                                         })
                                     }
                                 })
