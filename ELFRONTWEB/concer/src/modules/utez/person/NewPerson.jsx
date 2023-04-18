@@ -48,10 +48,11 @@ export const NewPerson = () => {
             if (!response.data.error) {
 
                 Swal.fire({
-                    title: 'Persona agregada!',
+                    title: '¡Éxito!',
+                    text: 'Persona registrada correctamente',
                     icon: 'success',
+                    confirmButtonText: 'Aceptar',
                     confirmButtonColor: '#019979',
-                    confirmButtonText: 'Aceptar'
                     
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -61,17 +62,20 @@ export const NewPerson = () => {
 
             } else {
                 Swal.fire({
-                    text: response.data.message,
-                    icon: "error",
-                    timer: 2000,
+                    title: 'Vaya...',
+                    text: 'Ha ocurrido un error, intentelo de nuevo',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    timer: 3000
                 });
             }
         } catch (error) {
             console.log(error)
             Swal.fire({
-                text: "Error al registrar",
-                icon: "error",
-                timer: 2000,
+                title: 'Vaya...',
+                text: 'Ha ocurrido un error al registrar a la persona',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
             });
         }
     }
@@ -90,13 +94,14 @@ export const NewPerson = () => {
                             validationSchema={validationForm}
                             onSubmit={(values, { setSubmitting }) => {
                                 Swal.fire({
-                                    text: "¿Está  seguro de registrar la cuenta?",
-                                    icon: "question",
-                                    confirmButtonText: "Aceptar",
+                                    title: '¿Está usted seguro del registro?',
+                                    text: "",
+                                    icon: 'question',
                                     showCancelButton: true,
                                     cancelButtonText: "Cancelar",
                                     confirmButtonColor: '#019979',
-                                    cancelButtonColor: '#A0A5A1'
+                                    cancelButtonColor: '#A0A5A1',
+                                    confirmButtonText: 'Sí, guardar!'
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         (async () => {
@@ -105,11 +110,11 @@ export const NewPerson = () => {
                                         })();
                                     } else {
                                         Swal.fire({
-                                            text: "Se cancelo el registro",
-                                            confirmButtonColor: '#019979',
+                                            title: '¡Operación cancelada!',
+                                            text: "Registro no procesado",
+                                            icon: 'error',
                                             confirmButtonText: 'Aceptar',
-                                            icon: "error",
-                                            timer: 2000,
+                                            confirmButtonColor: '#019979'
                                         });
                                         setSubmitting(false);
                                     }

@@ -26,6 +26,7 @@ export const EditEstado = () => {
                     text: 'El estado ha sido actualizado.',
                     icon: 'success',
                     confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#019979',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = `/candidate/${candidatura}`;
@@ -41,11 +42,14 @@ export const EditEstado = () => {
             
             
         }catch(error){
-            Swal.fire(
-                '¡Error!',
-                'El estado no ha sido actualizado.',
-                'error'
-            )
+            Swal.fire({
+                title: '¡Error!',
+                text: 'No se edito la información',
+                confirmButtonColor: '#019979',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+
+            })
         }
     }
 
@@ -72,11 +76,14 @@ export const EditEstado = () => {
                                     if (result.isConfirmed) {
                                         enviarDatos();
                                     }else{
-                                        Swal.fire(
-                                            '¡Cancelado!',
-                                            'El estado no ha sido actualizado.',
-                                            'error'
-                                        )
+                                        Swal.fire({
+                                            title: '¡Cancelado!',
+                                            text: 'El estado no ha sido actualizado.',
+                                            confirmButtonColor: '#019979',
+                                            icon: 'error',
+                                            confirmButtonText: 'Aceptar'
+
+                                        })
                                     }
                                 })
                             }}

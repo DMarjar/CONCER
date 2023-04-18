@@ -24,13 +24,14 @@ const Certification = () => {
 
   const changeState = async () => {
     Swal.fire({
-      title: '¿Está seguro de cambiar el estado de la certificacion?',
+      title: '¿Está usted seguro de cambiar el estado de la certificación?',
       text: "",
-      icon: 'warning',
+      icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '¡Sí, cambiarlo!'
+      confirmButtonColor: '#019979',
+      cancelButtonColor: '#A0A5A1',
+      confirmButtonText: '¡Sí, actualizar!',
+      cancelButtonText: 'Cancelar'
     }).then( async (result) => {
       if (result.isConfirmed) {
           try {

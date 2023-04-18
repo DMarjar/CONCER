@@ -46,10 +46,11 @@ export const EditCompany = () => {
             const response = await AxiosClient.doPut(`/certifyingCompany/`, payload);
             if (!response.data.error) {
                 Swal.fire({
-                    title: '¡Éxito!',
-                    text: 'La empresa ha sido actualizada.',
+                    title: '¡Actualizado!',
+                    text: 'Se actualizo la información correctamente',
                     icon: 'success',
                     confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#019979',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = `/company/${company}`;

@@ -26,8 +26,10 @@ export const NewAcademy = () => {
             if (!response.data.error) {
                 Swal.fire({
                     title: '¡Éxito!',
-                    text: 'Academia registrada correctamente.',
+                    text: 'Academia registrada correctamente',
                     icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#019979',
                     confirmButtonText: 'Aceptar',
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -35,18 +37,21 @@ export const NewAcademy = () => {
                     }
                 })
             } else {
-                Swal.fire(
-                    'Vaya...',
-                    'Algo a salido mal, intentelo de nuevo.',
-                    'error'
-                )
+                Swal.fire({
+                    title: 'Vaya...',
+                    text: 'Ha ocurrido un error, intentelo de nuevo',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    timer: 3000
+                })
             }
         } catch (error) {
-            Swal.fire(
-                '¡Error!',
-                'La academia no ha sido registrada.',
-                'error'
-            )
+            Swal.fire({
+                title: 'Vaya...',
+                text: 'Ha ocurrido un error al registrar a la academia',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            })
         }
     }
 
@@ -66,13 +71,14 @@ export const NewAcademy = () => {
                                     onSubmit={(values, { setSubmitting }) => {
                                         setSubmitting(true);
                                         Swal.fire({
-                                            text: "¿Está  seguro de registrar la academia?",
-                                            icon: "question",
-                                            confirmButtonText: "Aceptar",
+                                            title: '¿Está usted seguro del registro?',
+                                            text: "",
+                                            icon: 'question',
                                             showCancelButton: true,
                                             cancelButtonText: "Cancelar",
                                             confirmButtonColor: '#019979',
-                                            cancelButtonColor: '#A0A5A1'
+                                            cancelButtonColor: '#A0A5A1',
+                                            confirmButtonText: 'Sí, guardar!'
                                         }).then((result) => {
                                             if (result.isConfirmed) {
                                                 enviarDatos(values);

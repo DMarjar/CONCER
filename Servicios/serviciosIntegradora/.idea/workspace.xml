@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1930e54-76c7-426d-8e53-5aac1b4e70af" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/index/IndexAdmin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/index/IndexAdmin.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/company/EditCompany.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/company/EditCompany.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/utez/academy/NewAcademy.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../ELFRONTWEB/concer/src/modules/utez/academy/NewAcademy.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
@@ -31,11 +31,11 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
